@@ -94,10 +94,11 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     color: white;
     padding: 4rem 0;
     text-align: center;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .hero-title {
@@ -105,14 +106,16 @@ body {
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
+    color: #e5e7eb;
 }
 
 .hero-description {
     font-size: 1.25rem;
     max-width: 800px;
     margin: 0 auto 3rem;
-    opacity: 0.95;
+    opacity: 0.9;
     line-height: 1.8;
+    color: #9ca3af;
 }
 
 .stats-grid {
