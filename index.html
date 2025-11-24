@@ -3,292 +3,659 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Early Risk Signals - Credit Card Delinquency Watch</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Complete Workflow - Early Risk Signals</title>
+    <link rel="stylesheet" href="workflow-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
+    <header class="workflow-header">
         <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>Early Risk Signals</h1>
-                    <p class="subtitle">Credit Card Delinquency Watch</p>
-                </div>
-                <nav class="nav">
-                    <a href="workflow.html" class="nav-link">Workflow</a>
-                </nav>
-            </div>
+            <h1>Complete Workflow Visualization</h1>
+            <p>Step-by-step breakdown of the Early Risk Signal System development process</p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="overview">
-        <div class="container">
-            <div class="hero-content">
-                <h2 class="hero-title">Proactive Risk Detection Framework</h2>
-                <p class="hero-description">
-                    A lightweight, data-driven framework for identifying early behavioral signals 
-                    of credit card delinquency before they occur. Enabling proactive outreach to 
-                    reduce roll-rates and improve portfolio health.
-                </p>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-number">50,000</div>
-                        <div class="stat-label">Records Analyzed</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">50%</div>
-                        <div class="stat-label">At-Risk Identified</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">75%</div>
-                        <div class="stat-label">Model Accuracy</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">14+</div>
-                        <div class="stat-label">Early Signals</div>
-                    </div>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Workflow Steps -->
+    <div class="workflow-container">
+        
+        <!-- Step 1: Data Loading -->
+        <div class="workflow-step" data-step="1">
+            <div class="step-header">
+                <div class="step-number">01</div>
+                <div class="step-content">
+                    <h2>Data Loading & Initial Analysis</h2>
+                    <p class="step-subtitle">Understanding the dataset structure and characteristics</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Visualizations Section -->
-    <section class="visualizations" id="visualizations">
-        <div class="container">
-            <h2 class="section-title">Data Visualizations & Insights</h2>
-            <p class="section-description">
-                Comprehensive analysis of credit card delinquency risk patterns and model performance
-            </p>
-
-            <!-- Model Comparison -->
-            <div class="viz-section">
-                <h3 class="viz-title">Model Performance Comparison</h3>
-                <p class="viz-description">
-                    Comparison of three machine learning models: Random Forest, Logistic Regression, and Gradient Boosting.
-                    Random Forest achieved the highest accuracy of 75% on the original dataset.
-                </p>
-                <div class="image-container">
-                    <img src="model_comparison.png" alt="Model Comparison" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Dataset Comparison -->
-            <div class="viz-section">
-                <h3 class="viz-title">Dataset Size Impact Analysis</h3>
-                <p class="viz-description">
-                    Performance comparison between original dataset (100 records) and synthetic dataset (50,000 records).
-                    Gradient Boosting shows significant improvement with larger dataset, achieving 79% accuracy.
-                </p>
-                <div class="image-container">
-                    <img src="dataset_comparison.png" alt="Dataset Comparison" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Risk Distribution -->
-            <div class="viz-section">
-                <h3 class="viz-title">Portfolio Risk Distribution</h3>
-                <p class="viz-description">
-                    Distribution of risk levels across the customer portfolio. 50% of customers flagged as at-risk,
-                    with 10% requiring immediate intervention (CRITICAL risk).
-                </p>
-                <div class="image-container">
-                    <img src="risk_distribution.png" alt="Risk Distribution" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Behavioral Patterns -->
-            <div class="viz-section">
-                <h3 class="viz-title">Behavioral Pattern Analysis</h3>
-                <p class="viz-description">
-                    Key behavioral patterns that precede delinquency: spending decline, utilization trends,
-                    payment frequency, and cash withdrawal patterns. These early warning signals help identify
-                    at-risk customers before delinquency occurs.
-                </p>
-                <div class="image-container">
-                    <img src="behavioral_patterns.png" alt="Behavioral Patterns" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Flag Frequency -->
-            <div class="viz-section">
-                <h3 class="viz-title">Early Warning Flag Frequency</h3>
-                <p class="viz-description">
-                    Most common early warning signals across the portfolio. Low payment frequency and
-                    spending decline are the top indicators of potential delinquency risk.
-                </p>
-                <div class="image-container">
-                    <img src="flag_frequency.png" alt="Flag Frequency" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Feature Importance -->
-            <div class="viz-section">
-                <h3 class="viz-title">Feature Importance Analysis</h3>
-                <p class="viz-description">
-                    Top predictive features from the Random Forest model. Payment frequency and utilization
-                    are the strongest predictors of delinquency risk.
-                </p>
-                <div class="image-container">
-                    <img src="feature_importance.png" alt="Feature Importance" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Outreach Strategy -->
-            <div class="viz-section">
-                <h3 class="viz-title">Outreach Strategy Distribution</h3>
-                <p class="viz-description">
-                    Distribution of intervention strategies by channel and priority level. 10 customers require
-                    immediate phone calls, while 40 need priority outreach within 48 hours.
-                </p>
-                <div class="image-container">
-                    <img src="outreach_strategy.png" alt="Outreach Strategy" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Risk Heatmap -->
-            <div class="viz-section">
-                <h3 class="viz-title">Risk Factors Correlation Heatmap</h3>
-                <p class="viz-description">
-                    Correlation matrix showing relationships between different risk factors. Strong correlations
-                    help identify which factors work together to predict delinquency.
-                </p>
-                <div class="image-container">
-                    <img src="risk_heatmap.png" alt="Risk Heatmap" class="viz-image" loading="lazy">
-                </div>
-            </div>
-
-            <!-- Workflow Diagram -->
-            <div class="viz-section">
-                <h3 class="viz-title">System Workflow Diagram</h3>
-                <p class="viz-description">
-                    Complete workflow of the Early Risk Signal System, from data input through risk flag generation
-                    to automated outreach strategies. Shows the decision tree routing for different risk levels.
-                </p>
-                <div class="image-container">
-                    <img src="workflow_diagram.png" alt="Workflow Diagram" class="viz-image" loading="lazy">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Insights Section -->
-    <section class="insights" id="insights">
-        <div class="container">
-            <h2 class="section-title">Key Insights & Findings</h2>
-            <div class="insights-grid">
-                <div class="insight-card">
-                    <div class="insight-icon">Early Detection</div>
-                    <h4>Early Detection</h4>
-                    <p>Identified 50% of customers as at-risk before delinquency occurred, enabling proactive intervention.</p>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-icon">Top Risk Signals</div>
-                    <h4>Top Risk Signals</h4>
-                    <p>Low payment frequency (23 customers) and spending decline (20 customers) are the strongest early indicators.</p>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-icon">Model Performance</div>
-                    <h4>Model Performance</h4>
-                    <p>Random Forest achieved 75% accuracy on original dataset, with Gradient Boosting improving to 79% on larger dataset.</p>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-icon">Actionable Insights</div>
-                    <h4>Actionable Insights</h4>
-                    <p>10 customers flagged for immediate intervention, 40 for priority outreach within 48 hours.</p>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-icon">Behavioral Patterns</div>
-                    <h4>Behavioral Patterns</h4>
-                    <p>26% show spending decline, 20% have high utilization, 33% have low payment frequency.</p>
-                </div>
-                <div class="insight-card">
-                    <div class="insight-icon">Scalability</div>
-                    <h4>Scalability</h4>
-                    <p>Framework successfully scaled from 100 to 50,000 records, maintaining performance and improving model stability.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Early Risk Signals</h4>
-                    <p>A lightweight framework for proactive credit risk management</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Key Features</h4>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
                     <ul>
-                        <li>Early Warning Signal Detection</li>
-                        <li>Predictive Risk Scoring</li>
-                        <li>Automated Outreach Strategies</li>
-                        <li>Scalable Architecture</li>
+                        <li>Loaded <strong>Sample.csv</strong> containing 100 customer records</li>
+                        <li>Analyzed 9 features: Customer ID, Credit Limit, Utilization %, Payment metrics, etc.</li>
+                        <li>Identified target variable: <strong>DPD Bucket Next Month</strong> (0-3 scale)</li>
+                        <li>Discovered class imbalance: 75% no risk, 25% at-risk</li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Technology</h4>
-                    <ul>
-                        <li>Python & Scikit-learn</li>
-                        <li>Random Forest Classifier</li>
-                        <li>Feature Engineering</li>
-                        <li>Data Visualization</li>
-                    </ul>
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Load data using pandas
+df = pd.read_csv('Sample.csv')
+
+# Analyze structure
+print(f"Shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+print(f"Target distribution: {df['DPD Bucket'].value_counts()}")
+
+# Result: 100 rows × 9 columns</code></pre>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Key Findings</h3>
+                    <div class="findings-grid">
+                        <div class="finding-card">
+                            <div class="finding-value">100</div>
+                            <div class="finding-label">Customer Records</div>
+                        </div>
+                        <div class="finding-card">
+                            <div class="finding-value">9</div>
+                            <div class="finding-label">Features</div>
+                        </div>
+                        <div class="finding-card">
+                            <div class="finding-value">75%</div>
+                            <div class="finding-label">No Risk</div>
+                        </div>
+                        <div class="finding-card">
+                            <div class="finding-value">25%</div>
+                            <div class="finding-label">At-Risk</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 Early Risk Signals - Credit Card Delinquency Watch. All rights reserved.</p>
+        </div>
+
+        <!-- Step 2: Feature Engineering -->
+        <div class="workflow-step" data-step="2">
+            <div class="step-header">
+                <div class="step-number">02</div>
+                <div class="step-content">
+                    <h2>Feature Engineering - Early Warning Signals</h2>
+                    <p class="step-subtitle">Creating 14+ behavioral indicators that precede delinquency</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
+                    <p>Engineered <strong>14+ new features</strong> from original data to create early warning signals:</p>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h4>1. Spending Behavior Signals</h4>
+                            <ul>
+                                <li><code>spending_decline_flag</code>: Binary (1 if spending change < -15%)</li>
+                                <li><code>spending_stress</code>: 0-2 scale (0=normal, 1=moderate, 2=severe)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>2. Utilization Risk Signals</h4>
+                            <ul>
+                                <li><code>high_utilization_flag</code>: Binary (1 if utilization ≥ 80%)</li>
+                                <li><code>utilization_risk</code>: 0-3 scale (0=low, 3=critical)</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>3. Payment Behavior Signals</h4>
+                            <ul>
+                                <li><code>low_payment_frequency</code>: Binary (1 if frequency < 30%)</li>
+                                <li><code>payment_stress</code>: 0-2 scale</li>
+                                <li><code>payment_risk_ratio</code>: Payment frequency / Utilization</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>4. Cash Withdrawal Signals</h4>
+                            <ul>
+                                <li><code>high_cash_withdrawal</code>: Binary (1 if ≥ 15%)</li>
+                                <li><code>cash_stress_indicator</code>: 0-2 scale</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>5. Composite Risk Signals</h4>
+                            <ul>
+                                <li><code>utilization_payment_mismatch</code>: High util + Low payment</li>
+                                <li><code>spending_utilization_stress</code>: Spending decline + High util</li>
+                                <li><code>payment_utilization_critical</code>: Low payment + High util</li>
+                            </ul>
+                        </div>
+                        <div class="feature-card">
+                            <h4>6. Early Risk Score</h4>
+                            <ul>
+                                <li>Weighted combination of all signals</li>
+                                <li>Normalized to 0.0-1.0 scale</li>
+                                <li>Formula: (Spending×0.25 + Utilization×0.30 + Payment×0.25 + Cash×0.10 + Merchant×0.10) / 3.0</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Example: Spending Stress Calculation
+df['spending_stress'] = np.where(
+    df['Recent Spend Change %'] < -20, 2,  # Severe
+    np.where(df['Recent Spend Change %'] < -10, 1, 0)  # Moderate
+)
+
+# Example: Utilization Risk
+df['utilization_risk'] = np.where(
+    df['Utilisation %'] >= 90, 3,  # Critical
+    np.where(df['Utilisation %'] >= 70, 2,  # High
+    np.where(df['Utilisation %'] >= 50, 1, 0))  # Medium/Low
+)
+
+# Early Risk Score Calculation
+df['early_risk_score'] = (
+    df['spending_stress'] * 0.25 +
+    df['utilization_risk'] * 0.30 +
+    df['payment_stress'] * 0.25 +
+    df['cash_stress_indicator'] * 0.10 +
+    df['narrow_merchant_mix'] * 0.10
+) / 3.0</code></pre>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Output</h3>
+                    <p>Enhanced dataset with <strong>23+ columns</strong> (original 9 + 14+ engineered features)</p>
+                </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Smooth Scroll Script -->
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        <!-- Step 3: Risk Flag Generation -->
+        <div class="workflow-step" data-step="3">
+            <div class="step-header">
+                <div class="step-number">03</div>
+                <div class="step-content">
+                    <h2>Risk Flag Generation</h2>
+                    <p class="step-subtitle">Creating deterministic flags with clear business logic</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
+                    <p>Generated risk flags for each customer based on <strong>deterministic thresholds</strong>:</p>
+                    <div class="flags-list">
+                        <div class="flag-item">
+                            <strong>SPENDING_DECLINE_SEVERE</strong>
+                            <span>Trigger: Spending change < -20%</span>
+                            <span>Severity: HIGH</span>
+                        </div>
+                        <div class="flag-item">
+                            <strong>CRITICAL_UTILIZATION</strong>
+                            <span>Trigger: Utilization ≥ 90%</span>
+                            <span>Severity: HIGH</span>
+                        </div>
+                        <div class="flag-item">
+                            <strong>LOW_PAYMENT_FREQUENCY</strong>
+                            <span>Trigger: Payment frequency < 20%</span>
+                            <span>Severity: HIGH</span>
+                        </div>
+                        <div class="flag-item">
+                            <strong>PAYMENT_UTILIZATION_CRITICAL</strong>
+                            <span>Trigger: Low payment (<30%) + High util (>70%)</span>
+                            <span>Severity: CRITICAL</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Flag Generation Logic
+for idx, row in df.iterrows():
+    customer_flags = []
+    
+    # Check spending decline
+    if row['Recent Spend Change %'] < -20:
+        customer_flags.append({
+            'flag': 'SPENDING_DECLINE_SEVERE',
+            'severity': 'HIGH',
+            'message': f"Spending dropped {abs(row['Recent Spend Change %'])}%",
+            'action': 'Proactive payment plan discussion'
+        })
+    
+    # Check utilization
+    if row['Utilisation %'] >= 90:
+        customer_flags.append({
+            'flag': 'CRITICAL_UTILIZATION',
+            'severity': 'HIGH',
+            'message': f"Credit utilization at {row['Utilisation %']}%",
+            'action': 'Immediate credit limit review'
+        })
+    
+    # Determine overall risk level
+    if any(f['severity'] == 'CRITICAL' for f in customer_flags):
+        risk_level = 'CRITICAL'
+    elif any(f['severity'] == 'HIGH' for f in customer_flags):
+        risk_level = 'HIGH'
+    # ... etc</code></pre>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Results</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-value">50</div>
+                            <div class="result-label">Customers Flagged</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">10</div>
+                            <div class="result-label">CRITICAL Risk</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">40</div>
+                            <div class="result-label">HIGH Risk</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">23</div>
+                            <div class="result-label">Top Flag Count</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        <!-- Step 4: Model Training -->
+        <div class="workflow-step" data-step="4">
+            <div class="step-header">
+                <div class="step-number">04</div>
+                <div class="step-content">
+                    <h2>Predictive Model Training</h2>
+                    <p class="step-subtitle">Training multiple ML models to validate early signals</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
+                    <p>Trained <strong>3 machine learning models</strong> to predict at-risk customers:</p>
+                    <div class="models-grid">
+                        <div class="model-card">
+                            <h4>1. Random Forest</h4>
+                            <ul>
+                                <li>100 estimators</li>
+                                <li>Max depth: 5</li>
+                                <li>Class weight: balanced</li>
+                                <li><strong>Accuracy: 75%</strong></li>
+                            </ul>
+                        </div>
+                        <div class="model-card">
+                            <h4>2. Logistic Regression</h4>
+                            <ul>
+                                <li>L2 regularization</li>
+                                <li>Class weight: balanced</li>
+                                <li>Max iterations: 1000</li>
+                                <li><strong>Accuracy: 55%</strong></li>
+                            </ul>
+                        </div>
+                        <div class="model-card">
+                            <h4>3. Gradient Boosting</h4>
+                            <ul>
+                                <li>100 estimators</li>
+                                <li>Max depth: 3</li>
+                                <li>Learning rate: default</li>
+                                <li><strong>Accuracy: 65%</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Prepare features
+feature_cols = [
+    'Utilisation %', 'Avg Payment Ratio', 'Min Due Paid Frequency',
+    'Merchant Mix Index', 'Cash Withdrawal %', 'Recent Spend Change %',
+    'spending_stress', 'utilization_risk', 'payment_stress',
+    'cash_stress_indicator', 'utilization_payment_mismatch',
+    'spending_utilization_stress', 'payment_utilization_critical'
+]
 
-        // Lazy loading enhancement
-        if ('IntersectionObserver' in window) {
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.classList.add('loaded');
-                        observer.unobserve(img);
-                    }
-                });
-            });
+X = df[feature_cols]
+y = (df['DPD Bucket Next Month'] > 0).astype(int)  # Binary target
 
-            document.querySelectorAll('.viz-image').forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-    </script>
+# Train-test split (80/20)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Scale features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train Random Forest
+model = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=5,
+    min_samples_split=10,
+    random_state=42,
+    class_weight='balanced'
+)
+model.fit(X_train_scaled, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test_scaled)
+accuracy = accuracy_score(y_test, y_pred)</code></pre>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>Top Features</h3>
+                    <ol class="feature-list">
+                        <li>Min Due Paid Frequency (18.3% importance)</li>
+                        <li>Utilisation % (17.5% importance)</li>
+                        <li>Recent Spend Change % (13.7% importance)</li>
+                        <li>Avg Payment Ratio (11.7% importance)</li>
+                        <li>Merchant Mix Index (11.2% importance)</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 5: Outreach Strategies -->
+        <div class="workflow-step" data-step="5">
+            <div class="step-header">
+                <div class="step-number">05</div>
+                <div class="step-content">
+                    <h2>Outreach Strategy Generation</h2>
+                    <p class="step-subtitle">Creating actionable intervention plans for each customer</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
+                    <p>Generated <strong>personalized outreach strategies</strong> based on risk level:</p>
+                    <div class="strategy-grid">
+                        <div class="strategy-card critical">
+                            <h4>CRITICAL Risk</h4>
+                            <ul>
+                                <li><strong>Channel:</strong> Phone Call</li>
+                                <li><strong>Timing:</strong> Within 24 hours</li>
+                                <li><strong>Message:</strong> Urgent intervention required</li>
+                                <li><strong>Offer:</strong> Payment plan, hardship program</li>
+                            </ul>
+                            <div class="strategy-count">10 customers</div>
+                        </div>
+                        <div class="strategy-card high">
+                            <h4>HIGH Risk</h4>
+                            <ul>
+                                <li><strong>Channel:</strong> Phone Call or Email</li>
+                                <li><strong>Timing:</strong> Within 48 hours</li>
+                                <li><strong>Message:</strong> Proactive support offer</li>
+                                <li><strong>Offer:</strong> Payment plan, counseling</li>
+                            </ul>
+                            <div class="strategy-count">40 customers</div>
+                        </div>
+                        <div class="strategy-card medium">
+                            <h4>MEDIUM Risk</h4>
+                            <ul>
+                                <li><strong>Channel:</strong> Email or SMS</li>
+                                <li><strong>Timing:</strong> Within 1 week</li>
+                                <li><strong>Message:</strong> Educational resources</li>
+                                <li><strong>Offer:</strong> Tips and reminders</li>
+                            </ul>
+                            <div class="strategy-count">19 customers</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Strategy Generation
+for idx, row in risk_flags_df.iterrows():
+    strategies = []
+    
+    # Base strategy by risk level
+    if row['risk_level'] == 'CRITICAL':
+        strategies.append({
+            'priority': 1,
+            'channel': 'Phone Call',
+            'timing': 'Immediate (within 24 hours)',
+            'message': 'Urgent: We noticed concerning patterns...',
+            'offer': 'Payment plan, hardship program'
+        })
+    
+    # Flag-specific strategies
+    for flag in row['flags']:
+        if flag['flag'] == 'SPENDING_DECLINE_SEVERE':
+            strategies.append({
+                'priority': 1,
+                'channel': 'Phone Call',
+                'message': 'We noticed spending pattern changes...',
+                'offer': 'Financial wellness check-in'
+            })
+    
+    return strategies</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 6: Visualizations -->
+        <div class="workflow-step" data-step="6">
+            <div class="step-header">
+                <div class="step-number">06</div>
+                <div class="step-content">
+                    <h2>Visualization Creation</h2>
+                    <p class="step-subtitle">Generating 9 comprehensive charts and dashboards</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Did</h3>
+                    <p>Created <strong>9 professional visualizations</strong> using matplotlib and seaborn:</p>
+                </div>
+                
+                <!-- Visualization 1: Model Comparison -->
+                <div class="detail-section">
+                    <h3>1. Model Performance Comparison</h3>
+                    <p>Comparison of three machine learning models showing accuracy and ROC-AUC scores.</p>
+                    <div class="viz-image-container">
+                        <img src="model_comparison.png" alt="Model Comparison" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Line graphs comparing Random Forest, Logistic Regression, and Gradient Boosting models. Random Forest achieved the highest accuracy of 75%.</p>
+                </div>
+
+                <!-- Visualization 2: Dataset Comparison -->
+                <div class="detail-section">
+                    <h3>2. Dataset Size Impact Analysis</h3>
+                    <p>Performance comparison between original dataset (100 records) and synthetic dataset (50,000 records).</p>
+                    <div class="viz-image-container">
+                        <img src="dataset_comparison.png" alt="Dataset Comparison" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Shows how model performance changes with dataset size. Gradient Boosting improved significantly with larger dataset, achieving 79% accuracy.</p>
+                </div>
+
+                <!-- Visualization 3: Risk Distribution -->
+                <div class="detail-section">
+                    <h3>3. Portfolio Risk Distribution</h3>
+                    <p>Distribution of risk levels across the customer portfolio.</p>
+                    <div class="viz-image-container">
+                        <img src="risk_distribution.png" alt="Risk Distribution" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar chart showing risk level breakdown and histogram of risk score distribution. 50% of customers flagged as at-risk.</p>
+                </div>
+
+                <!-- Visualization 4: Behavioral Patterns -->
+                <div class="detail-section">
+                    <h3>4. Behavioral Pattern Analysis</h3>
+                    <p>Key behavioral patterns that precede delinquency.</p>
+                    <div class="viz-image-container">
+                        <img src="behavioral_patterns.png" alt="Behavioral Patterns" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Four scatter plots showing correlations: Spending Change vs Utilization, Payment Frequency vs Utilization, Cash Withdrawal patterns, and Early Risk Score by DPD bucket.</p>
+                </div>
+
+                <!-- Visualization 5: Flag Frequency -->
+                <div class="detail-section">
+                    <h3>5. Early Warning Flag Frequency</h3>
+                    <p>Most common early warning signals across the portfolio.</p>
+                    <div class="viz-image-container">
+                        <img src="flag_frequency.png" alt="Flag Frequency" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Horizontal bar chart showing frequency of each risk flag. Low Payment Frequency (23 customers) and Spending Decline (20 customers) are top indicators.</p>
+                </div>
+
+                <!-- Visualization 6: Feature Importance -->
+                <div class="detail-section">
+                    <h3>6. Feature Importance Analysis</h3>
+                    <p>Top predictive features from the Random Forest model.</p>
+                    <div class="viz-image-container">
+                        <img src="feature_importance.png" alt="Feature Importance" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar chart showing top 10 most important features. Payment Frequency (18.3%) and Utilization (17.5%) are strongest predictors.</p>
+                </div>
+
+                <!-- Visualization 7: Outreach Strategy -->
+                <div class="detail-section">
+                    <h3>7. Outreach Strategy Distribution</h3>
+                    <p>Distribution of intervention strategies by channel and priority level.</p>
+                    <div class="viz-image-container">
+                        <img src="outreach_strategy.png" alt="Outreach Strategy" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar charts showing outreach channel distribution and intervention priority levels. 10 customers require immediate phone calls.</p>
+                </div>
+
+                <!-- Visualization 8: Risk Heatmap -->
+                <div class="detail-section">
+                    <h3>8. Risk Factors Correlation Heatmap</h3>
+                    <p>Correlation matrix showing relationships between different risk factors.</p>
+                    <div class="viz-image-container">
+                        <img src="risk_heatmap.png" alt="Risk Heatmap" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Heatmap showing correlations between 10 key risk factors. Strong correlations help identify which factors work together to predict delinquency.</p>
+                </div>
+
+                <!-- Visualization 9: Workflow Diagram -->
+                <div class="detail-section">
+                    <h3>9. System Workflow Diagram</h3>
+                    <p>Complete workflow of the Early Risk Signal System.</p>
+                    <div class="viz-image-container">
+                        <img src="workflow_diagram.png" alt="Workflow Diagram" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Visual workflow showing data flow from input through risk flag generation to automated outreach strategies. Shows decision tree routing for different risk levels.</p>
+                </div>
+
+                <div class="detail-section">
+                    <h3>How We Did It</h3>
+                    <div class="code-block">
+                        <pre><code># Example: Risk Distribution Chart
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# Risk level distribution
+risk_counts = risk_flags_df['risk_level'].value_counts()
+axes[0].bar(risk_counts.index, risk_counts.values, 
+           color=['green', 'orange', 'red', 'darkred'])
+
+# Risk score distribution
+axes[1].hist(risk_flags_df['risk_score'], bins=20, color='blue')
+axes[1].axvline(risk_flags_df['risk_score'].mean(), 
+               color='red', linestyle='--')
+
+plt.savefig('risk_distribution.png', dpi=300)</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 7: Output Generation -->
+        <div class="workflow-step" data-step="7">
+            <div class="step-header">
+                <div class="step-number">07</div>
+                <div class="step-content">
+                    <h2>Output Files & Documentation</h2>
+                    <p class="step-subtitle">Generating comprehensive outputs and documentation</p>
+                </div>
+            </div>
+            <div class="step-details">
+                <div class="detail-section">
+                    <h3>What We Created</h3>
+                    <div class="outputs-grid">
+                        <div class="output-card">
+                            <h4>CSV Files (3)</h4>
+                            <ul>
+                                <li><code>risk_flags_output.csv</code> - Risk flags for 100 customers</li>
+                                <li><code>outreach_strategies.csv</code> - Intervention recommendations</li>
+                                <li><code>data_with_early_signals.csv</code> - Enhanced dataset</li>
+                            </ul>
+                        </div>
+                        <div class="output-card">
+                            <h4>Visualizations (9)</h4>
+                            <ul>
+                                <li>All PNG files saved with 300 DPI</li>
+                                <li>Professional styling and formatting</li>
+                                <li>Ready for presentations</li>
+                            </ul>
+                        </div>
+                        <div class="output-card">
+                            <h4>Documentation (5)</h4>
+                            <ul>
+                                <li><code>README.md</code> - User guide</li>
+                                <li><code>solution_narrative.md</code> - Complete documentation</li>
+                                <li><code>EXECUTIVE_SUMMARY.md</code> - Executive overview</li>
+                                <li><code>FULL_WORKFLOW.md</code> - Workflow details</li>
+                                <li><code>EXECUTION_TRANSCRIPT.md</code> - Execution log</li>
+                            </ul>
+                        </div>
+                        <div class="output-card">
+                            <h4>Website</h4>
+                            <ul>
+                                <li><code>index.html</code> - Main website</li>
+                                <li><code>styles.css</code> - Dark theme styling</li>
+                                <li><code>workflow.html</code> - This interactive page</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="workflow-summary">
+            <h2>Complete Workflow Summary</h2>
+            <div class="summary-stats">
+                <div class="summary-stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Major Steps</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="stat-number">14+</div>
+                    <div class="stat-label">Features Engineered</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">ML Models Trained</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Visualizations</div>
+                </div>
+                <div class="summary-stat">
+                    <div class="stat-number">32</div>
+                    <div class="stat-label">Files Generated</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="workflow-nav">
+        <button class="nav-btn" id="prevBtn" onclick="navigateStep(-1)">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="navigateStep(1)">Next →</button>
+    </div>
+
+    <script src="workflow-script.js"></script>
 </body>
 </html>
-
