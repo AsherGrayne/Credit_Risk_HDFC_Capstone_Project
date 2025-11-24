@@ -8,7 +8,7 @@ import matplotlib.patches as mpatches
 from matplotlib.patches import FancyBboxPatch, FancyArrowPatch, Circle
 import matplotlib.patches as mpatches
 
-def create_workflow_diagram(save_path='workflow_diagram.png'):
+def create_workflow_diagram(save_path='visualizations/workflow_diagram.png'):
     """Create a visual workflow diagram of the Early Risk Signal System"""
     
     fig, ax = plt.subplots(1, 1, figsize=(18, 12))

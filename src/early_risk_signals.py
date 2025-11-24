@@ -554,7 +554,7 @@ class EarlyRiskSignalSystem:
         
         return synthetic_df
     
-    def compare_datasets_performance(self, original_df, synthetic_df, save_path='dataset_comparison.png'):
+    def compare_datasets_performance(self, original_df, synthetic_df, save_path='visualizations/dataset_comparison.png'):
         """
         Train models on both datasets and compare performance.
         """
@@ -710,7 +710,7 @@ class EarlyRiskSignalSystem:
             traceback.print_exc()
             return None
     
-    def plot_model_comparison(self, save_path='model_comparison.png'):
+    def plot_model_comparison(self, save_path='visualizations/model_comparison.png'):
         """Plot accuracy comparison of all models using line graphs"""
         try:
             import matplotlib.pyplot as plt
@@ -808,7 +808,7 @@ def main():
     
     # Load data
     print("\n[1/6] Loading data...")
-    df = system.load_data('Sample.csv')
+    df = system.load_data('data/Sample.csv')
     
     # Engineer early signals
     print("\n[2/6] Engineering early warning signals...")
@@ -863,11 +863,11 @@ def main():
         comparison_results = system.compare_datasets_performance(df_engineered, synthetic_df_engineered)
         
         # Save synthetic dataset
-        synthetic_df.to_csv('synthetic_dataset_50000.csv', index=False)
-        synthetic_df_engineered.to_csv('synthetic_dataset_with_signals.csv', index=False)
+        synthetic_df.to_csv('data/synthetic_dataset_50000.csv', index=False)
+        synthetic_df_engineered.to_csv('data/synthetic_dataset_with_signals.csv', index=False)
         print("\n💾 Saved synthetic datasets:")
-        print("  - synthetic_dataset_50000.csv")
-        print("  - synthetic_dataset_with_signals.csv")
+        print("  - data/synthetic_dataset_50000.csv")
+        print("  - data/synthetic_dataset_with_signals.csv")
     except Exception as e:
         print(f"⚠️  Synthetic dataset generation skipped: {e}")
         import traceback
@@ -875,17 +875,17 @@ def main():
     
     # Save results
     print("\n💾 Saving results...")
-    risk_flags_df.to_csv('risk_flags_output.csv', index=False)
-    strategies_df.to_csv('outreach_strategies.csv', index=False)
+    risk_flags_df.to_csv('data/risk_flags_output.csv', index=False)
+    strategies_df.to_csv('data/outreach_strategies.csv', index=False)
     try:
-        df_engineered.to_csv('data_with_early_signals.csv', index=False)
+        df_engineered.to_csv('data/data_with_early_signals.csv', index=False)
     except PermissionError:
-        print("⚠️  Could not save data_with_early_signals.csv (file may be open)")
+        print("Could not save data_with_early_signals.csv (file may be open)")
     
     print("\n✅ Analysis complete! Output files saved:")
-    print("  - risk_flags_output.csv")
-    print("  - outreach_strategies.csv")
-    print("  - data_with_early_signals.csv")
+    print("  - data/risk_flags_output.csv")
+    print("  - data/outreach_strategies.csv")
+    print("  - data/data_with_early_signals.csv")
     print("  - Visualization PNG files (if matplotlib available)")
     
     return system, df_engineered, risk_flags_df, strategies_df

@@ -736,7 +736,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>1. Model Performance Comparison</h3>
                         <p>Comparison of three machine learning models showing accuracy and ROC-AUC scores.</p>
                         <div class="viz-image-container">
-                            <img src="model_comparison.png" alt="Model Comparison" class="workflow-viz-image">
+                            <img src="../visualizations/model_comparison.png" alt="Model Comparison" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Line graphs comparing Random Forest, Logistic Regression, and Gradient Boosting models. Random Forest achieved the highest accuracy of 75%.</p>
                     </div>
@@ -746,7 +746,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>2. Dataset Size Impact Analysis</h3>
                         <p>Performance comparison between original dataset (100 records) and synthetic dataset (50,000 records).</p>
                         <div class="viz-image-container">
-                            <img src="dataset_comparison.png" alt="Dataset Comparison" class="workflow-viz-image">
+                            <img src="../visualizations/dataset_comparison.png" alt="Dataset Comparison" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Shows how model performance changes with dataset size. Gradient Boosting improved significantly with larger dataset, achieving 79% accuracy.</p>
                     </div>
@@ -756,7 +756,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>3. Portfolio Risk Distribution</h3>
                         <p>Distribution of risk levels across the customer portfolio.</p>
                         <div class="viz-image-container">
-                            <img src="risk_distribution.png" alt="Risk Distribution" class="workflow-viz-image">
+                            <img src="../visualizations/risk_distribution.png" alt="Risk Distribution" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Bar chart showing risk level breakdown and histogram of risk score distribution. 50% of customers flagged as at-risk.</p>
                     </div>
@@ -766,7 +766,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>4. Behavioral Pattern Analysis</h3>
                         <p>Key behavioral patterns that precede delinquency.</p>
                         <div class="viz-image-container">
-                            <img src="behavioral_patterns.png" alt="Behavioral Patterns" class="workflow-viz-image">
+                            <img src="../visualizations/behavioral_patterns.png" alt="Behavioral Patterns" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Four scatter plots showing correlations: Spending Change vs Utilization, Payment Frequency vs Utilization, Cash Withdrawal patterns, and Early Risk Score by DPD bucket.</p>
                     </div>
@@ -776,7 +776,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>5. Early Warning Flag Frequency</h3>
                         <p>Most common early warning signals across the portfolio.</p>
                         <div class="viz-image-container">
-                            <img src="flag_frequency.png" alt="Flag Frequency" class="workflow-viz-image">
+                            <img src="../visualizations/flag_frequency.png" alt="Flag Frequency" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Horizontal bar chart showing frequency of each risk flag. Low Payment Frequency (23 customers) and Spending Decline (20 customers) are top indicators.</p>
                     </div>
@@ -786,7 +786,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>6. Feature Importance Analysis</h3>
                         <p>Top predictive features from the Random Forest model.</p>
                         <div class="viz-image-container">
-                            <img src="feature_importance.png" alt="Feature Importance" class="workflow-viz-image">
+                            <img src="../visualizations/feature_importance.png" alt="Feature Importance" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Bar chart showing top 10 most important features. Payment Frequency (18.3%) and Utilization (17.5%) are strongest predictors.</p>
                     </div>
@@ -796,7 +796,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>7. Outreach Strategy Distribution</h3>
                         <p>Distribution of intervention strategies by channel and priority level.</p>
                         <div class="viz-image-container">
-                            <img src="outreach_strategy.png" alt="Outreach Strategy" class="workflow-viz-image">
+                            <img src="../visualizations/outreach_strategy.png" alt="Outreach Strategy" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Bar charts showing outreach channel distribution and intervention priority levels. 10 customers require immediate phone calls.</p>
                     </div>
@@ -806,7 +806,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>8. Risk Factors Correlation Heatmap</h3>
                         <p>Correlation matrix showing relationships between different risk factors.</p>
                         <div class="viz-image-container">
-                            <img src="risk_heatmap.png" alt="Risk Heatmap" class="workflow-viz-image">
+                            <img src="../visualizations/risk_heatmap.png" alt="Risk Heatmap" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Heatmap showing correlations between 10 key risk factors. Strong correlations help identify which factors work together to predict delinquency.</p>
                     </div>
@@ -816,7 +816,7 @@ for idx, row in risk_flags_df.iterrows():
                         <h3>9. System Workflow Diagram</h3>
                         <p>Complete workflow of the Early Risk Signal System.</p>
                         <div class="viz-image-container">
-                            <img src="workflow_diagram.png" alt="Workflow Diagram" class="workflow-viz-image">
+                            <img src="../visualizations/workflow_diagram.png" alt="Workflow Diagram" class="workflow-viz-image">
                         </div>
                         <p class="viz-description">Visual workflow showing data flow from input through risk flag generation to automated outreach strategies. Shows decision tree routing for different risk levels.</p>
                     </div>

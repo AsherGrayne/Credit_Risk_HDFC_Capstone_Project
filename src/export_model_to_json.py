@@ -39,7 +39,7 @@ def export_model_to_json():
     
     # Initialize system and load data
     system = EarlyRiskSignalSystem()
-    df = system.load_data('Sample.csv')
+    df = system.load_data('data/Sample.csv')
     df_engineered = system.engineer_early_signals(df)
     
     # Train model

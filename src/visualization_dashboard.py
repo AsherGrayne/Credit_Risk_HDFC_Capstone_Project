@@ -28,7 +28,7 @@ class RiskVisualizationDashboard:
             'background': '#F5F5F5'
         }
     
-    def plot_risk_distribution(self, risk_flags_df, save_path='risk_distribution.png'):
+    def plot_risk_distribution(self, risk_flags_df, save_path='visualizations/risk_distribution.png'):
         """Plot distribution of risk levels across portfolio"""
         fig, axes = plt.subplots(1, 2, figsize=(16, 6))
         
@@ -61,7 +61,7 @@ class RiskVisualizationDashboard:
         print(f"✓ Saved: {save_path}")
         plt.close()
     
-    def plot_behavioral_patterns(self, df, save_path='behavioral_patterns.png'):
+    def plot_behavioral_patterns(self, df, save_path='visualizations/behavioral_patterns.png'):
         """Visualize key behavioral patterns that precede delinquency"""
         fig, axes = plt.subplots(2, 2, figsize=(16, 12))
         
@@ -132,7 +132,7 @@ class RiskVisualizationDashboard:
         print(f"✓ Saved: {save_path}")
         plt.close()
     
-    def plot_flag_frequency(self, risk_flags_df, save_path='flag_frequency.png'):
+    def plot_flag_frequency(self, risk_flags_df, save_path='visualizations/flag_frequency.png'):
         """Visualize frequency of different risk flags"""
         # Extract all flags
         all_flags = []
@@ -159,7 +159,7 @@ class RiskVisualizationDashboard:
         print(f"✓ Saved: {save_path}")
         plt.close()
     
-    def plot_feature_importance(self, feature_importance_df, save_path='feature_importance.png'):
+    def plot_feature_importance(self, feature_importance_df, save_path='visualizations/feature_importance.png'):
         """Plot feature importance from the predictive model"""
         fig, ax = plt.subplots(figsize=(12, 8))
         
@@ -183,7 +183,7 @@ class RiskVisualizationDashboard:
         print(f"✓ Saved: {save_path}")
         plt.close()
     
-    def plot_outreach_strategy(self, strategies_df, save_path='outreach_strategy.png'):
+    def plot_outreach_strategy(self, strategies_df, save_path='visualizations/outreach_strategy.png'):
         """Visualize outreach strategy distribution"""
         # Count strategies by channel and priority
         channel_counts = {}
@@ -225,7 +225,7 @@ class RiskVisualizationDashboard:
         print(f"✓ Saved: {save_path}")
         plt.close()
     
-    def create_risk_heatmap(self, df, save_path='risk_heatmap.png'):
+    def create_risk_heatmap(self, df, save_path='visualizations/risk_heatmap.png'):
         """Create correlation heatmap of risk factors"""
         # Select key features for correlation
         corr_features = [

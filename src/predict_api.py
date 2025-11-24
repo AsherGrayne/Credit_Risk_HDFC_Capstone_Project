@@ -9,6 +9,9 @@ import pandas as pd
 import numpy as np
 import pickle
 import os
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from early_risk_signals import EarlyRiskSignalSystem
 
 app = Flask(__name__)
@@ -134,7 +137,7 @@ if __name__ == '__main__':
     if not model_loaded:
         print("Training model...")
         try:
-            df = system.load_data('Sample.csv')
+            df = system.load_data('data/Sample.csv')
             df_engineered = system.engineer_early_signals(df)
             system.train_model(df_engineered)
             

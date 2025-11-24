@@ -6,11 +6,11 @@
 
 A lightweight, data-driven framework for identifying early behavioral signals of credit card delinquency before they occur, enabling proactive customer outreach to reduce roll-rates and improve portfolio health.
 
-## 🎯 Overview
+## Overview
 
 This solution provides a comprehensive system to detect credit card delinquency risk using **leading indicators** (early warning signals) rather than lag indicators (missed payments). The framework enables proactive customer outreach to reduce roll-rates and improve portfolio health.
 
-## ✨ Key Features
+## Key Features
 
 - **Early Warning Signal Detection** - Identifies behavioral patterns before delinquency occurs
 - **Risk Scoring Framework** - Weighted risk scoring system (0.0-1.0) with four-tier classification
@@ -19,7 +19,7 @@ This solution provides a comprehensive system to detect credit card delinquency 
 - **Comprehensive Visualizations** - 9+ professional charts and dashboards
 - **Scalable Architecture** - Designed for production deployment and automation
 
-## 📊 Project Statistics
+## Project Statistics
 
 - **50,000** records analyzed
 - **50%** of customers flagged as at-risk
@@ -27,7 +27,7 @@ This solution provides a comprehensive system to detect credit card delinquency 
 - **14+** early warning signals engineered
 - **10** critical customers requiring immediate intervention
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -49,62 +49,76 @@ pip install -r requirements.txt
 
 ```bash
 # Execute the main analysis
-python early_risk_signals.py
+python src/early_risk_signals.py
 ```
 
 This will:
-1. ✅ Load and analyze the sample data
-2. ✅ Engineer early warning signals
-3. ✅ Generate risk flags
-4. ✅ Train predictive models
-5. ✅ Create outreach strategies
-6. ✅ Generate visualizations
-7. ✅ Save output files
+1. Load and analyze the sample data
+2. Engineer early warning signals
+3. Generate risk flags
+4. Train predictive models
+5. Create outreach strategies
+6. Generate visualizations
+7. Save output files
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Credit Card Delinquency Pack/
 │
-├── Core Framework
+├── src/                               # Source code
 │   ├── early_risk_signals.py          # Main analysis framework
-│   ├── visualization_dashboard.py    # Visualization module
-│   └── workflow_diagram.py            # Workflow visualization
+│   ├── visualization_dashboard.py     # Visualization module
+│   ├── workflow_diagram.py            # Workflow visualization
+│   ├── export_model_to_json.py       # Model export utility
+│   └── predict_api.py                # Flask API for predictions
 │
-├── Documentation
-│   ├── README.md                      # This file
+├── data/                              # Data files
+│   ├── Sample.csv                     # Input data (100 records)
+│   ├── risk_flags_output.csv          # Risk flags output
+│   ├── outreach_strategies.csv        # Intervention recommendations
+│   ├── data_with_early_signals.csv    # Enhanced dataset
+│   └── synthetic_dataset_50000.csv     # Synthetic dataset
+│
+├── docs/                              # Documentation
 │   ├── solution_narrative.md          # Comprehensive documentation
 │   ├── EXECUTIVE_SUMMARY.md           # Executive overview
 │   ├── FULL_WORKFLOW.md               # Complete workflow
-│   └── EXECUTION_TRANSCRIPT.md        # Execution details
+│   ├── EXECUTION_TRANSCRIPT.md        # Execution details
+│   ├── ML_MODEL_EXPLANATION.md        # ML model documentation
+│   ├── README_API.md                  # API documentation
+│   ├── README_HOSTING.md              # Hosting guide
+│   └── DELIVERABLES_CHECKLIST.md     # Deliverables checklist
 │
-├── Data Files
-│   ├── Sample.csv                     # Input data (100 records)
-│   ├── risk_flags_output.csv         # Risk flags output
-│   ├── outreach_strategies.csv       # Intervention recommendations
-│   ├── data_with_early_signals.csv   # Enhanced dataset
-│   └── synthetic_dataset_50000.csv   # Synthetic dataset
-│
-├── Visualizations
+├── visualizations/                     # Generated visualizations
 │   ├── model_comparison.png           # Model performance comparison
 │   ├── dataset_comparison.png         # Dataset size impact
 │   ├── risk_distribution.png          # Risk level distribution
 │   ├── behavioral_patterns.png       # Behavioral analysis
-│   ├── flag_frequency.png            # Flag frequency analysis
+│   ├── flag_frequency.png             # Flag frequency analysis
 │   ├── feature_importance.png         # Feature importance
-│   ├── outreach_strategy.png         # Outreach distribution
+│   ├── outreach_strategy.png          # Outreach distribution
 │   ├── risk_heatmap.png               # Correlation heatmap
-│   └── workflow_diagram.png           # System workflow
+│   └── workflow_diagram.png            # System workflow
 │
-├── Website
+├── website/                           # Web interface
 │   ├── index.html                     # Main website
-│   └── styles.css                     # Website styling
+│   ├── workflow.html                  # Workflow page
+│   ├── apply.html                     # Prediction form
+│   ├── styles.css                     # Main stylesheet
+│   ├── workflow-styles.css            # Workflow page styles
+│   ├── apply-script.js                # Form handling script
+│   ├── ml-model-predictor.js          # ML model predictor
+│   └── workflow-script.js              # Workflow page script
 │
-└── Configuration
-    └── requirements.txt               # Python dependencies
+├── models/                             # Trained models
+│   └── model.json                     # Exported Random Forest model
+│
+├── README.md                          # This file
+└── requirements.txt                   # Python dependencies
 ```
 
-## 🔍 Key Features Explained
+## Key Features Explained
 
 ### 1. Early Warning Signal Detection
 
@@ -141,7 +155,7 @@ Automated outreach strategies based on risk level:
 - **HIGH**: Phone call/email within 48 hours
 - **MEDIUM**: Email/SMS within 1 week
 
-## 📈 Output Files
+## Output Files
 
 ### CSV Files
 
@@ -170,7 +184,7 @@ Automated outreach strategies based on risk level:
 - Risk correlation heatmap
 - System workflow diagram
 
-## 📊 Key Results
+## Key Results
 
 ### Portfolio Analysis
 - **50%** of customers flagged as at-risk (50 customers)
@@ -182,7 +196,7 @@ Automated outreach strategies based on risk level:
 - **Gradient Boosting**: 79% accuracy (50K dataset)
 - **Top Features**: Payment Frequency (18.3%), Utilization (17.5%)
 
-## 🎓 Understanding the Logic
+## Understanding the Logic
 
 ### Early Warning Signals vs Lag Indicators
 
@@ -216,11 +230,11 @@ Risk Score = (
 ) / 3.0
 ```
 
-## 🔧 Customization
+## Customization
 
 ### Adjusting Risk Thresholds
 
-Edit thresholds in `early_risk_signals.py`:
+Edit thresholds in `src/early_risk_signals.py`:
 
 ```python
 # Modify spending decline threshold
@@ -255,7 +269,7 @@ if row['Your_New_Indicator'] > threshold:
     })
 ```
 
-## 🌐 Website
+## Website
 
 A professional website showcasing all visualizations is included:
 
@@ -263,9 +277,9 @@ A professional website showcasing all visualizations is included:
 - **Styling**: `styles.css`
 - **Hosting**: Can be deployed on GitHub Pages, Netlify, or any static host
 
-See `README_HOSTING.md` for deployment instructions.
+See `docs/README_HOSTING.md` for deployment instructions.
 
-## 🚀 Scaling to Production
+## Scaling to Production
 
 ### Phase 1: Pilot (Months 1-3)
 - Deploy on 10% of portfolio
@@ -282,25 +296,27 @@ See `README_HOSTING.md` for deployment instructions.
 - Automated flag generation
 - Automated low-risk outreach
 
-See `solution_narrative.md` for detailed scaling strategy.
+See `docs/solution_narrative.md` for detailed scaling strategy.
 
-## 📊 Expected Impact
+## Expected Impact
 
 - **Early Detection**: Identify 20-30% of at-risk customers before delinquency
 - **Roll-Rate Reduction**: 15-25% reduction in progression to higher DPD buckets
 - **Cost Savings**: Early intervention cheaper than collections
 - **Customer Experience**: Proactive support improves satisfaction
 
-## 🔍 Example Usage
+## Example Usage
 
 ```python
+import sys
+sys.path.append('src')
 from early_risk_signals import EarlyRiskSignalSystem
 
 # Initialize system
 system = EarlyRiskSignalSystem()
 
 # Load data
-df = system.load_data('Sample.csv')
+df = system.load_data('data/Sample.csv')
 
 # Engineer early signals
 df_engineered = system.engineer_early_signals(df)
@@ -316,7 +332,7 @@ print(risk_flags.head())
 print(strategies.head())
 ```
 
-## 📝 Key Insights from Sample Data
+## Key Insights from Sample Data
 
 From analysis of 100 customer records:
 - **25%** flagged as at-risk (DPD Bucket ≥ 1)
@@ -324,7 +340,7 @@ From analysis of 100 customer records:
 - **22%** show spending decline (>15%)
 - **18%** show low payment frequency (<30%)
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Python 3.8+**
 - **Scikit-learn** - Machine learning models
@@ -332,14 +348,14 @@ From analysis of 100 customer records:
 - **NumPy** - Numerical computing
 - **Matplotlib/Seaborn** - Data visualization
 
-## 📚 Documentation
+## Documentation
 
-- **`solution_narrative.md`** - Complete solution documentation
-- **`EXECUTIVE_SUMMARY.md`** - Executive overview
-- **`FULL_WORKFLOW.md`** - Complete workflow walkthrough
-- **`EXECUTION_TRANSCRIPT.md`** - Detailed execution transcript
+- **`docs/solution_narrative.md`** - Complete solution documentation
+- **`docs/EXECUTIVE_SUMMARY.md`** - Executive overview
+- **`docs/FULL_WORKFLOW.md`** - Complete workflow walkthrough
+- **`docs/EXECUTION_TRANSCRIPT.md`** - Detailed execution transcript
 
-## 🤝 Contributing
+## Contributing
 
 This is a demonstration framework. For production use:
 1. Validate thresholds on larger datasets
@@ -347,22 +363,22 @@ This is a demonstration framework. For production use:
 3. Integrate with existing systems
 4. Establish feedback loops
 
-## 📄 License
+## License
 
 This solution is provided as-is for demonstration purposes.
 
-## 📧 Support
+## Support
 
 For questions or issues, refer to:
-- `solution_narrative.md` - Detailed technical documentation
-- `README_HOSTING.md` - Website hosting guide
+- `docs/solution_narrative.md` - Detailed technical documentation
+- `docs/README_HOSTING.md` - Website hosting guide
 
-## 🎯 Success Criteria Met
+## Success Criteria Met
 
-- ✅ **Clear Logic**: Deterministic thresholds and transparent business rules
-- ✅ **Data-Backed**: Analysis of 100 customers with statistical validation
-- ✅ **Targeted Interventions**: Risk-level based, operationally feasible, customer-friendly
-- ✅ **Scalability**: 3-phase deployment strategy with automation architecture
+- **Clear Logic**: Deterministic thresholds and transparent business rules
+- **Data-Backed**: Analysis of 100 customers with statistical validation
+- **Targeted Interventions**: Risk-level based, operationally feasible, customer-friendly
+- **Scalability**: 3-phase deployment strategy with automation architecture
 
 ---
 
@@ -372,4 +388,4 @@ For questions or issues, refer to:
 
 ---
 
-⭐ **Star this repository if you find it useful!**
+**Star this repository if you find it useful!**
