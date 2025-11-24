@@ -9,25 +9,26 @@
     --primary-color: #2563eb;
     --secondary-color: #1e40af;
     --accent-color: #3b82f6;
-    --text-dark: #1f2937;
-    --text-light: #6b7280;
-    --bg-light: #f9fafb;
-    --bg-white: #ffffff;
-    --border-color: #e5e7eb;
+    --text-dark: #e5e7eb;
+    --text-light: #9ca3af;
+    --bg-light: #1e293b;
+    --bg-white: #1e293b;
+    --border-color: #334155;
     --success-color: #10b981;
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    --blood-red: #8b0000;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
 }
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
-    color: var(--text-dark);
-    background-color: var(--bg-white);
+    color: #e5e7eb;
+    background-color: #0f172a;
     scroll-behavior: smooth;
 }
 
@@ -128,13 +129,15 @@ body {
     padding: 2rem;
     border-radius: 1rem;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(139, 0, 0, 0.5), 0 10px 10px -5px rgba(139, 0, 0, 0.3);
+    background-color: rgba(139, 0, 0, 0.2);
+    border-color: var(--blood-red);
 }
 
 .stat-number {
@@ -153,7 +156,7 @@ body {
 /* Visualizations Section */
 .visualizations {
     padding: 4rem 0;
-    background-color: var(--bg-light);
+    background-color: #0f172a;
 }
 
 .section-title {
@@ -161,13 +164,13 @@ body {
     font-weight: 700;
     text-align: center;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: #e5e7eb;
 }
 
 .section-description {
     text-align: center;
     font-size: 1.125rem;
-    color: var(--text-light);
+    color: #9ca3af;
     max-width: 700px;
     margin: 0 auto 3rem;
 }
@@ -177,27 +180,29 @@ body {
     border-radius: 1rem;
     padding: 2.5rem;
     margin-bottom: 3rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     border: 1px solid var(--border-color);
 }
 
 .viz-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(139, 0, 0, 0.5), 0 10px 10px -5px rgba(139, 0, 0, 0.3);
+    background-color: rgba(139, 0, 0, 0.15);
+    border-color: var(--blood-red);
 }
 
 .viz-title {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: var(--text-dark);
+    color: #e5e7eb;
     letter-spacing: -0.02em;
 }
 
 .viz-description {
     font-size: 1rem;
-    color: var(--text-light);
+    color: #9ca3af;
     margin-bottom: 1.5rem;
     line-height: 1.7;
 }
@@ -206,9 +211,15 @@ body {
     width: 100%;
     border-radius: 0.75rem;
     overflow: hidden;
-    background: var(--bg-light);
-    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+    background: #1e293b;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.4), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
     border: 1px solid var(--border-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.viz-section:hover .image-container {
+    border-color: var(--blood-red);
+    box-shadow: 0 4px 8px -1px rgba(139, 0, 0, 0.4);
 }
 
 .viz-image {
@@ -229,7 +240,7 @@ body {
 /* Insights Section */
 .insights {
     padding: 4rem 0;
-    background: linear-gradient(135deg, #f6f8fb 0%, #e9ecef 100%);
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .insights-grid {
@@ -243,15 +254,18 @@ body {
     background: var(--bg-white);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
     border-left: 4px solid var(--primary-color);
     border: 1px solid var(--border-color);
 }
 
 .insight-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03) translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(139, 0, 0, 0.5), 0 10px 10px -5px rgba(139, 0, 0, 0.3);
+    background-color: rgba(139, 0, 0, 0.15);
+    border-left-color: var(--blood-red);
+    border-color: var(--blood-red);
 }
 
 .insight-icon {
@@ -268,17 +282,17 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.75rem;
-    color: var(--text-dark);
+    color: #e5e7eb;
 }
 
 .insight-card p {
-    color: var(--text-light);
+    color: #9ca3af;
     line-height: 1.7;
 }
 
 /* Footer */
 .footer {
-    background: var(--text-dark);
+    background: #020617;
     color: white;
     padding: 3rem 0 1.5rem;
 }
