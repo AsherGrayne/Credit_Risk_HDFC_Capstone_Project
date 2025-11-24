@@ -24,6 +24,9 @@ document.getElementById('predictionForm').addEventListener('submit', async funct
         dpd_bucket: document.getElementById('dpd_bucket').value ? parseInt(document.getElementById('dpd_bucket').value) : null
     };
     
+    // Add real-time prediction preview
+    updateLivePreview(formData);
+    
     try {
         // Try Flask API first (if available)
         try {
@@ -202,6 +205,47 @@ function predictClientSide(data) {
     };
 }
 
+// Real-time preview function
+let previewTimeout = null;
+async function updateLivePreview(formData) {
+    clearTimeout(previewTimeout);
+    previewTimeout = setTimeout(async () => {
+        try {
+            const mlResult = await predictWithMLModel(formData);
+            const flags = generateRiskFlags(formData);
+            const risk_score = parseFloat(mlResult.probability);
+            const risk_level = determineRiskLevel(risk_score, flags);
+            
+            // Update preview if element exists
+            const previewEl = document.getElementById('livePreview');
+            if (previewEl) {
+                previewEl.innerHTML = `
+                    <div style="padding: 1rem; background: #0f172a; border-radius: 0.5rem; border: 1px solid #1e293b; margin-top: 1rem;">
+                        <div style="font-size: 0.875rem; color: #9ca3af; margin-bottom: 0.5rem;">Live Preview:</div>
+                        <div style="font-weight: 600; color: #e5e7eb;">
+                            Risk Level: <span style="color: ${getRiskColor(risk_level)}">${risk_level}</span> | 
+                            Score: ${risk_score.toFixed(3)} | 
+                            Probability: ${(risk_score * 100).toFixed(1)}%
+                        </div>
+                    </div>
+                `;
+            }
+        } catch (error) {
+            // Silent fail for preview
+        }
+    }, 500);
+}
+
+function getRiskColor(level) {
+    const colors = {
+        'CRITICAL': '#dc143c',
+        'HIGH': '#ff6347',
+        'MEDIUM': '#ffa500',
+        'LOW': '#32cd32'
+    };
+    return colors[level] || '#9ca3af';
+}
+
 function displayResults(result) {
     // Update risk level
     const riskLevelCard = document.getElementById('riskLevelCard');
@@ -237,4 +281,25 @@ function displayResults(result) {
     // Scroll to results
     document.getElementById('resultContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+
+// Add input listeners for real-time updates
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = ['utilisation', 'avg_payment_ratio', 'min_due_frequency', 'merchant_mix', 'cash_withdrawal', 'spend_change'];
+    inputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener('input', function() {
+                const formData = {
+                    utilisation: parseFloat(document.getElementById('utilisation')?.value || 0),
+                    avg_payment_ratio: parseFloat(document.getElementById('avg_payment_ratio')?.value || 0),
+                    min_due_frequency: parseFloat(document.getElementById('min_due_frequency')?.value || 0),
+                    merchant_mix: parseFloat(document.getElementById('merchant_mix')?.value || 0),
+                    cash_withdrawal: parseFloat(document.getElementById('cash_withdrawal')?.value || 0),
+                    spend_change: parseFloat(document.getElementById('spend_change')?.value || 0)
+                };
+                updateLivePreview(formData);
+            });
+        }
+    });
+});
 

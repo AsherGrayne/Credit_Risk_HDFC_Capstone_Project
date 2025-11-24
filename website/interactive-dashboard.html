@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dashboard - Risk Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #020617;
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 1rem;
+            border: 1px solid #1e293b;
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.2);
+            border-color: #8b0000;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .slider-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .slider-label span {
+            font-weight: 600;
+            color: #e5e7eb;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #1e293b;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #8b0000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            background: #dc143c;
+            transform: scale(1.2);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #8b0000;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            background: #dc143c;
+            transform: scale(1.2);
+        }
+
+        .risk-meter {
+            position: relative;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .risk-level-display {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 1rem;
+            border: 2px solid #1e293b;
+            transition: all 0.3s ease;
+        }
+
+        .risk-level-display.critical {
+            border-color: #dc143c;
+            box-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .risk-level-display.high {
+            border-color: #ff6347;
+            box-shadow: 0 0 20px rgba(255, 99, 71, 0.3);
+        }
+
+        .risk-level-display.medium {
+            border-color: #ffa500;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.3);
+        }
+
+        .risk-level-display.low {
+            border-color: #32cd32;
+            box-shadow: 0 0 20px rgba(50, 205, 50, 0.3);
+        }
+
+        .risk-level {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .risk-level.critical { color: #dc143c; }
+        .risk-level.high { color: #ff6347; }
+        .risk-level.medium { color: #ffa500; }
+        .risk-level.low { color: #32cd32; }
+
+        .risk-score {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .risk-probability {
+            font-size: 1.5rem;
+            color: #9ca3af;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 1rem;
+        }
+
+        .flags-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .flag-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: #020617;
+            border-left: 4px solid #8b0000;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .flag-item:hover {
+            background: #1e293b;
+            transform: translateX(5px);
+        }
+
+        .flag-severity {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .flag-severity.critical { background: #dc143c; color: white; }
+        .flag-severity.high { background: #ff6347; color: white; }
+        .flag-severity.medium { background: #ffa500; color: white; }
+
+        .live-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #32cd32;
+            margin-right: 0.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            padding: 0.75rem 2rem;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: #e5e7eb;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #8b0000;
+            border-color: #8b0000;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>Interactive Risk Analysis Dashboard</h1>
+            <p style="color: #9ca3af; margin-top: 0.5rem;">
+                <span class="live-indicator"></span>Live predictions update as you adjust parameters
+            </p>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Input Controls -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>Customer Parameters</h3>
+                </div>
+                
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Utilisation %</span>
+                        <span id="utilisation-value">50</span>
+                    </div>
+                    <input type="range" class="slider" id="utilisation" min="0" max="100" value="50" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Avg Payment Ratio</span>
+                        <span id="payment-ratio-value">60</span>
+                    </div>
+                    <input type="range" class="slider" id="payment-ratio" min="0" max="100" value="60" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Min Due Paid Frequency</span>
+                        <span id="frequency-value">50</span>
+                    </div>
+                    <input type="range" class="slider" id="frequency" min="0" max="100" value="50" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Cash Withdrawal %</span>
+                        <span id="cash-value">10</span>
+                    </div>
+                    <input type="range" class="slider" id="cash" min="0" max="100" value="10" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Recent Spend Change %</span>
+                        <span id="spend-value">0</span>
+                    </div>
+                    <input type="range" class="slider" id="spend" min="-50" max="50" value="0" step="0.1">
+                </div>
+
+                <div class="slider-group">
+                    <div class="slider-label">
+                        <span>Merchant Mix Index</span>
+                        <span id="merchant-value">0.5</span>
+                    </div>
+                    <input type="range" class="slider" id="merchant" min="0" max="1" value="0.5" step="0.01">
+                </div>
+            </div>
+
+            <!-- Risk Display -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>Risk Assessment</h3>
+                </div>
+                <div class="risk-level-display" id="risk-display">
+                    <div class="risk-level" id="risk-level">LOW</div>
+                    <div class="risk-score" id="risk-score">0.000</div>
+                    <div class="risk-probability" id="risk-probability">0.0% At-Risk</div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Feature Importance -->
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <h3>Feature Impact</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="featureChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Risk Flags -->
+            <div class="dashboard-card" style="grid-column: 1 / -1;">
+                <div class="card-header">
+                    <h3>Early Warning Flags</h3>
+                </div>
+                <div class="flags-container" id="flags-container">
+                    <p style="color: #9ca3af; text-align: center; padding: 2rem;">
+                        Adjust parameters to see risk flags appear
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-btn">← Back to Main</a>
+            <a href="apply.html" class="nav-btn">Go to Form →</a>
+        </div>
+    </div>
+
+    <script src="ml-model-predictor.js"></script>
+    <script src="interactive-dashboard.js"></script>
+</body>
+</html>
+
