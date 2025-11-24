@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply Here - Risk Prediction</title>
+    <link rel="stylesheet" href="workflow-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .apply-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 20px;
+        }
+        
+        .apply-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .apply-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #e5e7eb;
+        }
+        
+        .apply-header p {
+            font-size: 1.125rem;
+            color: #9ca3af;
+        }
+        
+        .form-container {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .form-group input {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            color: #e5e7eb;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #8b0000;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+        
+        .form-group input:hover {
+            border-color: #334155;
+        }
+        
+        .submit-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 1rem 3rem;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .submit-btn:hover {
+            background: #dc143c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .result-container {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .result-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-header {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #e5e7eb;
+            border-left: 4px solid #8b0000;
+            padding-left: 1rem;
+        }
+        
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .result-card {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .result-card.critical {
+            border-left: 4px solid #dc143c;
+        }
+        
+        .result-card.high {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .result-card.medium {
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .result-card.low {
+            border-left: 4px solid #10b981;
+        }
+        
+        .result-label {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #e5e7eb;
+        }
+        
+        .risk-flags {
+            margin-top: 1.5rem;
+        }
+        
+        .risk-flags h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #e5e7eb;
+        }
+        
+        .flag-item {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-left: 4px solid #8b0000;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .flag-item strong {
+            color: #e5e7eb;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flag-item span {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            color: #9ca3af;
+        }
+        
+        .loading.show {
+            display: block;
+        }
+        
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            color: #ef4444;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .error-message.show {
+            display: block;
+        }
+        
+        .nav-back {
+            margin-bottom: 2rem;
+        }
+        
+        .nav-back a {
+            color: #9ca3af;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-back a:hover {
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="workflow-header">
+        <div class="container">
+            <h1>Risk Prediction - Apply Here</h1>
+            <p>Enter customer parameters to predict delinquency risk using our Random Forest model</p>
+        </div>
+    </header>
+
+    <div class="apply-container">
+        <div class="nav-back">
+            <a href="index.html">← Back to Workflow</a>
+        </div>
+
+        <div class="form-container">
+            <form id="predictionForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="customer_id">Customer ID</label>
+                        <input type="text" id="customer_id" name="customer_id" placeholder="e.g., C001" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="credit_limit">Credit Limit</label>
+                        <input type="number" id="credit_limit" name="credit_limit" placeholder="e.g., 165000" min="0" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="utilisation">Utilisation %</label>
+                        <input type="number" id="utilisation" name="utilisation" placeholder="e.g., 12" min="0" max="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="avg_payment_ratio">Avg Payment Ratio</label>
+                        <input type="number" id="avg_payment_ratio" name="avg_payment_ratio" placeholder="e.g., 32" min="0" max="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="min_due_frequency">Min Due Paid Frequency %</label>
+                        <input type="number" id="min_due_frequency" name="min_due_frequency" placeholder="e.g., 66" min="0" max="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="merchant_mix">Merchant Mix Index</label>
+                        <input type="number" id="merchant_mix" name="merchant_mix" placeholder="e.g., 0.73" min="0" max="1" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cash_withdrawal">Cash Withdrawal %</label>
+                        <input type="number" id="cash_withdrawal" name="cash_withdrawal" placeholder="e.g., 12" min="0" max="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="spend_change">Recent Spend Change %</label>
+                        <input type="number" id="spend_change" name="spend_change" placeholder="e.g., -21" min="-100" max="100" step="0.1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dpd_bucket">DPD Bucket Next Month (Optional)</label>
+                        <input type="number" id="dpd_bucket" name="dpd_bucket" placeholder="e.g., 3 (0-3)" min="0" max="3" step="1">
+                        <small style="color: #9ca3af; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">Predict Risk</button>
+            </form>
+            
+            <div class="loading" id="loading">
+                <p>Processing prediction...</p>
+            </div>
+            
+            <div class="error-message" id="errorMessage"></div>
+        </div>
+
+        <div class="result-container" id="resultContainer">
+            <div class="result-header">Prediction Results</div>
+            
+            <div class="result-grid">
+                <div class="result-card" id="riskLevelCard">
+                    <div class="result-label">Risk Level</div>
+                    <div class="result-value" id="riskLevel">-</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Risk Score</div>
+                    <div class="result-value" id="riskScore">-</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Prediction</div>
+                    <div class="result-value" id="prediction">-</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-label">Probability</div>
+                    <div class="result-value" id="probability">-</div>
+                </div>
+            </div>
+            
+            <div class="risk-flags" id="riskFlags">
+                <h3>Early Warning Flags</h3>
+                <div id="flagsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="apply-script.js"></script>
+</body>
+</html>
+
