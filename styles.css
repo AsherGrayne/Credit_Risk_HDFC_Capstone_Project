@@ -40,19 +40,21 @@ body {
 
 /* Header */
 .header {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
     color: white;
     padding: 1.5rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header.scrolled {
     padding: 1rem 0;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(135deg, #000000 0%, #020617 50%, #000000 100%);
 }
 
 .header-content {
@@ -65,12 +67,15 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
+    color: #e5e7eb;
+    letter-spacing: -0.02em;
 }
 
 .logo .subtitle {
     font-size: 0.875rem;
-    opacity: 0.9;
+    opacity: 0.8;
     font-weight: 400;
+    color: #9ca3af;
 }
 
 .nav {
@@ -79,17 +84,19 @@ body {
 }
 
 .nav-link {
-    color: white;
+    color: #e5e7eb;
     text-decoration: none;
     font-weight: 500;
-    transition: opacity 0.3s ease;
+    transition: all 0.3s ease;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
 }
 
 .nav-link:hover {
-    opacity: 0.8;
-    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    background-color: rgba(139, 0, 0, 0.2);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
 /* Hero Section */
