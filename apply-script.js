@@ -25,27 +25,50 @@ document.getElementById('predictionForm').addEventListener('submit', async funct
     };
     
     try {
-        // Call prediction API
-        const response = await fetch('/predict', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-        
-        if (!response.ok) {
-            throw new Error('Prediction failed. Please try again.');
+        // Try Flask API first (if available)
+        try {
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            });
+            
+            if (response.ok) {
+                const result = await response.json();
+                displayResults(result);
+                return;
+            }
+        } catch (apiError) {
+            console.log('API not available, using client-side ML model...');
         }
         
-        const result = await response.json();
+        // Use client-side ML model (Random Forest from JSON)
+        const mlResult = await predictWithMLModel(formData);
         
-        // Display results
+        // Calculate risk flags (still use rule-based for flags)
+        const flags = generateRiskFlags(formData);
+        
+        // Calculate risk score and level
+        const risk_score = parseFloat(mlResult.probability);
+        const risk_level = determineRiskLevel(risk_score, flags);
+        
+        const result = {
+            risk_level: risk_level,
+            risk_score: risk_score.toFixed(3),
+            prediction: mlResult.prediction,
+            probability: mlResult.probabilityPercent,
+            flags: flags,
+            flag_count: flags.length
+        };
+        
         displayResults(result);
         
     } catch (error) {
-        // If API call fails, use client-side prediction (fallback)
-        console.log('API not available, using client-side prediction...');
+        console.error('Prediction error:', error);
+        // Fallback to rule-based if ML model fails
+        console.log('ML model failed, using rule-based fallback...');
         const result = predictClientSide(formData);
         displayResults(result);
     } finally {
@@ -54,24 +77,8 @@ document.getElementById('predictionForm').addEventListener('submit', async funct
     }
 });
 
-function predictClientSide(data) {
-    // Calculate early warning signals (same logic as Python)
-    const spending_stress = data.spend_change < -20 ? 2 : (data.spend_change < -10 ? 1 : 0);
-    const utilization_risk = data.utilisation >= 90 ? 3 : (data.utilisation >= 70 ? 2 : (data.utilisation >= 50 ? 1 : 0));
-    const payment_stress = data.min_due_frequency < 20 ? 2 : (data.min_due_frequency < 40 ? 1 : 0);
-    const cash_stress = data.cash_withdrawal >= 20 ? 2 : (data.cash_withdrawal >= 10 ? 1 : 0);
-    const narrow_merchant = data.merchant_mix < 0.4 ? 1 : 0;
-    
-    // Calculate early risk score
-    const early_risk_score = (
-        spending_stress * 0.25 +
-        utilization_risk * 0.30 +
-        payment_stress * 0.25 +
-        cash_stress * 0.10 +
-        narrow_merchant * 0.10
-    ) / 3.0;
-    
-    // Generate flags
+// Generate risk flags (rule-based)
+function generateRiskFlags(data) {
     const flags = [];
     
     if (data.spend_change < -20) {
@@ -148,18 +155,40 @@ function predictClientSide(data) {
         });
     }
     
-    // Determine risk level
-    let risk_level = 'LOW';
-    if (early_risk_score >= 0.8 || flags.some(f => f.severity === 'CRITICAL')) {
-        risk_level = 'CRITICAL';
-    } else if (early_risk_score >= 0.6 || flags.some(f => f.severity === 'HIGH')) {
-        risk_level = 'HIGH';
-    } else if (early_risk_score >= 0.3 || flags.length > 0) {
-        risk_level = 'MEDIUM';
+    return flags;
+}
+
+// Determine risk level based on ML probability and flags
+function determineRiskLevel(probability, flags) {
+    if (probability >= 0.8 || flags.some(f => f.severity === 'CRITICAL')) {
+        return 'CRITICAL';
+    } else if (probability >= 0.6 || flags.some(f => f.severity === 'HIGH')) {
+        return 'HIGH';
+    } else if (probability >= 0.3 || flags.length > 0) {
+        return 'MEDIUM';
     }
+    return 'LOW';
+}
+
+// Fallback rule-based prediction (if ML model fails)
+function predictClientSide(data) {
+    // Calculate early warning signals (same logic as Python)
+    const spending_stress = data.spend_change < -20 ? 2 : (data.spend_change < -10 ? 1 : 0);
+    const utilization_risk = data.utilisation >= 90 ? 3 : (data.utilisation >= 70 ? 2 : (data.utilisation >= 50 ? 1 : 0));
+    const payment_stress = data.min_due_frequency < 20 ? 2 : (data.min_due_frequency < 40 ? 1 : 0);
+    const cash_stress = data.cash_withdrawal >= 20 ? 2 : (data.cash_withdrawal >= 10 ? 1 : 0);
     
-    // Simple prediction based on risk score and flags
-    // This is a simplified version - in production, use the actual trained model
+    // Calculate early risk score
+    const early_risk_score = (
+        spending_stress * 0.25 +
+        utilization_risk * 0.30 +
+        payment_stress * 0.25 +
+        cash_stress * 0.10
+    ) / 3.0;
+    
+    // Generate flags
+    const flags = generateRiskFlags(data);
+    const risk_level = determineRiskLevel(early_risk_score, flags);
     const at_risk_probability = Math.min(0.95, Math.max(0.05, early_risk_score * 1.2));
     const prediction = at_risk_probability > 0.5 ? 'At-Risk' : 'Not At-Risk';
     
