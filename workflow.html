@@ -456,45 +456,98 @@ for idx, row in risk_flags_df.iterrows():
                 <div class="detail-section">
                     <h3>What We Did</h3>
                     <p>Created <strong>9 professional visualizations</strong> using matplotlib and seaborn:</p>
-                    <div class="viz-list">
-                        <div class="viz-item">
-                            <strong>1. Risk Distribution</strong>
-                            <p>Bar chart + histogram showing risk level breakdown</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>2. Behavioral Patterns</strong>
-                            <p>4 scatter plots showing correlations (Spending vs Utilization, Payment vs Utilization, etc.)</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>3. Flag Frequency</strong>
-                            <p>Horizontal bar chart of most common risk flags</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>4. Feature Importance</strong>
-                            <p>Top 10 predictive features from Random Forest model</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>5. Outreach Strategy</strong>
-                            <p>Channel and priority distribution charts</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>6. Risk Heatmap</strong>
-                            <p>Correlation matrix of risk factors</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>7. Model Comparison</strong>
-                            <p>Line graphs comparing model accuracies</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>8. Dataset Comparison</strong>
-                            <p>Original vs Synthetic dataset performance</p>
-                        </div>
-                        <div class="viz-item">
-                            <strong>9. Workflow Diagram</strong>
-                            <p>Visual system workflow</p>
-                        </div>
-                    </div>
                 </div>
+                
+                <!-- Visualization 1: Model Comparison -->
+                <div class="detail-section">
+                    <h3>1. Model Performance Comparison</h3>
+                    <p>Comparison of three machine learning models showing accuracy and ROC-AUC scores.</p>
+                    <div class="viz-image-container">
+                        <img src="model_comparison.png" alt="Model Comparison" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Line graphs comparing Random Forest, Logistic Regression, and Gradient Boosting models. Random Forest achieved the highest accuracy of 75%.</p>
+                </div>
+
+                <!-- Visualization 2: Dataset Comparison -->
+                <div class="detail-section">
+                    <h3>2. Dataset Size Impact Analysis</h3>
+                    <p>Performance comparison between original dataset (100 records) and synthetic dataset (50,000 records).</p>
+                    <div class="viz-image-container">
+                        <img src="dataset_comparison.png" alt="Dataset Comparison" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Shows how model performance changes with dataset size. Gradient Boosting improved significantly with larger dataset, achieving 79% accuracy.</p>
+                </div>
+
+                <!-- Visualization 3: Risk Distribution -->
+                <div class="detail-section">
+                    <h3>3. Portfolio Risk Distribution</h3>
+                    <p>Distribution of risk levels across the customer portfolio.</p>
+                    <div class="viz-image-container">
+                        <img src="risk_distribution.png" alt="Risk Distribution" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar chart showing risk level breakdown and histogram of risk score distribution. 50% of customers flagged as at-risk.</p>
+                </div>
+
+                <!-- Visualization 4: Behavioral Patterns -->
+                <div class="detail-section">
+                    <h3>4. Behavioral Pattern Analysis</h3>
+                    <p>Key behavioral patterns that precede delinquency.</p>
+                    <div class="viz-image-container">
+                        <img src="behavioral_patterns.png" alt="Behavioral Patterns" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Four scatter plots showing correlations: Spending Change vs Utilization, Payment Frequency vs Utilization, Cash Withdrawal patterns, and Early Risk Score by DPD bucket.</p>
+                </div>
+
+                <!-- Visualization 5: Flag Frequency -->
+                <div class="detail-section">
+                    <h3>5. Early Warning Flag Frequency</h3>
+                    <p>Most common early warning signals across the portfolio.</p>
+                    <div class="viz-image-container">
+                        <img src="flag_frequency.png" alt="Flag Frequency" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Horizontal bar chart showing frequency of each risk flag. Low Payment Frequency (23 customers) and Spending Decline (20 customers) are top indicators.</p>
+                </div>
+
+                <!-- Visualization 6: Feature Importance -->
+                <div class="detail-section">
+                    <h3>6. Feature Importance Analysis</h3>
+                    <p>Top predictive features from the Random Forest model.</p>
+                    <div class="viz-image-container">
+                        <img src="feature_importance.png" alt="Feature Importance" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar chart showing top 10 most important features. Payment Frequency (18.3%) and Utilization (17.5%) are strongest predictors.</p>
+                </div>
+
+                <!-- Visualization 7: Outreach Strategy -->
+                <div class="detail-section">
+                    <h3>7. Outreach Strategy Distribution</h3>
+                    <p>Distribution of intervention strategies by channel and priority level.</p>
+                    <div class="viz-image-container">
+                        <img src="outreach_strategy.png" alt="Outreach Strategy" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Bar charts showing outreach channel distribution and intervention priority levels. 10 customers require immediate phone calls.</p>
+                </div>
+
+                <!-- Visualization 8: Risk Heatmap -->
+                <div class="detail-section">
+                    <h3>8. Risk Factors Correlation Heatmap</h3>
+                    <p>Correlation matrix showing relationships between different risk factors.</p>
+                    <div class="viz-image-container">
+                        <img src="risk_heatmap.png" alt="Risk Heatmap" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Heatmap showing correlations between 10 key risk factors. Strong correlations help identify which factors work together to predict delinquency.</p>
+                </div>
+
+                <!-- Visualization 9: Workflow Diagram -->
+                <div class="detail-section">
+                    <h3>9. System Workflow Diagram</h3>
+                    <p>Complete workflow of the Early Risk Signal System.</p>
+                    <div class="viz-image-container">
+                        <img src="workflow_diagram.png" alt="Workflow Diagram" class="workflow-viz-image">
+                    </div>
+                    <p class="viz-description">Visual workflow showing data flow from input through risk flag generation to automated outreach strategies. Shows decision tree routing for different risk levels.</p>
+                </div>
+
                 <div class="detail-section">
                     <h3>How We Did It</h3>
                     <div class="code-block">

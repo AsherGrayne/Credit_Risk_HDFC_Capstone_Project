@@ -460,6 +460,44 @@ body {
     margin: 0;
 }
 
+/* Visualization Images */
+.viz-image-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.viz-image-container:hover {
+    border-color: #8b0000;
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.workflow-viz-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.viz-image-container:hover .workflow-viz-image {
+    transform: scale(1.02);
+}
+
+.viz-description {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
 /* Outputs Grid */
 .outputs-grid {
     display: grid;
