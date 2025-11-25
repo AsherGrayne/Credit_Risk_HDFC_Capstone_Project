@@ -9,7 +9,7 @@ async function loadModel() {
     if (modelLoaded) return true;
     
     try {
-        const response = await fetch('../models/model.json');
+        const response = await fetch('models/model.json');
         if (!response.ok) {
             throw new Error('Failed to load model.json');
         }
