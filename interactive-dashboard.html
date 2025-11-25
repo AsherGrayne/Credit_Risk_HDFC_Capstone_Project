@@ -33,6 +33,33 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             border-radius: 1rem;
             border: 1px solid #1e293b;
+            position: relative;
+        }
+
+        .back-button-top {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            color: #e5e7eb;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .back-button-top:hover {
+            background: #8b0000;
+            border-color: #8b0000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
         }
 
         .dashboard-header h1 {
@@ -274,6 +301,9 @@
 <body>
     <div class="dashboard-container">
         <div class="dashboard-header">
+            <a href="index.html" class="back-button-top">
+                ← Back to Main Site
+            </a>
             <h1>Interactive Risk Analysis Dashboard</h1>
             <p style="color: #9ca3af; margin-top: 0.5rem;">
                 <span class="live-indicator"></span>Live predictions update as you adjust parameters
