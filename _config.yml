@@ -1,0 +1,7 @@
+# GitHub Pages Configuration
+theme: jekyll-theme-minimal
+include:
+  - website
+  - visualizations
+  - models
+
