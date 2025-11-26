@@ -1839,12 +1839,22 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     const highCount = riskFlagsData.filter(r => r.risk_level === 'HIGH').length;
                     const flaggedCount = riskFlagsData.filter(r => r.flag_count > 0).length;
                     console.log(`CRITICAL: ${criticalCount}, HIGH: ${highCount}, Flagged: ${flaggedCount}`);
+                    
+                    // Enable tile clicks by removing loading class if exists
+                    document.querySelectorAll('.expandable-card').forEach(card => {
+                        card.classList.remove('data-loading');
+                    });
+                } else {
+                    console.warn('No risk flag records loaded!');
                 }
             } catch (error) {
                 console.error('Error loading risk flags data:', error);
                 console.error('Error details:', error.message);
+                console.error('Stack trace:', error.stack);
                 // Set a flag so we know data failed to load
                 riskFlagsData = null;
+                // Show error message in console for debugging
+                alert('Failed to load risk flags data. Please check the browser console for details.');
             }
         }
         
