@@ -1,6 +1,6 @@
 // Workflow Interactive Script
 let currentStep = 1;
-const totalSteps = 7;
+const totalSteps = 8;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {

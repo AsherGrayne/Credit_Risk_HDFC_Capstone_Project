@@ -1179,10 +1179,75 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
             </div>
 
-            <!-- Step 7: Output Generation -->
+            <!-- Step 7: Synthetic Dataset Display -->
             <div class="workflow-step" data-step="7">
                 <div class="step-header">
                     <div class="step-number">07</div>
+                    <div class="step-content">
+                        <h2>Synthetic Dataset (50,000 Records)</h2>
+                        <p class="step-subtitle">Complete dataset used for model training and evaluation</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Dataset Overview</h3>
+                        <p>This synthetic dataset contains <strong>50,000 customer records</strong> with 9 original features plus engineered features. Use the controls below to explore the data.</p>
+                        
+                        <div class="dataset-controls">
+                            <div class="control-group">
+                                <label for="search-input">Search:</label>
+                                <input type="text" id="search-input" placeholder="Search by Customer ID, values..." onkeyup="filterDataset()">
+                            </div>
+                            <div class="control-group">
+                                <label for="rows-per-page">Rows per page:</label>
+                                <select id="rows-per-page" onchange="changeRowsPerPage()">
+                                    <option value="10">10</option>
+                                    <option value="25" selected>25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <span id="dataset-info">Loading dataset...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="dataset-container">
+                            <div class="table-wrapper">
+                                <table id="dataset-table" class="dataset-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Credit Limit</th>
+                                            <th>Utilisation %</th>
+                                            <th>Avg Payment Ratio</th>
+                                            <th>Min Due Paid Frequency</th>
+                                            <th>Merchant Mix Index</th>
+                                            <th>Cash Withdrawal %</th>
+                                            <th>Recent Spend Change %</th>
+                                            <th>DPD Bucket Next Month</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataset-tbody">
+                                        <tr><td colspan="9" style="text-align: center; padding: 2rem;">Loading dataset...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="pagination-controls">
+                                <button id="prev-page" onclick="changePage(-1)" disabled>← Previous</button>
+                                <span id="page-info">Page 1 of 1</span>
+                                <button id="next-page" onclick="changePage(1)" disabled>Next →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Output Generation -->
+            <div class="workflow-step" data-step="8">
+                <div class="step-header">
+                    <div class="step-number">08</div>
                     <div class="step-content">
                         <h2>Output Files & Documentation</h2>
                         <p class="step-subtitle">Generating comprehensive outputs and documentation</p>
