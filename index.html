@@ -1215,9 +1215,9 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Dataset Overview</h3>
-                        <p>This section displays <strong>50 sample customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.</p>
+                        <p>This synthetic dataset displays the <strong>first 1,000 customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.</p>
                         <div style="margin-top: 1rem; margin-bottom: 1rem;">
-                            <button class="action-btn" onclick="downloadFullDataset()" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem;">
+                            <button class="action-btn" onclick="downloadFullDataset()" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: all 0.3s ease;">
                                 📥 Download Full Dataset (50,000 records)
                             </button>
                         </div>
@@ -1243,7 +1243,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         
                         <div class="dataset-container">
                             <div id="loading-indicator" style="text-align: center; padding: 2rem; color: #9ca3af;">
-                                <p>Loading dataset (50 sample records)...</p>
+                                <p>Loading dataset (1,000 records)...</p>
                                 <div style="margin-top: 1rem;">
                                     <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
                                         <div id="loading-bar" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
@@ -1602,12 +1602,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 const headers = lines[0].split(',').map(h => h.trim());
-                const maxRows = 50; // Load only 50 sample records
+                const maxRows = 1000; // Load only first 1,000 records
                 const totalLines = Math.min(lines.length - 1, maxRows);
                 
                 datasetData = [];
                 // Process in chunks to show progress
-                const chunkSize = 10;
+                const chunkSize = 100;
                 for (let chunkStart = 1; chunkStart <= totalLines + 1; chunkStart += chunkSize) {
                     const chunkEnd = Math.min(chunkStart + chunkSize, totalLines + 1);
                     
@@ -1644,7 +1644,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 filteredData = [...datasetData];
-                document.getElementById('dataset-info').textContent = `Showing ${datasetData.length.toLocaleString()} sample records (of 50,000 total)`;
+                document.getElementById('dataset-info').textContent = `Total records: ${datasetData.length.toLocaleString()}`;
                 
                 // Hide loading indicator and show table
                 document.getElementById('loading-indicator').style.display = 'none';
@@ -1755,15 +1755,29 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             const total = datasetData.length;
             const filtered = filteredData.length;
             if (filtered === total) {
-                document.getElementById('dataset-info').textContent = `Showing ${total.toLocaleString()} sample records (of 50,000 total)`;
+                document.getElementById('dataset-info').textContent = `Total records: ${total.toLocaleString()}`;
             } else {
-                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} sample records`;
+                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} records`;
             }
         }
         
         // Download full dataset function
         async function downloadFullDataset() {
             try {
+                // Check if running from file:// protocol (local file)
+                const isLocalFile = window.location.protocol === 'file:';
+                
+                if (isLocalFile) {
+                    alert('Cannot download dataset when opening HTML directly (file:// protocol).\n\nPlease use a local web server or access via GitHub Pages:\n- Python: python -m http.server 8000\n- Node: npx http-server\n- GitHub Pages: https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/');
+                    return;
+                }
+                
+                // Show loading state
+                const button = event.target;
+                const originalText = button.innerHTML;
+                button.innerHTML = '⏳ Downloading...';
+                button.disabled = true;
+                
                 // Try multiple possible paths
                 const possiblePaths = [
                     'data/synthetic_dataset_50000.csv',
@@ -1777,9 +1791,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     try {
                         response = await fetch(path);
                         if (response.ok) {
+                            console.log(`Successfully loading dataset from: ${path}`);
                             break;
                         }
                     } catch (err) {
+                        console.warn(`Failed to load from ${path}:`, err.message);
                         continue;
                     }
                 }
@@ -1798,15 +1814,29 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
                 
-                console.log('Dataset download initiated');
+                console.log('Dataset download initiated successfully');
+                
+                // Reset button
+                button.innerHTML = originalText;
+                button.disabled = false;
+                
+                // Show success message
+                const successMsg = document.createElement('div');
+                successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #10b981; color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 10000;';
+                successMsg.textContent = '✅ Download started!';
+                document.body.appendChild(successMsg);
+                setTimeout(() => successMsg.remove(), 3000);
+                
             } catch (error) {
                 console.error('Error downloading dataset:', error);
-                const isLocalFile = window.location.protocol === 'file:';
-                if (isLocalFile) {
-                    alert('Cannot download dataset when opening HTML directly (file:// protocol).\n\nPlease use a local web server or access via GitHub Pages:\n- Python: python -m http.server 8000\n- Node: npx http-server\n- GitHub Pages: https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/');
-                } else {
-                    alert('Failed to download dataset. Please check the browser console for details.');
-                }
+                
+                // Reset button
+                const button = event.target;
+                button.innerHTML = '📥 Download Full Dataset (50,000 records)';
+                button.disabled = false;
+                
+                // Show error message
+                alert('Failed to download dataset. Please check:\n\n1. File exists at: data/synthetic_dataset_50000.csv\n2. You are accessing via HTTP (not file://)\n3. Check browser console for details.');
             }
         }
         
