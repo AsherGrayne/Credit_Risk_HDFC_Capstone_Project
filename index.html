@@ -1755,9 +1755,58 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             const total = datasetData.length;
             const filtered = filteredData.length;
             if (filtered === total) {
-                document.getElementById('dataset-info').textContent = `Total records: ${total.toLocaleString()}`;
+                document.getElementById('dataset-info').textContent = `Showing ${total.toLocaleString()} sample records (of 50,000 total)`;
             } else {
-                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} records`;
+                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} sample records`;
+            }
+        }
+        
+        // Download full dataset function
+        async function downloadFullDataset() {
+            try {
+                // Try multiple possible paths
+                const possiblePaths = [
+                    'data/synthetic_dataset_50000.csv',
+                    './data/synthetic_dataset_50000.csv',
+                    '../data/synthetic_dataset_50000.csv'
+                ];
+                
+                let response = null;
+                
+                for (const path of possiblePaths) {
+                    try {
+                        response = await fetch(path);
+                        if (response.ok) {
+                            break;
+                        }
+                    } catch (err) {
+                        continue;
+                    }
+                }
+                
+                if (!response || !response.ok) {
+                    throw new Error(`Failed to load dataset. Status: ${response ? response.status : 'No response'}`);
+                }
+                
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'synthetic_dataset_50000.csv';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                console.log('Dataset download initiated');
+            } catch (error) {
+                console.error('Error downloading dataset:', error);
+                const isLocalFile = window.location.protocol === 'file:';
+                if (isLocalFile) {
+                    alert('Cannot download dataset when opening HTML directly (file:// protocol).\n\nPlease use a local web server or access via GitHub Pages:\n- Python: python -m http.server 8000\n- Node: npx http-server\n- GitHub Pages: https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/');
+                } else {
+                    alert('Failed to download dataset. Please check the browser console for details.');
+                }
             }
         }
         
