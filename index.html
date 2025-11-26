@@ -441,13 +441,29 @@ df['utilization_risk'] = np.where(
 )
 
 # Early Risk Score Calculation
+# Note: Only scaled stress indicators are used in the score
+# Binary flags and composite signals are used for risk flag generation
 df['early_risk_score'] = (
-    df['spending_stress'] * 0.25 +
-    df['utilization_risk'] * 0.30 +
-    df['payment_stress'] * 0.25 +
-    df['cash_stress_indicator'] * 0.10 +
-    df['narrow_merchant_mix'] * 0.10
-) / 3.0</code></pre>
+    df['spending_stress'] * 0.25 +           # 0-2 scale
+    df['utilization_risk'] * 0.30 +          # 0-3 scale
+    df['payment_stress'] * 0.25 +            # 0-2 scale
+    df['cash_stress_indicator'] * 0.10 +    # 0-2 scale
+    df['narrow_merchant_mix'] * 0.10         # 0-1 binary
+) / 3.0  # Normalize to 0-1 scale
+
+# Binary flags (not in score, but used for flags):
+# - spending_decline_flag
+# - high_utilization_flag
+# - low_payment_frequency
+# - high_cash_withdrawal
+
+# Composite signals (not in score, but used for flags):
+# - utilization_payment_mismatch
+# - spending_utilization_stress
+# - payment_utilization_critical
+
+# Additional features (not in score):
+# - payment_risk_ratio</code></pre>
                         </div>
                     </div>
                     <div class="detail-section">
