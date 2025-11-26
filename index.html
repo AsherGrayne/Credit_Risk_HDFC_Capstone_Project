@@ -1517,15 +1517,135 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             updateStrategies();
         }
         
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateStrategies();
-        });
-        
         // Flip card functionality
         function flipCard(element) {
             element.classList.toggle('flipped');
         }
+        
+        // Dataset display functionality
+        let datasetData = [];
+        let filteredData = [];
+        let currentPage = 1;
+        let rowsPerPage = 25;
+        
+        // Load dataset
+        async function loadDataset() {
+            try {
+                const response = await fetch('data/synthetic_dataset_50000.csv');
+                const text = await response.text();
+                const lines = text.split('\n');
+                const headers = lines[0].split(',');
+                
+                datasetData = [];
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim()) {
+                        const values = lines[i].split(',');
+                        if (values.length === headers.length) {
+                            datasetData.push({
+                                'Customer ID': values[0],
+                                'Credit Limit': parseFloat(values[1]) || 0,
+                                'Utilisation %': parseFloat(values[2]) || 0,
+                                'Avg Payment Ratio': parseFloat(values[3]) || 0,
+                                'Min Due Paid Frequency': parseFloat(values[4]) || 0,
+                                'Merchant Mix Index': parseFloat(values[5]) || 0,
+                                'Cash Withdrawal %': parseFloat(values[6]) || 0,
+                                'Recent Spend Change %': parseFloat(values[7]) || 0,
+                                'DPD Bucket Next Month': parseInt(values[8]) || 0
+                            });
+                        }
+                    }
+                }
+                
+                filteredData = [...datasetData];
+                document.getElementById('dataset-info').textContent = `Total records: ${datasetData.length.toLocaleString()}`;
+                renderTable();
+            } catch (error) {
+                console.error('Error loading dataset:', error);
+                document.getElementById('dataset-tbody').innerHTML = 
+                    '<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #ef4444;">Error loading dataset. Please ensure the file exists.</td></tr>';
+            }
+        }
+        
+        function filterDataset() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            if (!searchTerm) {
+                filteredData = [...datasetData];
+            } else {
+                filteredData = datasetData.filter(row => {
+                    return Object.values(row).some(val => 
+                        String(val).toLowerCase().includes(searchTerm)
+                    );
+                });
+            }
+            currentPage = 1;
+            renderTable();
+            updateDatasetInfo();
+        }
+        
+        function changeRowsPerPage() {
+            rowsPerPage = parseInt(document.getElementById('rows-per-page').value);
+            currentPage = 1;
+            renderTable();
+        }
+        
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            renderTable();
+        }
+        
+        function renderTable() {
+            const tbody = document.getElementById('dataset-tbody');
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredData.slice(start, end);
+            
+            if (pageData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem;">No data found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = pageData.map(row => `
+                <tr>
+                    <td>${row['Customer ID']}</td>
+                    <td>${row['Credit Limit'].toLocaleString()}</td>
+                    <td>${row['Utilisation %'].toFixed(1)}%</td>
+                    <td>${row['Avg Payment Ratio'].toFixed(1)}%</td>
+                    <td>${row['Min Due Paid Frequency'].toFixed(1)}%</td>
+                    <td>${row['Merchant Mix Index'].toFixed(2)}</td>
+                    <td>${row['Cash Withdrawal %'].toFixed(1)}%</td>
+                    <td>${row['Recent Spend Change %'].toFixed(1)}%</td>
+                    <td>${row['DPD Bucket Next Month']}</td>
+                </tr>
+            `).join('');
+            
+            updatePagination();
+        }
+        
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
+        }
+        
+        function updateDatasetInfo() {
+            const total = datasetData.length;
+            const filtered = filteredData.length;
+            if (filtered === total) {
+                document.getElementById('dataset-info').textContent = `Total records: ${total.toLocaleString()}`;
+            } else {
+                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} records`;
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStrategies();
+            loadDataset();
+        });
     </script>
 </body>
 </html>
