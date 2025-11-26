@@ -490,6 +490,32 @@ body {
     font-style: italic;
 }
 
+.control-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    margin-top: 1rem;
+}
+
+.change-btn {
+    background: #8b0000;
+    border: 1px solid #8b0000;
+    color: #e5e7eb;
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.change-btn:hover {
+    background: #dc143c;
+    border-color: #dc143c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.4);
+}
+
 .reset-btn {
     background: #1e293b;
     border: 1px solid #334155;

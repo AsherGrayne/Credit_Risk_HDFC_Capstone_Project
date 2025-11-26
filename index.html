@@ -690,12 +690,12 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                             <div class="controls-grid">
                                 <div class="control-group">
                                     <label for="critical-timing">CRITICAL Risk Timing (hours):</label>
-                                    <input type="number" id="critical-timing" min="1" max="168" value="24" step="1" onchange="updateStrategies()">
+                                    <input type="number" id="critical-timing" min="1" max="168" value="24" step="1">
                                     <span class="control-hint">Default: 24 hours</span>
                                 </div>
                                 <div class="control-group">
                                     <label for="critical-channel">CRITICAL Risk Channel:</label>
-                                    <select id="critical-channel" onchange="updateStrategies()">
+                                    <select id="critical-channel">
                                         <option value="Phone Call">Phone Call</option>
                                         <option value="Phone Call or Email">Phone Call or Email</option>
                                         <option value="Email">Email</option>
@@ -704,12 +704,12 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                                 </div>
                                 <div class="control-group">
                                     <label for="high-timing">HIGH Risk Timing (hours):</label>
-                                    <input type="number" id="high-timing" min="1" max="168" value="48" step="1" onchange="updateStrategies()">
+                                    <input type="number" id="high-timing" min="1" max="168" value="48" step="1">
                                     <span class="control-hint">Default: 48 hours</span>
                                 </div>
                                 <div class="control-group">
                                     <label for="high-channel">HIGH Risk Channel:</label>
-                                    <select id="high-channel" onchange="updateStrategies()">
+                                    <select id="high-channel">
                                         <option value="Phone Call or Email">Phone Call or Email</option>
                                         <option value="Phone Call">Phone Call</option>
                                         <option value="Email">Email</option>
@@ -718,12 +718,12 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                                 </div>
                                 <div class="control-group">
                                     <label for="medium-timing">MEDIUM Risk Timing (hours):</label>
-                                    <input type="number" id="medium-timing" min="1" max="168" value="168" step="1" onchange="updateStrategies()">
+                                    <input type="number" id="medium-timing" min="1" max="168" value="168" step="1">
                                     <span class="control-hint">Default: 168 hours (1 week)</span>
                                 </div>
                                 <div class="control-group">
                                     <label for="medium-channel">MEDIUM Risk Channel:</label>
-                                    <select id="medium-channel" onchange="updateStrategies()">
+                                    <select id="medium-channel">
                                         <option value="Email or SMS">Email or SMS</option>
                                         <option value="Email">Email</option>
                                         <option value="SMS">SMS</option>
@@ -731,7 +731,10 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                                     </select>
                                 </div>
                             </div>
-                            <button class="reset-btn" onclick="resetStrategies()">Reset to Defaults</button>
+                            <div class="control-buttons">
+                                <button class="change-btn" onclick="updateStrategies()">Change</button>
+                                <button class="reset-btn" onclick="resetStrategies()">Reset to Defaults</button>
+                            </div>
                         </div>
                         
                         <div class="strategy-grid">
