@@ -1866,9 +1866,20 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 cardElement.classList.add('expanded');
                 expandedContent.style.display = 'block';
                 
+                // Show loading state
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
+                
                 // Load customer IDs if not already loaded
-                if (!container.hasChildNodes() || container.textContent.trim() === '') {
-                    loadCustomerIdsForCard(filterType, container);
+                if (!container.hasChildNodes() || container.textContent.trim() === '' || container.textContent.includes('Loading')) {
+                    // Wait a bit for data to load if needed
+                    if (!riskFlagsData || riskFlagsData.length === 0) {
+                        // Data not loaded yet, wait and retry
+                        setTimeout(() => {
+                            loadCustomerIdsForCard(filterType, container);
+                        }, 500);
+                    } else {
+                        loadCustomerIdsForCard(filterType, container);
+                    }
                 }
             }
         }
