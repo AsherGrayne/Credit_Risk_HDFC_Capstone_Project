@@ -683,12 +683,63 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                     <div class="detail-section">
                         <h3>What We Did</h3>
                         <p>Generated <strong>personalized outreach strategies</strong> based on risk level:</p>
+                        
+                        <!-- Dynamic Controls Panel -->
+                        <div class="strategy-controls">
+                            <h4>Adjust Outreach Parameters</h4>
+                            <div class="controls-grid">
+                                <div class="control-group">
+                                    <label for="critical-timing">CRITICAL Risk Timing (hours):</label>
+                                    <input type="number" id="critical-timing" min="1" max="168" value="24" step="1" onchange="updateStrategies()">
+                                    <span class="control-hint">Default: 24 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="critical-channel">CRITICAL Risk Channel:</label>
+                                    <select id="critical-channel" onchange="updateStrategies()">
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-timing">HIGH Risk Timing (hours):</label>
+                                    <input type="number" id="high-timing" min="1" max="168" value="48" step="1" onchange="updateStrategies()">
+                                    <span class="control-hint">Default: 48 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-channel">HIGH Risk Channel:</label>
+                                    <select id="high-channel" onchange="updateStrategies()">
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-timing">MEDIUM Risk Timing (hours):</label>
+                                    <input type="number" id="medium-timing" min="1" max="168" value="168" step="1" onchange="updateStrategies()">
+                                    <span class="control-hint">Default: 168 hours (1 week)</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-channel">MEDIUM Risk Channel:</label>
+                                    <select id="medium-channel" onchange="updateStrategies()">
+                                        <option value="Email or SMS">Email or SMS</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="reset-btn" onclick="resetStrategies()">Reset to Defaults</button>
+                        </div>
+                        
                         <div class="strategy-grid">
                             <div class="strategy-card critical">
                                 <h4>CRITICAL Risk</h4>
                                 <ul>
-                                    <li><strong>Channel:</strong> Phone Call</li>
-                                    <li><strong>Timing:</strong> Within 24 hours</li>
+                                    <li><strong>Channel:</strong> <span id="critical-channel-display">Phone Call</span></li>
+                                    <li><strong>Timing:</strong> <span id="critical-timing-display">Within 24 hours</span></li>
                                     <li><strong>Message:</strong> Urgent intervention required</li>
                                     <li><strong>Offer:</strong> Payment plan, hardship program</li>
                                 </ul>
@@ -697,8 +748,8 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                             <div class="strategy-card high">
                                 <h4>HIGH Risk</h4>
                                 <ul>
-                                    <li><strong>Channel:</strong> Phone Call or Email</li>
-                                    <li><strong>Timing:</strong> Within 48 hours</li>
+                                    <li><strong>Channel:</strong> <span id="high-channel-display">Phone Call or Email</span></li>
+                                    <li><strong>Timing:</strong> <span id="high-timing-display">Within 48 hours</span></li>
                                     <li><strong>Message:</strong> Proactive support offer</li>
                                     <li><strong>Offer:</strong> Payment plan, counseling</li>
                                 </ul>
@@ -707,8 +758,8 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                             <div class="strategy-card medium">
                                 <h4>MEDIUM Risk</h4>
                                 <ul>
-                                    <li><strong>Channel:</strong> Email or SMS</li>
-                                    <li><strong>Timing:</strong> Within 1 week</li>
+                                    <li><strong>Channel:</strong> <span id="medium-channel-display">Email or SMS</span></li>
+                                    <li><strong>Timing:</strong> <span id="medium-timing-display">Within 1 week</span></li>
                                     <li><strong>Message:</strong> Educational resources</li>
                                     <li><strong>Offer:</strong> Tips and reminders</li>
                                 </ul>

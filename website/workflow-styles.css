@@ -423,6 +423,92 @@ body {
     font-size: 0.875rem;
 }
 
+/* Strategy Controls */
+.strategy-controls {
+    background: #0f172a;
+    border: 1px solid #1e293b;
+    border-left: 4px solid #8b0000;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.strategy-controls h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #e5e7eb;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.control-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #e5e7eb;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.control-group input[type="number"],
+.control-group select {
+    background: #020617;
+    border: 1px solid #1e293b;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #e5e7eb;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.control-group input[type="number"]:focus,
+.control-group select:focus {
+    outline: none;
+    border-color: #8b0000;
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+.control-group input[type="number"]:hover,
+.control-group select:hover {
+    border-color: #334155;
+}
+
+.control-hint {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    font-style: italic;
+}
+
+.reset-btn {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #e5e7eb;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #8b0000;
+    border-color: #8b0000;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
 /* Strategy Grid */
 .strategy-grid {
     display: grid;
