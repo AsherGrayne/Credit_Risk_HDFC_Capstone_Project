@@ -463,25 +463,57 @@ df['early_risk_score'] = (
                         <h3>What We Did</h3>
                         <p>Generated risk flags for each customer based on <strong>deterministic thresholds</strong>:</p>
                         <div class="flags-list">
-                            <div class="flag-item">
-                                <strong>SPENDING_DECLINE_SEVERE</strong>
-                                <span>Trigger: Spending change < -20%</span>
-                                <span>Severity: HIGH</span>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>SPENDING_DECLINE_SEVERE</strong>
+                                        <span class="flag-trigger">Trigger: Spending change < -20%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag is created by analyzing the customer's recent spending behavior compared to their historical patterns. The system calculates the percentage change in spending by comparing the current month's total spending to previous periods. When a customer's spending drops by more than 20%, it indicates potential financial distress or a significant change in their financial situation. This threshold was chosen based on industry research showing that spending declines of this magnitude often precede payment difficulties. The flag is assigned a HIGH severity because sudden spending reductions can signal cash flow problems, job loss, or other financial hardships that may lead to delinquency. The system generates a personalized message showing the exact percentage decline, which helps customer service representatives understand the severity of the situation when reaching out to the customer.</p>
+                                </div>
                             </div>
-                            <div class="flag-item">
-                                <strong>CRITICAL_UTILIZATION</strong>
-                                <span>Trigger: Utilization ≥ 90%</span>
-                                <span>Severity: HIGH</span>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>CRITICAL_UTILIZATION</strong>
+                                        <span class="flag-trigger">Trigger: Utilization ≥ 90%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag monitors the customer's credit utilization ratio, which is calculated by dividing the current outstanding balance by the total credit limit and multiplying by 100. When utilization reaches or exceeds 90%, it means the customer is using nearly all of their available credit. This is a critical indicator because high utilization not only suggests financial stress but also leaves little room for unexpected expenses. The 90% threshold was selected as it represents a critical point where customers have minimal credit buffer and are at high risk of exceeding their limit or missing payments. The system tracks this metric continuously and flags customers who cross this threshold. When this flag is triggered, the system generates an alert message showing the exact utilization percentage, enabling immediate intervention. This flag is classified as HIGH severity because customers at this utilization level are statistically more likely to become delinquent within the next billing cycle.</p>
+                                </div>
                             </div>
-                            <div class="flag-item">
-                                <strong>LOW_PAYMENT_FREQUENCY</strong>
-                                <span>Trigger: Payment frequency < 20%</span>
-                                <span>Severity: HIGH</span>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>LOW_PAYMENT_FREQUENCY</strong>
+                                        <span class="flag-trigger">Trigger: Payment frequency < 20%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag is generated by analyzing the customer's payment history over multiple billing cycles. The system calculates the percentage of times the customer has paid at least the minimum due amount on time. The payment frequency is computed by dividing the number of on-time minimum payments by the total number of billing cycles analyzed, then multiplying by 100. When this frequency drops below 20%, it means the customer is making timely minimum payments less than one-fifth of the time. This threshold indicates a pattern of inconsistent payment behavior that often precedes delinquency. The 20% threshold was chosen because customers who pay on time less than 20% of the time show a clear pattern of payment difficulties. The system tracks this metric across rolling windows to identify trends. When triggered, the flag includes the exact payment frequency percentage, helping identify customers who may need payment assistance programs or structured payment plans. This is classified as HIGH severity because payment frequency is one of the strongest predictors of future delinquency.</p>
+                                </div>
                             </div>
-                            <div class="flag-item">
-                                <strong>PAYMENT_UTILIZATION_CRITICAL</strong>
-                                <span>Trigger: Low payment (<30%) + High util (>70%)</span>
-                                <span>Severity: CRITICAL</span>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>PAYMENT_UTILIZATION_CRITICAL</strong>
+                                        <span class="flag-trigger">Trigger: Low payment (<30%) + High util (>70%)</span>
+                                        <span class="flag-severity-badge critical">CRITICAL</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This is a composite flag that combines two critical risk indicators: low payment frequency and high credit utilization. The flag is triggered when both conditions are met simultaneously: the customer's payment frequency is below 30% AND their credit utilization exceeds 70%. This combination is particularly dangerous because it indicates customers who are using most of their available credit while also struggling to make regular payments. The system creates this flag by first checking if the payment frequency metric falls below the 30% threshold, which indicates inconsistent payment behavior. Then it checks if the utilization ratio exceeds 70%, showing high credit usage. When both conditions are true, the system generates this CRITICAL severity flag. The thresholds were chosen based on statistical analysis showing that customers meeting both criteria have a significantly higher probability of becoming delinquent within 30-60 days. This composite approach allows the system to identify customers who are in the most precarious financial position, requiring immediate intervention. The flag triggers urgent outreach strategies, including phone calls within 24 hours and offers of payment plans or hardship programs.</p>
+                                </div>
                             </div>
                         </div>
                     </div>

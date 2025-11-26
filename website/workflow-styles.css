@@ -279,6 +279,27 @@ body {
     border: 1px solid #1e293b;
     border-left: 4px solid #8b0000;
     border-radius: 0.5rem;
+    padding: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.flag-item.collapsible {
+    padding: 0;
+}
+
+.flag-item:hover {
+    border-left-color: #dc143c;
+    box-shadow: 0 5px 15px rgba(139, 0, 0, 0.2);
+}
+
+.flag-item.expanded {
+    border-left-color: #dc143c;
+    box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
+}
+
+.flag-header {
     padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
@@ -286,19 +307,80 @@ body {
     transition: all 0.3s ease;
 }
 
-.flag-item:hover {
-    border-left-color: #dc143c;
-    transform: translateX(5px);
+.flag-item.expanded .flag-header {
+    border-bottom: 1px solid #1e293b;
+    background: rgba(139, 0, 0, 0.05);
+}
+
+.flag-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
 }
 
 .flag-item strong {
     color: #e5e7eb;
     font-size: 1rem;
+    font-weight: 600;
 }
 
-.flag-item span {
+.flag-trigger {
     color: #9ca3af;
     font-size: 0.875rem;
+}
+
+.flag-severity-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.flag-severity-badge.high {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.flag-severity-badge.critical {
+    background: rgba(220, 20, 60, 0.2);
+    color: #dc143c;
+    border: 1px solid #dc143c;
+}
+
+.expand-icon {
+    color: #8b0000;
+    font-size: 0.875rem;
+    transition: transform 0.3s ease;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.flag-item.expanded .expand-icon {
+    transform: rotate(180deg);
+}
+
+.flag-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    padding: 0 1.5rem;
+}
+
+.flag-item.expanded .flag-details {
+    max-height: 1000px;
+    padding: 1.5rem;
+}
+
+.flag-details p {
+    color: #cbd5e1;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin: 0;
+    text-align: justify;
 }
 
 /* Models Grid */
