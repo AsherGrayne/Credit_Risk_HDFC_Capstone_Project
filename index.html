@@ -285,7 +285,7 @@
             <button class="tab active" onclick="switchTab('workflow')">Workflow</button>
             <button class="tab" onclick="switchTab('apply')">Apply Here</button>
             <button class="tab" onclick="switchTab('features')">Important Features</button>
-            <button class="tab" onclick="window.location.href='interactive-dashboard.html'">Interactive Dashboard</button>
+            <button class="tab" onclick="switchTab('dashboard')">Interactive Dashboard</button>
         </div>
     </div>
 
@@ -1625,6 +1625,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="website/workflow-script.js"></script>
     <script src="website/ml-model-predictor.js"></script>
     <script src="website/apply-script.js"></script>
@@ -1657,6 +1658,15 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         tab.classList.add('active');
                     }
                 });
+            }
+            
+            // Initialize dashboard if switching to dashboard tab
+            if (tabName === 'dashboard') {
+                setTimeout(() => {
+                    initializeDashboardCharts();
+                    setupDashboardSliders();
+                    updateDashboardPrediction();
+                }, 100);
             }
             
             // Scroll to top
