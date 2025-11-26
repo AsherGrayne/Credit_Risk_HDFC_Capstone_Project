@@ -1208,17 +1208,29 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-header">
                     <div class="step-number">07</div>
                     <div class="step-content">
-                        <h2>Synthetic Dataset (50,000 Records)</h2>
-                        <p class="step-subtitle">Complete dataset used for model training and evaluation</p>
+                        <h2>Dataset Viewer</h2>
+                        <p class="step-subtitle">View and explore the datasets used for model training and evaluation</p>
                     </div>
                 </div>
                 <div class="step-details">
                     <div class="detail-section">
+                        <h3>Dataset Selection</h3>
+                        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                                <input type="radio" name="dataset-type" value="real" id="dataset-real" checked onchange="switchDataset('real')" style="cursor: pointer;">
+                                <span>Real Dataset (100 records)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                                <input type="radio" name="dataset-type" value="synthetic" id="dataset-synthetic" onchange="switchDataset('synthetic')" style="cursor: pointer;">
+                                <span>Synthetic Dataset (50,000 records)</span>
+                            </label>
+                        </div>
+                        
                         <h3>Dataset Overview</h3>
-                        <p>This synthetic dataset displays the <strong>first 1,000 customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.</p>
+                        <p id="dataset-description">This dataset displays <strong>all 100 customer records</strong> from the original sample dataset. Use the controls below to explore the data.</p>
                         <div style="margin-top: 1rem; margin-bottom: 1rem;">
-                            <button class="action-btn" onclick="downloadFullDataset(event)" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);">
-                                📥 Download Full Dataset (50,000 records)
+                            <button class="action-btn" id="download-btn" onclick="downloadFullDataset(event)" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);">
+                                📥 Download Full Dataset (100 records)
                             </button>
                         </div>
                         
@@ -1564,15 +1576,50 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         let filteredData = [];
         let currentPage = 1;
         let rowsPerPage = 25;
+        let currentDatasetType = 'real'; // 'real' or 'synthetic'
+        
+        // Switch between datasets
+        async function switchDataset(type) {
+            currentDatasetType = type;
+            currentPage = 1; // Reset to first page
+            
+            // Update UI elements
+            const descriptionEl = document.getElementById('dataset-description');
+            const downloadBtn = document.getElementById('download-btn');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const loadingText = loadingIndicator.querySelector('p');
+            
+            if (type === 'real') {
+                descriptionEl.innerHTML = 'This dataset displays <strong>all 100 customer records</strong> from the original sample dataset. Use the controls below to explore the data.';
+                downloadBtn.innerHTML = '📥 Download Full Dataset (100 records)';
+                loadingText.textContent = 'Loading dataset (100 records)...';
+            } else {
+                descriptionEl.innerHTML = 'This synthetic dataset displays the <strong>first 1,000 customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.';
+                downloadBtn.innerHTML = '📥 Download Full Dataset (50,000 records)';
+                loadingText.textContent = 'Loading dataset (1,000 records)...';
+            }
+            
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
+            document.getElementById('table-wrapper').style.display = 'none';
+            document.getElementById('loading-bar').style.width = '0%';
+            
+            // Load the selected dataset
+            await loadDataset(type);
+        }
         
         // Load dataset
-        async function loadDataset() {
+        async function loadDataset(type = currentDatasetType) {
             try {
+                // Determine file path based on dataset type
+                const fileName = type === 'real' ? 'Sample.csv' : 'synthetic_dataset_50000.csv';
+                const maxRows = type === 'real' ? 100 : 1000; // Load all real data, first 1000 synthetic
+                
                 // Try multiple possible paths
                 const possiblePaths = [
-                    'data/synthetic_dataset_50000.csv',
-                    './data/synthetic_dataset_50000.csv',
-                    '../data/synthetic_dataset_50000.csv'
+                    `data/${fileName}`,
+                    `./data/${fileName}`,
+                    `../data/${fileName}`
                 ];
                 
                 let response = null;
@@ -1582,6 +1629,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     try {
                         response = await fetch(path);
                         if (response.ok) {
+                            console.log(`Successfully loading dataset from: ${path}`);
                             break;
                         }
                     } catch (err) {
@@ -1602,12 +1650,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 const headers = lines[0].split(',').map(h => h.trim());
-                const maxRows = 1000; // Load only first 1,000 records
                 const totalLines = Math.min(lines.length - 1, maxRows);
                 
                 datasetData = [];
                 // Process in chunks to show progress
-                const chunkSize = 100;
+                const chunkSize = type === 'real' ? 20 : 100; // Smaller chunks for real dataset
                 for (let chunkStart = 1; chunkStart <= totalLines + 1; chunkStart += chunkSize) {
                     const chunkEnd = Math.min(chunkStart + chunkSize, totalLines + 1);
                     
@@ -1654,10 +1701,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             } catch (error) {
                 console.error('Error loading dataset:', error);
                 const errorMsg = error.message || 'Unknown error';
+                const fileName = type === 'real' ? 'Sample.csv' : 'synthetic_dataset_50000.csv';
                 document.getElementById('dataset-tbody').innerHTML = 
                     `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #ef4444;">
                         Error loading dataset: ${errorMsg}<br>
-                        <small style="color: #9ca3af;">Please ensure the file exists at: data/synthetic_dataset_50000.csv</small>
+                        <small style="color: #9ca3af;">Please ensure the file exists at: data/${fileName}</small>
                     </td></tr>`;
                 document.getElementById('dataset-info').textContent = 'Error loading dataset';
             }
@@ -1808,13 +1856,13 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = 'synthetic_dataset_50000.csv';
+                a.download = downloadFileName;
                 document.body.appendChild(a);
                 a.click();
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
                 
-                console.log('Dataset download initiated successfully');
+                console.log(`Dataset download initiated successfully: ${downloadFileName}`);
                 
                 // Reset button
                 button.innerHTML = originalText;
