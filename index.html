@@ -1870,13 +1870,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     .map(row => row.customer_id);
             } else if (filterType === 'top_flag') {
                 // Customers with most flags (flag_count >= 4)
+                // Sort by flag_count descending, then take customer_ids
                 customerIds = riskFlagsData
                     .filter(row => row.flag_count >= 4)
-                    .sort((a, b) => {
-                        const aData = riskFlagsData.find(r => r.customer_id === a);
-                        const bData = riskFlagsData.find(r => r.customer_id === b);
-                        return (bData?.flag_count || 0) - (aData?.flag_count || 0);
-                    })
+                    .sort((a, b) => b.flag_count - a.flag_count)
                     .map(row => row.customer_id);
             }
             
