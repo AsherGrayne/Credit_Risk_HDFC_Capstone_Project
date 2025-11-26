@@ -1762,10 +1762,32 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         // Load risk flags data
         async function loadRiskFlagsData() {
             try {
-                const response = await fetch('data/risk_flags_output.csv');
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Try multiple paths
+                const possiblePaths = [
+                    'data/risk_flags_output.csv',
+                    './data/risk_flags_output.csv',
+                    '../data/risk_flags_output.csv'
+                ];
+                
+                let response = null;
+                let loaded = false;
+                
+                for (const path of possiblePaths) {
+                    try {
+                        response = await fetch(path);
+                        if (response.ok) {
+                            loaded = true;
+                            break;
+                        }
+                    } catch (err) {
+                        continue;
+                    }
                 }
+                
+                if (!loaded || !response || !response.ok) {
+                    throw new Error(`Failed to load CSV file. Status: ${response ? response.status : 'No response'}`);
+                }
+                
                 const text = await response.text();
                 const lines = text.split('\n').filter(line => line.trim());
                 
@@ -1785,9 +1807,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         if (values.length >= 5) {
                             const customerId = values[0]?.trim() || '';
                             const riskLevel = values[1]?.trim() || '';
-                            const flagCount = parseInt(values[4]?.trim()) || 0;
+                            const flagCountStr = values[4]?.trim() || '0';
+                            const flagCount = parseInt(flagCountStr) || 0;
                             
-                            if (customerId) {
+                            if (customerId && customerId !== 'customer_id') {
                                 riskFlagsData.push({
                                     customer_id: customerId,
                                     risk_level: riskLevel,
@@ -1795,15 +1818,27 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                                     flags: values[3] || '[]'
                                 });
                             }
+                        } else {
+                            console.warn(`Skipping line ${i + 1}: Invalid format. Expected 5 columns, got ${values.length}`);
                         }
                     }
                 }
                 
-                console.log(`Loaded ${riskFlagsData.length} risk flag records`);
+                console.log(`Successfully loaded ${riskFlagsData.length} risk flag records`);
+                
+                // Verify data
+                if (riskFlagsData.length > 0) {
+                    console.log('Sample record:', riskFlagsData[0]);
+                    const criticalCount = riskFlagsData.filter(r => r.risk_level === 'CRITICAL').length;
+                    const highCount = riskFlagsData.filter(r => r.risk_level === 'HIGH').length;
+                    const flaggedCount = riskFlagsData.filter(r => r.flag_count > 0).length;
+                    console.log(`CRITICAL: ${criticalCount}, HIGH: ${highCount}, Flagged: ${flaggedCount}`);
+                }
             } catch (error) {
                 console.error('Error loading risk flags data:', error);
-                // Show error in console for debugging
-                console.error('Failed to load data/risk_flags_output.csv');
+                console.error('Error details:', error.message);
+                // Set a flag so we know data failed to load
+                riskFlagsData = null;
             }
         }
         
@@ -1841,12 +1876,16 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         // Load customer IDs for a specific card
         function loadCustomerIdsForCard(filterType, container) {
             // Check if data is loaded
-            if (riskFlagsData.length === 0) {
+            if (!riskFlagsData || riskFlagsData.length === 0) {
                 container.innerHTML = '<p style="color: #ef4444; text-align: center; padding: 1rem;">Data still loading... Please wait a moment and try again.</p>';
                 // Try to reload data
                 loadRiskFlagsData().then(() => {
                     // Retry after data loads
-                    setTimeout(() => loadCustomerIdsForCard(filterType, container), 500);
+                    if (riskFlagsData && riskFlagsData.length > 0) {
+                        setTimeout(() => loadCustomerIdsForCard(filterType, container), 300);
+                    } else {
+                        container.innerHTML = '<p style="color: #ef4444; text-align: center; padding: 1rem;">Failed to load data. Please check console for errors.</p>';
+                    }
                 });
                 return;
             }
