@@ -100,16 +100,16 @@
         
         .form-group input:focus {
             outline: none;
-            border-color: #8b0000;
-            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+            border-color: #dc2626;
+            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
         }
         
         .form-group input:hover {
-            border-color: #334155;
+            border-color: #94a3b8;
         }
         
         .submit-btn {
-            background: #8b0000;
+            background: #dc2626;
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -123,9 +123,9 @@
         }
         
         .submit-btn:hover {
-            background: #dc143c;
+            background: #ef4444;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
         }
         
         .submit-btn:disabled {
@@ -135,8 +135,8 @@
         }
         
         .result-container {
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
             border-radius: 1rem;
             padding: 2.5rem;
             margin-top: 2rem;
@@ -1216,11 +1216,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="detail-section">
                         <h3>Dataset Selection</h3>
                         <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 8px; border: 2px solid #cbd5e1; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="real" id="dataset-real" checked onchange="switchDataset('real')" style="cursor: pointer;">
                                 <span>Real Dataset (100 records)</span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 8px; border: 2px solid #cbd5e1; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="synthetic" id="dataset-synthetic" onchange="switchDataset('synthetic')" style="cursor: pointer;">
                                 <span>Synthetic Dataset (50,000 records)</span>
                             </label>
@@ -1429,7 +1429,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <div class="form-group">
                             <label for="dpd_bucket">DPD Bucket Next Month (Optional)</label>
                             <input type="number" id="dpd_bucket" name="dpd_bucket" placeholder="e.g., 3 (0-3)" min="0" max="3" step="1">
-                            <small style="color: #9ca3af; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
+                            <small style="color: #64748b; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
                         </div>
                     </div>
                     
