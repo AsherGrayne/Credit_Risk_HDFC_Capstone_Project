@@ -1146,6 +1146,64 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 icon.textContent = '▼';
             }
         }
+        
+        // Dynamic strategy update functionality
+        function updateStrategies() {
+            // Get values from controls
+            const criticalTiming = parseInt(document.getElementById('critical-timing').value);
+            const criticalChannel = document.getElementById('critical-channel').value;
+            const highTiming = parseInt(document.getElementById('high-timing').value);
+            const highChannel = document.getElementById('high-channel').value;
+            const mediumTiming = parseInt(document.getElementById('medium-timing').value);
+            const mediumChannel = document.getElementById('medium-channel').value;
+            
+            // Format timing display
+            function formatTiming(hours) {
+                if (hours < 24) {
+                    return `Within ${hours} hour${hours > 1 ? 's' : ''}`;
+                } else if (hours < 168) {
+                    const days = Math.floor(hours / 24);
+                    const remainingHours = hours % 24;
+                    if (remainingHours === 0) {
+                        return `Within ${days} day${days > 1 ? 's' : ''}`;
+                    } else {
+                        return `Within ${days} day${days > 1 ? 's' : ''} and ${remainingHours} hour${remainingHours > 1 ? 's' : ''}`;
+                    }
+                } else {
+                    const weeks = Math.floor(hours / 168);
+                    const remainingDays = Math.floor((hours % 168) / 24);
+                    if (remainingDays === 0) {
+                        return `Within ${weeks} week${weeks > 1 ? 's' : ''}`;
+                    } else {
+                        return `Within ${weeks} week${weeks > 1 ? 's' : ''} and ${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+                    }
+                }
+            }
+            
+            // Update displays
+            document.getElementById('critical-timing-display').textContent = formatTiming(criticalTiming);
+            document.getElementById('critical-channel-display').textContent = criticalChannel;
+            document.getElementById('high-timing-display').textContent = formatTiming(highTiming);
+            document.getElementById('high-channel-display').textContent = highChannel;
+            document.getElementById('medium-timing-display').textContent = formatTiming(mediumTiming);
+            document.getElementById('medium-channel-display').textContent = mediumChannel;
+        }
+        
+        // Reset to defaults
+        function resetStrategies() {
+            document.getElementById('critical-timing').value = 24;
+            document.getElementById('critical-channel').value = 'Phone Call';
+            document.getElementById('high-timing').value = 48;
+            document.getElementById('high-channel').value = 'Phone Call or Email';
+            document.getElementById('medium-timing').value = 168;
+            document.getElementById('medium-channel').value = 'Email or SMS';
+            updateStrategies();
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStrategies();
+        });
     </script>
 </body>
 </html>
