@@ -9,8 +9,8 @@
     <style>
         /* Tab Styles */
         .tabs-container {
-            background: #ffffff;
-            border-bottom: 1px solid #cbd5e1;
+            background: #0f172a;
+            border-bottom: 1px solid #1e293b;
             padding: 0;
         }
         
@@ -25,7 +25,7 @@
             padding: 1rem 2rem;
             background: transparent;
             border: none;
-            color: #64748b;
+            color: #9ca3af;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
@@ -35,13 +35,13 @@
         }
         
         .tab:hover {
-            color: #1e293b;
-            background: rgba(220, 38, 38, 0.1);
+            color: #e5e7eb;
+            background: rgba(139, 0, 0, 0.1);
         }
         
         .tab.active {
-            color: #1e293b;
-            border-bottom-color: #dc2626;
+            color: #e5e7eb;
+            border-bottom-color: #8b0000;
         }
         
         .tab-content {
@@ -60,8 +60,8 @@
         }
         
         .form-container {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
+            background: #0f172a;
+            border: 1px solid #1e293b;
             border-radius: 1rem;
             padding: 2.5rem;
             margin-bottom: 2rem;
@@ -82,34 +82,34 @@
         .form-group label {
             font-size: 0.875rem;
             font-weight: 600;
-            color: #1e293b;
+            color: #e5e7eb;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         
         .form-group input {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
+            background: #020617;
+            border: 1px solid #1e293b;
             border-radius: 0.5rem;
             padding: 0.75rem 1rem;
-            color: #1e293b;
+            color: #e5e7eb;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
         
         .form-group input:focus {
             outline: none;
-            border-color: #dc2626;
-            box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+            border-color: #8b0000;
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
         }
         
         .form-group input:hover {
-            border-color: #94a3b8;
+            border-color: #334155;
         }
         
         .submit-btn {
-            background: #dc2626;
+            background: #8b0000;
             color: white;
             border: none;
             padding: 1rem 3rem;
@@ -123,9 +123,9 @@
         }
         
         .submit-btn:hover {
-            background: #ef4444;
+            background: #dc143c;
             transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+            box-shadow: 0 10px 20px rgba(139, 0, 0, 0.3);
         }
         
         .submit-btn:disabled {
@@ -135,8 +135,8 @@
         }
         
         .result-container {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
+            background: #0f172a;
+            border: 1px solid #1e293b;
             border-radius: 1rem;
             padding: 2.5rem;
             margin-top: 2rem;
@@ -163,8 +163,8 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: #1e293b;
-            border-left: 4px solid #dc2626;
+            color: #e5e7eb;
+            border-left: 4px solid #8b0000;
             padding-left: 1rem;
         }
         
@@ -176,19 +176,19 @@
         }
         
         .result-card {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
+            background: #020617;
+            border: 1px solid #1e293b;
             border-radius: 0.5rem;
             padding: 1.5rem;
             text-align: center;
         }
         
         .result-card.critical {
-            border-left: 4px solid #ef4444;
+            border-left: 4px solid #dc143c;
         }
         
         .result-card.high {
-            border-left: 4px solid #f87171;
+            border-left: 4px solid #ef4444;
         }
         
         .result-card.medium {
@@ -201,7 +201,7 @@
         
         .result-label {
             font-size: 0.875rem;
-            color: #64748b;
+            color: #9ca3af;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
@@ -210,7 +210,7 @@
         .result-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #1e293b;
+            color: #e5e7eb;
         }
         
         .risk-flags {
@@ -221,26 +221,26 @@
             font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #1e293b;
+            color: #e5e7eb;
         }
         
         .flag-item {
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-left: 4px solid #dc2626;
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-left: 4px solid #8b0000;
             border-radius: 0.5rem;
             padding: 1rem;
             margin-bottom: 0.75rem;
         }
         
         .flag-item strong {
-            color: #1e293b;
+            color: #e5e7eb;
             display: block;
             margin-bottom: 0.5rem;
         }
         
         .flag-item span {
-            color: #64748b;
+            color: #9ca3af;
             font-size: 0.875rem;
         }
         
@@ -248,7 +248,7 @@
             display: none;
             text-align: center;
             padding: 2rem;
-            color: #64748b;
+            color: #9ca3af;
         }
         
         .loading.show {
@@ -1216,11 +1216,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="detail-section">
                         <h3>Dataset Selection</h3>
                         <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 8px; border: 2px solid #cbd5e1; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="real" id="dataset-real" checked onchange="switchDataset('real')" style="cursor: pointer;">
                                 <span>Real Dataset (100 records)</span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f1f5f9; border-radius: 8px; border: 2px solid #cbd5e1; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="synthetic" id="dataset-synthetic" onchange="switchDataset('synthetic')" style="cursor: pointer;">
                                 <span>Synthetic Dataset (50,000 records)</span>
                             </label>
@@ -1429,7 +1429,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <div class="form-group">
                             <label for="dpd_bucket">DPD Bucket Next Month (Optional)</label>
                             <input type="number" id="dpd_bucket" name="dpd_bucket" placeholder="e.g., 3 (0-3)" min="0" max="3" step="1">
-                            <small style="color: #64748b; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
+                            <small style="color: #9ca3af; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
                         </div>
                     </div>
                     
@@ -1705,7 +1705,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 document.getElementById('dataset-tbody').innerHTML = 
                     `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #ef4444;">
                         Error loading dataset: ${errorMsg}<br>
-                        <small style="color: #64748b;">Please ensure the file exists at: data/${fileName}</small>
+                        <small style="color: #9ca3af;">Please ensure the file exists at: data/${fileName}</small>
                     </td></tr>`;
                 document.getElementById('dataset-info').textContent = 'Error loading dataset';
             }
@@ -2055,7 +2055,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 expandedContent.style.display = 'block';
                 
                 // Show loading state
-                container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
                 
                 // Load customer IDs if not already loaded
                 if (!container.hasChildNodes() || container.textContent.trim() === '' || container.textContent.includes('Loading')) {
@@ -2118,7 +2118,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             console.log(`Filter: ${filterType}, Found: ${customerIds.length} customers`);
             
             if (customerIds.length === 0) {
-                container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
             } else {
                 container.innerHTML = customerIds.map(id => 
                     `<div class="customer-id-item">${id}</div>`
