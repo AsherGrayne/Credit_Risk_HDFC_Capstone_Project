@@ -773,18 +773,73 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                     <div class="detail-section">
                         <h3>How We Did It</h3>
                         <div class="code-block">
-                            <pre><code># Strategy Generation
+                            <pre><code># Strategy Generation with Dynamic Parameters
+# Configuration parameters (adjustable by administrators)
+OUTREACH_CONFIG = {
+    'CRITICAL': {
+        'timing_hours': 24,  # Default: 24 hours (adjustable 1-168)
+        'channel': 'Phone Call'  # Default: Phone Call (adjustable)
+    },
+    'HIGH': {
+        'timing_hours': 48,  # Default: 48 hours (adjustable 1-168)
+        'channel': 'Phone Call or Email'  # Default: Phone Call or Email (adjustable)
+    },
+    'MEDIUM': {
+        'timing_hours': 168,  # Default: 168 hours / 1 week (adjustable 1-168)
+        'channel': 'Email or SMS'  # Default: Email or SMS (adjustable)
+    }
+}
+
+def format_timing(hours):
+    """Format hours into human-readable timing string"""
+    if hours < 24:
+        return f'Within {hours} hour{"s" if hours > 1 else ""}'
+    elif hours < 168:
+        days = hours // 24
+        remaining_hours = hours % 24
+        if remaining_hours == 0:
+            return f'Within {days} day{"s" if days > 1 else ""}'
+        else:
+            return f'Within {days} day{"s" if days > 1 else ""} and {remaining_hours} hour{"s" if remaining_hours > 1 else ""}'
+    else:
+        weeks = hours // 168
+        remaining_days = (hours % 168) // 24
+        if remaining_days == 0:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""}'
+        else:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""} and {remaining_days} day{"s" if remaining_days > 1 else ""}'
+
 for idx, row in risk_flags_df.iterrows():
     strategies = []
+    risk_level = row['risk_level']
     
-    # Base strategy by risk level
-    if row['risk_level'] == 'CRITICAL':
+    # Base strategy by risk level (using dynamic config)
+    if risk_level == 'CRITICAL':
+        config = OUTREACH_CONFIG['CRITICAL']
         strategies.append({
             'priority': 1,
-            'channel': 'Phone Call',
-            'timing': 'Immediate (within 24 hours)',
-            'message': 'Urgent: We noticed concerning patterns...',
-            'offer': 'Payment plan, hardship program'
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Urgent: We noticed concerning patterns in your account. Let\'s discuss payment options.',
+            'offer': 'Payment plan, hardship program, or credit limit adjustment'
+        })
+    elif risk_level == 'HIGH':
+        config = OUTREACH_CONFIG['HIGH']
+        strategies.append({
+            'priority': 2,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'We\'re here to help. Let\'s review your account and explore options.',
+            'offer': 'Payment plan or financial counseling'
+        })
+    elif risk_level == 'MEDIUM':
+        config = OUTREACH_CONFIG['MEDIUM']
+        strategies.append({
+            'priority': 3,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Tips for managing your credit card account effectively.',
+            'offer': 'Educational resources and payment reminders'
         })
     
     # Flag-specific strategies
@@ -793,8 +848,9 @@ for idx, row in risk_flags_df.iterrows():
             strategies.append({
                 'priority': 1,
                 'channel': 'Phone Call',
-                'message': 'We noticed spending pattern changes...',
-                'offer': 'Financial wellness check-in'
+                'timing': format_timing(OUTREACH_CONFIG[risk_level]['timing_hours']),
+                'message': 'We noticed a significant change in your spending patterns.',
+                'offer': 'Financial wellness check-in and budgeting tools'
             })
     
     return strategies</code></pre>
