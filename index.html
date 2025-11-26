@@ -1573,30 +1573,32 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 const headers = lines[0].split(',').map(h => h.trim());
-                const totalLines = lines.length - 1;
+                const maxRows = 1000; // Load only first 1,000 records
+                const totalLines = Math.min(lines.length - 1, maxRows);
                 
                 datasetData = [];
                 // Process in chunks to show progress
-                const chunkSize = 1000;
-                for (let chunkStart = 1; chunkStart < lines.length; chunkStart += chunkSize) {
-                    const chunkEnd = Math.min(chunkStart + chunkSize, lines.length);
+                const chunkSize = 100;
+                for (let chunkStart = 1; chunkStart <= totalLines + 1; chunkStart += chunkSize) {
+                    const chunkEnd = Math.min(chunkStart + chunkSize, totalLines + 1);
                     
                     for (let i = chunkStart; i < chunkEnd; i++) {
-                    if (lines[i].trim()) {
-                        // Handle CSV parsing more carefully (account for commas in quoted fields)
-                        const values = parseCSVLine(lines[i]);
-                        if (values.length >= headers.length) {
-                            datasetData.push({
-                                'Customer ID': values[0]?.trim() || '',
-                                'Credit Limit': parseFloat(values[1]) || 0,
-                                'Utilisation %': parseFloat(values[2]) || 0,
-                                'Avg Payment Ratio': parseFloat(values[3]) || 0,
-                                'Min Due Paid Frequency': parseFloat(values[4]) || 0,
-                                'Merchant Mix Index': parseFloat(values[5]) || 0,
-                                'Cash Withdrawal %': parseFloat(values[6]) || 0,
-                                'Recent Spend Change %': parseFloat(values[7]) || 0,
-                                'DPD Bucket Next Month': parseInt(values[8]) || 0
-                            });
+                        if (lines[i] && lines[i].trim()) {
+                            // Handle CSV parsing more carefully (account for commas in quoted fields)
+                            const values = parseCSVLine(lines[i]);
+                            if (values.length >= headers.length) {
+                                datasetData.push({
+                                    'Customer ID': values[0]?.trim() || '',
+                                    'Credit Limit': parseFloat(values[1]) || 0,
+                                    'Utilisation %': parseFloat(values[2]) || 0,
+                                    'Avg Payment Ratio': parseFloat(values[3]) || 0,
+                                    'Min Due Paid Frequency': parseFloat(values[4]) || 0,
+                                    'Merchant Mix Index': parseFloat(values[5]) || 0,
+                                    'Cash Withdrawal %': parseFloat(values[6]) || 0,
+                                    'Recent Spend Change %': parseFloat(values[7]) || 0,
+                                    'DPD Bucket Next Month': parseInt(values[8]) || 0
+                                });
+                            }
                         }
                     }
                     
