@@ -1801,25 +1801,31 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 // Parse CSV manually to handle quoted fields with commas
                 for (let i = 1; i < lines.length; i++) {
                     if (lines[i].trim()) {
-                        const values = parseCSVLine(lines[i]);
-                        
-                        // CSV structure: customer_id,risk_level,risk_score,flags,flag_count
-                        if (values.length >= 5) {
-                            const customerId = values[0]?.trim() || '';
-                            const riskLevel = values[1]?.trim() || '';
-                            const flagCountStr = values[4]?.trim() || '0';
-                            const flagCount = parseInt(flagCountStr) || 0;
+                        try {
+                            const values = parseCSVLine(lines[i]);
                             
-                            if (customerId && customerId !== 'customer_id') {
-                                riskFlagsData.push({
-                                    customer_id: customerId,
-                                    risk_level: riskLevel,
-                                    flag_count: flagCount,
-                                    flags: values[3] || '[]'
-                                });
+                            // CSV structure: customer_id,risk_level,risk_score,flags,flag_count
+                            if (values.length >= 5) {
+                                const customerId = values[0]?.trim() || '';
+                                const riskLevel = values[1]?.trim() || '';
+                                const flagCountStr = values[4]?.trim() || '0';
+                                const flagCount = parseInt(flagCountStr) || 0;
+                                
+                                // Skip header row and empty rows
+                                if (customerId && customerId !== 'customer_id' && customerId !== '') {
+                                    riskFlagsData.push({
+                                        customer_id: customerId,
+                                        risk_level: riskLevel,
+                                        flag_count: flagCount,
+                                        flags: values[3] || '[]'
+                                    });
+                                }
+                            } else {
+                                console.warn(`Line ${i + 1}: Expected 5 columns, got ${values.length}. First 3 values:`, values.slice(0, 3));
                             }
-                        } else {
-                            console.warn(`Skipping line ${i + 1}: Invalid format. Expected 5 columns, got ${values.length}`);
+                        } catch (parseError) {
+                            console.error(`Error parsing line ${i + 1}:`, parseError);
+                            // Continue to next line
                         }
                     }
                 }
