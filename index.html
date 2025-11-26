@@ -1789,67 +1789,72 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             }
         }
         
-        // Show customer IDs based on filter type
-        function showCustomerIds(filterType) {
-            const modal = document.getElementById('customer-modal');
-            const container = document.getElementById('customer-ids-container');
-            const title = document.getElementById('modal-title');
+        // Toggle customer IDs display in tile
+        function toggleCustomerIds(cardElement, filterType) {
+            const isExpanded = cardElement.classList.contains('expanded');
+            const expandedContent = cardElement.querySelector('.card-expanded-content');
+            const containerId = `customer-ids-${filterType}`;
+            const container = document.getElementById(containerId);
             
+            // Close all other expanded cards
+            document.querySelectorAll('.expandable-card.expanded').forEach(card => {
+                if (card !== cardElement) {
+                    card.classList.remove('expanded');
+                    card.querySelector('.card-expanded-content').style.display = 'none';
+                }
+            });
+            
+            if (isExpanded) {
+                // Collapse
+                cardElement.classList.remove('expanded');
+                expandedContent.style.display = 'none';
+            } else {
+                // Expand
+                cardElement.classList.add('expanded');
+                expandedContent.style.display = 'block';
+                
+                // Load customer IDs if not already loaded
+                if (!container.hasChildNodes() || container.textContent.trim() === '') {
+                    loadCustomerIdsForCard(filterType, container);
+                }
+            }
+        }
+        
+        // Load customer IDs for a specific card
+        function loadCustomerIdsForCard(filterType, container) {
             let customerIds = [];
-            let titleText = '';
             
             if (filterType === 'all') {
                 // All flagged customers (flag_count > 0)
                 customerIds = riskFlagsData
                     .filter(row => row.flag_count > 0)
                     .map(row => row.customer_id);
-                titleText = 'All Flagged Customers (50)';
             } else if (filterType === 'CRITICAL') {
                 // CRITICAL risk customers
                 customerIds = riskFlagsData
                     .filter(row => row.risk_level === 'CRITICAL')
                     .map(row => row.customer_id);
-                titleText = 'CRITICAL Risk Customers (10)';
             } else if (filterType === 'HIGH') {
                 // HIGH risk customers
                 customerIds = riskFlagsData
                     .filter(row => row.risk_level === 'HIGH')
                     .map(row => row.customer_id);
-                titleText = 'HIGH Risk Customers (40)';
             } else if (filterType === 'top_flag') {
                 // Customers with most flags (flag_count >= 4)
                 customerIds = riskFlagsData
                     .filter(row => row.flag_count >= 4)
                     .sort((a, b) => b.flag_count - a.flag_count)
                     .map(row => row.customer_id);
-                titleText = 'Top Flag Count Customers (23)';
             }
             
-            title.textContent = titleText;
-            
             if (customerIds.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center;">No customers found.</p>';
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found.</p>';
             } else {
                 container.innerHTML = customerIds.map(id => 
                     `<div class="customer-id-item">${id}</div>`
                 ).join('');
             }
-            
-            modal.style.display = 'flex';
         }
-        
-        // Close customer modal
-        function closeCustomerModal() {
-            document.getElementById('customer-modal').style.display = 'none';
-        }
-        
-        // Close modal when clicking outside
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('customer-modal');
-            if (event.target === modal) {
-                closeCustomerModal();
-            }
-        });
         
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
