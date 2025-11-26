@@ -1213,7 +1213,15 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         </div>
                         
                         <div class="dataset-container">
-                            <div class="table-wrapper">
+                            <div id="loading-indicator" style="text-align: center; padding: 2rem; color: #9ca3af;">
+                                <p>Loading dataset (50,000 records)... This may take a moment.</p>
+                                <div style="margin-top: 1rem;">
+                                    <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
+                                        <div id="loading-bar" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-wrapper" id="table-wrapper" style="display: none;">
                                 <table id="dataset-table" class="dataset-table">
                                     <thead>
                                         <tr>
@@ -1565,9 +1573,15 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 const headers = lines[0].split(',').map(h => h.trim());
+                const totalLines = lines.length - 1;
                 
                 datasetData = [];
-                for (let i = 1; i < lines.length; i++) {
+                // Process in chunks to show progress
+                const chunkSize = 1000;
+                for (let chunkStart = 1; chunkStart < lines.length; chunkStart += chunkSize) {
+                    const chunkEnd = Math.min(chunkStart + chunkSize, lines.length);
+                    
+                    for (let i = chunkStart; i < chunkEnd; i++) {
                     if (lines[i].trim()) {
                         // Handle CSV parsing more carefully (account for commas in quoted fields)
                         const values = parseCSVLine(lines[i]);
@@ -1585,6 +1599,13 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                             });
                         }
                     }
+                    
+                    // Update loading progress
+                    const progress = ((chunkEnd - 1) / totalLines) * 100;
+                    document.getElementById('loading-bar').style.width = progress + '%';
+                    
+                    // Allow UI to update
+                    await new Promise(resolve => setTimeout(resolve, 0));
                 }
                 
                 if (datasetData.length === 0) {
@@ -1593,6 +1614,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 
                 filteredData = [...datasetData];
                 document.getElementById('dataset-info').textContent = `Total records: ${datasetData.length.toLocaleString()}`;
+                
+                // Hide loading indicator and show table
+                document.getElementById('loading-indicator').style.display = 'none';
+                document.getElementById('table-wrapper').style.display = 'block';
+                
                 renderTable();
             } catch (error) {
                 console.error('Error loading dataset:', error);
