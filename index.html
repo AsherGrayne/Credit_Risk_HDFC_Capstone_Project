@@ -1751,10 +1751,106 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             }
         }
         
+        // Risk flags data for customer IDs
+        let riskFlagsData = [];
+        
+        // Load risk flags data
+        async function loadRiskFlagsData() {
+            try {
+                const response = await fetch('data/risk_flags_output.csv');
+                const text = await response.text();
+                const lines = text.split('\n').filter(line => line.trim());
+                
+                if (lines.length === 0) return;
+                
+                const headers = lines[0].split(',');
+                riskFlagsData = [];
+                
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim()) {
+                        const values = parseCSVLine(lines[i]);
+                        if (values.length >= headers.length) {
+                            riskFlagsData.push({
+                                customer_id: values[0]?.trim() || '',
+                                risk_level: values[1]?.trim() || '',
+                                flag_count: parseInt(values[4]) || 0,
+                                flags: values[3] || '[]'
+                            });
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading risk flags data:', error);
+            }
+        }
+        
+        // Show customer IDs based on filter type
+        function showCustomerIds(filterType) {
+            const modal = document.getElementById('customer-modal');
+            const container = document.getElementById('customer-ids-container');
+            const title = document.getElementById('modal-title');
+            
+            let customerIds = [];
+            let titleText = '';
+            
+            if (filterType === 'all') {
+                // All flagged customers (flag_count > 0)
+                customerIds = riskFlagsData
+                    .filter(row => row.flag_count > 0)
+                    .map(row => row.customer_id);
+                titleText = 'All Flagged Customers (50)';
+            } else if (filterType === 'CRITICAL') {
+                // CRITICAL risk customers
+                customerIds = riskFlagsData
+                    .filter(row => row.risk_level === 'CRITICAL')
+                    .map(row => row.customer_id);
+                titleText = 'CRITICAL Risk Customers (10)';
+            } else if (filterType === 'HIGH') {
+                // HIGH risk customers
+                customerIds = riskFlagsData
+                    .filter(row => row.risk_level === 'HIGH')
+                    .map(row => row.customer_id);
+                titleText = 'HIGH Risk Customers (40)';
+            } else if (filterType === 'top_flag') {
+                // Customers with most flags (flag_count >= 4)
+                customerIds = riskFlagsData
+                    .filter(row => row.flag_count >= 4)
+                    .sort((a, b) => b.flag_count - a.flag_count)
+                    .map(row => row.customer_id);
+                titleText = 'Top Flag Count Customers (23)';
+            }
+            
+            title.textContent = titleText;
+            
+            if (customerIds.length === 0) {
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center;">No customers found.</p>';
+            } else {
+                container.innerHTML = customerIds.map(id => 
+                    `<div class="customer-id-item">${id}</div>`
+                ).join('');
+            }
+            
+            modal.style.display = 'flex';
+        }
+        
+        // Close customer modal
+        function closeCustomerModal() {
+            document.getElementById('customer-modal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('customer-modal');
+            if (event.target === modal) {
+                closeCustomerModal();
+            }
+        });
+        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateStrategies();
             loadDataset();
+            loadRiskFlagsData();
         });
     </script>
 </body>
