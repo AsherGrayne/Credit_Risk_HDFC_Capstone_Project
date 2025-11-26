@@ -746,39 +746,44 @@ for idx, row in df.iterrows():
                     <div class="detail-section">
                         <h3>Results</h3>
                         <div class="results-grid">
-                            <div class="result-card clickable-card" onclick="showCustomerIds('all')" data-type="all">
-                                <div class="result-value">50</div>
-                                <div class="result-label">Customers Flagged</div>
-                                <div class="card-hint">Click to view customer IDs</div>
-                            </div>
-                            <div class="result-card clickable-card critical" onclick="showCustomerIds('CRITICAL')" data-type="CRITICAL">
-                                <div class="result-value">10</div>
-                                <div class="result-label">CRITICAL Risk</div>
-                                <div class="card-hint">Click to view customer IDs</div>
-                            </div>
-                            <div class="result-card clickable-card high" onclick="showCustomerIds('HIGH')" data-type="HIGH">
-                                <div class="result-value">40</div>
-                                <div class="result-label">HIGH Risk</div>
-                                <div class="card-hint">Click to view customer IDs</div>
-                            </div>
-                            <div class="result-card clickable-card" onclick="showCustomerIds('top_flag')" data-type="top_flag">
-                                <div class="result-value">23</div>
-                                <div class="result-label">Top Flag Count</div>
-                                <div class="card-hint">Click to view customer IDs</div>
-                            </div>
-                        </div>
-                        
-                        <!-- Customer IDs Display Modal -->
-                        <div id="customer-modal" class="customer-modal" style="display: none;">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 id="modal-title">Customer IDs</h3>
-                                    <button class="modal-close" onclick="closeCustomerModal()">×</button>
+                            <div class="result-card clickable-card expandable-card" onclick="toggleCustomerIds(this, 'all')" data-type="all">
+                                <div class="card-header-content">
+                                    <div class="result-value">50</div>
+                                    <div class="result-label">Customers Flagged</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
                                 </div>
-                                <div class="modal-body">
-                                    <div id="customer-ids-container" class="customer-ids-container">
-                                        <p style="color: #9ca3af;">Loading customer IDs...</p>
-                                    </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-all"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card critical" onclick="toggleCustomerIds(this, 'CRITICAL')" data-type="CRITICAL">
+                                <div class="card-header-content">
+                                    <div class="result-value">10</div>
+                                    <div class="result-label">CRITICAL Risk</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-CRITICAL"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card high" onclick="toggleCustomerIds(this, 'HIGH')" data-type="HIGH">
+                                <div class="card-header-content">
+                                    <div class="result-value">40</div>
+                                    <div class="result-label">HIGH Risk</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-HIGH"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card" onclick="toggleCustomerIds(this, 'top_flag')" data-type="top_flag">
+                                <div class="card-header-content">
+                                    <div class="result-value">23</div>
+                                    <div class="result-label">Top Flag Count</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-top_flag"></div>
                                 </div>
                             </div>
                         </div>
