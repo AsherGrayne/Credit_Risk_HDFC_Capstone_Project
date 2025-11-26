@@ -1705,7 +1705,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 document.getElementById('dataset-tbody').innerHTML = 
                     `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #ef4444;">
                         Error loading dataset: ${errorMsg}<br>
-                        <small style="color: #9ca3af;">Please ensure the file exists at: data/${fileName}</small>
+                        <small style="color: #64748b;">Please ensure the file exists at: data/${fileName}</small>
                     </td></tr>`;
                 document.getElementById('dataset-info').textContent = 'Error loading dataset';
             }
@@ -2055,7 +2055,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 expandedContent.style.display = 'block';
                 
                 // Show loading state
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
+                container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
                 
                 // Load customer IDs if not already loaded
                 if (!container.hasChildNodes() || container.textContent.trim() === '' || container.textContent.includes('Loading')) {
@@ -2118,7 +2118,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             console.log(`Filter: ${filterType}, Found: ${customerIds.length} customers`);
             
             if (customerIds.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
+                container.innerHTML = '<p style="color: #64748b; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
             } else {
                 container.innerHTML = customerIds.map(id => 
                     `<div class="customer-id-item">${id}</div>`
