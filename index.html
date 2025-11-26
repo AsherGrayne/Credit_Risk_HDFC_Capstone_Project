@@ -1826,11 +1826,15 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 button.innerHTML = '⏳ Downloading...';
                 button.disabled = true;
                 
+                // Determine file path based on current dataset type
+                const fileName = currentDatasetType === 'real' ? 'Sample.csv' : 'synthetic_dataset_50000.csv';
+                const downloadFileName = currentDatasetType === 'real' ? 'Sample.csv' : 'synthetic_dataset_50000.csv';
+                
                 // Try multiple possible paths
                 const possiblePaths = [
-                    'data/synthetic_dataset_50000.csv',
-                    './data/synthetic_dataset_50000.csv',
-                    '../data/synthetic_dataset_50000.csv'
+                    `data/${fileName}`,
+                    `./data/${fileName}`,
+                    `../data/${fileName}`
                 ];
                 
                 let response = null;
