@@ -1763,29 +1763,47 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         async function loadRiskFlagsData() {
             try {
                 const response = await fetch('data/risk_flags_output.csv');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const text = await response.text();
                 const lines = text.split('\n').filter(line => line.trim());
                 
-                if (lines.length === 0) return;
+                if (lines.length === 0) {
+                    console.error('Risk flags CSV file is empty');
+                    return;
+                }
                 
-                const headers = lines[0].split(',');
                 riskFlagsData = [];
                 
+                // Parse CSV manually to handle quoted fields with commas
                 for (let i = 1; i < lines.length; i++) {
                     if (lines[i].trim()) {
                         const values = parseCSVLine(lines[i]);
-                        if (values.length >= headers.length) {
-                            riskFlagsData.push({
-                                customer_id: values[0]?.trim() || '',
-                                risk_level: values[1]?.trim() || '',
-                                flag_count: parseInt(values[4]) || 0,
-                                flags: values[3] || '[]'
-                            });
+                        
+                        // CSV structure: customer_id,risk_level,risk_score,flags,flag_count
+                        if (values.length >= 5) {
+                            const customerId = values[0]?.trim() || '';
+                            const riskLevel = values[1]?.trim() || '';
+                            const flagCount = parseInt(values[4]?.trim()) || 0;
+                            
+                            if (customerId) {
+                                riskFlagsData.push({
+                                    customer_id: customerId,
+                                    risk_level: riskLevel,
+                                    flag_count: flagCount,
+                                    flags: values[3] || '[]'
+                                });
+                            }
                         }
                     }
                 }
+                
+                console.log(`Loaded ${riskFlagsData.length} risk flag records`);
             } catch (error) {
                 console.error('Error loading risk flags data:', error);
+                // Show error in console for debugging
+                console.error('Failed to load data/risk_flags_output.csv');
             }
         }
         
@@ -1822,6 +1840,17 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         
         // Load customer IDs for a specific card
         function loadCustomerIdsForCard(filterType, container) {
+            // Check if data is loaded
+            if (riskFlagsData.length === 0) {
+                container.innerHTML = '<p style="color: #ef4444; text-align: center; padding: 1rem;">Data still loading... Please wait a moment and try again.</p>';
+                // Try to reload data
+                loadRiskFlagsData().then(() => {
+                    // Retry after data loads
+                    setTimeout(() => loadCustomerIdsForCard(filterType, container), 500);
+                });
+                return;
+            }
+            
             let customerIds = [];
             
             if (filterType === 'all') {
@@ -1843,12 +1872,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 // Customers with most flags (flag_count >= 4)
                 customerIds = riskFlagsData
                     .filter(row => row.flag_count >= 4)
-                    .sort((a, b) => b.flag_count - a.flag_count)
+                    .sort((a, b) => {
+                        const aData = riskFlagsData.find(r => r.customer_id === a);
+                        const bData = riskFlagsData.find(r => r.customer_id === b);
+                        return (bData?.flag_count || 0) - (aData?.flag_count || 0);
+                    })
                     .map(row => row.customer_id);
             }
             
+            console.log(`Filter: ${filterType}, Found: ${customerIds.length} customers`);
+            
             if (customerIds.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found.</p>';
+                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
             } else {
                 container.innerHTML = customerIds.map(id => 
                     `<div class="customer-id-item">${id}</div>`
