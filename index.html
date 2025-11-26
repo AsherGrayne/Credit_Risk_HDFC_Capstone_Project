@@ -1762,6 +1762,17 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         // Load risk flags data
         async function loadRiskFlagsData() {
             try {
+                // Check if running from file:// protocol (local file)
+                const isLocalFile = window.location.protocol === 'file:';
+                
+                if (isLocalFile) {
+                    console.warn('Running from file:// protocol. CSV loading may be restricted by browser security.');
+                    console.warn('For local testing, use a local web server:');
+                    console.warn('  Python: python -m http.server 8000');
+                    console.warn('  Node: npx http-server');
+                    console.warn('  Then open: http://localhost:8000');
+                }
+                
                 // Try multiple paths
                 const possiblePaths = [
                     'data/risk_flags_output.csv',
@@ -1771,21 +1782,30 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 
                 let response = null;
                 let loaded = false;
+                let lastError = null;
                 
                 for (const path of possiblePaths) {
                     try {
                         response = await fetch(path);
                         if (response.ok) {
                             loaded = true;
+                            console.log(`Successfully loaded CSV from: ${path}`);
                             break;
+                        } else {
+                            lastError = `HTTP ${response.status}`;
                         }
                     } catch (err) {
+                        lastError = err.message;
+                        console.warn(`Failed to load from ${path}:`, err.message);
                         continue;
                     }
                 }
                 
                 if (!loaded || !response || !response.ok) {
-                    throw new Error(`Failed to load CSV file. Status: ${response ? response.status : 'No response'}`);
+                    const errorMsg = isLocalFile 
+                        ? `Cannot load CSV file when opening HTML directly (file:// protocol). Please use a local web server or deploy to GitHub Pages. Last error: ${lastError || 'No response'}`
+                        : `Failed to load CSV file. Status: ${response ? response.status : lastError || 'No response'}`;
+                    throw new Error(errorMsg);
                 }
                 
                 const text = await response.text();
@@ -1850,11 +1870,27 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             } catch (error) {
                 console.error('Error loading risk flags data:', error);
                 console.error('Error details:', error.message);
-                console.error('Stack trace:', error.stack);
+                
                 // Set a flag so we know data failed to load
                 riskFlagsData = null;
-                // Show error message in console for debugging
-                alert('Failed to load risk flags data. Please check the browser console for details.');
+                
+                // Show helpful error message
+                const isLocalFile = window.location.protocol === 'file:';
+                if (isLocalFile) {
+                    console.error('%cIMPORTANT: You are opening the HTML file directly (file://).', 'color: red; font-weight: bold; font-size: 14px;');
+                    console.error('%cBrowsers block local file access for security reasons.', 'color: red; font-weight: bold;');
+                    console.error('%cSolutions:', 'color: orange; font-weight: bold;');
+                    console.error('1. Use a local web server:');
+                    console.error('   - Python: python -m http.server 8000');
+                    console.error('   - Node.js: npx http-server');
+                    console.error('   - Then open: http://localhost:8000');
+                    console.error('2. Deploy to GitHub Pages (recommended for production)');
+                } else {
+                    console.error('Please check:');
+                    console.error('1. File exists at: data/risk_flags_output.csv');
+                    console.error('2. File is accessible via HTTP');
+                    console.error('3. Check browser console Network tab for failed requests');
+                }
             }
         }
         
