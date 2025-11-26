@@ -1084,6 +1084,17 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             // Scroll to top
             window.scrollTo(0, 0);
         }
+        
+        // Collapsible flag functionality
+        function toggleFlag(element) {
+            element.classList.toggle('expanded');
+            const icon = element.querySelector('.expand-icon');
+            if (element.classList.contains('expanded')) {
+                icon.textContent = '▲';
+            } else {
+                icon.textContent = '▼';
+            }
+        }
     </script>
 </body>
 </html>
