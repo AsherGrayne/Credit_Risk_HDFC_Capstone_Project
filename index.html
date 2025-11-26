@@ -1642,10 +1642,22 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             });
             
             // Show selected tab content
-            document.getElementById(tabName + '-tab').classList.add('active');
+            const tabContent = document.getElementById(tabName + '-tab');
+            if (tabContent) {
+                tabContent.classList.add('active');
+            }
             
-            // Add active class to clicked tab
-            event.target.classList.add('active');
+            // Add active class to clicked tab (if it's not the Interactive Dashboard link)
+            if (event && event.target && event.target.classList.contains('tab')) {
+                event.target.classList.add('active');
+            } else {
+                // Find the tab button and activate it
+                document.querySelectorAll('.tab').forEach(tab => {
+                    if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes("switchTab('" + tabName + "')")) {
+                        tab.classList.add('active');
+                    }
+                });
+            }
             
             // Scroll to top
             window.scrollTo(0, 0);
