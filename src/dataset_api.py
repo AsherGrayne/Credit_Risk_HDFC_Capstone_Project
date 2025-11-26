@@ -14,12 +14,13 @@ dataset_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'synthetic_
 df = None
 
 def load_dataset():
-    """Load the dataset into memory"""
+    """Load the dataset into memory (limited to first 1000 rows)"""
     global df
     if df is None:
         try:
-            df = pd.read_csv(dataset_path)
-            print(f"Dataset loaded: {len(df)} rows")
+            # Load only first 1000 rows
+            df = pd.read_csv(dataset_path, nrows=1000)
+            print(f"Dataset loaded: {len(df)} rows (limited to first 1000)")
         except Exception as e:
             print(f"Error loading dataset: {e}")
             df = pd.DataFrame()
