@@ -1602,7 +1602,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     
                     // Update loading progress
                     const progress = ((chunkEnd - 1) / totalLines) * 100;
-                    document.getElementById('loading-bar').style.width = progress + '%';
+                    document.getElementById('loading-bar').style.width = Math.min(progress, 100) + '%';
                     
                     // Allow UI to update
                     await new Promise(resolve => setTimeout(resolve, 0));
@@ -1656,20 +1656,77 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         }
         
         function filterDataset() {
-            // Reload first page with search term
-            loadPage(1);
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            if (!searchTerm) {
+                filteredData = [...datasetData];
+            } else {
+                filteredData = datasetData.filter(row => {
+                    return Object.values(row).some(val => 
+                        String(val).toLowerCase().includes(searchTerm)
+                    );
+                });
+            }
+            currentPage = 1;
+            renderTable();
+            updateDatasetInfo();
         }
         
         function changeRowsPerPage() {
             rowsPerPage = parseInt(document.getElementById('rows-per-page').value);
-            // Reload current page with new page size
-            loadPage(1);
+            currentPage = 1;
+            renderTable();
         }
         
         function changePage(direction) {
-            const newPage = currentPage + direction;
-            if (newPage >= 1) {
-                loadPage(newPage);
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            renderTable();
+        }
+        
+        function renderTable() {
+            const tbody = document.getElementById('dataset-tbody');
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            const pageData = filteredData.slice(start, end);
+            
+            if (pageData.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="9" style="text-align: center; padding: 2rem;">No data found</td></tr>';
+                return;
+            }
+            
+            tbody.innerHTML = pageData.map(row => `
+                <tr>
+                    <td>${row['Customer ID']}</td>
+                    <td>${row['Credit Limit'].toLocaleString()}</td>
+                    <td>${row['Utilisation %'].toFixed(1)}%</td>
+                    <td>${row['Avg Payment Ratio'].toFixed(1)}%</td>
+                    <td>${row['Min Due Paid Frequency'].toFixed(1)}%</td>
+                    <td>${row['Merchant Mix Index'].toFixed(2)}</td>
+                    <td>${row['Cash Withdrawal %'].toFixed(1)}%</td>
+                    <td>${row['Recent Spend Change %'].toFixed(1)}%</td>
+                    <td>${row['DPD Bucket Next Month']}</td>
+                </tr>
+            `).join('');
+            
+            updatePagination();
+        }
+        
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredData.length / rowsPerPage);
+            document.getElementById('page-info').textContent = `Page ${currentPage} of ${totalPages}`;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages || totalPages === 0;
+        }
+        
+        function updateDatasetInfo() {
+            const total = datasetData.length;
+            const filtered = filteredData.length;
+            if (filtered === total) {
+                document.getElementById('dataset-info').textContent = `Total records: ${total.toLocaleString()}`;
+            } else {
+                document.getElementById('dataset-info').textContent = `Showing ${filtered.toLocaleString()} of ${total.toLocaleString()} records`;
             }
         }
         
