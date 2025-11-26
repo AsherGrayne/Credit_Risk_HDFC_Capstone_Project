@@ -1215,7 +1215,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Dataset Overview</h3>
-                        <p>This synthetic dataset displays the <strong>first 1,000 customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.</p>
+                        <p>This section displays <strong>50 sample customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.</p>
+                        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+                            <button class="action-btn" onclick="downloadFullDataset()" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem;">
+                                📥 Download Full Dataset (50,000 records)
+                            </button>
+                        </div>
                         
                         <div class="dataset-controls">
                             <div class="control-group">
@@ -1238,7 +1243,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         
                         <div class="dataset-container">
                             <div id="loading-indicator" style="text-align: center; padding: 2rem; color: #9ca3af;">
-                                <p>Loading dataset (1,000 records)...</p>
+                                <p>Loading dataset (50 sample records)...</p>
                                 <div style="margin-top: 1rem;">
                                     <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
                                         <div id="loading-bar" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
@@ -1597,12 +1602,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 const headers = lines[0].split(',').map(h => h.trim());
-                const maxRows = 1000; // Load only first 1,000 records
+                const maxRows = 50; // Load only 50 sample records
                 const totalLines = Math.min(lines.length - 1, maxRows);
                 
                 datasetData = [];
                 // Process in chunks to show progress
-                const chunkSize = 100;
+                const chunkSize = 10;
                 for (let chunkStart = 1; chunkStart <= totalLines + 1; chunkStart += chunkSize) {
                     const chunkEnd = Math.min(chunkStart + chunkSize, totalLines + 1);
                     
@@ -1639,7 +1644,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 filteredData = [...datasetData];
-                document.getElementById('dataset-info').textContent = `Total records: ${datasetData.length.toLocaleString()}`;
+                document.getElementById('dataset-info').textContent = `Showing ${datasetData.length.toLocaleString()} sample records (of 50,000 total)`;
                 
                 // Hide loading indicator and show table
                 document.getElementById('loading-indicator').style.display = 'none';
