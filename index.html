@@ -407,11 +407,19 @@ print(f"Target distribution: {df['DPD Bucket'].value_counts()}")
                                 </ul>
                             </div>
                             <div class="feature-card">
-                                <h4>6. Early Risk Score</h4>
+                                <h4>6. Merchant Mix Signals</h4>
                                 <ul>
-                                    <li>Weighted combination of all signals</li>
+                                    <li><code>narrow_merchant_mix</code>: Binary (1 if Merchant Mix Index < 0.4)</li>
+                                </ul>
+                            </div>
+                            <div class="feature-card">
+                                <h4>7. Early Risk Score</h4>
+                                <ul>
+                                    <li>Weighted combination of <strong>scaled stress indicators</strong> (not all features)</li>
+                                    <li>Uses: <code>spending_stress</code>, <code>utilization_risk</code>, <code>payment_stress</code>, <code>cash_stress_indicator</code>, <code>narrow_merchant_mix</code></li>
                                     <li>Normalized to 0.0-1.0 scale</li>
-                                    <li>Formula: (Spending×0.25 + Utilization×0.30 + Payment×0.25 + Cash×0.10 + Merchant×0.10) / 3.0</li>
+                                    <li><strong>Formula:</strong> (spending_stress×0.25 + utilization_risk×0.30 + payment_stress×0.25 + cash_stress_indicator×0.10 + narrow_merchant_mix×0.10) / 3.0</li>
+                                    <li><em>Note: Binary flags and composite signals are used for risk flag generation, not directly in the score calculation</em></li>
                                 </ul>
                             </div>
                         </div>
