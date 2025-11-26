@@ -367,60 +367,229 @@ print(f"Target distribution: {df['DPD Bucket'].value_counts()}")
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>What We Did</h3>
-                        <p>Engineered <strong>14+ new features</strong> from original data to create early warning signals:</p>
+                        <p>Engineered <strong>14+ new features</strong> from original data to create early warning signals. <strong>Click any card to see the code!</strong></p>
                         <div class="features-grid">
-                            <div class="feature-card">
-                                <h4>1. Spending Behavior Signals</h4>
-                                <ul>
-                                    <li><code>spending_decline_flag</code>: Binary (1 if spending change < -15%)</li>
-                                    <li><code>spending_stress</code>: 0-2 scale (0=normal, 1=moderate, 2=severe)</li>
-                                </ul>
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_decline_flag</h4>
+                                        <p>Binary flag indicating if spending dropped significantly (decline < -15%). Early warning signal for financial stress.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_decline_flag'] = (
+    df['Recent Spend Change %'] < -15
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>2. Utilization Risk Signals</h4>
-                                <ul>
-                                    <li><code>high_utilization_flag</code>: Binary (1 if utilization ≥ 80%)</li>
-                                    <li><code>utilization_risk</code>: 0-3 scale (0=low, 3=critical)</li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_stress</h4>
+                                        <p>Scaled indicator (0-2) of spending decline severity. 0=normal, 1=moderate (-10% to -20%), 2=severe (<-20%).</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_stress'] = np.where(
+    df['Recent Spend Change %'] < -20, 2,  # Severe
+    np.where(df['Recent Spend Change %'] < -10, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>3. Payment Behavior Signals</h4>
-                                <ul>
-                                    <li><code>low_payment_frequency</code>: Binary (1 if frequency < 30%)</li>
-                                    <li><code>payment_stress</code>: 0-2 scale</li>
-                                    <li><code>payment_risk_ratio</code>: Payment frequency / Utilization</li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>high_utilization_flag</h4>
+                                        <p>Binary flag (1 if utilization ≥ 80%). Identifies customers approaching credit limit.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['high_utilization_flag'] = (
+    df['Utilisation %'] >= 80
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>4. Cash Withdrawal Signals</h4>
-                                <ul>
-                                    <li><code>high_cash_withdrawal</code>: Binary (1 if ≥ 15%)</li>
-                                    <li><code>cash_stress_indicator</code>: 0-2 scale</li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>utilization_risk</h4>
+                                        <p>Scaled risk indicator (0-3): 0=low, 1=medium (≥50%), 2=high (≥70%), 3=critical (≥90%).</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['utilization_risk'] = np.where(
+    df['Utilisation %'] >= 90, 3,  # Critical
+    np.where(df['Utilisation %'] >= 70, 2,  # High
+    np.where(df['Utilisation %'] >= 50, 1, 0))  # Medium/Low
+)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>5. Composite Risk Signals</h4>
-                                <ul>
-                                    <li><code>utilization_payment_mismatch</code>: High util + Low payment</li>
-                                    <li><code>spending_utilization_stress</code>: Spending decline + High util</li>
-                                    <li><code>payment_utilization_critical</code>: Low payment + High util</li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>low_payment_frequency</h4>
+                                        <p>Binary flag (1 if payment frequency < 30%). Identifies inconsistent payment behavior.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['low_payment_frequency'] = (
+    df['Min Due Paid Frequency'] < 30
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>6. Merchant Mix Signals</h4>
-                                <ul>
-                                    <li><code>narrow_merchant_mix</code>: Binary (1 if Merchant Mix Index < 0.4)</li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_stress</h4>
+                                        <p>Scaled indicator (0-2): 0=normal, 1=moderate (<40%), 2=severe (<20%). Measures payment consistency.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_stress'] = np.where(
+    df['Min Due Paid Frequency'] < 20, 2,  # Severe
+    np.where(df['Min Due Paid Frequency'] < 40, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="feature-card">
-                                <h4>7. Early Risk Score</h4>
-                                <ul>
-                                    <li>Weighted combination of <strong>scaled stress indicators</strong> (not all features)</li>
-                                    <li>Uses: <code>spending_stress</code>, <code>utilization_risk</code>, <code>payment_stress</code>, <code>cash_stress_indicator</code>, <code>narrow_merchant_mix</code></li>
-                                    <li>Normalized to 0.0-1.0 scale</li>
-                                    <li><strong>Formula:</strong> (spending_stress×0.25 + utilization_risk×0.30 + payment_stress×0.25 + cash_stress_indicator×0.10 + narrow_merchant_mix×0.10) / 3.0</li>
-                                    <li><em>Note: Binary flags and composite signals are used for risk flag generation, not directly in the score calculation</em></li>
-                                </ul>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_risk_ratio</h4>
+                                        <p>Ratio of payment frequency to utilization. Lower values indicate payment capacity issues relative to credit usage.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_risk_ratio'] = (
+    df['Min Due Paid Frequency'] / 
+    (df['Utilisation %'] + 1)
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>high_cash_withdrawal</h4>
+                                        <p>Binary flag (1 if cash withdrawal ≥ 15%). Increased cash withdrawals may indicate liquidity constraints.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['high_cash_withdrawal'] = (
+    df['Cash Withdrawal %'] >= 15
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>cash_stress_indicator</h4>
+                                        <p>Scaled indicator (0-2): 0=normal, 1=moderate (≥10%), 2=high (≥20%). Measures cash withdrawal patterns.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['cash_stress_indicator'] = np.where(
+    df['Cash Withdrawal %'] >= 20, 2,  # High
+    np.where(df['Cash Withdrawal %'] >= 10, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>narrow_merchant_mix</h4>
+                                        <p>Binary flag (1 if Merchant Mix Index < 0.4). Narrow merchant mix may indicate financial constraints.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['narrow_merchant_mix'] = (
+    df['Merchant Mix Index'] < 0.4
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>utilization_payment_mismatch</h4>
+                                        <p>Composite signal: High utilization (>70%) with low payment ratio (<60%). Indicates payment capacity issues.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['utilization_payment_mismatch'] = np.where(
+    (df['Utilisation %'] > 70) & 
+    (df['Avg Payment Ratio'] < 60), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_utilization_stress</h4>
+                                        <p>Composite signal: Spending decline (<-15%) combined with high utilization (>60%). High risk combination.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_utilization_stress'] = np.where(
+    (df['Recent Spend Change %'] < -15) & 
+    (df['Utilisation %'] > 60), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_utilization_critical</h4>
+                                        <p>Composite signal: Low payment frequency (<30%) with high utilization (>70%). Critical risk indicator.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_utilization_critical'] = np.where(
+    (df['Min Due Paid Frequency'] < 30) & 
+    (df['Utilisation %'] > 70), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>early_risk_score</h4>
+                                        <p>Weighted combination of scaled stress indicators, normalized to 0.0-1.0. Used for risk level classification.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['early_risk_score'] = (
+    df['spending_stress'] * 0.25 +
+    df['utilization_risk'] * 0.30 +
+    df['payment_stress'] * 0.25 +
+    df['cash_stress_indicator'] * 0.10 +
+    df['narrow_merchant_mix'] * 0.10
+) / 3.0</code></pre>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
