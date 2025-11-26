@@ -1762,7 +1762,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         }
         
         // Download full dataset function
-        async function downloadFullDataset() {
+        async function downloadFullDataset(event) {
             try {
                 // Check if running from file:// protocol (local file)
                 const isLocalFile = window.location.protocol === 'file:';
@@ -1773,7 +1773,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 }
                 
                 // Show loading state
-                const button = event.target;
+                const button = event ? event.target : document.querySelector('button[onclick*="downloadFullDataset"]');
                 const originalText = button.innerHTML;
                 button.innerHTML = '⏳ Downloading...';
                 button.disabled = true;
