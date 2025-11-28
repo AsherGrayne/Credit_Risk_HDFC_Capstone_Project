@@ -2,12 +2,39 @@
 let riskChart = null;
 let featureChart = null;
 let updateTimeout = null;
+let dashboardInitialized = false;
 
-// Initialize
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize function that can be called when tab is shown
+function initializeDashboard() {
+    if (dashboardInitialized) return;
+    
+    const riskChartEl = document.getElementById('riskChart');
+    const featureChartEl = document.getElementById('featureChart');
+    
+    if (!riskChartEl || !featureChartEl) {
+        console.log('Dashboard elements not found, waiting...');
+        return;
+    }
+    
+    if (typeof Chart === 'undefined') {
+        console.log('Chart.js not loaded yet, waiting...');
+        return;
+    }
+    
     initializeCharts();
     setupSliders();
     updatePrediction();
+    dashboardInitialized = true;
+}
+
+// Initialize on DOMContentLoaded (for standalone page)
+document.addEventListener('DOMContentLoaded', function() {
+    // Only initialize if we're on the standalone page (not in tab)
+    if (document.getElementById('dashboard-tab')) {
+        // We're in the tab system, wait for tab to be shown
+        return;
+    }
+    initializeDashboard();
 });
 
 function setupSliders() {
