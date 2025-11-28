@@ -269,7 +269,7 @@
         .error-message.show {
             display: block;
         }
-        
+
         /* Dashboard Styles */
         .dashboard-container {
             max-width: 1400px;
@@ -509,7 +509,7 @@
     <!-- Tabs -->
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab active" onclick="switchTab('dashboard')">Dashboard</button>
+            <button class="tab active" onclick="switchTab('dashboard')">Interactive Dashboard</button>
             <button class="tab" onclick="switchTab('workflow')">Workflow</button>
             <button class="tab" onclick="switchTab('apply')">Apply Here</button>
         </div>
@@ -535,49 +535,49 @@
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Utilisation %</span>
-                            <span id="dashboard-utilisation-value">50</span>
+                            <span id="utilisation-value">50</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-utilisation" min="0" max="100" value="50" step="0.1">
+                        <input type="range" class="slider" id="utilisation" min="0" max="100" value="50" step="0.1">
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Avg Payment Ratio</span>
-                            <span id="dashboard-payment-ratio-value">60</span>
+                            <span id="payment-ratio-value">60</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-payment-ratio" min="0" max="100" value="60" step="0.1">
+                        <input type="range" class="slider" id="payment-ratio" min="0" max="100" value="60" step="0.1">
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Min Due Paid Frequency</span>
-                            <span id="dashboard-frequency-value">50</span>
+                            <span id="frequency-value">50</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-frequency" min="0" max="100" value="50" step="0.1">
+                        <input type="range" class="slider" id="frequency" min="0" max="100" value="50" step="0.1">
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Cash Withdrawal %</span>
-                            <span id="dashboard-cash-value">10</span>
+                            <span id="cash-value">10</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-cash" min="0" max="100" value="10" step="0.1">
+                        <input type="range" class="slider" id="cash" min="0" max="100" value="10" step="0.1">
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Recent Spend Change %</span>
-                            <span id="dashboard-spend-value">0</span>
+                            <span id="spend-value">0</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-spend" min="-50" max="50" value="0" step="0.1">
+                        <input type="range" class="slider" id="spend" min="-50" max="50" value="0" step="0.1">
                     </div>
 
                     <div class="slider-group">
                         <div class="slider-label">
                             <span>Merchant Mix Index</span>
-                            <span id="dashboard-merchant-value">0.5</span>
+                            <span id="merchant-value">0.5</span>
                         </div>
-                        <input type="range" class="slider" id="dashboard-merchant" min="0" max="1" value="0.5" step="0.01">
+                        <input type="range" class="slider" id="merchant" min="0" max="1" value="0.5" step="0.01">
                     </div>
                 </div>
 
@@ -586,13 +586,13 @@
                     <div class="card-header">
                         <h3>Risk Assessment</h3>
                     </div>
-                    <div class="risk-level-display" id="dashboard-risk-display">
-                        <div class="risk-level" id="dashboard-risk-level">LOW</div>
-                        <div class="risk-score" id="dashboard-risk-score">0.000</div>
-                        <div class="risk-probability" id="dashboard-risk-probability">0.0% At-Risk</div>
+                    <div class="risk-level-display" id="risk-display">
+                        <div class="risk-level" id="risk-level">LOW</div>
+                        <div class="risk-score" id="risk-score">0.000</div>
+                        <div class="risk-probability" id="risk-probability">0.0% At-Risk</div>
                     </div>
                     <div class="chart-container">
-                        <canvas id="dashboard-riskChart"></canvas>
+                        <canvas id="riskChart"></canvas>
                     </div>
                 </div>
 
@@ -602,7 +602,7 @@
                         <h3>Feature Impact</h3>
                     </div>
                     <div class="chart-container">
-                        <canvas id="dashboard-featureChart"></canvas>
+                        <canvas id="featureChart"></canvas>
                     </div>
                 </div>
 
@@ -611,7 +611,7 @@
                     <div class="card-header">
                         <h3>Early Warning Flags</h3>
                     </div>
-                    <div class="flags-container" id="dashboard-flags-container">
+                    <div class="flags-container" id="flags-container">
                         <p style="color: #9ca3af; text-align: center; padding: 2rem;">
                             Adjust parameters to see risk flags appear
                         </p>
@@ -1385,261 +1385,43 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             
             // Scroll to top
             window.scrollTo(0, 0);
-        }
-        
-        // Dashboard-specific initialization
-        let dashboardRiskChart = null;
-        let dashboardFeatureChart = null;
-        let dashboardUpdateTimeout = null;
-        
-        // Initialize dashboard when tab is shown
-        function initDashboard() {
-            if (dashboardRiskChart && dashboardFeatureChart) return; // Already initialized
             
-            // Setup dashboard sliders
-            const sliders = ['dashboard-utilisation', 'dashboard-payment-ratio', 'dashboard-frequency', 'dashboard-cash', 'dashboard-spend', 'dashboard-merchant'];
-            
-            sliders.forEach(sliderId => {
-                const slider = document.getElementById(sliderId);
-                if (!slider) return;
-                const valueDisplay = document.getElementById(sliderId + '-value');
-                
-                slider.addEventListener('input', function() {
-                    let displayValue = parseFloat(this.value);
-                    if (sliderId === 'dashboard-merchant') {
-                        valueDisplay.textContent = displayValue.toFixed(2);
-                    } else if (sliderId === 'dashboard-spend') {
-                        valueDisplay.textContent = displayValue.toFixed(1) + '%';
-                    } else {
-                        valueDisplay.textContent = displayValue.toFixed(1) + (sliderId.includes('utilisation') || sliderId.includes('payment-ratio') || sliderId.includes('frequency') || sliderId.includes('cash') ? '%' : '');
+            // Reinitialize dashboard if switching to dashboard tab
+            if (tabName === 'dashboard' && typeof initializeCharts === 'function') {
+                // Small delay to ensure DOM is ready
+                setTimeout(() => {
+                    if (typeof riskChart === 'undefined' || riskChart === null) {
+                        initializeCharts();
                     }
-                    
-                    clearTimeout(dashboardUpdateTimeout);
-                    dashboardUpdateTimeout = setTimeout(updateDashboardPrediction, 100);
-                });
-            });
-            
-            // Initialize charts
-            initializeDashboardCharts();
-            updateDashboardPrediction();
-        }
-        
-        function initializeDashboardCharts() {
-            // Risk Score Chart
-            const riskCtx = document.getElementById('dashboard-riskChart');
-            if (!riskCtx) return;
-            dashboardRiskChart = new Chart(riskCtx.getContext('2d'), {
-                type: 'line',
-                data: {
-                    labels: [],
-                    datasets: [{
-                        label: 'Risk Score',
-                        data: [],
-                        borderColor: '#8b0000',
-                        backgroundColor: 'rgba(139, 0, 0, 0.1)',
-                        tension: 0.4,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 1,
-                            grid: { color: '#1e293b' },
-                            ticks: { color: '#9ca3af' }
-                        },
-                        x: {
-                            grid: { color: '#1e293b' },
-                            ticks: { color: '#9ca3af' }
-                        }
+                    if (typeof setupSliders === 'function') {
+                        setupSliders();
                     }
-                }
-            });
-            
-            // Feature Importance Chart
-            const featureCtx = document.getElementById('dashboard-featureChart');
-            if (!featureCtx) return;
-            dashboardFeatureChart = new Chart(featureCtx.getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Utilisation', 'Payment Ratio', 'Frequency', 'Cash', 'Spend Change', 'Merchant Mix'],
-                    datasets: [{
-                        label: 'Impact',
-                        data: [0, 0, 0, 0, 0, 0],
-                        backgroundColor: [
-                            'rgba(139, 0, 0, 0.8)',
-                            'rgba(220, 20, 60, 0.8)',
-                            'rgba(255, 99, 71, 0.8)',
-                            'rgba(255, 165, 0, 0.8)',
-                            'rgba(50, 205, 50, 0.8)',
-                            'rgba(100, 149, 237, 0.8)'
-                        ],
-                        borderColor: [
-                            '#8b0000',
-                            '#dc143c',
-                            '#ff6347',
-                            '#ffa500',
-                            '#32cd32',
-                            '#6495ed'
-                        ],
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: '#1e293b' },
-                            ticks: { color: '#9ca3af' }
-                        },
-                        x: {
-                            grid: { color: '#1e293b' },
-                            ticks: { color: '#9ca3af' }
-                        }
+                    if (typeof updatePrediction === 'function') {
+                        updatePrediction();
                     }
-                }
-            });
-        }
-        
-        let dashboardRiskHistory = [];
-        let dashboardHistoryIndex = 0;
-        
-        async function updateDashboardPrediction() {
-            const data = {
-                utilisation: parseFloat(document.getElementById('dashboard-utilisation').value),
-                avg_payment_ratio: parseFloat(document.getElementById('dashboard-payment-ratio').value),
-                min_due_frequency: parseFloat(document.getElementById('dashboard-frequency').value),
-                cash_withdrawal: parseFloat(document.getElementById('dashboard-cash').value),
-                spend_change: parseFloat(document.getElementById('dashboard-spend').value),
-                merchant_mix: parseFloat(document.getElementById('dashboard-merchant').value)
-            };
-            
-            try {
-                const mlResult = await predictWithMLModel(data);
-                const probability = parseFloat(mlResult.probability);
-                const flags = generateRiskFlags(data);
-                const risk_score = probability;
-                const risk_level = determineRiskLevel(risk_score, flags);
-                
-                updateDashboardRiskDisplay(risk_level, risk_score, probability * 100);
-                updateDashboardRiskChart(risk_score, probability);
-                updateDashboardFeatureChart(data);
-                updateDashboardFlags(flags);
-            } catch (error) {
-                console.error('Prediction error:', error);
-                const result = predictClientSide(data);
-                updateDashboardRiskDisplay(result.risk_level, parseFloat(result.risk_score), parseFloat(result.probability));
-                updateDashboardRiskChart(parseFloat(result.risk_score), parseFloat(result.probability) / 100);
-                updateDashboardFeatureChart(data);
-                updateDashboardFlags(result.flags);
+                }, 100);
             }
-        }
-        
-        function updateDashboardRiskDisplay(level, score, probability) {
-            const riskDisplay = document.getElementById('dashboard-risk-display');
-            const riskLevel = document.getElementById('dashboard-risk-level');
-            const riskScore = document.getElementById('dashboard-risk-score');
-            const riskProb = document.getElementById('dashboard-risk-probability');
-            
-            riskDisplay.className = 'risk-level-display';
-            riskLevel.className = 'risk-level';
-            
-            riskDisplay.classList.add(level.toLowerCase());
-            riskLevel.classList.add(level.toLowerCase());
-            
-            riskLevel.textContent = level;
-            riskScore.textContent = score.toFixed(3);
-            riskProb.textContent = probability.toFixed(1) + '% At-Risk Probability';
-        }
-        
-        function updateDashboardRiskChart(score, probability) {
-            if (!dashboardRiskChart) return;
-            dashboardRiskHistory.push({
-                index: dashboardHistoryIndex++,
-                score: score,
-                probability: probability
-            });
-            
-            if (dashboardRiskHistory.length > 20) {
-                dashboardRiskHistory.shift();
-            }
-            
-            dashboardRiskChart.data.labels = dashboardRiskHistory.map(d => d.index);
-            dashboardRiskChart.data.datasets[0].data = dashboardRiskHistory.map(d => d.score);
-            dashboardRiskChart.update('none');
-        }
-        
-        function updateDashboardFeatureChart(data) {
-            if (!dashboardFeatureChart) return;
-            const impacts = calculateFeatureImpacts(data);
-            
-            dashboardFeatureChart.data.datasets[0].data = [
-                impacts.utilisation,
-                impacts.paymentRatio,
-                impacts.frequency,
-                impacts.cash,
-                impacts.spend,
-                impacts.merchant
-            ];
-            dashboardFeatureChart.update('none');
-        }
-        
-        function calculateFeatureImpacts(data) {
-            const spending_stress = data.spend_change < -20 ? 2 : (data.spend_change < -10 ? 1 : 0);
-            const utilization_risk = data.utilisation >= 90 ? 3 : (data.utilisation >= 70 ? 2 : (data.utilisation >= 50 ? 1 : 0));
-            const payment_stress = data.min_due_frequency < 20 ? 2 : (data.min_due_frequency < 40 ? 1 : 0);
-            const cash_stress = data.cash_withdrawal >= 20 ? 2 : (data.cash_withdrawal >= 10 ? 1 : 0);
-            
-            return {
-                utilisation: (utilization_risk / 3) * 0.30,
-                paymentRatio: (data.avg_payment_ratio < 60 ? 1 : 0) * 0.20,
-                frequency: (payment_stress / 2) * 0.25,
-                cash: (cash_stress / 2) * 0.10,
-                spend: (spending_stress / 2) * 0.25,
-                merchant: (data.merchant_mix < 0.4 ? 1 : 0) * 0.10
-            };
-        }
-        
-        function updateDashboardFlags(flags) {
-            const container = document.getElementById('dashboard-flags-container');
-            
-            if (!flags || flags.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 2rem;">No risk flags detected. Customer appears to be low risk.</p>';
-                return;
-            }
-            
-            container.innerHTML = flags.map(flag => `
-                <div class="flag-item-dashboard">
-                    <span class="flag-severity ${flag.severity.toLowerCase()}">${flag.severity}</span>
-                    <strong>${flag.flag}</strong>
-                    <div style="margin-top: 0.5rem; color: #9ca3af; font-size: 0.875rem;">${flag.message}</div>
-                </div>
-            `).join('');
         }
         
         // Initialize dashboard on page load
         document.addEventListener('DOMContentLoaded', function() {
-            initDashboard();
+            // Check if we're on the dashboard tab (which is active by default)
+            const dashboardTab = document.getElementById('dashboard-tab');
+            if (dashboardTab && dashboardTab.classList.contains('active')) {
+                // Initialize dashboard after a small delay to ensure all scripts are loaded
+                setTimeout(() => {
+                    if (typeof initializeCharts === 'function') {
+                        initializeCharts();
+                    }
+                    if (typeof setupSliders === 'function') {
+                        setupSliders();
+                    }
+                    if (typeof updatePrediction === 'function') {
+                        updatePrediction();
+                    }
+                }, 200);
+            }
         });
-        
-        // Re-initialize when dashboard tab is clicked
-        const dashboardTab = document.querySelector('.tab[onclick*="dashboard"]');
-        if (dashboardTab) {
-            dashboardTab.addEventListener('click', function() {
-                setTimeout(initDashboard, 100);
-            });
-        }
     </script>
 </body>
 </html>

@@ -17,6 +17,10 @@ function setupSliders() {
         const slider = document.getElementById(sliderId);
         const valueDisplay = document.getElementById(sliderId + '-value');
         
+        if (!slider || !valueDisplay) {
+            return; // Skip if element doesn't exist
+        }
+        
         slider.addEventListener('input', function() {
             // Update value display
             let displayValue = parseFloat(this.value);
@@ -36,9 +40,15 @@ function setupSliders() {
 }
 
 async function updatePrediction() {
+    // Check if dashboard elements exist
+    const utilisationEl = document.getElementById('utilisation');
+    if (!utilisationEl) {
+        return; // Dashboard not active, skip update
+    }
+    
     // Get slider values
     const data = {
-        utilisation: parseFloat(document.getElementById('utilisation').value),
+        utilisation: parseFloat(utilisationEl.value),
         avg_payment_ratio: parseFloat(document.getElementById('payment-ratio').value),
         min_due_frequency: parseFloat(document.getElementById('frequency').value),
         cash_withdrawal: parseFloat(document.getElementById('cash').value),
@@ -81,6 +91,8 @@ function updateRiskDisplay(level, score, probability) {
     const riskScore = document.getElementById('risk-score');
     const riskProb = document.getElementById('risk-probability');
     
+    if (!riskDisplay || !riskLevel || !riskScore || !riskProb) return;
+    
     // Remove all classes
     riskDisplay.className = 'risk-level-display';
     riskLevel.className = 'risk-level';
@@ -96,8 +108,17 @@ function updateRiskDisplay(level, score, probability) {
 }
 
 function initializeCharts() {
+    // Check if dashboard elements exist
+    const riskChartEl = document.getElementById('riskChart');
+    const featureChartEl = document.getElementById('featureChart');
+    
+    if (!riskChartEl || !featureChartEl) {
+        console.log('Dashboard elements not found, skipping chart initialization');
+        return;
+    }
+    
     // Risk Score Chart
-    const riskCtx = document.getElementById('riskChart').getContext('2d');
+    const riskCtx = riskChartEl.getContext('2d');
     riskChart = new Chart(riskCtx, {
         type: 'line',
         data: {
@@ -143,7 +164,7 @@ function initializeCharts() {
     });
     
     // Feature Importance Chart
-    const featureCtx = document.getElementById('featureChart').getContext('2d');
+    const featureCtx = featureChartEl.getContext('2d');
     featureChart = new Chart(featureCtx, {
         type: 'bar',
         data: {
@@ -205,6 +226,8 @@ let riskHistory = [];
 let historyIndex = 0;
 
 function updateRiskChart(score, probability) {
+    if (!riskChart) return;
+    
     riskHistory.push({
         index: historyIndex++,
         score: score,
@@ -222,6 +245,8 @@ function updateRiskChart(score, probability) {
 }
 
 function updateFeatureChart(data) {
+    if (!featureChart) return;
+    
     // Calculate feature impacts
     const impacts = calculateFeatureImpacts(data);
     
@@ -256,13 +281,15 @@ function calculateFeatureImpacts(data) {
 function updateFlags(flags) {
     const container = document.getElementById('flags-container');
     
+    if (!container) return;
+    
     if (!flags || flags.length === 0) {
         container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 2rem;">No risk flags detected. Customer appears to be low risk.</p>';
         return;
     }
     
     container.innerHTML = flags.map(flag => `
-        <div class="flag-item">
+        <div class="flag-item-dashboard">
             <span class="flag-severity ${flag.severity.toLowerCase()}">${flag.severity}</span>
             <strong>${flag.flag}</strong>
             <div style="margin-top: 0.5rem; color: #9ca3af; font-size: 0.875rem;">${flag.message}</div>
