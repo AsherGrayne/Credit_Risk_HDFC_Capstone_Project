@@ -490,6 +490,184 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+
+        /* ML Flowchart Styles */
+        .ml-flowchart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .flowchart-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .flowchart-node {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border: 2px solid #1e293b;
+            border-radius: 1rem;
+            padding: 2rem;
+            min-width: 300px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .flowchart-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+            border-color: #8b0000;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+
+        .flowchart-node:active {
+            transform: translateY(-2px);
+        }
+
+        .node-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .node-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin-bottom: 0.5rem;
+        }
+
+        .node-subtitle {
+            font-size: 1rem;
+            color: #9ca3af;
+        }
+
+        .flowchart-arrow {
+            font-size: 2rem;
+            color: #8b0000;
+            font-weight: bold;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .flowchart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .flowchart-modal-content {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            margin: 5% auto;
+            padding: 2rem;
+            border: 2px solid #1e293b;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .flowchart-modal-close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #9ca3af;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .flowchart-modal-close:hover {
+            color: #8b0000;
+        }
+
+        .flowchart-detail-content {
+            padding: 1rem 0;
+        }
+
+        .flowchart-detail-content h3 {
+            font-size: 2rem;
+            color: #e5e7eb;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 0.5rem;
+        }
+
+        .flowchart-detail-content .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .flowchart-detail-content .detail-section h4 {
+            font-size: 1.25rem;
+            color: #8b0000;
+            margin-bottom: 0.75rem;
+        }
+
+        .flowchart-detail-content .detail-section p {
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .flowchart-detail-content .detail-section ul {
+            color: #9ca3af;
+            line-height: 1.8;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .flowchart-detail-content .detail-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .flowchart-detail-content .code-example {
+            background: #020617;
+            border: 1px solid #1e293b;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+
+        .flowchart-detail-content .code-example code {
+            color: #32cd32;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .flowchart-detail-content .highlight {
+            color: #8b0000;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -508,6 +686,7 @@
             <button class="tab active" onclick="switchTab('workflow')">Workflow</button>
             <button class="tab" onclick="switchTab('apply')">See your output</button>
             <button class="tab" onclick="switchTab('features')">Important Features</button>
+            <button class="tab" onclick="switchTab('ml-flowchart')">ML Flowchart</button>
         </div>
     </div>
 
@@ -1709,6 +1888,117 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         </div>
     </div>
 
+    <!-- ML Flowchart Tab Content -->
+    <div id="ml-flowchart-tab" class="tab-content">
+        <div class="workflow-container" style="padding: 3rem 20px;">
+            <div class="step-header" style="margin-bottom: 3rem;">
+                <div class="step-content">
+                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Machine Learning Implementation Flowchart</h2>
+                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Click on any step to learn about its significance in the ML pipeline</p>
+                </div>
+            </div>
+
+            <div class="ml-flowchart-container">
+                <div class="flowchart-wrapper">
+                    <!-- Step 1: Data Loading -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('data-loading')">
+                        <div class="node-icon">📊</div>
+                        <div class="node-title">Data Loading</div>
+                        <div class="node-subtitle">CSV File Import</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 2: Feature Engineering -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('feature-engineering')">
+                        <div class="node-icon">⚙️</div>
+                        <div class="node-title">Feature Engineering</div>
+                        <div class="node-subtitle">14+ Early Warning Signals</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 3: Data Preparation -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('data-preparation')">
+                        <div class="node-icon">🔧</div>
+                        <div class="node-title">Data Preparation</div>
+                        <div class="node-subtitle">Select Features & Binary Target</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 4: Train-Test Split -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('train-test-split')">
+                        <div class="node-icon">✂️</div>
+                        <div class="node-title">Train-Test Split</div>
+                        <div class="node-subtitle">80/20 with Stratification</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 5: Feature Scaling -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('feature-scaling')">
+                        <div class="node-icon">📏</div>
+                        <div class="node-title">Feature Scaling</div>
+                        <div class="node-subtitle">StandardScaler Normalization</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 6: Model Training -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('model-training')">
+                        <div class="node-icon">🌲</div>
+                        <div class="node-title">Model Training</div>
+                        <div class="node-subtitle">Random Forest (100 Trees)</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 7: Model Evaluation -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('model-evaluation')">
+                        <div class="node-icon">📈</div>
+                        <div class="node-title">Model Evaluation</div>
+                        <div class="node-subtitle">Accuracy, Precision, Recall</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 8: Feature Importance -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('feature-importance')">
+                        <div class="node-icon">⭐</div>
+                        <div class="node-title">Feature Importance</div>
+                        <div class="node-subtitle">Identify Key Predictors</div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="flowchart-arrow">↓</div>
+
+                    <!-- Step 9: Making Predictions -->
+                    <div class="flowchart-node" onclick="showFlowchartDetail('making-predictions')">
+                        <div class="node-icon">🔮</div>
+                        <div class="node-title">Making Predictions</div>
+                        <div class="node-subtitle">New Customer Risk Assessment</div>
+                    </div>
+                </div>
+
+                <!-- Detail Modal -->
+                <div id="flowchart-modal" class="flowchart-modal">
+                    <div class="flowchart-modal-content">
+                        <span class="flowchart-modal-close" onclick="closeFlowchartDetail()">&times;</span>
+                        <div id="flowchart-modal-body"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- See your output Tab Content -->
     <div id="apply-tab" class="tab-content">
         <div class="apply-container">
@@ -2631,6 +2921,365 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             updateStrategies();
             loadDataset();
             loadRiskFlagsData();
+        });
+
+        // ML Flowchart Detail Content
+        const flowchartDetails = {
+            'data-loading': {
+                title: 'Data Loading - CSV File Import',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Loads customer data from a CSV file (<span class="highlight">Sample.csv</span>) containing 100 customer records with 9 original features.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Foundation Step:</strong> All subsequent analysis depends on clean, properly loaded data</li>
+                            <li><strong>Data Quality:</strong> Ensures data integrity before processing</li>
+                            <li><strong>Scalability:</strong> Can handle datasets of any size (100 to millions of records)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>DataFrame with 100 rows × 9 columns containing customer information and target variable.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Code Example</h4>
+                        <div class="code-example">
+                            <code>df = pd.read_csv('data/Sample.csv')<br>
+print(f"Loaded {len(df)} customer records")</code>
+                        </div>
+                    </div>
+                `
+            },
+            'feature-engineering': {
+                title: 'Feature Engineering - Creating 14+ Early Warning Signals',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Creates <span class="highlight">14+ new features</span> from original data to capture early behavioral patterns that precede delinquency.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Early Detection:</strong> Identifies risk signals BEFORE delinquency occurs (leading indicators)</li>
+                            <li><strong>Domain Knowledge:</strong> Incorporates business logic and industry best practices</li>
+                            <li><strong>Model Performance:</strong> Engineered features significantly improve prediction accuracy</li>
+                            <li><strong>Interpretability:</strong> Features have clear business meaning (e.g., spending_stress, utilization_risk)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Key Features Created</h4>
+                        <ul>
+                            <li><strong>Spending Signals:</strong> spending_decline_flag, spending_stress (0-2 scale)</li>
+                            <li><strong>Utilization Signals:</strong> high_utilization_flag, utilization_risk (0-3 scale)</li>
+                            <li><strong>Payment Signals:</strong> payment_stress (0-2), payment_risk_ratio</li>
+                            <li><strong>Composite Signals:</strong> payment_utilization_critical, spending_utilization_stress</li>
+                            <li><strong>Risk Score:</strong> early_risk_score (weighted combination, 0.0-1.0)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>Enhanced DataFrame with 100 rows × 23+ columns (9 original + 14+ engineered features).</p>
+                    </div>
+                `
+            },
+            'data-preparation': {
+                title: 'Data Preparation - Selecting Features & Creating Binary Target',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Selects relevant features for model training and converts the target variable into a binary classification problem.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Feature Selection:</strong> Chooses the 14 most predictive features from 23+ available</li>
+                            <li><strong>Binary Classification:</strong> Simplifies multi-class problem (0,1,2,3) to binary (at-risk vs not at-risk)</li>
+                            <li><strong>Model Input:</strong> Prepares data in the exact format required by ML algorithms</li>
+                            <li><strong>Dimensionality:</strong> Reduces complexity while maintaining predictive power</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Target Conversion</h4>
+                        <p><strong>Original:</strong> DPD Bucket Next Month (0, 1, 2, 3)</p>
+                        <p><strong>Binary:</strong> at_risk (0 = Not at-risk, 1 = At-risk)</p>
+                        <p>Conversion: DPD Bucket > 0 → 1 (At-risk), DPD Bucket = 0 → 0 (Not at-risk)</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>X (features): 100 rows × 14 columns<br>y (target): 100 rows × 1 column (binary)</p>
+                    </div>
+                `
+            },
+            'train-test-split': {
+                title: 'Train-Test Split - 80/20 with Stratification',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Splits the dataset into training (80%) and testing (20%) sets while maintaining the same class distribution in both sets.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Model Validation:</strong> Tests model performance on unseen data</li>
+                            <li><strong>Prevents Overfitting:</strong> Ensures model generalizes to new customers</li>
+                            <li><strong>Stratification:</strong> Maintains class balance (75% not at-risk, 25% at-risk in both sets)</li>
+                            <li><strong>Reproducibility:</strong> random_state=42 ensures same split every time</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Why Stratification?</h4>
+                        <p>Without stratification, test set might have all at-risk customers or none, making evaluation unreliable. Stratification ensures both sets have the same proportion of each class.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>X_train: 80 rows, X_test: 20 rows<br>y_train: 80 rows (60 not at-risk, 20 at-risk)<br>y_test: 20 rows (15 not at-risk, 5 at-risk)</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Code Example</h4>
+                        <div class="code-example">
+                            <code>X_train, X_test, y_train, y_test = train_test_split(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;X, y, test_size=0.2, random_state=42, stratify=y<br>
+)</code>
+                        </div>
+                    </div>
+                `
+            },
+            'feature-scaling': {
+                title: 'Feature Scaling - StandardScaler Normalization',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Normalizes all features to have mean=0 and standard deviation=1, ensuring all features contribute equally to the model.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Fair Comparison:</strong> Prevents features with larger values from dominating the model</li>
+                            <li><strong>Algorithm Requirement:</strong> Many ML algorithms (like Logistic Regression) require scaled features</li>
+                            <li><strong>Convergence:</strong> Helps models train faster and more accurately</li>
+                            <li><strong>Consistency:</strong> Same scaling applied to training and test data</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Scaling Formula</h4>
+                        <p><strong>scaled_value = (value - mean) / standard_deviation</strong></p>
+                        <p>Example: Utilisation % = 85, Mean = 50, Std = 25<br>Scaled = (85 - 50) / 25 = 1.4</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Why Scale?</h4>
+                        <p>Features have different scales: Utilisation % (0-100), spending_stress (0-2), Recent Spend Change % (-50 to +50). Without scaling, Utilisation % would dominate just because it's larger.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>X_train_scaled: 80 rows × 14 columns (normalized)<br>X_test_scaled: 20 rows × 14 columns (normalized)</p>
+                    </div>
+                `
+            },
+            'model-training': {
+                title: 'Model Training - Random Forest (100 Trees)',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Trains a Random Forest classifier with 100 decision trees to learn patterns from the training data and predict customer delinquency risk.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Ensemble Learning:</strong> Combines 100 decision trees for robust predictions</li>
+                            <li><strong>Handles Non-linearity:</strong> Captures complex relationships between features</li>
+                            <li><strong>Class Imbalance:</strong> class_weight='balanced' handles imbalanced data (75% not at-risk, 25% at-risk)</li>
+                            <li><strong>Interpretability:</strong> Provides feature importance scores</li>
+                            <li><strong>Robustness:</strong> Less prone to overfitting than single decision trees</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>How Random Forest Works</h4>
+                        <ol>
+                            <li><strong>Bootstrap Sampling:</strong> Creates 100 random samples from training data</li>
+                            <li><strong>Build Trees:</strong> Each sample trains one decision tree</li>
+                            <li><strong>Voting:</strong> All trees vote on predictions, majority wins</li>
+                            <li><strong>Final Prediction:</strong> Aggregated result from all trees</li>
+                        </ol>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Hyperparameters</h4>
+                        <ul>
+                            <li><strong>n_estimators=100:</strong> Number of decision trees</li>
+                            <li><strong>max_depth=5:</strong> Limits tree depth to prevent overfitting</li>
+                            <li><strong>min_samples_split=10:</strong> Minimum samples needed to split a node</li>
+                            <li><strong>class_weight='balanced':</strong> Automatically adjusts weights for imbalanced classes</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <p>Trained Random Forest model with 100 decision trees, ready for predictions.</p>
+                    </div>
+                `
+            },
+            'model-evaluation': {
+                title: 'Model Evaluation - Accuracy, Precision, Recall, Confusion Matrix',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Evaluates model performance on test data using multiple metrics to understand how well the model predicts customer delinquency risk.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Performance Measurement:</strong> Quantifies how accurate the model is</li>
+                            <li><strong>Business Impact:</strong> Helps understand model's strengths and weaknesses</li>
+                            <li><strong>Model Comparison:</strong> Allows comparison with other algorithms</li>
+                            <li><strong>Threshold Tuning:</strong> Guides decision on prediction thresholds</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Key Metrics</h4>
+                        <ul>
+                            <li><strong>Accuracy (75%):</strong> Overall correctness (15 out of 20 correct)</li>
+                            <li><strong>Precision:</strong> Of predicted at-risk, how many are actually at-risk (33%)</li>
+                            <li><strong>Recall:</strong> Of actual at-risk, how many were correctly identified (25%)</li>
+                            <li><strong>ROC-AUC:</strong> Overall model discrimination ability (0.500)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Confusion Matrix</h4>
+                        <p>Shows actual vs predicted classifications:</p>
+                        <ul>
+                            <li><strong>True Negatives (14):</strong> Correctly predicted not at-risk</li>
+                            <li><strong>False Positives (2):</strong> Incorrectly predicted at-risk</li>
+                            <li><strong>False Negatives (3):</strong> Missed at-risk customers</li>
+                            <li><strong>True Positives (1):</strong> Correctly predicted at-risk</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Model Performance</h4>
+                        <p><strong>Strengths:</strong> Good at identifying not at-risk customers (88% recall)</p>
+                        <p><strong>Challenges:</strong> Small test set (only 5 at-risk samples) limits evaluation</p>
+                    </div>
+                `
+            },
+            'feature-importance': {
+                title: 'Feature Importance - Identify Key Predictors',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Analyzes which features contribute most to the model's predictions, measured by how much each feature reduces uncertainty across all decision trees.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Model Interpretability:</strong> Understands what drives predictions</li>
+                            <li><strong>Feature Selection:</strong> Identifies most valuable features</li>
+                            <li><strong>Business Insights:</strong> Reveals which customer behaviors matter most</li>
+                            <li><strong>Model Improvement:</strong> Guides feature engineering efforts</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Top 3 Most Important Features</h4>
+                        <ol>
+                            <li><strong>Min Due Paid Frequency (18.3%):</strong> Strongest predictor - payment behavior is key indicator</li>
+                            <li><strong>Utilisation % (17.5%):</strong> High utilization signals financial stress</li>
+                            <li><strong>Recent Spend Change % (13.7%):</strong> Spending decline often precedes payment issues</li>
+                        </ol>
+                    </div>
+                    <div class="detail-section">
+                        <h4>How It Works</h4>
+                        <p>Random Forest calculates importance by measuring how much each feature reduces impurity (uncertainty) when used in tree splits. Features that appear frequently in important splits have higher importance.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Business Impact</h4>
+                        <p>These insights help focus risk management efforts on the most predictive customer behaviors, enabling more targeted interventions.</p>
+                    </div>
+                `
+            },
+            'making-predictions': {
+                title: 'Making Predictions - New Customer Risk Assessment',
+                content: `
+                    <div class="detail-section">
+                        <h4>What It Does</h4>
+                        <p>Uses the trained model to predict delinquency risk for new customers based on their behavioral features.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Significance</h4>
+                        <ul>
+                            <li><strong>Real-World Application:</strong> Enables proactive risk management</li>
+                            <li><strong>Automated Decisions:</strong> Provides instant risk assessments</li>
+                            <li><strong>Scalability:</strong> Can process thousands of customers quickly</li>
+                            <li><strong>Actionable Insights:</strong> Generates risk scores and probabilities for decision-making</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Prediction Process</h4>
+                        <ol>
+                            <li><strong>Feature Engineering:</strong> Create early warning signals from raw customer data</li>
+                            <li><strong>Feature Scaling:</strong> Normalize features using the same scaler from training</li>
+                            <li><strong>Model Prediction:</strong> All 100 trees vote on the prediction</li>
+                            <li><strong>Probability Calculation:</strong> Average of tree predictions gives risk probability</li>
+                            <li><strong>Risk Classification:</strong> Convert probability to risk level (LOW, MEDIUM, HIGH, CRITICAL)</li>
+                        </ol>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Output</h4>
+                        <ul>
+                            <li><strong>Prediction:</strong> At-Risk or Not At-Risk</li>
+                            <li><strong>Probability:</strong> 0.0 to 1.0 (risk score)</li>
+                            <li><strong>Risk Level:</strong> LOW, MEDIUM, HIGH, or CRITICAL</li>
+                            <li><strong>Risk Flags:</strong> Specific behavioral flags detected</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h4>Example</h4>
+                        <p>Customer with 85% utilization, 25% payment frequency, -18% spending change<br>
+                        → Prediction: <span class="highlight">At-Risk</span><br>
+                        → Probability: <span class="highlight">72%</span><br>
+                        → Risk Level: <span class="highlight">HIGH</span></p>
+                    </div>
+                `
+            }
+        };
+
+        // Show flowchart detail modal
+        function showFlowchartDetail(stepId) {
+            const detail = flowchartDetails[stepId];
+            if (!detail) return;
+
+            const modal = document.getElementById('flowchart-modal');
+            const modalBody = document.getElementById('flowchart-modal-body');
+
+            modalBody.innerHTML = `
+                <div class="flowchart-detail-content">
+                    <h3>${detail.title}</h3>
+                    ${detail.content}
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close flowchart detail modal
+        function closeFlowchartDetail() {
+            const modal = document.getElementById('flowchart-modal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('flowchart-modal');
+            if (event.target === modal) {
+                closeFlowchartDetail();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeFlowchartDetail();
+            }
         });
     </script>
 </body>
