@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Workflow Visualization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-glow"></div>
+
+    <header>
+        <h1>Machine Learning Workflow</h1>
+        <p>Interactive Flowchart for Credit Risk Analysis</p>
+    </header>
+
+    <main class="main-layout">
+        <!-- Left Panel: Description -->
+        <section id="left-panel" class="panel left-panel">
+            <div class="content-wrapper">
+                <h2 id="step-title">Select a Step</h2>
+                <p id="step-description">Click on any node in the workflow to see details here.</p>
+            </div>
+        </section>
+
+        <!-- Center Panel: Flowchart -->
+        <section class="flowchart-container">
+            <div id="flowchart" class="flowchart"></div>
+        </section>
+
+        <!-- Right Panel: Image -->
+        <section id="right-panel" class="panel right-panel">
+            <div class="image-wrapper">
+                <img id="step-image" src="" alt="Step Visualization" class="hidden">
+                <div id="image-placeholder" class="placeholder">
+                    <div class="icon">📊</div>
+                    <p>Visualization</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

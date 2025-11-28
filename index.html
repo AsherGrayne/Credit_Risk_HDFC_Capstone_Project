@@ -53,6 +53,220 @@
             display: block;
         }
         
+        /* Flip Card Styles */
+        .flip-card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            perspective: 1000px;
+        }
+        
+        .flip-card {
+            background-color: transparent;
+            width: 100%;
+            height: 280px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #1e293b;
+        }
+        
+        .flip-card-front {
+            background: #020617;
+            color: #e5e7eb;
+        }
+        
+        .flip-card-back {
+            background: #0f172a;
+            color: #e5e7eb;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+        
+        .flip-card-front strong {
+            color: #8b0000;
+            font-size: 1.125rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flip-card-front p {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .flip-card-back h4 {
+            color: #8b0000;
+            font-size: 1.125rem;
+            margin-bottom: 0.75rem;
+            width: 100%;
+        }
+        
+        .flip-card-back p {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .flip-card-back ul {
+            color: #9ca3af;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .flip-card-back li {
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Risk Category Styles */
+        .risk-categories-section {
+            margin-bottom: 3rem;
+        }
+        
+        .risk-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .risk-category-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border-left: 4px solid;
+        }
+        
+        .risk-category-card.no-risk {
+            border-left-color: #10b981;
+        }
+        
+        .risk-category-card.low-risk {
+            border-left-color: #3b82f6;
+        }
+        
+        .risk-category-card.medium-risk {
+            border-left-color: #f59e0b;
+        }
+        
+        .risk-category-card.high-risk {
+            border-left-color: #ef4444;
+        }
+        
+        .risk-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .risk-category-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e5e7eb;
+            margin: 0;
+        }
+        
+        .risk-category-count {
+            background: #020617;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+        
+        .customer-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+            padding-right: 0.5rem;
+        }
+        
+        .customer-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .customer-list::-webkit-scrollbar-track {
+            background: #020617;
+            border-radius: 3px;
+        }
+        
+        .customer-list::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        
+        .customer-list::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        
+        .customer-item {
+            display: inline-block;
+            background: #020617;
+            padding: 0.375rem 0.75rem;
+            margin: 0.25rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+            border: 1px solid #1e293b;
+        }
+        
+        .download-btn {
+            background: #8b0000;
+            color: #e5e7eb;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .download-btn:hover {
+            background: #a00000;
+            transform: translateY(-1px);
+        }
+        
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        
         /* Apply Form Styles */
         .apply-container {
             max-width: 900px;
@@ -506,6 +720,7 @@
         <div class="tabs">
             <button class="tab" onclick="switchTab('dashboard')">Interactive Dashboard</button>
             <button class="tab active" onclick="switchTab('workflow')">Workflow</button>
+            <button class="tab" onclick="switchTab('ml-workflow')">ML Workflow</button>
             <button class="tab" onclick="switchTab('apply')">See your output</button>
             <button class="tab" onclick="switchTab('features')">Important Features</button>
         </div>
@@ -1765,6 +1980,537 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         </div>
     </div>
 
+    <!-- ML Workflow Tab Content -->
+    <div id="ml-workflow-tab" class="tab-content">
+        <div class="workflow-container" style="padding: 3rem 20px;">
+            <div class="step-header" style="margin-bottom: 3rem;">
+                <div class="step-content">
+                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Machine Learning Workflow</h2>
+                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Complete ML pipeline from data preprocessing to model evaluation and feature importance analysis</p>
+                </div>
+            </div>
+
+            <!-- Risk Categories Section -->
+            <div class="risk-categories-section">
+                <div class="step-header" style="margin-bottom: 2rem;">
+                    <div class="step-content">
+                        <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 0.5rem;">Customer Risk Categories</h3>
+                        <p class="step-subtitle" style="font-size: 1rem; color: #9ca3af;">Customers classified by DPD Bucket (Days Past Due) - Click download to export each category list</p>
+                    </div>
+                </div>
+                <div class="risk-category-grid" id="risk-category-grid">
+                    <!-- Categories will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Step 1: Data Loading and Preprocessing -->
+            <div class="workflow-step" data-step="0" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Data Loading and Preprocessing</h3>
+                        <p class="step-subtitle">Load dataset, handle missing values, and prepare features for modeling</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Process:</h4>
+                        <ul>
+                            <li><strong>Dataset:</strong> Credit_Card_Delinquency_Watch.csv (100 customer records)</li>
+                            <li><strong>Features:</strong> Credit Limit, Utilisation %, Avg Payment Ratio, Min Due Paid Frequency, Merchant Mix Index, Cash Withdrawal %, Recent Spend Change %</li>
+                            <li><strong>Target Variable:</strong> DPD Bucket Next Month (0=No Risk, 1=Low Risk, 2=Medium Risk, 3=High Risk)</li>
+                            <li><strong>Preprocessing:</strong> Removed Customer ID, handled missing values, split data (80% train, 20% test)</li>
+                            <li><strong>Scaling:</strong> StandardScaler applied for models requiring normalization</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <pre><code># Data Loading
+df = pd.read_csv('data/Credit_Card_Delinquency_Watch.csv')
+# Preprocessing
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+# Feature Scaling
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Model Training -->
+            <div class="workflow-step" data-step="1" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Model Training</h3>
+                        <p class="step-subtitle">Train 8 different machine learning models for classification</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Models Trained:</h4>
+                        <p style="color: #9ca3af; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">Click on any model card to see detailed description</p>
+                        <div class="flip-card-container">
+                            <!-- Random Forest -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>1. Random Forest</strong>
+                                        <p>Ensemble of decision trees</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Random Forest</h4>
+                                        <p><strong>Type:</strong> Ensemble Learning</p>
+                                        <p><strong>How it works:</strong> Combines multiple decision trees trained on different subsets of data. Each tree votes on the final prediction.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Reduces overfitting</li>
+                                            <li>Handles non-linear relationships</li>
+                                            <li>Provides feature importance</li>
+                                            <li>Works well with mixed data types</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 80.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Gradient Boosting -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>2. Gradient Boosting</strong>
+                                        <p>Sequential ensemble learning</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Gradient Boosting</h4>
+                                        <p><strong>Type:</strong> Sequential Ensemble</p>
+                                        <p><strong>How it works:</strong> Builds trees sequentially, where each new tree corrects errors made by previous trees. Uses gradient descent to minimize loss.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>High predictive accuracy</li>
+                                            <li>Handles complex patterns</li>
+                                            <li>Feature importance available</li>
+                                            <li>Robust to outliers</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 70.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Logistic Regression -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>3. Logistic Regression</strong>
+                                        <p>Linear classification</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Logistic Regression</h4>
+                                        <p><strong>Type:</strong> Linear Classifier</p>
+                                        <p><strong>How it works:</strong> Uses logistic function to model probability of class membership. Applies linear combination of features with coefficients.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Interpretable coefficients</li>
+                                            <li>Fast training and prediction</li>
+                                            <li>No hyperparameter tuning needed</li>
+                                            <li>Works well with linear relationships</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 80.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- SVM -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>4. SVM</strong>
+                                        <p>Support Vector Machine</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Support Vector Machine (SVM)</h4>
+                                        <p><strong>Type:</strong> Kernel-based Classifier</p>
+                                        <p><strong>How it works:</strong> Finds optimal hyperplane that separates classes with maximum margin. Can use kernels for non-linear boundaries.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Effective in high dimensions</li>
+                                            <li>Memory efficient</li>
+                                            <li>Versatile (linear/non-linear)</li>
+                                            <li>Good generalization</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 80.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Decision Tree -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>5. Decision Tree</strong>
+                                        <p>Single tree classifier</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Decision Tree</h4>
+                                        <p><strong>Type:</strong> Tree-based Classifier</p>
+                                        <p><strong>How it works:</strong> Creates a tree structure with nodes representing feature tests and leaves representing class predictions.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Easy to interpret</li>
+                                            <li>No feature scaling needed</li>
+                                            <li>Handles non-linear relationships</li>
+                                            <li>Feature importance available</li>
+                                        </ul>
+                                        <p><strong>Limitations:</strong> Prone to overfitting</p>
+                                        <p><strong>Accuracy:</strong> 30.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- AdaBoost -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>6. AdaBoost</strong>
+                                        <p>Adaptive boosting</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>AdaBoost</h4>
+                                        <p><strong>Type:</strong> Boosting Ensemble</p>
+                                        <p><strong>How it works:</strong> Combines weak learners (typically decision stumps) sequentially, giving more weight to misclassified samples.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Improves weak classifiers</li>
+                                            <li>Less prone to overfitting</li>
+                                            <li>Feature importance available</li>
+                                            <li>Works with various base learners</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 65.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Naive Bayes -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>7. Naive Bayes</strong>
+                                        <p>Probabilistic classifier</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Naive Bayes</h4>
+                                        <p><strong>Type:</strong> Probabilistic Classifier</p>
+                                        <p><strong>How it works:</strong> Uses Bayes' theorem with strong independence assumption between features. Calculates probability of each class.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Fast training and prediction</li>
+                                            <li>Works well with small datasets</li>
+                                            <li>Handles multiple classes</li>
+                                            <li>Not sensitive to irrelevant features</li>
+                                        </ul>
+                                        <p><strong>Accuracy:</strong> 80.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- K-Nearest Neighbors -->
+                            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <strong>8. K-Nearest Neighbors</strong>
+                                        <p>Instance-based learning</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>K-Nearest Neighbors (KNN)</h4>
+                                        <p><strong>Type:</strong> Instance-based Learner</p>
+                                        <p><strong>How it works:</strong> Classifies based on majority vote of k nearest neighbors in feature space. No explicit training phase.</p>
+                                        <p><strong>Advantages:</strong></p>
+                                        <ul>
+                                            <li>Simple and intuitive</li>
+                                            <li>No assumptions about data</li>
+                                            <li>Works for non-linear problems</li>
+                                            <li>Can be used for classification and regression</li>
+                                        </ul>
+                                        <p><strong>Limitations:</strong> Computationally expensive for large datasets</p>
+                                        <p><strong>Accuracy:</strong> 80.00%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-block">
+                        <pre><code># Model Training Example
+models = {
+    'Random Forest': RandomForestClassifier(n_estimators=100, random_state=42),
+    'Gradient Boosting': GradientBoostingClassifier(n_estimators=100, random_state=42),
+    'Logistic Regression': LogisticRegression(random_state=42, max_iter=1000),
+    # ... other models
+}
+
+for name, model in models.items():
+    model.fit(X_train, y_train)
+    joblib.dump(model, f'models/{name.lower()}_model.joblib')</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Model Evaluation - Accuracy Comparison -->
+            <div class="workflow-step" data-step="2" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Model Evaluation - Accuracy Comparison</h3>
+                        <p class="step-subtitle">Compare accuracy across all trained models</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Model Performance Results:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                            <table style="width: 100%; color: #e5e7eb; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 2px solid #1e293b;">
+                                        <th style="padding: 0.75rem; text-align: left; color: #8b0000;">Model</th>
+                                        <th style="padding: 0.75rem; text-align: right; color: #8b0000;">Accuracy</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">Random Forest</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #10b981;">80.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">Logistic Regression</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #10b981;">80.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">SVM</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #10b981;">80.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">Naive Bayes</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #10b981;">80.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">K-Nearest Neighbors</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #10b981;">80.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">Gradient Boosting</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #f59e0b;">70.00%</td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #1e293b;">
+                                        <td style="padding: 0.75rem;">AdaBoost</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #f59e0b;">65.00%</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0.75rem;">Decision Tree</td>
+                                        <td style="padding: 0.75rem; text-align: right; color: #ef4444;">30.00%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Accuracy Comparison Visualization:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <img src="visualizations/new_visualization/model_accuracy_comparison.png" alt="Model Accuracy Comparison" style="width: 100%; border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Confusion Matrices -->
+            <div class="workflow-step" data-step="3" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Confusion Matrix Analysis</h3>
+                        <p class="step-subtitle">Evaluate model performance using confusion matrices for each model</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Understanding Confusion Matrices:</h4>
+                        <ul>
+                            <li><strong>Rows:</strong> Actual DPD Bucket values (0=No Risk, 1=Low Risk, 2=Medium Risk, 3=High Risk)</li>
+                            <li><strong>Columns:</strong> Predicted DPD Bucket values</li>
+                            <li><strong>Diagonal:</strong> Correct predictions (True Positives)</li>
+                            <li><strong>Off-diagonal:</strong> Misclassifications</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">All Models Confusion Matrices:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <img src="visualizations/new_visualization/all_confusion_matrices.png" alt="All Confusion Matrices" style="width: 100%; border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Individual Model Confusion Matrices:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Random Forest</h5>
+                                <img src="visualizations/new_visualization/random_forest_confusion_matrix.png" alt="Random Forest Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Gradient Boosting</h5>
+                                <img src="visualizations/new_visualization/gradient_boosting_confusion_matrix.png" alt="Gradient Boosting Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Logistic Regression</h5>
+                                <img src="visualizations/new_visualization/logistic_regression_confusion_matrix.png" alt="Logistic Regression Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">SVM</h5>
+                                <img src="visualizations/new_visualization/svm_confusion_matrix.png" alt="SVM Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Feature Importance Analysis -->
+            <div class="workflow-step" data-step="4" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Feature Importance Analysis</h3>
+                        <p class="step-subtitle">Identify which features are most important for predicting DPD Bucket</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Feature Importance Methods:</h4>
+                        <ul>
+                            <li><strong>Tree-based models:</strong> Built-in feature_importances_ (based on impurity reduction)</li>
+                            <li><strong>Logistic Regression:</strong> Coefficient magnitudes (normalized)</li>
+                            <li><strong>Other models:</strong> Permutation importance (performance drop when feature is shuffled)</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Average Feature Importance Across All Models:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <img src="visualizations/new_visualization/average_feature_importance.png" alt="Average Feature Importance" style="width: 100%; border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Feature Importance Comparison Across All Models:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <img src="visualizations/new_visualization/all_models_feature_importance_comparison.png" alt="Feature Importance Comparison" style="width: 100%; border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Top Individual Model Feature Importance:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Random Forest</h5>
+                                <img src="visualizations/new_visualization/random_forest_feature_importance.png" alt="Random Forest Feature Importance" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Gradient Boosting</h5>
+                                <img src="visualizations/new_visualization/gradient_boosting_feature_importance.png" alt="Gradient Boosting Feature Importance" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Logistic Regression</h5>
+                                <img src="visualizations/new_visualization/logistic_regression_feature_importance.png" alt="Logistic Regression Feature Importance" style="width: 100%; border-radius: 0.5rem;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Model Saving and Deployment -->
+            <div class="workflow-step" data-step="5" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">6</div>
+                    <div class="step-content">
+                        <h3>Model Saving and Deployment</h3>
+                        <p class="step-subtitle">Save trained models for future predictions</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Saved Models:</h4>
+                        <ul>
+                            <li><strong>Model Files:</strong> All 8 models saved as .joblib files in <code>models/</code> directory</li>
+                            <li><strong>Scaler Files:</strong> StandardScaler objects saved for models requiring feature scaling</li>
+                            <li><strong>Usage:</strong> Models can be loaded and used for real-time predictions</li>
+                        </ul>
+                    </div>
+                    <div class="code-block">
+                        <pre><code># Loading and using saved models
+import joblib
+
+# Load model
+model = joblib.load('models/random_forest_model.joblib')
+scaler = joblib.load('models/random_forest_scaler.joblib')
+
+# Prepare features
+features = [[150000, 85, 45, 25, 0.35, 18, -22]]
+
+# Scale features
+features_scaled = scaler.transform(features)
+
+# Predict
+prediction = model.predict(features_scaled)[0]
+# Returns: 0=No Risk, 1=Low Risk, 2=Medium Risk, 3=High Risk</code></pre>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Saved Files:</h4>
+                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <ul style="color: #9ca3af; line-height: 2;">
+                                <li><code>models/random_forest_model.joblib</code></li>
+                                <li><code>models/gradient_boosting_model.joblib</code></li>
+                                <li><code>models/logistic_regression_model.joblib</code></li>
+                                <li><code>models/svm_model.joblib</code></li>
+                                <li><code>models/decision_tree_model.joblib</code></li>
+                                <li><code>models/adaboost_model.joblib</code></li>
+                                <li><code>models/naive_bayes_model.joblib</code></li>
+                                <li><code>models/k-nearest_neighbors_model.joblib</code></li>
+                                <li><code>models/*_scaler.joblib</code> (for models requiring scaling)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Summary and Insights -->
+            <div class="workflow-step" data-step="6" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">7</div>
+                    <div class="step-content">
+                        <h3>Summary and Key Insights</h3>
+                        <p class="step-subtitle">Key findings from the ML workflow</p>
+                    </div>
+                </div>
+                <div class="step-body">
+                    <div class="info-box">
+                        <h4>Key Findings:</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Best Performing Models</h5>
+                                <p style="color: #9ca3af; line-height: 1.8;">Random Forest, Logistic Regression, SVM, Naive Bayes, and K-Nearest Neighbors all achieved 80% accuracy, making them equally suitable for deployment.</p>
+                            </div>
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Most Important Features</h5>
+                                <p style="color: #9ca3af; line-height: 1.8;">Merchant Mix Index (37.9%) and Recent Spend Change % (33.0%) are the top predictors, indicating behavioral patterns are crucial for risk assessment.</p>
+                            </div>
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Model Selection</h5>
+                                <p style="color: #9ca3af; line-height: 1.8;">Random Forest is recommended for production due to its interpretability, feature importance insights, and robust performance.</p>
+                            </div>
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Risk Classification</h5>
+                                <p style="color: #9ca3af; line-height: 1.8;">Models successfully classify customers into 4 risk buckets: No Risk (0), Low Risk (1), Medium Risk (2), and High Risk (3).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- See your output Tab Content -->
     <div id="apply-tab" class="tab-content">
         <div class="apply-container">
@@ -2014,6 +2760,89 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
     <script src="website/apply-script.js"></script>
     <script src="interactive-dashboard.js"></script>
     <script>
+        // Load and display risk categories
+        function loadRiskCategories() {
+            fetch('data/customer_categories.json')
+                .then(response => response.json())
+                .then(data => {
+                    const grid = document.getElementById('risk-category-grid');
+                    if (!grid) return;
+                    
+                    grid.innerHTML = '';
+                    
+                    // Define category order and colors
+                    const categoryOrder = ['0', '1', '2', '3'];
+                    const categoryClasses = {
+                        '0': 'no-risk',
+                        '1': 'low-risk',
+                        '2': 'medium-risk',
+                        '3': 'high-risk'
+                    };
+                    
+                    categoryOrder.forEach(bucket => {
+                        const category = data[bucket];
+                        if (!category) return;
+                        
+                        const card = document.createElement('div');
+                        card.className = `risk-category-card ${categoryClasses[bucket]}`;
+                        
+                        const customers = category.customers || [];
+                        const customerListHTML = customers.map(customer => 
+                            `<span class="customer-item">${customer}</span>`
+                        ).join('');
+                        
+                        card.innerHTML = `
+                            <div class="risk-category-header">
+                                <h4 class="risk-category-title">${category.name}</h4>
+                                <span class="risk-category-count">${customers.length} customers</span>
+                            </div>
+                            <div class="customer-list">
+                                ${customerListHTML || '<p style="color: #9ca3af;">No customers in this category</p>'}
+                            </div>
+                            <button class="download-btn" onclick="downloadCategoryCSV('${category.name}', ${JSON.stringify(customers)})">
+                                Download ${category.name} List (CSV)
+                            </button>
+                        `;
+                        
+                        grid.appendChild(card);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading risk categories:', error);
+                    const grid = document.getElementById('risk-category-grid');
+                    if (grid) {
+                        grid.innerHTML = '<p style="color: #ef4444;">Error loading customer categories. Please refresh the page.</p>';
+                    }
+                });
+        }
+        
+        // Download category as CSV
+        function downloadCategoryCSV(categoryName, customers) {
+            if (!customers || customers.length === 0) {
+                alert('No customers in this category to download.');
+                return;
+            }
+            
+            // Create CSV content
+            const csvContent = [
+                'Customer ID',
+                ...customers
+            ].join('\n');
+            
+            // Create blob and download
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `${categoryName.replace(/\s+/g, '_')}_Customers.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
         // Tab switching functionality
         function switchTab(tabName) {
             // Hide all tab contents
@@ -2042,6 +2871,13 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         tab.classList.add('active');
                     }
                 });
+            }
+            
+            // Load risk categories when ML Workflow tab is shown
+            if (tabName === 'ml-workflow') {
+                setTimeout(() => {
+                    loadRiskCategories();
+                }, 100);
             }
             
             // Initialize dashboard if dashboard tab is shown

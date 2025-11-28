@@ -1,0 +1,10 @@
+Field Name,Description,Example Values
+Customer_ID,Unique identifier for each credit card account,"C001, C002, C003..."
+Credit_Limit,Total card limit (in ₹),"25,000 – 2,00,000"
+Utilisation_%,Percentage of limit utilized,"15%, 78%, 92%"
+Avg_Payment_Ratio,Avg. % of total due paid over last 3 months,"40%, 85%, 100%"
+Min_Due_Paid_Frequency,% of cycles where only minimum due was paid,0–100%
+Merchant_Mix_Index,Diversification score (0–1; higher = balanced spend mix),"0.23, 0.72"
+Cash_Withdrawal_%,% of total spends withdrawn as cash,"0%, 5%, 20%"
+Recent_Spend_Change_%,Month-on-month change in spend,"-20%, +10%"
+Delinquency_Flag_Next_Month (DPD_Bucket),"0 = No Delay, 1 = 1–30 DPD, 2 = 31–60 DPD, 3 = 61+ DPD","0, 1, 2, 3"
