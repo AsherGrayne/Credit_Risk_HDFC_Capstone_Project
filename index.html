@@ -1627,6 +1627,21 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
 
     <script src="website/workflow-script.js"></script>
     <script src="website/ml-model-predictor.js"></script>
+    <script>
+        // Redirect to Interactive Dashboard by default
+        // Only redirect if:
+        // 1. No hash in URL (not accessing a specific tab)
+        // 2. No query parameter to stay on page
+        // 3. Not coming from interactive-dashboard.html (allow navigation back)
+        var referrer = document.referrer;
+        var shouldRedirect = !window.location.hash && 
+                            !window.location.search.includes('stay=true') &&
+                            !referrer.includes('interactive-dashboard.html');
+        
+        if (shouldRedirect) {
+            window.location.href = 'interactive-dashboard.html';
+        }
+    </script>
     <script src="website/apply-script.js"></script>
     <script>
         // Tab switching functionality
