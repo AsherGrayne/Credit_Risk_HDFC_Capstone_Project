@@ -1,0 +1,20 @@
+Customer ID,Actual DPD Bucket,Actual Status,Predicted Status (RF),Prediction Probability (RF),Risk Level,Early Risk Score,Flag Count,Utilisation %,Min Due Paid Frequency,Recent Spend Change %,Avg Payment Ratio,Predicted Status (Logistic Regression),Prediction Probability (Logistic Regression),Predicted Status (Gradient Boosting),Prediction Probability (Gradient Boosting)
+C019,1,Delinquent,Predicted Delinquent,0.7865197276232212,LOW,0.09999999999999999,0,52,41,-3,60,Predicted Delinquent,0.6661764483846541,Predicted Delinquent,0.9698725067517439
+C015,2,Delinquent,Predicted Delinquent,0.7429849913033644,HIGH,0.26666666666666666,2,61,42,-23,40,Predicted Delinquent,0.8567428508458068,Predicted Delinquent,0.9398441312319588
+C079,1,Delinquent,Predicted Delinquent,0.7346547923114383,HIGH,0.38333333333333336,3,62,29,-25,33,Predicted Delinquent,0.8855367278915778,Predicted Delinquent,0.9872974407526858
+C080,1,Delinquent,Predicted Delinquent,0.7115213302233182,HIGH,0.26666666666666666,1,53,18,-3,64,Predicted Delinquent,0.7262907474956287,Predicted Delinquent,0.9724839178656193
+C029,2,Delinquent,Predicted Delinquent,0.6738959295124402,MEDIUM,0.18333333333333335,1,51,35,22,66,Predicted Not Delinquent,0.416721264543827,Predicted Delinquent,0.9012442742481303
+C001,3,Delinquent,Predicted Delinquent,0.6564595484873478,HIGH,0.19999999999999998,1,12,66,-21,32,Predicted Delinquent,0.6450377905158544,Predicted Delinquent,0.9421269547274659
+C032,1,Delinquent,Predicted Delinquent,0.6113577188325006,LOW,0.16666666666666666,0,66,64,-3,48,Predicted Delinquent,0.5309146268368732,Predicted Delinquent,0.9475510757220269
+C021,1,Delinquent,Predicted Delinquent,0.6088702703614725,LOW,0.06666666666666667,0,45,98,6,36,Predicted Delinquent,0.5400442615638789,Predicted Delinquent,0.9658294822618272
+C091,1,Delinquent,Predicted Delinquent,0.570564288160502,MEDIUM,0.08333333333333333,1,33,22,6,82,Predicted Delinquent,0.6153423695248585,Predicted Delinquent,0.9281730591248484
+C042,3,Delinquent,Predicted Delinquent,0.5689355228187865,HIGH,0.45,4,71,31,-26,54,Predicted Not Delinquent,0.3755858703100972,Predicted Delinquent,0.9463559431781956
+C072,1,Delinquent,Predicted Delinquent,0.5646629926718877,LOW,0.03333333333333333,0,11,46,3,59,Predicted Delinquent,0.5844346204833747,Predicted Delinquent,0.8936503577315457
+C020,0,Not Delinquent,Predicted Delinquent,0.552150983126622,MEDIUM,0.11666666666666665,1,38,25,-3,71,Predicted Delinquent,0.5996709003074994,Predicted Not Delinquent,0.3304569992570218
+C088,1,Delinquent,Predicted Delinquent,0.5380365553337755,LOW,0.16666666666666666,0,65,100,-8,66,Predicted Not Delinquent,0.45353850325755923,Predicted Delinquent,0.9723483524255951
+C010,1,Delinquent,Predicted Delinquent,0.5265548226066263,CRITICAL,0.6666666666666666,5,99,1,-23,81,Predicted Delinquent,0.7032335544554538,Predicted Delinquent,0.9690802408532649
+C004,0,Not Delinquent,Predicted Delinquent,0.5217701606078122,HIGH,0.5499999999999999,4,99,31,-23,65,Predicted Delinquent,0.6752549912783328,Predicted Delinquent,0.9434174410050271
+C036,2,Delinquent,Predicted Delinquent,0.5177263606834502,LOW,0.13333333333333333,0,53,75,15,53,Predicted Not Delinquent,0.34551255473661413,Predicted Delinquent,0.9259378981534002
+C012,2,Delinquent,Predicted Delinquent,0.5135137218485398,CRITICAL,0.4333333333333334,3,86,16,-3,69,Predicted Delinquent,0.6419619669461419,Predicted Delinquent,0.9540321083234081
+C038,2,Delinquent,Predicted Delinquent,0.505492723058268,HIGH,0.16666666666666666,1,39,14,30,62,Predicted Not Delinquent,0.487028510773289,Predicted Delinquent,0.9636703196162661
+C055,2,Delinquent,Predicted Delinquent,0.5007640205311293,LOW,0.13333333333333333,0,53,48,2,49,Predicted Delinquent,0.537348751946568,Predicted Not Delinquent,0.3921527886465346
