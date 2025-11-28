@@ -1,110 +1,79 @@
-// Workflow Interactive Script
-let currentStep = 1;
-const totalSteps = 8;
+// Workflow Interactive Script - Scroll-Based Navigation
+let currentStep = 0;
+const totalSteps = 9; // Updated to include step 0 (Gist of the HOW)
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
     updateProgress();
-    showStep(currentStep);
-    updateNavigation();
     
-    // Scroll to top
-    window.scrollTo(0, 0);
-    
-    // Intersection Observer for auto-activation
+    // Intersection Observer for scroll-based step detection
     const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '0px 0px -100px 0px'
+        threshold: 0.5, // Step is considered active when 50% visible
+        rootMargin: '-20% 0px -20% 0px' // Trigger when step is in middle 60% of viewport
     };
     
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const step = parseInt(entry.target.dataset.step);
-                if (step <= currentStep) {
-                    entry.target.classList.add('viewed');
+                
+                // Update current step
+                if (step !== currentStep) {
+                    currentStep = step;
+                    updateProgress();
                 }
+                
+                // Mark step as viewed
+                entry.target.classList.add('viewed');
+                entry.target.classList.add('active');
+                
+                // Remove active from other steps
+                document.querySelectorAll('.workflow-step').forEach(s => {
+                    if (parseInt(s.dataset.step) !== step) {
+                        s.classList.remove('active');
+                    }
+                });
+            } else {
+                // Remove active class when step leaves viewport
+                const step = parseInt(entry.target.dataset.step);
                 if (step === currentStep) {
-                    entry.target.classList.add('active');
+                    entry.target.classList.remove('active');
                 }
             }
         });
     }, observerOptions);
     
+    // Observe all workflow steps
     document.querySelectorAll('.workflow-step').forEach(step => {
         observer.observe(step);
     });
+    
+    // Initial: Mark first step as active
+    const firstStep = document.querySelector('[data-step="0"]');
+    if (firstStep) {
+        firstStep.classList.add('active');
+        firstStep.classList.add('viewed');
+    }
 });
-
-function showStep(step) {
-    // Remove active class from all steps
-    document.querySelectorAll('.workflow-step').forEach(s => {
-        s.classList.remove('active');
-    });
-    
-    // Add active class to current step
-    const currentStepElement = document.querySelector(`[data-step="${step}"]`);
-    if (currentStepElement) {
-        currentStepElement.classList.add('active');
-        currentStepElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    
-    // Mark previous steps as viewed
-    for (let i = 1; i < step; i++) {
-        const prevStep = document.querySelector(`[data-step="${i}"]`);
-        if (prevStep) {
-            prevStep.classList.add('viewed');
-        }
-    }
-    
-    updateProgress();
-    updateNavigation();
-}
-
-function navigateStep(direction) {
-    const newStep = currentStep + direction;
-    
-    if (newStep >= 1 && newStep <= totalSteps) {
-        currentStep = newStep;
-        showStep(currentStep);
-    }
-}
 
 function updateProgress() {
-    const progress = (currentStep / totalSteps) * 100;
-    document.getElementById('progressBar').style.width = progress + '%';
-}
-
-function updateNavigation() {
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    
-    prevBtn.disabled = currentStep === 1;
-    nextBtn.disabled = currentStep === totalSteps;
-    
-    if (currentStep === totalSteps) {
-        nextBtn.textContent = 'Complete ✓';
-    } else {
-        nextBtn.textContent = 'Next →';
+    const progress = ((currentStep + 1) / totalSteps) * 100;
+    const progressBar = document.getElementById('progressBar');
+    if (progressBar) {
+        progressBar.style.width = progress + '%';
     }
 }
 
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        navigateStep(1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        navigateStep(-1);
-    }
-});
-
-// Smooth scroll on step click
+// Smooth scroll on step header click
 document.querySelectorAll('.step-header').forEach(header => {
     header.style.cursor = 'pointer';
     header.addEventListener('click', function() {
-        const step = parseInt(this.closest('.workflow-step').dataset.step);
-        currentStep = step;
-        showStep(currentStep);
+        const stepElement = this.closest('.workflow-step');
+        if (stepElement) {
+            stepElement.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
     });
 });
-
