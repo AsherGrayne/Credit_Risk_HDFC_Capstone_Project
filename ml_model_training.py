@@ -282,39 +282,44 @@ class MLModelTrainer:
         
         os.makedirs('visualizations/new_visualization', exist_ok=True)
         
-        # Extract accuracies
-        model_names = list(self.results.keys())
+        # Extract accuracies and sort by accuracy
+        sorted_data = sorted(self.results.items(), key=lambda x: x[1]['accuracy'], reverse=True)
+        model_names = [name for name, _ in sorted_data]
         accuracies = [self.results[name]['accuracy'] for name in model_names]
         
-        # Create comparison plot
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
+        # Create line graph
+        fig, ax = plt.subplots(figsize=(14, 8))
         
-        # Bar plot
-        colors = plt.cm.viridis(np.linspace(0, 1, len(model_names)))
-        bars = ax1.barh(model_names, accuracies, color=colors)
-        ax1.set_xlabel('Accuracy', fontsize=12, fontweight='bold')
-        ax1.set_title('Model Accuracy Comparison', fontsize=14, fontweight='bold', pad=20)
-        ax1.set_xlim([0, 1])
-        ax1.grid(axis='x', alpha=0.3)
+        # Create line plot with markers
+        x_positions = range(len(model_names))
+        line = ax.plot(x_positions, accuracies, marker='o', markersize=10, 
+                      linewidth=3, color='#8b0000', markerfacecolor='#8b0000',
+                      markeredgecolor='white', markeredgewidth=2, label='Accuracy')
         
-        # Add value labels on bars
-        for i, (bar, acc) in enumerate(zip(bars, accuracies)):
-            ax1.text(acc + 0.01, i, f'{acc:.4f}\n({acc*100:.2f}%)', 
-                    va='center', fontsize=10, fontweight='bold')
+        # Add value labels on each point
+        for i, (name, acc) in enumerate(zip(model_names, accuracies)):
+            ax.text(i, acc + 0.02, f'{acc*100:.2f}%', 
+                   ha='center', va='bottom', fontsize=11, fontweight='bold',
+                   bbox=dict(boxstyle='round,pad=0.3', facecolor='white', alpha=0.8, edgecolor='#8b0000'))
         
-        # Horizontal bar plot sorted
-        sorted_data = sorted(zip(model_names, accuracies), key=lambda x: x[1], reverse=True)
-        sorted_names, sorted_accs = zip(*sorted_data)
+        # Customize axes
+        ax.set_xticks(x_positions)
+        ax.set_xticklabels(model_names, rotation=45, ha='right', fontsize=11)
+        ax.set_ylabel('Accuracy (%)', fontsize=12, fontweight='bold')
+        ax.set_title('Model Accuracy Comparison - Line Graph', fontsize=16, fontweight='bold', pad=20)
+        ax.set_ylim([0, 1])
+        ax.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
+        ax.set_yticklabels(['0%', '20%', '40%', '60%', '80%', '100%'])
+        ax.grid(True, alpha=0.3, linestyle='--', linewidth=1)
+        ax.set_axisbelow(True)
         
-        bars2 = ax2.barh(sorted_names, sorted_accs, color=colors)
-        ax2.set_xlabel('Accuracy', fontsize=12, fontweight='bold')
-        ax2.set_title('Model Accuracy Comparison (Sorted)', fontsize=14, fontweight='bold', pad=20)
-        ax2.set_xlim([0, 1])
-        ax2.grid(axis='x', alpha=0.3)
+        # Add horizontal reference lines
+        ax.axhline(y=0.8, color='green', linestyle='--', alpha=0.3, linewidth=1, label='80% Threshold')
+        ax.axhline(y=0.7, color='orange', linestyle='--', alpha=0.3, linewidth=1, label='70% Threshold')
+        ax.axhline(y=0.5, color='red', linestyle='--', alpha=0.3, linewidth=1, label='50% Threshold')
         
-        for i, (bar, acc) in enumerate(zip(bars2, sorted_accs)):
-            ax2.text(acc + 0.01, i, f'{acc:.4f}\n({acc*100:.2f}%)', 
-                    va='center', fontsize=10, fontweight='bold')
+        # Add legend
+        ax.legend(loc='upper right', fontsize=10)
         
         plt.tight_layout()
         acc_filename = 'visualizations/new_visualization/model_accuracy_comparison.png'
@@ -326,11 +331,12 @@ class MLModelTrainer:
         print("\n" + "-"*80)
         print("ACCURACY SUMMARY")
         print("-"*80)
-        for name, acc in sorted_data:
+        for name, result in sorted_data:
+            acc = result['accuracy']
             print(f"{name:30s}: {acc:.4f} ({acc*100:.2f}%)")
         
         best_model = sorted_data[0][0]
-        best_accuracy = sorted_data[0][1]
+        best_accuracy = sorted_data[0][1]['accuracy']
         print(f"\n🏆 Best Model: {best_model} with accuracy {best_accuracy:.4f} ({best_accuracy*100:.2f}%)")
     
     def save_results_summary(self):
