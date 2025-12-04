@@ -3,6 +3,7 @@
 
 let uploadedFile = null;
 let pieChartInstance = null;
+let currentResults = null; // Store current prediction results for download
 
 // Partition switching
 function switchPartition(partition) {
@@ -186,6 +187,9 @@ async function predictCSVClientSide(csvText) {
 
 // Display CSV prediction results
 function displayCSVResults(result) {
+    // Store results for download
+    currentResults = result;
+    
     // Hide loading and errors
     document.getElementById('csvLoading').style.display = 'none';
     document.getElementById('csvErrorMessage').style.display = 'none';
@@ -336,5 +340,48 @@ function showCSVError(message) {
     errorDiv.style.padding = '1rem';
     errorDiv.style.borderRadius = '0.5rem';
     errorDiv.style.marginTop = '1rem';
+}
+
+// Download risk segmentation CSV
+function downloadRiskSegmentationCSV() {
+    if (!currentResults || !currentResults.categorized) {
+        alert('No results available to download. Please upload and predict a CSV file first.');
+        return;
+    }
+    
+    const categorized = currentResults.categorized;
+    const riskOrder = ['No Risk', 'Low Risk', 'Medium Risk', 'High Risk'];
+    
+    // Create CSV content with format: Risk Level, Customer IDs
+    let csvContent = 'Risk Level,Customer IDs\n';
+    
+    riskOrder.forEach(riskLevel => {
+        const customers = categorized[riskLevel] || [];
+        if (customers.length > 0) {
+            // Format: "Medium Risk", "C001, C002, C003"
+            const customerList = customers.join(', ');
+            csvContent += `"${riskLevel}","${customerList}"\n`;
+        }
+    });
+    
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    // Generate filename with timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+    const filename = `risk_segmentation_${timestamp}.csv`;
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', filename);
+    link.style.display = 'none';
+    
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Clean up
+    URL.revokeObjectURL(url);
 }
 

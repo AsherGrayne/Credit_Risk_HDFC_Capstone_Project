@@ -3716,7 +3716,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <!-- Results Container -->
                 <div id="csvResultsContainer" style="display: none;">
                     <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                        <h2 style="color: #e5e7eb; margin-bottom: 1rem;">Prediction Results</h2>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h2 style="color: #e5e7eb; margin: 0;">Prediction Results</h2>
+                            <button id="downloadSegmentationBtn" onclick="downloadRiskSegmentationCSV()" style="padding: 0.75rem 1.5rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
+                                Download Risk Segmentation CSV
+                            </button>
+                        </div>
                         
                         <!-- Pie Chart Container -->
                         <div style="margin-bottom: 2rem;">
