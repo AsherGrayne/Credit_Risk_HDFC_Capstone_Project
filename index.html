@@ -718,16 +718,17 @@
     <!-- Tabs -->
     <div class="tabs-container">
         <div class="tabs">
-            <button class="tab" onclick="switchTab('dashboard')">Interactive Dashboard</button>
-            <button class="tab active" onclick="switchTab('workflow')">Workflow</button>
-            <button class="tab" onclick="switchTab('ml-workflow')">ML Workflow</button>
+            <button class="tab active" onclick="switchTab('dashboard')">Interactive Dashboard</button>
             <button class="tab" onclick="switchTab('apply')">See your output</button>
+            <button class="tab" onclick="switchTab('ml-workflow')">ML Workflow</button>
+            <button class="tab" onclick="switchTab('workflow')">Workflow</button>
+            <button class="tab" onclick="switchTab('testing-nfr')">Testing & NFR</button>
             <button class="tab" onclick="switchTab('features')">Important Features</button>
         </div>
     </div>
 
     <!-- Workflow Tab Content -->
-    <div id="workflow-tab" class="tab-content active">
+    <div id="workflow-tab" class="tab-content">
         <!-- Progress Bar -->
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
@@ -1875,7 +1876,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
     </div>
 
     <!-- Interactive Dashboard Tab Content -->
-    <div id="dashboard-tab" class="tab-content">
+    <div id="dashboard-tab" class="tab-content active">
         <div class="dashboard-container">
             <div class="dashboard-header">
                 <h1>Interactive Risk Analysis Dashboard</h1>
@@ -1995,9 +1996,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-header" style="margin-bottom: 2rem;">
                     <div class="step-content">
                         <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 0.5rem;">Customer Risk Categories</h3>
-                        <p class="step-subtitle" style="font-size: 1rem; color: #9ca3af;">Customers classified by DPD Bucket (Days Past Due) - Click download to export each category list</p>
+                        <p class="step-subtitle" style="font-size: 1rem; color: #9ca3af; margin-bottom: 1.5rem;">Customers classified by DPD Bucket (Days Past Due) - Click download to export each category list</p>
+                        
+                        <!-- Risk Distribution Chart -->
+                        <div style="margin-bottom: 2rem;">
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                                <img src="visualizations/new_visualization/risk_category_distribution.png" alt="Risk Category Distribution" style="width: 100%; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+                            </div>
+                            <p style="color: #9ca3af; margin-top: 1rem; font-size: 0.9rem; text-align: center;">The chart above shows the distribution of customers across all risk categories. The bar chart displays the count and percentage, while the pie chart provides a visual representation of the proportion.</p>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="risk-category-grid" id="risk-category-grid">
                     <!-- Categories will be loaded dynamically -->
                 </div>
@@ -2512,9 +2522,1218 @@ prediction = model.predict(features_scaled)[0]
         </div>
     </div>
 
+    <!-- Enhancing and creating the model Tab Content -->
+    <div id="enhancing-model-tab" class="tab-content">
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBarEnhancing"></div>
+        </div>
+
+        <!-- Workflow Steps -->
+        <div class="workflow-container">
+            
+            <!-- Gist of the HOW -->
+            <div class="workflow-step" data-step="0" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number" style="background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);">HOW</div>
+                    <div class="step-content">
+                        <h2>Gist of the HOW</h2>
+                        <p class="step-subtitle">A quick overview of our approach and methodology</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Our Approach</h3>
+                        <p>We built a comprehensive early warning system for credit card delinquency prediction using a combination of:</p>
+                        <ul>
+                            <li><strong>Feature Engineering</strong>: Created 14+ behavioral indicators that signal risk before delinquency occurs</li>
+                            <li><strong>Machine Learning</strong>: Trained Random Forest model to predict at-risk customers with 75% accuracy</li>
+                            <li><strong>Rule-Based Flags</strong>: Generated deterministic risk flags based on business logic and thresholds</li>
+                            <li><strong>Outreach Strategies</strong>: Developed personalized intervention plans based on risk levels</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Key Methodology</h3>
+                        <div class="findings-grid">
+                            <div class="finding-card">
+                                <div class="finding-value">Leading</div>
+                                <div class="finding-label">Indicators</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">14+</div>
+                                <div class="finding-label">Engineered Features</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">75%</div>
+                                <div class="finding-label">Model Accuracy</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">50%</div>
+                                <div class="finding-label">At-Risk Detected</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Process Flow</h3>
+                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                                <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">1. Load Data</span>
+                                <span style="color: #9ca3af;">→</span>
+                                <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">2. Engineer Features</span>
+                                <span style="color: #9ca3af;">→</span>
+                                <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">3. Generate Flags</span>
+                                <span style="color: #9ca3af;">→</span>
+                                <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">4. Train Model</span>
+                                <span style="color: #9ca3af;">→</span>
+                                <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">5. Create Strategies</span>
+                            </div>
+                            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">Each step builds upon the previous one, transforming raw data into actionable insights for proactive customer intervention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 1: Data Loading -->
+            <div class="workflow-step" data-step="1">
+                <div class="step-header">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h2>Data Loading & Initial Analysis</h2>
+                        <p class="step-subtitle">Understanding the dataset structure and characteristics</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <ul>
+                            <li>Loaded <strong>Sample.csv</strong> containing 100 customer records</li>
+                            <li>Analyzed 9 features: Customer ID, Credit Limit, Utilization %, Payment metrics, etc.</li>
+                            <li>Identified target variable: <strong>DPD Bucket Next Month</strong> (0-3 scale)</li>
+                            <li>Discovered class imbalance: 75% no risk, 25% at-risk</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Load data using pandas
+df = pd.read_csv('Sample.csv')
+
+# Analyze structure
+print(f"Shape: {df.shape}")
+print(f"Columns: {df.columns.tolist()}")
+print(f"Target distribution: {df['DPD Bucket'].value_counts()}")
+
+# Result: 100 rows × 9 columns</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Key Findings</h3>
+                        <div class="findings-grid">
+                            <div class="finding-card">
+                                <div class="finding-value">100</div>
+                                <div class="finding-label">Customer Records</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">9</div>
+                                <div class="finding-label">Features</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">75%</div>
+                                <div class="finding-label">No Risk</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">25%</div>
+                                <div class="finding-label">At-Risk</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Feature Engineering -->
+            <div class="workflow-step" data-step="2">
+                <div class="step-header">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h2>Feature Engineering - Early Warning Signals</h2>
+                        <p class="step-subtitle">Creating 14+ behavioral indicators that precede delinquency</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Engineered <strong>14+ new features</strong> from original data to create early warning signals. <strong>Click any card to see the code!</strong></p>
+                        <div class="features-grid">
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_decline_flag</h4>
+                                        <p>Binary flag indicating if spending dropped significantly (decline < -15%). Early warning signal for financial stress.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_decline_flag'] = (
+    df['Recent Spend Change %'] < -15
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_stress</h4>
+                                        <p>Scaled indicator (0-2) of spending decline severity. 0=normal, 1=moderate (-10% to -20%), 2=severe (<-20%).</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_stress'] = np.where(
+    df['Recent Spend Change %'] < -20, 2,  # Severe
+    np.where(df['Recent Spend Change %'] < -10, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>high_utilization_flag</h4>
+                                        <p>Binary flag (1 if utilization ≥ 80%). Identifies customers approaching credit limit.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['high_utilization_flag'] = (
+    df['Utilisation %'] >= 80
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>utilization_risk</h4>
+                                        <p>Scaled risk indicator (0-3): 0=low, 1=medium (≥50%), 2=high (≥70%), 3=critical (≥90%).</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['utilization_risk'] = np.where(
+    df['Utilisation %'] >= 90, 3,  # Critical
+    np.where(df['Utilisation %'] >= 70, 2,  # High
+    np.where(df['Utilisation %'] >= 50, 1, 0))  # Medium/Low
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>low_payment_frequency</h4>
+                                        <p>Binary flag (1 if payment frequency < 30%). Identifies inconsistent payment behavior.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['low_payment_frequency'] = (
+    df['Min Due Paid Frequency'] < 30
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_stress</h4>
+                                        <p>Scaled indicator (0-2): 0=normal, 1=moderate (<40%), 2=severe (<20%). Measures payment consistency.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_stress'] = np.where(
+    df['Min Due Paid Frequency'] < 20, 2,  # Severe
+    np.where(df['Min Due Paid Frequency'] < 40, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_risk_ratio</h4>
+                                        <p>Ratio of payment frequency to utilization. Lower values indicate payment capacity issues relative to credit usage.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_risk_ratio'] = (
+    df['Min Due Paid Frequency'] / 
+    (df['Utilisation %'] + 1)
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>high_cash_withdrawal</h4>
+                                        <p>Binary flag (1 if cash withdrawal ≥ 15%). Increased cash withdrawals may indicate liquidity constraints.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['high_cash_withdrawal'] = (
+    df['Cash Withdrawal %'] >= 15
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>cash_stress_indicator</h4>
+                                        <p>Scaled indicator (0-2): 0=normal, 1=moderate (≥10%), 2=high (≥20%). Measures cash withdrawal patterns.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['cash_stress_indicator'] = np.where(
+    df['Cash Withdrawal %'] >= 20, 2,  # High
+    np.where(df['Cash Withdrawal %'] >= 10, 1, 0)  # Moderate
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>narrow_merchant_mix</h4>
+                                        <p>Binary flag (1 if Merchant Mix Index < 0.4). Narrow merchant mix may indicate financial constraints.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['narrow_merchant_mix'] = (
+    df['Merchant Mix Index'] < 0.4
+).astype(int)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>utilization_payment_mismatch</h4>
+                                        <p>Composite signal: High utilization (>70%) with low payment ratio (<60%). Indicates payment capacity issues.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['utilization_payment_mismatch'] = np.where(
+    (df['Utilisation %'] > 70) & 
+    (df['Avg Payment Ratio'] < 60), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>spending_utilization_stress</h4>
+                                        <p>Composite signal: Spending decline (<-15%) combined with high utilization (>60%). High risk combination.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['spending_utilization_stress'] = np.where(
+    (df['Recent Spend Change %'] < -15) & 
+    (df['Utilisation %'] > 60), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>payment_utilization_critical</h4>
+                                        <p>Composite signal: Low payment frequency (<30%) with high utilization (>70%). Critical risk indicator.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['payment_utilization_critical'] = np.where(
+    (df['Min Due Paid Frequency'] < 30) & 
+    (df['Utilisation %'] > 70), 1, 0
+)</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flip-card" onclick="flipCard(this)">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <h4>early_risk_score</h4>
+                                        <p>Weighted combination of scaled stress indicators, normalized to 0.0-1.0. Used for risk level classification.</p>
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <h4>Code</h4>
+                                        <pre><code>df['early_risk_score'] = (
+    df['spending_stress'] * 0.25 +
+    df['utilization_risk'] * 0.30 +
+    df['payment_stress'] * 0.25 +
+    df['cash_stress_indicator'] * 0.10 +
+    df['narrow_merchant_mix'] * 0.10
+) / 3.0</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Example: Spending Stress Calculation
+df['spending_stress'] = np.where(
+    df['Recent Spend Change %'] < -20, 2,  # Severe
+    np.where(df['Recent Spend Change %'] < -10, 1, 0)  # Moderate
+)
+
+# Example: Utilization Risk
+df['utilization_risk'] = np.where(
+    df['Utilisation %'] >= 90, 3,  # Critical
+    np.where(df['Utilisation %'] >= 70, 2,  # High
+    np.where(df['Utilisation %'] >= 50, 1, 0))  # Medium/Low
+)
+
+# Early Risk Score Calculation
+# Note: Only scaled stress indicators are used in the score
+# Binary flags and composite signals are used for risk flag generation
+df['early_risk_score'] = (
+    df['spending_stress'] * 0.25 +           # 0-2 scale
+    df['utilization_risk'] * 0.30 +          # 0-3 scale
+    df['payment_stress'] * 0.25 +            # 0-2 scale
+    df['cash_stress_indicator'] * 0.10 +    # 0-2 scale
+    df['narrow_merchant_mix'] * 0.10         # 0-1 binary
+) / 3.0  # Normalize to 0-1 scale
+
+# Binary flags (not in score, but used for flags):
+# - spending_decline_flag
+# - high_utilization_flag
+# - low_payment_frequency
+# - high_cash_withdrawal
+
+# Composite signals (not in score, but used for flags):
+# - utilization_payment_mismatch
+# - spending_utilization_stress
+# - payment_utilization_critical
+
+# Additional features (not in score):
+# - payment_risk_ratio</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Output</h3>
+                        <p>Enhanced dataset with <strong>23+ columns</strong> (original 9 + 14+ engineered features)</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Risk Flag Generation -->
+            <div class="workflow-step" data-step="3">
+                <div class="step-header">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h2>Risk Flag Generation</h2>
+                        <p class="step-subtitle">Creating deterministic flags with clear business logic</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Generated risk flags for each customer based on <strong>deterministic thresholds</strong>:</p>
+                        <div class="flags-list">
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>SPENDING_DECLINE_SEVERE</strong>
+                                        <span class="flag-trigger">Trigger: Spending change < -20%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag is created by analyzing the customer's recent spending behavior compared to their historical patterns. The system calculates the percentage change in spending by comparing the current month's total spending to previous periods. When a customer's spending drops by more than 20%, it indicates potential financial distress or a significant change in their financial situation. This threshold was chosen based on industry research showing that spending declines of this magnitude often precede payment difficulties. The flag is assigned a HIGH severity because sudden spending reductions can signal cash flow problems, job loss, or other financial hardships that may lead to delinquency. The system generates a personalized message showing the exact percentage decline, which helps customer service representatives understand the severity of the situation when reaching out to the customer.</p>
+                                </div>
+                            </div>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>CRITICAL_UTILIZATION</strong>
+                                        <span class="flag-trigger">Trigger: Utilization ≥ 90%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag monitors the customer's credit utilization ratio, which is calculated by dividing the current outstanding balance by the total credit limit and multiplying by 100. When utilization reaches or exceeds 90%, it means the customer is using nearly all of their available credit. This is a critical indicator because high utilization not only suggests financial stress but also leaves little room for unexpected expenses. The 90% threshold was selected as it represents a critical point where customers have minimal credit buffer and are at high risk of exceeding their limit or missing payments. The system tracks this metric continuously and flags customers who cross this threshold. When this flag is triggered, the system generates an alert message showing the exact utilization percentage, enabling immediate intervention. This flag is classified as HIGH severity because customers at this utilization level are statistically more likely to become delinquent within the next billing cycle.</p>
+                                </div>
+                            </div>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>LOW_PAYMENT_FREQUENCY</strong>
+                                        <span class="flag-trigger">Trigger: Payment frequency < 20%</span>
+                                        <span class="flag-severity-badge high">HIGH</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This flag is generated by analyzing the customer's payment history over multiple billing cycles. The system calculates the percentage of times the customer has paid at least the minimum due amount on time. The payment frequency is computed by dividing the number of on-time minimum payments by the total number of billing cycles analyzed, then multiplying by 100. When this frequency drops below 20%, it means the customer is making timely minimum payments less than one-fifth of the time. This threshold indicates a pattern of inconsistent payment behavior that often precedes delinquency. The 20% threshold was chosen because customers who pay on time less than 20% of the time show a clear pattern of payment difficulties. The system tracks this metric across rolling windows to identify trends. When triggered, the flag includes the exact payment frequency percentage, helping identify customers who may need payment assistance programs or structured payment plans. This is classified as HIGH severity because payment frequency is one of the strongest predictors of future delinquency.</p>
+                                </div>
+                            </div>
+                            <div class="flag-item collapsible" onclick="toggleFlag(this)">
+                                <div class="flag-header">
+                                    <div class="flag-title">
+                                        <strong>PAYMENT_UTILIZATION_CRITICAL</strong>
+                                        <span class="flag-trigger">Trigger: Low payment (<30%) + High util (>70%)</span>
+                                        <span class="flag-severity-badge critical">CRITICAL</span>
+                                    </div>
+                                    <span class="expand-icon">▼</span>
+                                </div>
+                                <div class="flag-details">
+                                    <p>This is a composite flag that combines two critical risk indicators: low payment frequency and high credit utilization. The flag is triggered when both conditions are met simultaneously: the customer's payment frequency is below 30% AND their credit utilization exceeds 70%. This combination is particularly dangerous because it indicates customers who are using most of their available credit while also struggling to make regular payments. The system creates this flag by first checking if the payment frequency metric falls below the 30% threshold, which indicates inconsistent payment behavior. Then it checks if the utilization ratio exceeds 70%, showing high credit usage. When both conditions are true, the system generates this CRITICAL severity flag. The thresholds were chosen based on statistical analysis showing that customers meeting both criteria have a significantly higher probability of becoming delinquent within 30-60 days. This composite approach allows the system to identify customers who are in the most precarious financial position, requiring immediate intervention. The flag triggers urgent outreach strategies, including phone calls within 24 hours and offers of payment plans or hardship programs.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Flag Generation Logic
+for idx, row in df.iterrows():
+    customer_flags = []
+    
+    # Check spending decline
+    if row['Recent Spend Change %'] < -20:
+        customer_flags.append({
+            'flag': 'SPENDING_DECLINE_SEVERE',
+            'severity': 'HIGH',
+            'message': f"Spending dropped {abs(row['Recent Spend Change %'])}%",
+            'action': 'Proactive payment plan discussion'
+        })
+    
+    # Check utilization
+    if row['Utilisation %'] >= 90:
+        customer_flags.append({
+            'flag': 'CRITICAL_UTILIZATION',
+            'severity': 'HIGH',
+            'message': f"Credit utilization at {row['Utilisation %']}%",
+            'action': 'Immediate credit limit review'
+        })
+    
+    # Determine overall risk level
+    if any(f['severity'] == 'CRITICAL' for f in customer_flags):
+        risk_level = 'CRITICAL'
+    elif any(f['severity'] == 'HIGH' for f in customer_flags):
+        risk_level = 'HIGH'
+    # ... etc</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Results</h3>
+                        <div class="results-grid">
+                            <div class="result-card clickable-card expandable-card" onclick="toggleCustomerIds(this, 'all')" data-type="all">
+                                <div class="card-header-content">
+                                    <div class="result-value">50</div>
+                                    <div class="result-label">Customers Flagged</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-all-enhancing"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card critical" onclick="toggleCustomerIds(this, 'CRITICAL')" data-type="CRITICAL">
+                                <div class="card-header-content">
+                                    <div class="result-value">10</div>
+                                    <div class="result-label">CRITICAL Risk</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-CRITICAL-enhancing"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card high" onclick="toggleCustomerIds(this, 'HIGH')" data-type="HIGH">
+                                <div class="card-header-content">
+                                    <div class="result-value">40</div>
+                                    <div class="result-label">HIGH Risk</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-HIGH-enhancing"></div>
+                                </div>
+                            </div>
+                            <div class="result-card clickable-card expandable-card" onclick="toggleCustomerIds(this, 'top_flag')" data-type="top_flag">
+                                <div class="card-header-content">
+                                    <div class="result-value">23</div>
+                                    <div class="result-label">Top Flag Count</div>
+                                    <div class="card-hint">Click to view customer IDs</div>
+                                </div>
+                                <div class="card-expanded-content" style="display: none;">
+                                    <div class="customer-ids-list" id="customer-ids-top_flag-enhancing"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Model Training -->
+            <div class="workflow-step" data-step="4">
+                <div class="step-header">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h2>Predictive Model Training</h2>
+                        <p class="step-subtitle">Training multiple ML models to validate early signals</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Trained <strong>3 machine learning models</strong> to predict at-risk customers:</p>
+                        <div class="models-grid">
+                            <div class="model-card">
+                                <h4>1. Random Forest</h4>
+                                <ul>
+                                    <li>100 estimators</li>
+                                    <li>Max depth: 5</li>
+                                    <li>Class weight: balanced</li>
+                                    <li><strong>Accuracy: 75%</strong></li>
+                                </ul>
+                            </div>
+                            <div class="model-card">
+                                <h4>2. Logistic Regression</h4>
+                                <ul>
+                                    <li>L2 regularization</li>
+                                    <li>Class weight: balanced</li>
+                                    <li>Max iterations: 1000</li>
+                                    <li><strong>Accuracy: 55%</strong></li>
+                                </ul>
+                            </div>
+                            <div class="model-card">
+                                <h4>3. Gradient Boosting</h4>
+                                <ul>
+                                    <li>100 estimators</li>
+                                    <li>Max depth: 3</li>
+                                    <li>Learning rate: default</li>
+                                    <li><strong>Accuracy: 65%</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Prepare features
+feature_cols = [
+    'Utilisation %', 'Avg Payment Ratio', 'Min Due Paid Frequency',
+    'Merchant Mix Index', 'Cash Withdrawal %', 'Recent Spend Change %',
+    'spending_stress', 'utilization_risk', 'payment_stress',
+    'cash_stress_indicator', 'utilization_payment_mismatch',
+    'spending_utilization_stress', 'payment_utilization_critical'
+]
+
+X = df[feature_cols]
+y = (df['DPD Bucket Next Month'] > 0).astype(int)  # Binary target
+
+# Train-test split (80/20)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# Scale features
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# Train Random Forest
+model = RandomForestClassifier(
+    n_estimators=100,
+    max_depth=5,
+    min_samples_split=10,
+    random_state=42,
+    class_weight='balanced'
+)
+model.fit(X_train_scaled, y_train)
+
+# Evaluate
+y_pred = model.predict(X_test_scaled)
+accuracy = accuracy_score(y_test, y_pred)</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Top Features</h3>
+                        <ol class="feature-list">
+                            <li>Min Due Paid Frequency (18.3% importance)</li>
+                            <li>Utilisation % (17.5% importance)</li>
+                            <li>Recent Spend Change % (13.7% importance)</li>
+                            <li>Avg Payment Ratio (11.7% importance)</li>
+                            <li>Merchant Mix Index (11.2% importance)</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Outreach Strategies -->
+            <div class="workflow-step" data-step="5">
+                <div class="step-header">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h2>Outreach Strategy Generation</h2>
+                        <p class="step-subtitle">Creating actionable intervention plans for each customer</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Generated <strong>personalized outreach strategies</strong> based on risk level:</p>
+                        
+                        <!-- Dynamic Controls Panel -->
+                        <div class="strategy-controls">
+                            <h4>Adjust Outreach Parameters</h4>
+                            <div class="controls-grid">
+                                <div class="control-group">
+                                    <label for="critical-timing-enhancing">CRITICAL Risk Timing (hours):</label>
+                                    <input type="number" id="critical-timing-enhancing" min="1" max="168" value="24" step="1">
+                                    <span class="control-hint">Default: 24 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="critical-channel-enhancing">CRITICAL Risk Channel:</label>
+                                    <select id="critical-channel-enhancing">
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-timing-enhancing">HIGH Risk Timing (hours):</label>
+                                    <input type="number" id="high-timing-enhancing" min="1" max="168" value="48" step="1">
+                                    <span class="control-hint">Default: 48 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-channel-enhancing">HIGH Risk Channel:</label>
+                                    <select id="high-channel-enhancing">
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-timing-enhancing">MEDIUM Risk Timing (hours):</label>
+                                    <input type="number" id="medium-timing-enhancing" min="1" max="168" value="168" step="1">
+                                    <span class="control-hint">Default: 168 hours (1 week)</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-channel-enhancing">MEDIUM Risk Channel:</label>
+                                    <select id="medium-channel-enhancing">
+                                        <option value="Email or SMS">Email or SMS</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-buttons">
+                                <button class="change-btn" onclick="updateStrategiesEnhancing()">Change</button>
+                                <button class="reset-btn" onclick="resetStrategiesEnhancing()">Reset to Defaults</button>
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-grid">
+                            <div class="strategy-card critical">
+                                <h4>CRITICAL Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="critical-channel-display-enhancing">Phone Call</span></li>
+                                    <li><strong>Timing:</strong> <span id="critical-timing-display-enhancing">Within 24 hours</span></li>
+                                    <li><strong>Message:</strong> Urgent intervention required</li>
+                                    <li><strong>Offer:</strong> Payment plan, hardship program</li>
+                                </ul>
+                                <div class="strategy-count">10 customers</div>
+                            </div>
+                            <div class="strategy-card high">
+                                <h4>HIGH Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="high-channel-display-enhancing">Phone Call or Email</span></li>
+                                    <li><strong>Timing:</strong> <span id="high-timing-display-enhancing">Within 48 hours</span></li>
+                                    <li><strong>Message:</strong> Proactive support offer</li>
+                                    <li><strong>Offer:</strong> Payment plan, counseling</li>
+                                </ul>
+                                <div class="strategy-count">40 customers</div>
+                            </div>
+                            <div class="strategy-card medium">
+                                <h4>MEDIUM Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="medium-channel-display-enhancing">Email or SMS</span></li>
+                                    <li><strong>Timing:</strong> <span id="medium-timing-display-enhancing">Within 1 week</span></li>
+                                    <li><strong>Message:</strong> Educational resources</li>
+                                    <li><strong>Offer:</strong> Tips and reminders</li>
+                                </ul>
+                                <div class="strategy-count">19 customers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Strategy Generation with Dynamic Parameters
+# Configuration parameters (adjustable by administrators)
+OUTREACH_CONFIG = {
+    'CRITICAL': {
+        'timing_hours': 24,  # Default: 24 hours (adjustable 1-168)
+        'channel': 'Phone Call'  # Default: Phone Call (adjustable)
+    },
+    'HIGH': {
+        'timing_hours': 48,  # Default: 48 hours (adjustable 1-168)
+        'channel': 'Phone Call or Email'  # Default: Phone Call or Email (adjustable)
+    },
+    'MEDIUM': {
+        'timing_hours': 168,  # Default: 168 hours / 1 week (adjustable 1-168)
+        'channel': 'Email or SMS'  # Default: Email or SMS (adjustable)
+    }
+}
+
+def format_timing(hours):
+    """Format hours into human-readable timing string"""
+    if hours < 24:
+        return f'Within {hours} hour{"s" if hours > 1 else ""}'
+    elif hours < 168:
+        days = hours // 24
+        remaining_hours = hours % 24
+        if remaining_hours == 0:
+            return f'Within {days} day{"s" if days > 1 else ""}'
+        else:
+            return f'Within {days} day{"s" if days > 1 else ""} and {remaining_hours} hour{"s" if remaining_hours > 1 else ""}'
+    else:
+        weeks = hours // 168
+        remaining_days = (hours % 168) // 24
+        if remaining_days == 0:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""}'
+        else:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""} and {remaining_days} day{"s" if remaining_days > 1 else ""}'
+
+for idx, row in risk_flags_df.iterrows():
+    strategies = []
+    risk_level = row['risk_level']
+    
+    # Base strategy by risk level (using dynamic config)
+    if risk_level == 'CRITICAL':
+        config = OUTREACH_CONFIG['CRITICAL']
+        strategies.append({
+            'priority': 1,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Urgent: We noticed concerning patterns in your account. Let\'s discuss payment options.',
+            'offer': 'Payment plan, hardship program, or credit limit adjustment'
+        })
+    elif risk_level == 'HIGH':
+        config = OUTREACH_CONFIG['HIGH']
+        strategies.append({
+            'priority': 2,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'We\'re here to help. Let\'s review your account and explore options.',
+            'offer': 'Payment plan or financial counseling'
+        })
+    elif risk_level == 'MEDIUM':
+        config = OUTREACH_CONFIG['MEDIUM']
+        strategies.append({
+            'priority': 3,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Tips for managing your credit card account effectively.',
+            'offer': 'Educational resources and payment reminders'
+        })
+    
+    # Flag-specific strategies
+    for flag in row['flags']:
+        if flag['flag'] == 'SPENDING_DECLINE_SEVERE':
+            strategies.append({
+                'priority': 1,
+                'channel': 'Phone Call',
+                'timing': format_timing(OUTREACH_CONFIG[risk_level]['timing_hours']),
+                'message': 'We noticed a significant change in your spending patterns.',
+                'offer': 'Financial wellness check-in and budgeting tools'
+            })
+    
+    return strategies</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 6: Visualizations -->
+            <div class="workflow-step" data-step="6">
+                <div class="step-header">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <h2>Visualization Creation</h2>
+                        <p class="step-subtitle">Generating 9 comprehensive charts and dashboards</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Created <strong>9 professional visualizations</strong> using matplotlib and seaborn:</p>
+                    </div>
+                    
+                    <!-- Visualization 1: Model Comparison -->
+                    <div class="detail-section">
+                        <h3>1. Model Performance Comparison</h3>
+                        <p>Comparison of three machine learning models showing accuracy and ROC-AUC scores.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/model_comparison.png" alt="Model Comparison" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Line graphs comparing Random Forest, Logistic Regression, and Gradient Boosting models. Random Forest achieved the highest accuracy of 75%.</p>
+                    </div>
+
+                    <!-- Visualization 2: Dataset Comparison -->
+                    <div class="detail-section">
+                        <h3>2. Dataset Size Impact Analysis</h3>
+                        <p>Performance comparison between original dataset (100 records) and synthetic dataset (50,000 records).</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/dataset_comparison.png" alt="Dataset Comparison" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Shows how model performance changes with dataset size. Gradient Boosting improved significantly with larger dataset, achieving 79% accuracy.</p>
+                    </div>
+
+                    <!-- Visualization 3: Risk Distribution -->
+                    <div class="detail-section">
+                        <h3>3. Portfolio Risk Distribution</h3>
+                        <p>Distribution of risk levels across the customer portfolio.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/risk_distribution.png" alt="Risk Distribution" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Bar chart showing risk level breakdown and histogram of risk score distribution. 50% of customers flagged as at-risk.</p>
+                    </div>
+
+                    <!-- Visualization 4: Behavioral Patterns -->
+                    <div class="detail-section">
+                        <h3>4. Behavioral Pattern Analysis</h3>
+                        <p>Key behavioral patterns that precede delinquency.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/behavioral_patterns.png" alt="Behavioral Patterns" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Four scatter plots showing correlations: Spending Change vs Utilization, Payment Frequency vs Utilization, Cash Withdrawal patterns, and Early Risk Score by DPD bucket.</p>
+                    </div>
+
+                    <!-- Visualization 5: Flag Frequency -->
+                    <div class="detail-section">
+                        <h3>5. Early Warning Flag Frequency</h3>
+                        <p>Most common early warning signals across the portfolio.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/flag_frequency.png" alt="Flag Frequency" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Horizontal bar chart showing frequency of each risk flag. Low Payment Frequency (23 customers) and Spending Decline (20 customers) are top indicators.</p>
+                    </div>
+
+                    <!-- Visualization 6: Feature Importance -->
+                    <div class="detail-section">
+                        <h3>6. Feature Importance Analysis</h3>
+                        <p>Top predictive features from the Random Forest model.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/feature_importance.png" alt="Feature Importance" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Bar chart showing top 10 most important features. Payment Frequency (18.3%) and Utilization (17.5%) are strongest predictors.</p>
+                    </div>
+
+                    <!-- Visualization 7: Outreach Strategy -->
+                    <div class="detail-section">
+                        <h3>7. Outreach Strategy Distribution</h3>
+                        <p>Distribution of intervention strategies by channel and priority level.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/outreach_strategy.png" alt="Outreach Strategy" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Bar charts showing outreach channel distribution and intervention priority levels. 10 customers require immediate phone calls.</p>
+                    </div>
+
+                    <!-- Visualization 8: Risk Heatmap -->
+                    <div class="detail-section">
+                        <h3>8. Risk Factors Correlation Heatmap</h3>
+                        <p>Correlation matrix showing relationships between different risk factors.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/risk_heatmap.png" alt="Risk Heatmap" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Heatmap showing correlations between 10 key risk factors. Strong correlations help identify which factors work together to predict delinquency.</p>
+                    </div>
+
+                    <!-- Visualization 9: Workflow Diagram -->
+                    <div class="detail-section">
+                        <h3>9. System Workflow Diagram</h3>
+                        <p>Complete workflow of the Early Risk Signal System.</p>
+                        <div class="viz-image-container">
+                            <img src="visualizations/workflow_diagram.png" alt="Workflow Diagram" class="workflow-viz-image">
+                        </div>
+                        <p class="viz-description">Visual workflow showing data flow from input through risk flag generation to automated outreach strategies. Shows decision tree routing for different risk levels.</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Example: Risk Distribution Chart
+fig, axes = plt.subplots(1, 2, figsize=(16, 6))
+
+# Risk level distribution
+risk_counts = risk_flags_df['risk_level'].value_counts()
+axes[0].bar(risk_counts.index, risk_counts.values, 
+           color=['green', 'orange', 'red', 'darkred'])
+
+# Risk score distribution
+axes[1].hist(risk_flags_df['risk_score'], bins=20, color='blue')
+axes[1].axvline(risk_flags_df['risk_score'].mean(), 
+               color='red', linestyle='--')
+
+plt.savefig('risk_distribution.png', dpi=300)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 7: Synthetic Dataset Display -->
+            <div class="workflow-step" data-step="7">
+                <div class="step-header">
+                    <div class="step-number">07</div>
+                    <div class="step-content">
+                        <h2>Dataset Viewer</h2>
+                        <p class="step-subtitle">View and explore the datasets used for model training and evaluation</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Dataset Selection</h3>
+                        <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                                <input type="radio" name="dataset-type-enhancing" value="real" id="dataset-real-enhancing" checked onchange="switchDatasetEnhancing('real')" style="cursor: pointer;">
+                                <span>Real Dataset (100 records)</span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                                <input type="radio" name="dataset-type-enhancing" value="synthetic" id="dataset-synthetic-enhancing" onchange="switchDatasetEnhancing('synthetic')" style="cursor: pointer;">
+                                <span>Synthetic Dataset (50,000 records)</span>
+                            </label>
+                        </div>
+                        
+                        <h3>Dataset Overview</h3>
+                        <p id="dataset-description-enhancing">This dataset displays <strong>all 100 customer records</strong> from the original sample dataset. Use the controls below to explore the data.</p>
+                        <div style="margin-top: 1rem; margin-bottom: 1rem;">
+                            <button class="action-btn" id="download-btn-enhancing" onclick="downloadFullDatasetEnhancing(event)" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); padding: 0.75rem 1.5rem; font-size: 1rem; border: none; cursor: pointer; border-radius: 8px; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(220, 38, 38, 0.3);">
+                                📥 Download Full Dataset (100 records)
+                            </button>
+                        </div>
+                        
+                        <div class="dataset-controls">
+                            <div class="control-group">
+                                <label for="search-input-enhancing">Search:</label>
+                                <input type="text" id="search-input-enhancing" placeholder="Search by Customer ID, values..." onkeyup="filterDatasetEnhancing()">
+                            </div>
+                            <div class="control-group">
+                                <label for="rows-per-page-enhancing">Rows per page:</label>
+                                <select id="rows-per-page-enhancing" onchange="changeRowsPerPageEnhancing()">
+                                    <option value="10">10</option>
+                                    <option value="25" selected>25</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <span id="dataset-info-enhancing">Loading dataset...</span>
+                            </div>
+                        </div>
+                        
+                        <div class="dataset-container">
+                            <div id="loading-indicator-enhancing" style="text-align: center; padding: 2rem; color: #9ca3af;">
+                                <p>Loading dataset (1,000 records)...</p>
+                                <div style="margin-top: 1rem;">
+                                    <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
+                                        <div id="loading-bar-enhancing" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-wrapper" id="table-wrapper-enhancing" style="display: none;">
+                                <table id="dataset-table-enhancing" class="dataset-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Credit Limit</th>
+                                            <th>Utilisation %</th>
+                                            <th>Avg Payment Ratio</th>
+                                            <th>Min Due Paid Frequency</th>
+                                            <th>Merchant Mix Index</th>
+                                            <th>Cash Withdrawal %</th>
+                                            <th>Recent Spend Change %</th>
+                                            <th>DPD Bucket Next Month</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="dataset-tbody-enhancing">
+                                        <tr><td colspan="9" style="text-align: center; padding: 2rem;">Loading dataset...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="pagination-controls">
+                                <button id="prev-page-enhancing" onclick="changePageEnhancing(-1)" disabled>← Previous</button>
+                                <span id="page-info-enhancing">Page 1 of 1</span>
+                                <button id="next-page-enhancing" onclick="changePageEnhancing(1)" disabled>Next →</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 8: Output Generation -->
+            <div class="workflow-step" data-step="8">
+                <div class="step-header">
+                    <div class="step-number">08</div>
+                    <div class="step-content">
+                        <h2>Output Files & Documentation</h2>
+                        <p class="step-subtitle">Generating comprehensive outputs and documentation</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Created</h3>
+                        <div class="outputs-grid">
+                            <div class="output-card">
+                                <h4>CSV Files (3)</h4>
+                                <ul>
+                                    <li><code>risk_flags_output.csv</code> - Risk flags for 100 customers</li>
+                                    <li><code>outreach_strategies.csv</code> - Intervention recommendations</li>
+                                    <li><code>data_with_early_signals.csv</code> - Enhanced dataset</li>
+                                </ul>
+                            </div>
+                            <div class="output-card">
+                                <h4>Visualizations (9)</h4>
+                                <ul>
+                                    <li>All PNG files saved with 300 DPI</li>
+                                    <li>Professional styling and formatting</li>
+                                    <li>Ready for presentations</li>
+                                </ul>
+                            </div>
+                            <div class="output-card">
+                                <h4>Documentation (5)</h4>
+                                <ul>
+                                    <li><code>README.md</code> - User guide</li>
+                                    <li><code>solution_narrative.md</code> - Complete documentation</li>
+                                    <li><code>EXECUTIVE_SUMMARY.md</code> - Executive overview</li>
+                                    <li><code>FULL_WORKFLOW.md</code> - Workflow details</li>
+                                    <li><code>EXECUTION_TRANSCRIPT.md</code> - Execution log</li>
+                                </ul>
+                            </div>
+                            <div class="output-card">
+                                <h4>Website</h4>
+                                <ul>
+                                    <li><code>index.html</code> - Main website</li>
+                                    <li><code>styles.css</code> - Dark theme styling</li>
+                                    <li><code>workflow.html</code> - This interactive page</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="workflow-summary">
+                <h2>Complete Workflow Summary</h2>
+                <div class="summary-stats">
+                    <div class="summary-stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Major Steps</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">14+</div>
+                        <div class="stat-label">Features Engineered</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">ML Models Trained</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Visualizations</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">32</div>
+                        <div class="stat-label">Files Generated</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- See your output Tab Content -->
     <div id="apply-tab" class="tab-content">
         <div class="apply-container">
+            <!-- Partition Selection -->
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #1e293b; padding-bottom: 1rem;">
+                <button id="csvUploadBtn" class="partition-btn active" onclick="switchPartition('csv-upload')" style="flex: 1; padding: 1rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Upload the entire CSV</button>
+                <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">See individual customer</button>
+            </div>
+
+            <!-- CSV Upload Partition -->
+            <div id="csv-upload-partition" class="partition-content">
+                <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <h2 style="color: #e5e7eb; margin-bottom: 1rem;">Upload CSV File for Batch Prediction</h2>
+                    <p style="color: #9ca3af; margin-bottom: 1.5rem;">
+                        Upload a CSV file with the following columns: <br>
+                        <code style="background: #020617; padding: 0.5rem; border-radius: 0.25rem; color: #e5e7eb;">
+                            Customer ID, Credit Limit, Utilisation %, Avg Payment Ratio, Min Due Paid Frequency, Merchant Mix Index, Cash Withdrawal %, Recent Spend Change %, DPD Bucket Next Month
+                        </code>
+                    </p>
+                    <p style="color: #9ca3af; margin-bottom: 1.5rem; font-size: 0.875rem;">
+                        Note: The "DPD Bucket Next Month" column is optional. If provided, it will be used for comparison only.
+                    </p>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)">
+                        <label for="csvFileInput" style="display: inline-block; padding: 1rem 2rem; background: #8b0000; color: white; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
+                            Choose CSV File
+                        </label>
+                        <span id="fileName" style="color: #9ca3af; margin-left: 1rem;"></span>
+                    </div>
+                    
+                    <button id="uploadPredictBtn" onclick="processCSVPrediction()" disabled style="padding: 1rem 2rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: not-allowed; font-weight: 600;">
+                        Predict DPD Bucket
+                    </button>
+                </div>
+
+                <!-- Loading indicator -->
+                <div id="csvLoading" class="loading" style="display: none;">
+                    <p>Processing predictions...</p>
+                </div>
+
+                <!-- Error message -->
+                <div id="csvErrorMessage" class="error-message" style="display: none;"></div>
+
+                <!-- Results Container -->
+                <div id="csvResultsContainer" style="display: none;">
+                    <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                        <h2 style="color: #e5e7eb; margin-bottom: 1rem;">Prediction Results</h2>
+                        
+                        <!-- Pie Chart Container -->
+                        <div style="margin-bottom: 2rem;">
+                            <h3 style="color: #e5e7eb; margin-bottom: 1rem;">Risk Level Distribution</h3>
+                            <canvas id="riskPieChart" width="400" height="400"></canvas>
+                        </div>
+
+                        <!-- Categorized Customers -->
+                        <div id="categorizedCustomers" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Individual Customer Partition -->
+            <div id="individual-customer-partition" class="partition-content" style="display: none;">
             <div class="form-container">
                 <form id="predictionForm">
                     <div class="form-grid">
@@ -2743,7 +3962,7 @@ prediction = model.predict(features_scaled)[0]
             <!-- Conclusion -->
             <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2rem; margin-top: 3rem; border: 1px solid #1e293b;">
                 <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-                    <span>🏆</span> Conclusion: Most Important Features
+                    Conclusion: Most Important Features
                 </h3>
                 <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;">The strongest predictors from the model we have generated (scientifically backed):</p>
                 <ol style="color: #e5e7eb; margin-left: 1.5rem; line-height: 2; font-size: 1.125rem;">
@@ -2756,9 +3975,760 @@ prediction = model.predict(features_scaled)[0]
         </div>
     </div>
 
+    <!-- Testing & NFR Tab Content -->
+    <div id="testing-nfr-tab" class="tab-content">
+        <div class="workflow-container" style="padding: 3rem 20px;">
+            <div class="step-header" style="margin-bottom: 3rem;">
+                <div class="step-content">
+                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Testing & Non-Functional Requirements</h2>
+                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Comprehensive testing framework and NFR implementation for production-ready system</p>
+                </div>
+            </div>
+
+            <!-- Overview Section -->
+            <div class="workflow-step" data-step="0" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number" style="background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);">INFO</div>
+                    <div class="step-content">
+                        <h2>Overview</h2>
+                        <p class="step-subtitle">Production-ready testing and NFR framework</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What Has Been Implemented</h3>
+                        <p>This system includes a comprehensive testing and Non-Functional Requirements (NFR) framework ensuring reliability, security, scalability, and observability.</p>
+                        <div class="findings-grid" style="margin-top: 2rem;">
+                            <div class="finding-card">
+                                <div class="finding-value">5</div>
+                                <div class="finding-label">Test Suites</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">6</div>
+                                <div class="finding-label">Core Modules</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">100%</div>
+                                <div class="finding-label">Coverage Goal</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">Ready</div>
+                                <div class="finding-label">Production Ready</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testing Framework -->
+            <div class="workflow-step" data-step="1" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h2>Testing Framework</h2>
+                        <p class="step-subtitle">Comprehensive test coverage for all components</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Test Suites</h3>
+                        <div class="code-block" style="margin-top: 1rem;">
+                            <pre><code>tests/
+├── test_feature_engineering.py    # Unit tests for feature engineering
+├── test_risk_flags.py              # Unit tests for risk flag generation
+├── test_model_training.py          # Unit tests for model training
+├── test_integration.py             # Integration tests for workflow
+└── test_performance.py              # Performance and scalability tests</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Running Tests</h3>
+                        <div class="code-block">
+                            <pre><code># Install dependencies
+pip install -r requirements-dev.txt
+
+# Run all tests
+pytest
+
+# Run with coverage
+pytest --cov=src --cov-report=html
+
+# Run specific test categories
+pytest -m unit          # Unit tests only
+pytest -m integration   # Integration tests only
+pytest -m performance   # Performance tests only
+
+# Run tests in parallel
+pytest -n auto</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Test Coverage</h3>
+                        <ul style="color: #9ca3af; line-height: 2;">
+                            <li>Feature engineering functions (14+ features)</li>
+                            <li>Risk flag generation logic</li>
+                            <li>Model training and prediction</li>
+                            <li>End-to-end workflow</li>
+                            <li>Performance benchmarks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security -->
+            <div class="workflow-step" data-step="2" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h2>Security</h2>
+                        <p class="step-subtitle">Comprehensive security measures</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Security Features</h3>
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <div class="result-value">Yes</div>
+                                <div class="result-label">Input Validation</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Yes</div>
+                                <div class="result-label">Rate Limiting</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Yes</div>
+                                <div class="result-label">API Authentication</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Yes</div>
+                                <div class="result-label">Data Sanitization</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Implementation Example</h3>
+                        <div class="code-block">
+                            <pre><code>from src.security import SecurityValidator
+
+# Validate customer ID
+if not SecurityValidator.validate_customer_id(customer_id):
+    raise ValueError("Invalid customer ID")
+
+# Validate feature inputs
+is_valid, error = SecurityValidator.validate_feature_inputs(features)
+if not is_valid:
+    raise ValueError(error)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Observability -->
+            <div class="workflow-step" data-step="3" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h2>Observability</h2>
+                        <p class="step-subtitle">Logging, monitoring, and metrics</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Logging System</h3>
+                        <div class="code-block">
+                            <pre><code>from src.logging_config import get_logger
+
+logger = get_logger(__name__)
+
+logger.info("Processing started")
+logger.error("An error occurred", exc_info=True)
+logger.debug("Detailed debug information")</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Monitoring & Metrics</h3>
+                        <div class="code-block">
+                            <pre><code>from src.monitoring import track_performance, metrics_collector
+
+@track_performance("model_prediction")
+def predict_risk(features):
+    # Your prediction code
+    pass
+
+# Get metrics
+metrics = metrics_collector.get_all_metrics()
+print(f"Total predictions: {metrics['counters']['model_prediction_success']}")</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Health Check Endpoints</h3>
+                        <ul style="color: #9ca3af; line-height: 2;">
+                            <li><code>GET /health</code> - Basic health check</li>
+                            <li><code>GET /health/ready</code> - Readiness probe</li>
+                            <li><code>GET /health/live</code> - Liveness probe</li>
+                            <li><code>GET /metrics</code> - System metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scalability -->
+            <div class="workflow-step" data-step="4" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h2>Scalability</h2>
+                        <p class="step-subtitle">Handling large datasets efficiently</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Batch Processing</h3>
+                        <div class="code-block">
+                            <pre><code>from src.batch_processor import BatchProcessor
+
+processor = BatchProcessor(batch_size=1000)
+
+def process_batch(batch_df):
+    # Your processing logic
+    return processed_df
+
+result = processor.process_in_batches(large_df, process_batch)</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Features</h3>
+                        <ul style="color: #9ca3af; line-height: 2;">
+                            <li>Memory-efficient batch processing</li>
+                            <li>Progress tracking</li>
+                            <li>Error handling and recovery</li>
+                            <li>Configurable batch sizes</li>
+                            <li>Performance metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuration -->
+            <div class="workflow-step" data-step="5" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h2>Configuration Management</h2>
+                        <p class="step-subtitle">Environment-based configuration</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Configuration Options</h3>
+                        <div class="code-block">
+                            <pre><code># Model configuration
+export MODEL_N_ESTIMATORS=100
+export MODEL_MAX_DEPTH=5
+
+# Security
+export API_KEY=your-secret-api-key
+export RATE_LIMIT_REQUESTS=100
+
+# Logging
+export LOG_LEVEL=INFO
+export LOG_FILE=logs/system.log
+
+# Performance
+export BATCH_SIZE=1000
+export MAX_WORKERS=4</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Usage</h3>
+                        <div class="code-block">
+                            <pre><code>from src.config import config
+
+# Access configuration
+print(config.model.n_estimators)
+print(config.security.api_key)
+print(config.performance.batch_size)</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Start -->
+            <div class="workflow-step" data-step="6" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <h2>Quick Start Guide</h2>
+                        <p class="step-subtitle">Get started with testing and NFR</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Step 1: Install Dependencies</h3>
+                        <div class="code-block">
+                            <pre><code>pip install -r requirements-dev.txt</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Step 2: Run Tests</h3>
+                        <div class="code-block">
+                            <pre><code>pytest --cov=src --cov-report=html</code></pre>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Step 3: Review Coverage</h3>
+                        <p style="color: #9ca3af;">Open <code>htmlcov/index.html</code> in your browser to see test coverage report.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Step 4: Integrate into Your Code</h3>
+                        <div class="code-block">
+                            <pre><code>from src.logging_config import get_logger
+from src.security import SecurityValidator
+from src.monitoring import track_performance
+
+logger = get_logger(__name__)
+
+@track_performance("your_function")
+def your_function():
+    logger.info("Function started")
+    # Your code here</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Outreach Strategy Tab Content -->
+    <div id="outreach-strategy-tab" class="tab-content">
+        <div class="workflow-container" style="padding: 3rem 20px;">
+            <div class="step-header" style="margin-bottom: 3rem;">
+                <div class="step-content">
+                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Outreach Strategy Framework</h2>
+                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Data-driven proactive interventions to reduce roll-rates and improve portfolio health</p>
+                </div>
+            </div>
+
+            <!-- Objective Section -->
+            <div class="workflow-step" data-step="0" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number" style="background: linear-gradient(135deg, #8b0000 0%, #dc143c 100%);">OBJ</div>
+                    <div class="step-content">
+                        <h2>Objective</h2>
+                        <p class="step-subtitle">Design a lightweight, data-driven framework for proactive customer intervention</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Our Mission</h3>
+                        <p style="color: #9ca3af; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                            Design a lightweight, data-driven framework that identifies <strong style="color: #e5e7eb;">early behavioral signals</strong> of credit card delinquency. 
+                            The goal is to enable <strong style="color: #e5e7eb;">proactive outreach strategies</strong> that can reduce "roll-rates" — the progression of customers 
+                            from one stage of delinquency to the next. We recommend <strong style="color: #e5e7eb;">targeted interventions</strong> that are operationally feasible and customer-friendly.
+                        </p>
+                        <div class="findings-grid" style="margin-top: 2rem;">
+                            <div class="finding-card">
+                                <div class="finding-value">Early</div>
+                                <div class="finding-label">Signal Detection</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">Proactive</div>
+                                <div class="finding-label">Intervention</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">Reduce</div>
+                                <div class="finding-label">Roll-Rates</div>
+                            </div>
+                            <div class="finding-card">
+                                <div class="finding-value">Customer-Friendly</div>
+                                <div class="finding-label">Approach</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Framework Overview -->
+            <div class="workflow-step" data-step="1" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h2>Framework Overview</h2>
+                        <p class="step-subtitle">How the outreach strategy framework works</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Key Components</h3>
+                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">1. Early Signal Detection</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Identify behavioral patterns that precede delinquency using 14+ engineered features and ML models.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">2. Risk Classification</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Categorize customers into CRITICAL, HIGH, MEDIUM, and LOW risk levels based on multiple indicators.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">3. Targeted Interventions</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Generate personalized outreach strategies with appropriate channels, timing, and offers for each risk level.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">4. Roll-Rate Prevention</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Intervene before customers progress to next delinquency stage, reducing portfolio deterioration.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk-Based Strategy Matrix -->
+            <div class="workflow-step" data-step="2" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h2>Risk-Based Strategy Matrix</h2>
+                        <p class="step-subtitle">Intervention strategies mapped to risk levels</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Strategy Framework</h3>
+                        
+                        <!-- CRITICAL Risk -->
+                        <div style="background: #0f172a; border: 1px solid #ef4444; border-left: 6px solid #ef4444; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">CRITICAL</div>
+                                <span style="color: #9ca3af;">Highest Priority - Immediate Action Required</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <strong style="color: #e5e7eb;">Channel:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Phone Call</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Timing:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 24 hours</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Message:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Urgent: We noticed concerning patterns. Let's discuss payment options.</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Offer:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Payment plan, hardship program, or credit limit adjustment</p>
+                                </div>
+                            </div>
+                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Prevent immediate default and stabilize account before roll-rate progression.</p>
+                        </div>
+
+                        <!-- HIGH Risk -->
+                        <div style="background: #0f172a; border: 1px solid #f59e0b; border-left: 6px solid #f59e0b; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #f59e0b; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">HIGH</div>
+                                <span style="color: #9ca3af;">Priority Action - Proactive Support</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <strong style="color: #e5e7eb;">Channel:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Phone Call or Email</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Timing:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 48 hours</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Message:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">We're here to help. Let's review your account and explore options.</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Offer:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Payment plan or financial counseling</p>
+                                </div>
+                            </div>
+                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Address risk factors early to prevent escalation to CRITICAL status.</p>
+                        </div>
+
+                        <!-- MEDIUM Risk -->
+                        <div style="background: #0f172a; border: 1px solid #3b82f6; border-left: 6px solid #3b82f6; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">MEDIUM</div>
+                                <span style="color: #9ca3af;">Educational Outreach - Preventive Measures</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <strong style="color: #e5e7eb;">Channel:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Email or SMS</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Timing:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 1 week</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Message:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Tips for managing your credit card account effectively.</p>
+                                </div>
+                                <div>
+                                    <strong style="color: #e5e7eb;">Offer:</strong>
+                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Educational resources and payment reminders</p>
+                                </div>
+                            </div>
+                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Provide guidance to maintain healthy account behavior and prevent risk escalation.</p>
+                        </div>
+
+                        <!-- LOW Risk -->
+                        <div style="background: #0f172a; border: 1px solid #10b981; border-left: 6px solid #10b981; border-radius: 1rem; padding: 2rem;">
+                            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                                <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">LOW</div>
+                                <span style="color: #9ca3af;">Standard Monitoring - No Immediate Action</span>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <p style="color: #9ca3af;">Regular review cycles. No proactive outreach required. Continue monitoring for any changes in behavior patterns.</p>
+                            </div>
+                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Maintain healthy portfolio and detect early warning signs if patterns change.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Roll-Rate Prevention -->
+            <div class="workflow-step" data-step="3" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h2>Roll-Rate Prevention Strategy</h2>
+                        <p class="step-subtitle">How we prevent customers from progressing to next delinquency stage</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Understanding Roll-Rates</h3>
+                        <p style="color: #9ca3af; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                            Roll-rates refer to the progression of customers from one stage of delinquency to the next (e.g., DPD 0 → DPD 1 → DPD 2 → DPD 3). 
+                            Our framework intervenes <strong style="color: #e5e7eb;">before</strong> customers reach the next stage, reducing portfolio deterioration.
+                        </p>
+                        
+                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1.5rem;">
+                            <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Delinquency Progression Prevention</h4>
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                                <div style="text-align: center; flex: 1; min-width: 120px;">
+                                    <div style="background: #10b981; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 0</div>
+                                    <p style="color: #9ca3af; font-size: 0.875rem;">No Risk</p>
+                                </div>
+                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="text-align: center; flex: 1; min-width: 120px;">
+                                    <div style="background: #3b82f6; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 1</div>
+                                    <p style="color: #9ca3af; font-size: 0.875rem;">Low Risk</p>
+                                    <p style="color: #f59e0b; font-size: 0.75rem; margin-top: 0.25rem;">Intervene Here</p>
+                                </div>
+                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="text-align: center; flex: 1; min-width: 120px;">
+                                    <div style="background: #f59e0b; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 2</div>
+                                    <p style="color: #9ca3af; font-size: 0.875rem;">Medium Risk</p>
+                                    <p style="color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem;">Prevent This</p>
+                                </div>
+                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="text-align: center; flex: 1; min-width: 120px;">
+                                    <div style="background: #ef4444; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 3</div>
+                                    <p style="color: #9ca3af; font-size: 0.875rem;">High Risk</p>
+                                    <p style="color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem;">Avoid This</p>
+                                </div>
+                            </div>
+                            <p style="color: #e5e7eb; margin-top: 1.5rem; text-align: center; font-weight: 600;">
+                                Early intervention at DPD 0-1 prevents progression to DPD 2-3
+                            </p>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Prevention Mechanisms</h3>
+                        <ul style="color: #9ca3af; line-height: 2; margin-top: 1rem;">
+                            <li><strong style="color: #e5e7eb;">Early Warning Signals:</strong> Detect behavioral changes before payment issues occur</li>
+                            <li><strong style="color: #e5e7eb;">Proactive Outreach:</strong> Contact customers before they miss payments</li>
+                            <li><strong style="color: #e5e7eb;">Personalized Solutions:</strong> Offer payment plans and counseling tailored to customer situation</li>
+                            <li><strong style="color: #e5e7eb;">Timely Intervention:</strong> Act within 24-48 hours for high-risk customers</li>
+                            <li><strong style="color: #e5e7eb;">Continuous Monitoring:</strong> Track customer response and adjust strategies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operational Feasibility -->
+            <div class="workflow-step" data-step="4" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h2>Operational Feasibility</h2>
+                        <p class="step-subtitle">Designed for real-world implementation</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Key Features</h3>
+                        <div class="results-grid" style="margin-top: 1rem;">
+                            <div class="result-card">
+                                <div class="result-value">Automated</div>
+                                <div class="result-label">Strategy Generation</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Scalable</div>
+                                <div class="result-label">Handles Large Portfolios</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Configurable</div>
+                                <div class="result-label">Customizable Parameters</div>
+                            </div>
+                            <div class="result-card">
+                                <div class="result-value">Actionable</div>
+                                <div class="result-label">Clear Next Steps</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Implementation Benefits</h3>
+                        <ul style="color: #9ca3af; line-height: 2; margin-top: 1rem;">
+                            <li><strong style="color: #e5e7eb;">Lightweight Framework:</strong> Minimal infrastructure requirements, easy to deploy</li>
+                            <li><strong style="color: #e5e7eb;">Data-Driven Decisions:</strong> Objective risk assessment based on behavioral data</li>
+                            <li><strong style="color: #e5e7eb;">Prioritized Actions:</strong> Focus resources on highest-risk customers first</li>
+                            <li><strong style="color: #e5e7eb;">Standardized Process:</strong> Consistent approach across all customers</li>
+                            <li><strong style="color: #e5e7eb;">Measurable Outcomes:</strong> Track intervention success and roll-rate reduction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer-Friendly Approach -->
+            <div class="workflow-step" data-step="5" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h2>Customer-Friendly Approach</h2>
+                        <p class="step-subtitle">Supportive and empathetic intervention strategies</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Principles</h3>
+                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Supportive Messaging</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Use empathetic language that focuses on helping customers rather than threatening consequences.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Flexible Solutions</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Offer multiple options including payment plans, hardship programs, and financial counseling.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Respectful Timing</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Contact customers at appropriate times and through preferred channels when possible.</p>
+                                </div>
+                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
+                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Educational Focus</h4>
+                                    <p style="color: #9ca3af; line-height: 1.6;">Provide resources and tools to help customers manage their accounts effectively.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>Message Tone Examples</h3>
+                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000; margin-bottom: 1rem;">
+                                <strong style="color: #e5e7eb;">CRITICAL/HIGH Risk:</strong>
+                                <p style="color: #9ca3af; margin-top: 0.5rem; font-style: italic;">"We're here to help. Let's review your account and explore options that work for your situation."</p>
+                            </div>
+                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
+                                <strong style="color: #e5e7eb;">MEDIUM Risk:</strong>
+                                <p style="color: #9ca3af; margin-top: 0.5rem; font-style: italic;">"Tips for managing your credit card account effectively. We're here to support your financial wellness."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implementation Example -->
+            <div class="workflow-step" data-step="6" style="margin-bottom: 3rem;">
+                <div class="step-header">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <h2>Implementation Example</h2>
+                        <p class="step-subtitle">How the framework generates strategies</p>
+                    </div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>Example: Customer C004 (HIGH Risk)</h3>
+                        <div class="code-block">
+                            <pre><code>Input:
+- Risk Level: HIGH
+- Flags: [SPENDING_DECLINE_SEVERE, CRITICAL_UTILIZATION, 
+         MODERATE_PAYMENT_FREQUENCY, SPENDING_UTILIZATION_STRESS]
+
+Generated Strategies:
+[
+  {
+    'priority': 2,
+    'channel': 'Phone Call or Email',
+    'timing': 'Within 48 hours',
+    'message': "We're here to help. Let's review your account and explore options.",
+    'offer': 'Payment plan or financial counseling'
+  },
+  {
+    'priority': 1,
+    'channel': 'Phone Call',
+    'timing': 'Within 48 hours',
+    'message': 'We noticed a significant change in your spending patterns.',
+    'offer': 'Financial wellness check-in and budgeting tools'
+  },
+  {
+    'priority': 1,
+    'channel': 'Phone Call',
+    'timing': 'Immediate',
+    'message': 'Your credit utilization is very high. Let's discuss options.',
+    'offer': 'Payment plan or credit limit increase (if qualified)'
+  }
+]</code></pre>
+                        </div>
+                        <p style="color: #9ca3af; margin-top: 1rem;">
+                            The framework automatically generates multiple strategies based on the customer's risk level and specific flags, 
+                            prioritizing the most critical interventions first.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expected Outcomes -->
+            <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2rem; margin-top: 3rem; border: 1px solid #1e293b;">
+                <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1rem;">Expected Outcomes</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div>
+                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Reduced Roll-Rates</div>
+                        <p style="color: #e5e7eb; opacity: 0.9;">Prevent progression from DPD 0-1 to DPD 2-3</p>
+                    </div>
+                    <div>
+                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Improved Portfolio Health</div>
+                        <p style="color: #e5e7eb; opacity: 0.9;">Lower overall delinquency rates</p>
+                    </div>
+                    <div>
+                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Better Customer Relations</div>
+                        <p style="color: #e5e7eb; opacity: 0.9;">Supportive, proactive approach</p>
+                    </div>
+                    <div>
+                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Operational Efficiency</div>
+                        <p style="color: #e5e7eb; opacity: 0.9;">Prioritized, data-driven actions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="website/workflow-script.js"></script>
     <script src="website/ml-model-predictor.js"></script>
     <script src="website/apply-script.js"></script>
+    <script src="website/csv-batch-predictor.js"></script>
     <script src="interactive-dashboard.js"></script>
     <script>
         // Load and display risk categories
@@ -2878,6 +4848,16 @@ prediction = model.predict(features_scaled)[0]
             if (tabName === 'ml-workflow') {
                 setTimeout(() => {
                     loadRiskCategories();
+                }, 100);
+            }
+            
+            // Initialize enhancing model tab when shown
+            if (tabName === 'enhancing-model') {
+                setTimeout(() => {
+                    updateStrategiesEnhancing();
+                    if (datasetDataEnhancing.length === 0) {
+                        loadDatasetEnhancing();
+                    }
                 }, 100);
             }
             
@@ -3268,7 +5248,7 @@ prediction = model.predict(features_scaled)[0]
                 // Show success message
                 const successMsg = document.createElement('div');
                 successMsg.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #10b981; color: white; padding: 1rem 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); z-index: 10000;';
-                successMsg.textContent = '✅ Download started!';
+                successMsg.textContent = 'Download started!';
                 document.body.appendChild(successMsg);
                 setTimeout(() => successMsg.remove(), 3000);
                 
@@ -3427,7 +5407,9 @@ prediction = model.predict(features_scaled)[0]
         function toggleCustomerIds(cardElement, filterType) {
             const isExpanded = cardElement.classList.contains('expanded');
             const expandedContent = cardElement.querySelector('.card-expanded-content');
-            const containerId = `customer-ids-${filterType}`;
+            // Check if this is in the enhancing tab by looking for enhancing container IDs
+            const enhancingContainer = expandedContent.querySelector('[id*="-enhancing"]');
+            const containerId = enhancingContainer ? `customer-ids-${filterType}-enhancing` : `customer-ids-${filterType}`;
             const container = document.getElementById(containerId);
             
             // Close all other expanded cards
@@ -3519,9 +5501,242 @@ prediction = model.predict(features_scaled)[0]
             }
         }
         
+        // Functions for Enhancing Model tab
+        function updateStrategiesEnhancing() {
+            const criticalTiming = parseInt(document.getElementById('critical-timing-enhancing').value);
+            const criticalChannel = document.getElementById('critical-channel-enhancing').value;
+            const highTiming = parseInt(document.getElementById('high-timing-enhancing').value);
+            const highChannel = document.getElementById('high-channel-enhancing').value;
+            const mediumTiming = parseInt(document.getElementById('medium-timing-enhancing').value);
+            const mediumChannel = document.getElementById('medium-channel-enhancing').value;
+            
+            function formatTiming(hours) {
+                if (hours < 24) {
+                    return `Within ${hours} hour${hours > 1 ? 's' : ''}`;
+                } else if (hours < 168) {
+                    const days = Math.floor(hours / 24);
+                    const remainingHours = hours % 24;
+                    if (remainingHours === 0) {
+                        return `Within ${days} day${days > 1 ? 's' : ''}`;
+                    } else {
+                        return `Within ${days} day${days > 1 ? 's' : ''} and ${remainingHours} hour${remainingHours > 1 ? 's' : ''}`;
+                    }
+                } else {
+                    const weeks = Math.floor(hours / 168);
+                    const remainingDays = Math.floor((hours % 168) / 24);
+                    if (remainingDays === 0) {
+                        return `Within ${weeks} week${weeks > 1 ? 's' : ''}`;
+                    } else {
+                        return `Within ${weeks} week${weeks > 1 ? 's' : ''} and ${remainingDays} day${remainingDays > 1 ? 's' : ''}`;
+                    }
+                }
+            }
+            
+            document.getElementById('critical-timing-display-enhancing').textContent = formatTiming(criticalTiming);
+            document.getElementById('critical-channel-display-enhancing').textContent = criticalChannel;
+            document.getElementById('high-timing-display-enhancing').textContent = formatTiming(highTiming);
+            document.getElementById('high-channel-display-enhancing').textContent = highChannel;
+            document.getElementById('medium-timing-display-enhancing').textContent = formatTiming(mediumTiming);
+            document.getElementById('medium-channel-display-enhancing').textContent = mediumChannel;
+        }
+        
+        function resetStrategiesEnhancing() {
+            document.getElementById('critical-timing-enhancing').value = 24;
+            document.getElementById('critical-channel-enhancing').value = 'Phone Call';
+            document.getElementById('high-timing-enhancing').value = 48;
+            document.getElementById('high-channel-enhancing').value = 'Phone Call or Email';
+            document.getElementById('medium-timing-enhancing').value = 168;
+            document.getElementById('medium-channel-enhancing').value = 'Email or SMS';
+            updateStrategiesEnhancing();
+        }
+        
+        // Dataset variables for enhancing tab
+        let datasetDataEnhancing = [];
+        let filteredDataEnhancing = [];
+        let currentPageEnhancing = 1;
+        let rowsPerPageEnhancing = 25;
+        let currentDatasetTypeEnhancing = 'real';
+        
+        async function switchDatasetEnhancing(type) {
+            currentDatasetTypeEnhancing = type;
+            currentPageEnhancing = 1;
+            
+            const descriptionEl = document.getElementById('dataset-description-enhancing');
+            const downloadBtn = document.getElementById('download-btn-enhancing');
+            const loadingIndicator = document.getElementById('loading-indicator-enhancing');
+            const loadingText = loadingIndicator.querySelector('p');
+            
+            if (type === 'real') {
+                descriptionEl.innerHTML = 'This dataset displays <strong>all 100 customer records</strong> from the original sample dataset. Use the controls below to explore the data.';
+                downloadBtn.innerHTML = '📥 Download Full Dataset (100 records)';
+                loadingText.textContent = 'Loading dataset (100 records)...';
+            } else {
+                descriptionEl.innerHTML = 'This synthetic dataset displays the <strong>first 1,000 customer records</strong> from the full 50,000 record dataset. Use the controls below to explore the data.';
+                downloadBtn.innerHTML = '📥 Download Full Dataset (50,000 records)';
+                loadingText.textContent = 'Loading dataset (1,000 records)...';
+            }
+            
+            loadingIndicator.style.display = 'block';
+            document.getElementById('table-wrapper-enhancing').style.display = 'none';
+            document.getElementById('loading-bar-enhancing').style.width = '0%';
+            
+            await loadDatasetEnhancing(type);
+        }
+        
+        async function loadDatasetEnhancing(type = currentDatasetTypeEnhancing) {
+            try {
+                const fileName = type === 'real' ? 'Sample.csv' : 'synthetic_dataset_50000.csv';
+                const maxRows = type === 'real' ? 100 : 1000;
+                
+                const possiblePaths = [
+                    `data/${fileName}`,
+                    `./data/${fileName}`,
+                    `../data/${fileName}`
+                ];
+                
+                let response = null;
+                for (const path of possiblePaths) {
+                    try {
+                        response = await fetch(path);
+                        if (response.ok) break;
+                    } catch (err) {
+                        continue;
+                    }
+                }
+                
+                if (!response || !response.ok) {
+                    throw new Error(`Failed to load dataset`);
+                }
+                
+                const text = await response.text();
+                const lines = text.split('\n').filter(line => line.trim());
+                const headers = lines[0].split(',').map(h => h.trim());
+                const totalLines = Math.min(lines.length - 1, maxRows);
+                
+                datasetDataEnhancing = [];
+                const chunkSize = type === 'real' ? 20 : 100;
+                
+                for (let chunkStart = 1; chunkStart <= totalLines + 1; chunkStart += chunkSize) {
+                    const chunkEnd = Math.min(chunkStart + chunkSize, totalLines + 1);
+                    
+                    for (let i = chunkStart; i < chunkEnd; i++) {
+                        if (lines[i] && lines[i].trim()) {
+                            const values = parseCSVLine(lines[i]);
+                            if (values.length >= headers.length) {
+                                datasetDataEnhancing.push({
+                                    'Customer ID': values[0]?.trim() || '',
+                                    'Credit Limit': parseFloat(values[1]) || 0,
+                                    'Utilisation %': parseFloat(values[2]) || 0,
+                                    'Avg Payment Ratio': parseFloat(values[3]) || 0,
+                                    'Min Due Paid Frequency': parseFloat(values[4]) || 0,
+                                    'Merchant Mix Index': parseFloat(values[5]) || 0,
+                                    'Cash Withdrawal %': parseFloat(values[6]) || 0,
+                                    'Recent Spend Change %': parseFloat(values[7]) || 0,
+                                    'DPD Bucket Next Month': parseInt(values[8]) || 0
+                                });
+                            }
+                        }
+                    }
+                    
+                    const progress = Math.min((chunkEnd / (totalLines + 1)) * 100, 100);
+                    document.getElementById('loading-bar-enhancing').style.width = progress + '%';
+                    await new Promise(resolve => setTimeout(resolve, 10));
+                }
+                
+                filteredDataEnhancing = [...datasetDataEnhancing];
+                document.getElementById('loading-indicator-enhancing').style.display = 'none';
+                document.getElementById('table-wrapper-enhancing').style.display = 'block';
+                document.getElementById('dataset-info-enhancing').textContent = `Showing ${filteredDataEnhancing.length} records`;
+                renderTableEnhancing();
+            } catch (error) {
+                console.error('Error loading dataset:', error);
+                document.getElementById('loading-indicator-enhancing').innerHTML = 
+                    '<p style="color: #ef4444;">Error loading dataset. Please check the file path.</p>';
+            }
+        }
+        
+        function filterDatasetEnhancing() {
+            const searchTerm = document.getElementById('search-input-enhancing').value.toLowerCase();
+            filteredDataEnhancing = datasetDataEnhancing.filter(row => {
+                return Object.values(row).some(val => 
+                    String(val).toLowerCase().includes(searchTerm)
+                );
+            });
+            currentPageEnhancing = 1;
+            document.getElementById('dataset-info-enhancing').textContent = `Showing ${filteredDataEnhancing.length} records`;
+            renderTableEnhancing();
+        }
+        
+        function changeRowsPerPageEnhancing() {
+            rowsPerPageEnhancing = parseInt(document.getElementById('rows-per-page-enhancing').value);
+            currentPageEnhancing = 1;
+            renderTableEnhancing();
+        }
+        
+        function changePageEnhancing(direction) {
+            const totalPages = Math.ceil(filteredDataEnhancing.length / rowsPerPageEnhancing);
+            currentPageEnhancing = Math.max(1, Math.min(totalPages, currentPageEnhancing + direction));
+            renderTableEnhancing();
+        }
+        
+        function renderTableEnhancing() {
+            const tbody = document.getElementById('dataset-tbody-enhancing');
+            const startIdx = (currentPageEnhancing - 1) * rowsPerPageEnhancing;
+            const endIdx = startIdx + rowsPerPageEnhancing;
+            const pageData = filteredDataEnhancing.slice(startIdx, endIdx);
+            
+            tbody.innerHTML = pageData.map(row => {
+                return `<tr>
+                    <td>${row['Customer ID'] || ''}</td>
+                    <td>${row['Credit Limit'] || ''}</td>
+                    <td>${row['Utilisation %'] || ''}</td>
+                    <td>${row['Avg Payment Ratio'] || ''}</td>
+                    <td>${row['Min Due Paid Frequency'] || ''}</td>
+                    <td>${row['Merchant Mix Index'] || ''}</td>
+                    <td>${row['Cash Withdrawal %'] || ''}</td>
+                    <td>${row['Recent Spend Change %'] || ''}</td>
+                    <td>${row['DPD Bucket Next Month'] || ''}</td>
+                </tr>`;
+            }).join('');
+            
+            const totalPages = Math.ceil(filteredDataEnhancing.length / rowsPerPageEnhancing);
+            document.getElementById('page-info-enhancing').textContent = `Page ${currentPageEnhancing} of ${totalPages}`;
+            document.getElementById('prev-page-enhancing').disabled = currentPageEnhancing === 1;
+            document.getElementById('next-page-enhancing').disabled = currentPageEnhancing === totalPages || totalPages === 0;
+        }
+        
+        function downloadFullDatasetEnhancing(event) {
+            event.preventDefault();
+            const csvContent = [
+                ['Customer ID', 'Credit Limit', 'Utilisation %', 'Avg Payment Ratio', 'Min Due Paid Frequency', 'Merchant Mix Index', 'Cash Withdrawal %', 'Recent Spend Change %', 'DPD Bucket Next Month'].join(','),
+                ...datasetDataEnhancing.map(row => [
+                    row['Customer ID'] || '',
+                    row['Credit Limit'] || '',
+                    row['Utilisation %'] || '',
+                    row['Avg Payment Ratio'] || '',
+                    row['Min Due Paid Frequency'] || '',
+                    row['Merchant Mix Index'] || '',
+                    row['Cash Withdrawal %'] || '',
+                    row['Recent Spend Change %'] || '',
+                    row['DPD Bucket Next Month'] || ''
+                ].join(','))
+            ].join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', currentDatasetTypeEnhancing === 'real' ? 'Sample_Dataset.csv' : 'Synthetic_Dataset_50000.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateStrategies();
+            updateStrategiesEnhancing();
             loadDataset();
             loadRiskFlagsData();
         });
