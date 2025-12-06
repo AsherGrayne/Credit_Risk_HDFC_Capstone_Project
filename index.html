@@ -1873,6 +1873,176 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         </div>
 
     </div>
+        <!-- Important Features Tab Content -->
+        <div id="features-tab" class="tab-content">
+            <div class="workflow-container" style="padding: 3rem 20px;">
+                <div class="step-header" style="margin-bottom: 3rem;">
+                    <div class="step-content">
+                        <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Important Features for Credit Card Delinquency Prediction</h2>
+                        <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Market research and academic studies identifying the most predictive features for early delinquency detection</p>
+                    </div>
+                </div>
+    
+                <!-- Feature 1: Recent Spend Change % -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">1</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Recent Spend Change %</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Recent spending behavior changes are among the strongest predictors of credit card delinquency. Sudden increases may indicate liquidity stress, while sharp decreases can signal financial distress or inability to pay.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Research (2023):</strong> "Behavioral scoring models found that spending acceleration is one of the strongest predictors of delinquency, with spending volatility ranking in the top 3 features for next-month default prediction."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Experian Credit Trends Report (2022):</strong> "Transaction behavior changes outperform static features like income or credit limit by 15-20% in predictive accuracy. Spending pattern shifts precede delinquency by 30-60 days."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Banking & Finance (2021):</strong> "Spending volatility metrics show a 2.8× higher correlation with 90-day delinquency compared to traditional credit bureau scores."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #1 Most Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 2: Utilisation % -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">2</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Utilisation % (Credit Utilization)</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit utilization rate is one of the most validated predictors in credit risk models. High utilization indicates higher default probability, while low utilization shows customers maintain liquidity buffers.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Credit Risk (2021):</strong> "Credit utilization ratio consistently ranks as the top predictor in credit risk scoring models, accounting for 25-30% of predictive power in FICO and VantageScore models."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">TransUnion Insights (2024):</strong> "Borrowers with >80% utilization have 3× higher delinquency rates. Utilization above 90% increases default probability by 5× within 6 months."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Federal Reserve Bank Study (2022):</strong> "Utilization ratio is the second most important factor in credit scoring models, with rapid increases (>20% month-over-month) being a strong early warning signal."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #2 Most Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 3: Min Due Paid Frequency -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">3</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Min Due Paid Frequency</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Customers who frequently pay only the minimum are well-documented to be liquidity-constrained and more likely to become delinquent within 30-90 days. This behavior pattern is a powerful early indicator.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">American Economic Review (2022):</strong> "Minimum-payment behavior is a powerful early sign of future default. Customers paying minimum due for 3+ consecutive months have 2.3× higher probability of entering DPD 30/60/90."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">RBI Financial Stability Report (2023):</strong> "Regular minimum payers show 40% higher roll-rate from current to 30-day delinquency. This pattern precedes 60% of all credit card defaults."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Research Center (2021):</strong> "Minimum payment frequency is a stronger predictor than payment amount, indicating cash flow constraints that lead to delinquency."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #3 Most Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 4: Merchant Mix Index -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">4</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Merchant Mix Index</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Spending on specific merchant categories reflects financial stress. More spending on essentials (groceries, utilities) indicates financial tightening, while drops in discretionary categories signal stress. Increases in risk categories correlate with delinquency.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Visa Analytics (2022):</strong> "Merchant category behavior enhances predictive accuracy by ~7-10%. Shifts from discretionary to essential spending predict delinquency 45-60 days in advance."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">McKinsey Banking Report (2023):</strong> "Category shifts predict delinquency better than total spend. Increases in cash advances, gambling, and payday loans are 4× more predictive than spending volume."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Financial Services Research (2021):</strong> "Merchant category analysis adds 12% incremental predictive power over traditional credit bureau scores, particularly for early-stage delinquency."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #4 Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 5: Cash Withdrawal % -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">5</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Cash Withdrawal %</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Cash withdrawals from credit cards are highly correlated with high-risk borrowers, representing emergency liquidity behavior linked with near-term default. This is a strong distress signal.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Card Insights (2021):</strong> "Cash-from-credit is an emergency liquidity behavior linked with near-term default. Customers with >15% cash withdrawal ratio have 3.5× higher 90-day delinquency rates."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Consumer Financial Protection Bureau Study (2022):</strong> "Cash advances from credit cards are associated with 2.8× higher probability of default within 90 days. This behavior indicates severe cash flow constraints."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Industry Report (2023):</strong> "Cash withdrawal patterns are among the top 5 behavioral indicators for delinquency prediction, particularly effective for identifying high-risk segments."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #5 Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 6: Avg Payment Ratio -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">6</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Avg Payment Ratio</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Lower payment ratios (paying small portions of outstanding balance) are risk indicators that identify customers transitioning into delinquency phases. Declining payment ratios signal financial stress.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Bank for International Settlements (BIS) (2023):</strong> "Payment-to-spend ratio identifies customers transitioning into delinquency phases. Ratios below 30% increase default risk by 2.2×."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Consumer Research (2022):</strong> "Declining payment ratios over 3 months are a stronger predictor than absolute payment amounts, indicating deteriorating financial capacity."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Risk Management Study (2021):</strong> "Average payment ratio complements utilization metrics and provides incremental predictive power, especially for early-stage risk detection."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #6 Important Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Feature 7: Credit Limit -->
+                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">7</div>
+                        <div style="flex: 1;">
+                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Credit Limit</h3>
+                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit limit affects how close a user is to maxing out their credit. Low-limit users are more sensitive to shocks, while high-limit users show early delinquency signals through utilization spikes. It interacts strongly with utilization metrics.</p>
+                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Finance (2020):</strong> "Credit limit interacts strongly with utilization and is a core feature of bureau scoring models. Low limits combined with high utilization create 2.5× higher default risk."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Scoring Research (2022):</strong> "Credit limit serves as a proxy for creditworthiness but is less predictive than utilization ratio. However, limit reductions often precede delinquency by 60-90 days."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Financial Services Review (2021):</strong> "Credit limit is important for risk segmentation but shows lower standalone predictive power compared to behavioral features like spending patterns and utilization."</li>
+                                </ul>
+                                <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #7 Supporting Feature</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Summary Section -->
+                <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 3rem; border: 1px solid #1e293b;">
+                    <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                        Key Findings: Most Important Features for Delinquency Prediction
+                    </h3>
+                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Top 3 Most Critical Features:</strong></p>
+                        <ol style="color: #e5e7eb; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
+                            <li><strong>Recent Spend Change %</strong> - Strongest predictor with 2.8× correlation to 90-day delinquency</li>
+                            <li><strong>Utilisation %</strong> - Accounts for 25-30% of predictive power in credit scoring models</li>
+                            <li><strong>Min Due Paid Frequency</strong> - 2.3× higher probability of entering DPD when paying minimum for 3+ months</li>
+                    </ol>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem;">
+                        <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem;"><strong>Research Consensus:</strong></p>
+                        <p style="color: #e5e7eb; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Interactive Dashboard Tab Content -->
     <div id="dashboard-tab" class="tab-content active">
@@ -3826,177 +3996,6 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="risk-flags" id="riskFlags">
                     <h3>Early Warning Flags</h3>
                     <div id="flagsList"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Important Features Tab Content -->
-    <div id="features-tab" class="tab-content">
-        <div class="workflow-container" style="padding: 3rem 20px;">
-            <div class="step-header" style="margin-bottom: 3rem;">
-                <div class="step-content">
-                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Important Features for Credit Card Delinquency Prediction</h2>
-                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Market research and academic studies identifying the most predictive features for early delinquency detection</p>
-                </div>
-            </div>
-
-            <!-- Feature 1: Recent Spend Change % -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">1</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Recent Spend Change %</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Recent spending behavior changes are among the strongest predictors of credit card delinquency. Sudden increases may indicate liquidity stress, while sharp decreases can signal financial distress or inability to pay.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Research (2023):</strong> "Behavioral scoring models found that spending acceleration is one of the strongest predictors of delinquency, with spending volatility ranking in the top 3 features for next-month default prediction."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Experian Credit Trends Report (2022):</strong> "Transaction behavior changes outperform static features like income or credit limit by 15-20% in predictive accuracy. Spending pattern shifts precede delinquency by 30-60 days."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Banking & Finance (2021):</strong> "Spending volatility metrics show a 2.8× higher correlation with 90-day delinquency compared to traditional credit bureau scores."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #1 Most Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 2: Utilisation % -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">2</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Utilisation % (Credit Utilization)</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit utilization rate is one of the most validated predictors in credit risk models. High utilization indicates higher default probability, while low utilization shows customers maintain liquidity buffers.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Credit Risk (2021):</strong> "Credit utilization ratio consistently ranks as the top predictor in credit risk scoring models, accounting for 25-30% of predictive power in FICO and VantageScore models."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">TransUnion Insights (2024):</strong> "Borrowers with >80% utilization have 3× higher delinquency rates. Utilization above 90% increases default probability by 5× within 6 months."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Federal Reserve Bank Study (2022):</strong> "Utilization ratio is the second most important factor in credit scoring models, with rapid increases (>20% month-over-month) being a strong early warning signal."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #2 Most Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 3: Min Due Paid Frequency -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">3</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Min Due Paid Frequency</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Customers who frequently pay only the minimum are well-documented to be liquidity-constrained and more likely to become delinquent within 30-90 days. This behavior pattern is a powerful early indicator.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">American Economic Review (2022):</strong> "Minimum-payment behavior is a powerful early sign of future default. Customers paying minimum due for 3+ consecutive months have 2.3× higher probability of entering DPD 30/60/90."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">RBI Financial Stability Report (2023):</strong> "Regular minimum payers show 40% higher roll-rate from current to 30-day delinquency. This pattern precedes 60% of all credit card defaults."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Research Center (2021):</strong> "Minimum payment frequency is a stronger predictor than payment amount, indicating cash flow constraints that lead to delinquency."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #3 Most Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 4: Merchant Mix Index -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">4</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Merchant Mix Index</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Spending on specific merchant categories reflects financial stress. More spending on essentials (groceries, utilities) indicates financial tightening, while drops in discretionary categories signal stress. Increases in risk categories correlate with delinquency.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Visa Analytics (2022):</strong> "Merchant category behavior enhances predictive accuracy by ~7-10%. Shifts from discretionary to essential spending predict delinquency 45-60 days in advance."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">McKinsey Banking Report (2023):</strong> "Category shifts predict delinquency better than total spend. Increases in cash advances, gambling, and payday loans are 4× more predictive than spending volume."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Financial Services Research (2021):</strong> "Merchant category analysis adds 12% incremental predictive power over traditional credit bureau scores, particularly for early-stage delinquency."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #4 Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 5: Cash Withdrawal % -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">5</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Cash Withdrawal %</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Cash withdrawals from credit cards are highly correlated with high-risk borrowers, representing emergency liquidity behavior linked with near-term default. This is a strong distress signal.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Card Insights (2021):</strong> "Cash-from-credit is an emergency liquidity behavior linked with near-term default. Customers with >15% cash withdrawal ratio have 3.5× higher 90-day delinquency rates."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Consumer Financial Protection Bureau Study (2022):</strong> "Cash advances from credit cards are associated with 2.8× higher probability of default within 90 days. This behavior indicates severe cash flow constraints."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Industry Report (2023):</strong> "Cash withdrawal patterns are among the top 5 behavioral indicators for delinquency prediction, particularly effective for identifying high-risk segments."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #5 Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 6: Avg Payment Ratio -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">6</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Avg Payment Ratio</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Lower payment ratios (paying small portions of outstanding balance) are risk indicators that identify customers transitioning into delinquency phases. Declining payment ratios signal financial stress.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Bank for International Settlements (BIS) (2023):</strong> "Payment-to-spend ratio identifies customers transitioning into delinquency phases. Ratios below 30% increase default risk by 2.2×."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Consumer Research (2022):</strong> "Declining payment ratios over 3 months are a stronger predictor than absolute payment amounts, indicating deteriorating financial capacity."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Risk Management Study (2021):</strong> "Average payment ratio complements utilization metrics and provides incremental predictive power, especially for early-stage risk detection."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #6 Important Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feature 7: Credit Limit -->
-            <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
-                    <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">7</div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Credit Limit</h3>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit limit affects how close a user is to maxing out their credit. Low-limit users are more sensitive to shocks, while high-limit users show early delinquency signals through utilization spikes. It interacts strongly with utilization metrics.</p>
-                        <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                            <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Finance (2020):</strong> "Credit limit interacts strongly with utilization and is a core feature of bureau scoring models. Low limits combined with high utilization create 2.5× higher default risk."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Scoring Research (2022):</strong> "Credit limit serves as a proxy for creditworthiness but is less predictive than utilization ratio. However, limit reductions often precede delinquency by 60-90 days."</li>
-                                <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Financial Services Review (2021):</strong> "Credit limit is important for risk segmentation but shows lower standalone predictive power compared to behavioral features like spending patterns and utilization."</li>
-                            </ul>
-                            <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #7 Supporting Feature</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Summary Section -->
-            <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 3rem; border: 1px solid #1e293b;">
-                <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Key Findings: Most Important Features for Delinquency Prediction
-                </h3>
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Top 3 Most Critical Features:</strong></p>
-                    <ol style="color: #e5e7eb; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
-                        <li><strong>Recent Spend Change %</strong> - Strongest predictor with 2.8× correlation to 90-day delinquency</li>
-                        <li><strong>Utilisation %</strong> - Accounts for 25-30% of predictive power in credit scoring models</li>
-                        <li><strong>Min Due Paid Frequency</strong> - 2.3× higher probability of entering DPD when paying minimum for 3+ months</li>
-                </ol>
-                </div>
-                <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem;">
-                    <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem;"><strong>Research Consensus:</strong></p>
-                    <p style="color: #e5e7eb; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
                 </div>
             </div>
         </div>
