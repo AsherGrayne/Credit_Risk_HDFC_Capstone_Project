@@ -14,8 +14,8 @@
     <style>
         /* Tab Styles */
         .tabs-container {
-            background: #0f172a;
-            border-bottom: 1px solid #1e293b;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
             padding: 0;
         }
         
@@ -30,7 +30,7 @@
             padding: 1rem 2rem;
             background: transparent;
             border: none;
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
@@ -40,12 +40,12 @@
         }
         
         .tab:hover {
-            color: #e5e7eb;
+            color: #111827;
             background: rgba(139, 0, 0, 0.1);
         }
         
         .tab.active {
-            color: #e5e7eb;
+            color: #111827;
             border-bottom-color: #8b0000;
         }
         
@@ -99,17 +99,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border: 1px solid #1e293b;
+            border: 1px solid #e5e7eb;
         }
         
         .flip-card-front {
-            background: #020617;
-            color: #e5e7eb;
+            background: #ffffff;
+            color: #111827;
         }
         
         .flip-card-back {
-            background: #0f172a;
-            color: #e5e7eb;
+            background: #f9fafb;
+            color: #111827;
             transform: rotateY(180deg);
             overflow-y: auto;
             justify-content: flex-start;
@@ -123,7 +123,7 @@
         }
         
         .flip-card-front p {
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 0.9rem;
             margin-top: 0.5rem;
         }
@@ -136,14 +136,14 @@
         }
         
         .flip-card-back p {
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 0.875rem;
             line-height: 1.6;
             margin-bottom: 0.5rem;
         }
         
         .flip-card-back ul {
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 0.875rem;
             line-height: 1.6;
             margin-left: 1rem;
@@ -167,11 +167,12 @@
         }
         
         .risk-category-card {
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 1rem;
             padding: 1.5rem;
             border-left: 4px solid;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .risk-category-card.no-risk {
@@ -200,17 +201,17 @@
         .risk-category-title {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #e5e7eb;
+            color: #111827;
             margin: 0;
         }
         
         .risk-category-count {
-            background: #020617;
+            background: #f3f4f6;
             padding: 0.25rem 0.75rem;
             border-radius: 1rem;
             font-size: 0.875rem;
             font-weight: 600;
-            color: #9ca3af;
+            color: #6b7280;
         }
         
         .customer-list {
@@ -225,33 +226,33 @@
         }
         
         .customer-list::-webkit-scrollbar-track {
-            background: #020617;
+            background: #f3f4f6;
             border-radius: 3px;
         }
         
         .customer-list::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #d1d5db;
             border-radius: 3px;
         }
         
         .customer-list::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+            background: #9ca3af;
         }
         
         .customer-item {
             display: inline-block;
-            background: #020617;
+            background: #f9fafb;
             padding: 0.375rem 0.75rem;
             margin: 0.25rem;
             border-radius: 0.375rem;
             font-size: 0.875rem;
-            color: #9ca3af;
-            border: 1px solid #1e293b;
+            color: #6b7280;
+            border: 1px solid #e5e7eb;
         }
         
         .download-btn {
             background: #8b0000;
-            color: #e5e7eb;
+            color: #ffffff;
             border: none;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
@@ -279,11 +280,12 @@
         }
         
         .form-container {
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 1rem;
             padding: 2.5rem;
             margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .form-grid {
@@ -301,18 +303,18 @@
         .form-group label {
             font-size: 0.875rem;
             font-weight: 600;
-            color: #e5e7eb;
+            color: #374151;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
         
         .form-group input {
-            background: #020617;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #d1d5db;
             border-radius: 0.5rem;
             padding: 0.75rem 1rem;
-            color: #e5e7eb;
+            color: #111827;
             font-size: 1rem;
             transition: all 0.3s ease;
         }
@@ -324,7 +326,7 @@
         }
         
         .form-group input:hover {
-            border-color: #334155;
+            border-color: #9ca3af;
         }
         
         .submit-btn {
@@ -354,12 +356,13 @@
         }
         
         .result-container {
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 1rem;
             padding: 2.5rem;
             margin-top: 2rem;
             display: none;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         .result-container.show {
@@ -382,7 +385,7 @@
             font-size: 1.5rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: #e5e7eb;
+            color: #111827;
             border-left: 4px solid #8b0000;
             padding-left: 1rem;
         }
@@ -395,8 +398,8 @@
         }
         
         .result-card {
-            background: #020617;
-            border: 1px solid #1e293b;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
             border-radius: 0.5rem;
             padding: 1.5rem;
             text-align: center;
@@ -420,7 +423,7 @@
         
         .result-label {
             font-size: 0.875rem;
-            color: #9ca3af;
+            color: #6b7280;
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: 0.5rem;
@@ -429,7 +432,7 @@
         .result-value {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #e5e7eb;
+            color: #111827;
         }
         
         .risk-flags {
@@ -440,12 +443,12 @@
             font-size: 1.125rem;
             font-weight: 600;
             margin-bottom: 1rem;
-            color: #e5e7eb;
+            color: #111827;
         }
         
         .flag-item {
-            background: #020617;
-            border: 1px solid #1e293b;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
             border-left: 4px solid #8b0000;
             border-radius: 0.5rem;
             padding: 1rem;
@@ -453,13 +456,13 @@
         }
         
         .flag-item strong {
-            color: #e5e7eb;
+            color: #111827;
             display: block;
             margin-bottom: 0.5rem;
         }
         
         .flag-item span {
-            color: #9ca3af;
+            color: #6b7280;
             font-size: 0.875rem;
         }
         
@@ -467,7 +470,7 @@
             display: none;
             text-align: center;
             padding: 2rem;
-            color: #9ca3af;
+            color: #6b7280;
         }
         
         .loading.show {
@@ -479,7 +482,7 @@
             border: 1px solid #ef4444;
             border-radius: 0.5rem;
             padding: 1rem;
-            color: #ef4444;
+            color: #dc2626;
             margin-top: 1rem;
             display: none;
         }
@@ -499,17 +502,18 @@
             text-align: center;
             margin-bottom: 3rem;
             padding: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
             border-radius: 1rem;
-            border: 1px solid #1e293b;
+            border: 1px solid #e5e7eb;
             position: relative;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .dashboard-header h1 {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, #e5e7eb 0%, #9ca3af 100%);
+            background: linear-gradient(135deg, #111827 0%, #374151 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -522,16 +526,17 @@
         }
 
         .dashboard-card {
-            background: #0f172a;
-            border: 1px solid #1e293b;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 1rem;
             padding: 2rem;
             transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .dashboard-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.15);
             border-color: #8b0000;
         }
 
@@ -545,7 +550,7 @@
         .card-header h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #e5e7eb;
+            color: #111827;
         }
 
         .slider-group {
@@ -557,19 +562,19 @@
             justify-content: space-between;
             margin-bottom: 0.5rem;
             font-size: 0.875rem;
-            color: #9ca3af;
+            color: #6b7280;
         }
 
         .slider-label span {
             font-weight: 600;
-            color: #e5e7eb;
+            color: #111827;
         }
 
         .slider {
             width: 100%;
             height: 8px;
             border-radius: 5px;
-            background: #1e293b;
+            background: #e5e7eb;
             outline: none;
             -webkit-appearance: none;
         }
@@ -608,9 +613,9 @@
         .risk-level-display {
             text-align: center;
             padding: 2rem;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
             border-radius: 1rem;
-            border: 2px solid #1e293b;
+            border: 2px solid #e5e7eb;
             transition: all 0.3s ease;
         }
 
@@ -653,7 +658,7 @@
 
         .risk-probability {
             font-size: 1.5rem;
-            color: #9ca3af;
+            color: #6b7280;
         }
 
         .chart-container {
@@ -670,14 +675,14 @@
         .flag-item {
             padding: 1rem;
             margin-bottom: 0.5rem;
-            background: #020617;
+            background: #f9fafb;
             border-left: 4px solid #8b0000;
             border-radius: 0.5rem;
             transition: all 0.3s ease;
         }
 
         .flag-item:hover {
-            background: #1e293b;
+            background: #f3f4f6;
             transform: translateX(5px);
         }
 
@@ -708,9 +713,14 @@
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
+        /* Body Light Mode */
+        body {
+            background: #ffffff;
+            color: #111827;
+        }
     </style>
 </head>
-<body>
+<body style="background: #ffffff; color: #111827;">
     <!-- Header -->
     <header class="workflow-header">
         <div class="container">
@@ -783,19 +793,19 @@
                     </div>
                     <div class="detail-section">
                         <h3>Process Flow</h3>
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem;">
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">1. Load Data</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">2. Engineer Features</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">3. Generate Flags</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">4. Train Model</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">5. Create Strategies</span>
                             </div>
-                            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">Each step builds upon the previous one, transforming raw data into actionable insights for proactive customer intervention.</p>
+                            <p style="color: #6b7280; margin: 0; font-size: 0.875rem;">Each step builds upon the previous one, transforming raw data into actionable insights for proactive customer intervention.</p>
                         </div>
                     </div>
                 </div>
@@ -1530,11 +1540,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="detail-section">
                         <h3>Dataset Selection</h3>
                         <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 8px; border: 2px solid #d1d5db; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="real" id="dataset-real" checked onchange="switchDataset('real')" style="cursor: pointer;">
                                 <span>Real Dataset (100 records)</span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 8px; border: 2px solid #d1d5db; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type" value="synthetic" id="dataset-synthetic" onchange="switchDataset('synthetic')" style="cursor: pointer;">
                                 <span>Synthetic Dataset (50,000 records)</span>
                             </label>
@@ -1568,10 +1578,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         </div>
                         
                         <div class="dataset-container">
-                            <div id="loading-indicator" style="text-align: center; padding: 2rem; color: #9ca3af;">
+                            <div id="loading-indicator" style="text-align: center; padding: 2rem; color: #6b7280;">
                                 <p>Loading dataset (1,000 records)...</p>
                                 <div style="margin-top: 1rem;">
-                                    <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
+                                    <div style="display: inline-block; width: 200px; height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden;">
                                         <div id="loading-bar" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
                                     </div>
                                 </div>
@@ -1693,24 +1703,24 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             <div class="workflow-container" style="padding: 3rem 20px;">
                 <div class="step-header" style="margin-bottom: 3rem;">
                     <div class="step-content">
-                        <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Important Features for Credit Card Delinquency Prediction</h2>
-                        <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Market research and academic studies identifying the most predictive features for early delinquency detection</p>
+                        <h2 style="font-size: 2.5rem; color: #111827; margin-bottom: 1rem;">Important Features for Credit Card Delinquency Prediction</h2>
+                        <p class="step-subtitle" style="font-size: 1.125rem; color: #6b7280;">Market research and academic studies identifying the most predictive features for early delinquency detection</p>
                     </div>
                 </div>
     
                 <!-- Feature 1: Recent Spend Change % -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">1</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Recent Spend Change %</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Recent spending behavior changes are among the strongest predictors of credit card delinquency. Sudden increases may indicate liquidity stress, while sharp decreases can signal financial distress or inability to pay.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Research (2023):</strong> "Behavioral scoring models found that spending acceleration is one of the strongest predictors of delinquency, with spending volatility ranking in the top 3 features for next-month default prediction."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Experian Credit Trends Report (2022):</strong> "Transaction behavior changes outperform static features like income or credit limit by 15-20% in predictive accuracy. Spending pattern shifts precede delinquency by 30-60 days."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Banking & Finance (2021):</strong> "Spending volatility metrics show a 2.8× higher correlation with 90-day delinquency compared to traditional credit bureau scores."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Recent Spend Change %</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Recent spending behavior changes are among the strongest predictors of credit card delinquency. Sudden increases may indicate liquidity stress, while sharp decreases can signal financial distress or inability to pay.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">FICO Research (2023):</strong> "Behavioral scoring models found that spending acceleration is one of the strongest predictors of delinquency, with spending volatility ranking in the top 3 features for next-month default prediction."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Experian Credit Trends Report (2022):</strong> "Transaction behavior changes outperform static features like income or credit limit by 15-20% in predictive accuracy. Spending pattern shifts precede delinquency by 30-60 days."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Journal of Banking & Finance (2021):</strong> "Spending volatility metrics show a 2.8× higher correlation with 90-day delinquency compared to traditional credit bureau scores."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #1 Most Important Feature</p>
                             </div>
@@ -1719,18 +1729,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 2: Utilisation % -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">2</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Utilisation % (Credit Utilization)</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit utilization rate is one of the most validated predictors in credit risk models. High utilization indicates higher default probability, while low utilization shows customers maintain liquidity buffers.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Credit Risk (2021):</strong> "Credit utilization ratio consistently ranks as the top predictor in credit risk scoring models, accounting for 25-30% of predictive power in FICO and VantageScore models."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">TransUnion Insights (2024):</strong> "Borrowers with >80% utilization have 3× higher delinquency rates. Utilization above 90% increases default probability by 5× within 6 months."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Federal Reserve Bank Study (2022):</strong> "Utilization ratio is the second most important factor in credit scoring models, with rapid increases (>20% month-over-month) being a strong early warning signal."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Utilisation % (Credit Utilization)</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit utilization rate is one of the most validated predictors in credit risk models. High utilization indicates higher default probability, while low utilization shows customers maintain liquidity buffers.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Journal of Credit Risk (2021):</strong> "Credit utilization ratio consistently ranks as the top predictor in credit risk scoring models, accounting for 25-30% of predictive power in FICO and VantageScore models."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">TransUnion Insights (2024):</strong> "Borrowers with >80% utilization have 3× higher delinquency rates. Utilization above 90% increases default probability by 5× within 6 months."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Federal Reserve Bank Study (2022):</strong> "Utilization ratio is the second most important factor in credit scoring models, with rapid increases (>20% month-over-month) being a strong early warning signal."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #2 Most Important Feature</p>
                             </div>
@@ -1739,18 +1749,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 3: Min Due Paid Frequency -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">3</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Min Due Paid Frequency</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Customers who frequently pay only the minimum are well-documented to be liquidity-constrained and more likely to become delinquent within 30-90 days. This behavior pattern is a powerful early indicator.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">American Economic Review (2022):</strong> "Minimum-payment behavior is a powerful early sign of future default. Customers paying minimum due for 3+ consecutive months have 2.3× higher probability of entering DPD 30/60/90."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">RBI Financial Stability Report (2023):</strong> "Regular minimum payers show 40% higher roll-rate from current to 30-day delinquency. This pattern precedes 60% of all credit card defaults."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Research Center (2021):</strong> "Minimum payment frequency is a stronger predictor than payment amount, indicating cash flow constraints that lead to delinquency."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Min Due Paid Frequency</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Customers who frequently pay only the minimum are well-documented to be liquidity-constrained and more likely to become delinquent within 30-90 days. This behavior pattern is a powerful early indicator.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">American Economic Review (2022):</strong> "Minimum-payment behavior is a powerful early sign of future default. Customers paying minimum due for 3+ consecutive months have 2.3× higher probability of entering DPD 30/60/90."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">RBI Financial Stability Report (2023):</strong> "Regular minimum payers show 40% higher roll-rate from current to 30-day delinquency. This pattern precedes 60% of all credit card defaults."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Credit Card Research Center (2021):</strong> "Minimum payment frequency is a stronger predictor than payment amount, indicating cash flow constraints that lead to delinquency."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #3 Most Important Feature</p>
                             </div>
@@ -1759,18 +1769,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 4: Merchant Mix Index -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">4</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Merchant Mix Index</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Spending on specific merchant categories reflects financial stress. More spending on essentials (groceries, utilities) indicates financial tightening, while drops in discretionary categories signal stress. Increases in risk categories correlate with delinquency.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Visa Analytics (2022):</strong> "Merchant category behavior enhances predictive accuracy by ~7-10%. Shifts from discretionary to essential spending predict delinquency 45-60 days in advance."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">McKinsey Banking Report (2023):</strong> "Category shifts predict delinquency better than total spend. Increases in cash advances, gambling, and payday loans are 4× more predictive than spending volume."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Financial Services Research (2021):</strong> "Merchant category analysis adds 12% incremental predictive power over traditional credit bureau scores, particularly for early-stage delinquency."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Merchant Mix Index</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Spending on specific merchant categories reflects financial stress. More spending on essentials (groceries, utilities) indicates financial tightening, while drops in discretionary categories signal stress. Increases in risk categories correlate with delinquency.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Visa Analytics (2022):</strong> "Merchant category behavior enhances predictive accuracy by ~7-10%. Shifts from discretionary to essential spending predict delinquency 45-60 days in advance."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">McKinsey Banking Report (2023):</strong> "Category shifts predict delinquency better than total spend. Increases in cash advances, gambling, and payday loans are 4× more predictive than spending volume."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Journal of Financial Services Research (2021):</strong> "Merchant category analysis adds 12% incremental predictive power over traditional credit bureau scores, particularly for early-stage delinquency."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #4 Important Feature</p>
                             </div>
@@ -1779,18 +1789,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 5: Cash Withdrawal % -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">5</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Cash Withdrawal %</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Cash withdrawals from credit cards are highly correlated with high-risk borrowers, representing emergency liquidity behavior linked with near-term default. This is a strong distress signal.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">FICO Card Insights (2021):</strong> "Cash-from-credit is an emergency liquidity behavior linked with near-term default. Customers with >15% cash withdrawal ratio have 3.5× higher 90-day delinquency rates."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Consumer Financial Protection Bureau Study (2022):</strong> "Cash advances from credit cards are associated with 2.8× higher probability of default within 90 days. This behavior indicates severe cash flow constraints."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Card Industry Report (2023):</strong> "Cash withdrawal patterns are among the top 5 behavioral indicators for delinquency prediction, particularly effective for identifying high-risk segments."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Cash Withdrawal %</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Cash withdrawals from credit cards are highly correlated with high-risk borrowers, representing emergency liquidity behavior linked with near-term default. This is a strong distress signal.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">FICO Card Insights (2021):</strong> "Cash-from-credit is an emergency liquidity behavior linked with near-term default. Customers with >15% cash withdrawal ratio have 3.5× higher 90-day delinquency rates."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Consumer Financial Protection Bureau Study (2022):</strong> "Cash advances from credit cards are associated with 2.8× higher probability of default within 90 days. This behavior indicates severe cash flow constraints."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Credit Card Industry Report (2023):</strong> "Cash withdrawal patterns are among the top 5 behavioral indicators for delinquency prediction, particularly effective for identifying high-risk segments."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #5 Important Feature</p>
                             </div>
@@ -1799,18 +1809,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 6: Avg Payment Ratio -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">6</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Avg Payment Ratio</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Lower payment ratios (paying small portions of outstanding balance) are risk indicators that identify customers transitioning into delinquency phases. Declining payment ratios signal financial stress.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Bank for International Settlements (BIS) (2023):</strong> "Payment-to-spend ratio identifies customers transitioning into delinquency phases. Ratios below 30% increase default risk by 2.2×."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Consumer Research (2022):</strong> "Declining payment ratios over 3 months are a stronger predictor than absolute payment amounts, indicating deteriorating financial capacity."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Risk Management Study (2021):</strong> "Average payment ratio complements utilization metrics and provides incremental predictive power, especially for early-stage risk detection."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Avg Payment Ratio</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Lower payment ratios (paying small portions of outstanding balance) are risk indicators that identify customers transitioning into delinquency phases. Declining payment ratios signal financial stress.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Bank for International Settlements (BIS) (2023):</strong> "Payment-to-spend ratio identifies customers transitioning into delinquency phases. Ratios below 30% increase default risk by 2.2×."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Journal of Consumer Research (2022):</strong> "Declining payment ratios over 3 months are a stronger predictor than absolute payment amounts, indicating deteriorating financial capacity."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Credit Risk Management Study (2021):</strong> "Average payment ratio complements utilization metrics and provides incremental predictive power, especially for early-stage risk detection."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #6 Important Feature</p>
                             </div>
@@ -1819,18 +1829,18 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Feature 7: Credit Limit -->
-                <div class="feature-card" style="background: #0f172a; border: 1px solid #1e293b; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
                         <div style="background: #8b0000; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.25rem; flex-shrink: 0;">7</div>
                         <div style="flex: 1;">
-                            <h3 style="color: #e5e7eb; font-size: 1.5rem; margin-bottom: 0.5rem;">Credit Limit</h3>
-                            <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit limit affects how close a user is to maxing out their credit. Low-limit users are more sensitive to shocks, while high-limit users show early delinquency signals through utilization spikes. It interacts strongly with utilization metrics.</p>
-                            <div style="background: #020617; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                                <p style="color: #e5e7eb; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
-                                <ul style="color: #9ca3af; margin-left: 1.5rem; line-height: 2;">
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Journal of Finance (2020):</strong> "Credit limit interacts strongly with utilization and is a core feature of bureau scoring models. Low limits combined with high utilization create 2.5× higher default risk."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Credit Scoring Research (2022):</strong> "Credit limit serves as a proxy for creditworthiness but is less predictive than utilization ratio. However, limit reductions often precede delinquency by 60-90 days."</li>
-                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #e5e7eb;">Financial Services Review (2021):</strong> "Credit limit is important for risk segmentation but shows lower standalone predictive power compared to behavioral features like spending patterns and utilization."</li>
+                            <h3 style="color: #111827; font-size: 1.5rem; margin-bottom: 0.5rem;">Credit Limit</h3>
+                            <p style="color: #6b7280; margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.8;">Credit limit affects how close a user is to maxing out their credit. Low-limit users are more sensitive to shocks, while high-limit users show early delinquency signals through utilization spikes. It interacts strongly with utilization metrics.</p>
+                            <div style="background: #f9fafb; border-left: 3px solid #8b0000; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                                <p style="color: #111827; font-weight: 600; margin-bottom: 0.75rem; font-size: 1.1rem;">Research Evidence:</p>
+                                <ul style="color: #6b7280; margin-left: 1.5rem; line-height: 2;">
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Journal of Finance (2020):</strong> "Credit limit interacts strongly with utilization and is a core feature of bureau scoring models. Low limits combined with high utilization create 2.5× higher default risk."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Credit Scoring Research (2022):</strong> "Credit limit serves as a proxy for creditworthiness but is less predictive than utilization ratio. However, limit reductions often precede delinquency by 60-90 days."</li>
+                                    <li style="margin-bottom: 0.75rem;"><strong style="color: #111827;">Financial Services Review (2021):</strong> "Credit limit is important for risk segmentation but shows lower standalone predictive power compared to behavioral features like spending patterns and utilization."</li>
                                 </ul>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #7 Supporting Feature</p>
                             </div>
@@ -1839,21 +1849,21 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 </div>
     
                 <!-- Summary Section -->
-                <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 3rem; border: 1px solid #1e293b;">
-                    <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 3rem; border: 1px solid #e5e7eb;">
+                    <h3 style="color: #111827; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
                         Key Findings: Most Important Features for Delinquency Prediction
                     </h3>
                     <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                        <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Top 3 Most Critical Features:</strong></p>
-                        <ol style="color: #e5e7eb; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
+                        <p style="color: #111827; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Top 3 Most Critical Features:</strong></p>
+                        <ol style="color: #111827; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
                             <li><strong>Recent Spend Change %</strong> - Strongest predictor with 2.8× correlation to 90-day delinquency</li>
                             <li><strong>Utilisation %</strong> - Accounts for 25-30% of predictive power in credit scoring models</li>
                             <li><strong>Min Due Paid Frequency</strong> - 2.3× higher probability of entering DPD when paying minimum for 3+ months</li>
                     </ol>
                     </div>
                     <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem;">
-                        <p style="color: #e5e7eb; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem;"><strong>Research Consensus:</strong></p>
-                        <p style="color: #e5e7eb; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
+                        <p style="color: #111827; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem;"><strong>Research Consensus:</strong></p>
+                        <p style="color: #111827; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
                     </div>
                 </div>
             </div>
@@ -1864,7 +1874,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         <div class="dashboard-container">
             <div class="dashboard-header">
                 <h1>Interactive Risk Analysis Dashboard</h1>
-                <p style="color: #9ca3af; margin-top: 0.5rem;">
+                <p style="color: #6b7280; margin-top: 0.5rem;">
                     <span class="live-indicator"></span>Live predictions update as you adjust parameters
                 </p>
             </div>
@@ -1956,7 +1966,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <h3>Early Warning Flags</h3>
                     </div>
                     <div class="flags-container" id="flags-container">
-                        <p style="color: #9ca3af; text-align: center; padding: 2rem;">
+                        <p style="color: #6b7280; text-align: center; padding: 2rem;">
                             Adjust parameters to see risk flags appear
                         </p>
                     </div>
@@ -2157,8 +2167,8 @@ for idx, row in risk_flags_df.iterrows():
         <div class="workflow-container" style="padding: 3rem 20px;">
             <div class="step-header" style="margin-bottom: 3rem;">
                 <div class="step-content">
-                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Machine Learning Workflow</h2>
-                    <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Complete ML pipeline from data preprocessing to model evaluation and feature importance analysis</p>
+                    <h2 style="font-size: 2.5rem; color: #111827; margin-bottom: 1rem;">Machine Learning Workflow</h2>
+                    <p class="step-subtitle" style="font-size: 1.125rem; color: #6b7280;">Complete ML pipeline from data preprocessing to model evaluation and feature importance analysis</p>
                 </div>
             </div>
 
@@ -2166,15 +2176,15 @@ for idx, row in risk_flags_df.iterrows():
             <div class="risk-categories-section">
                 <div class="step-header" style="margin-bottom: 2rem;">
                     <div class="step-content">
-                        <h3 style="font-size: 2rem; color: #e5e7eb; margin-bottom: 0.5rem;">Customer Risk Categories</h3>
-                        <p class="step-subtitle" style="font-size: 1rem; color: #9ca3af; margin-bottom: 1.5rem;">Customers classified by DPD Bucket (Days Past Due) - Click download to export each category list</p>
+                        <h3 style="font-size: 2rem; color: #111827; margin-bottom: 0.5rem;">Customer Risk Categories</h3>
+                        <p class="step-subtitle" style="font-size: 1rem; color: #6b7280; margin-bottom: 1.5rem;">Customers classified by DPD Bucket (Days Past Due) - Click download to export each category list</p>
                         
                         <!-- Risk Distribution Chart -->
                         <div style="margin-bottom: 2rem;">
-                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <img src="visualizations/new_visualization/risk_category_distribution.png" alt="Risk Category Distribution" style="width: 100%; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
                             </div>
-                            <p style="color: #9ca3af; margin-top: 1rem; font-size: 0.9rem; text-align: center;">The chart above shows the distribution of customers across all risk categories. The bar chart displays the count and percentage, while the pie chart provides a visual representation of the proportion.</p>
+                            <p style="color: #6b7280; margin-top: 1rem; font-size: 0.9rem; text-align: center;">The chart above shows the distribution of customers across all risk categories. The bar chart displays the count and percentage, while the pie chart provides a visual representation of the proportion.</p>
                         </div>
                     </div>
                 </div>
@@ -2231,7 +2241,7 @@ X_test_scaled = scaler.transform(X_test)</code></pre>
                 <div class="step-body">
                     <div class="info-box">
                         <h4>Models Trained:</h4>
-                        <p style="color: #9ca3af; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">Click on any model card to see detailed description</p>
+                        <p style="color: #6b7280; margin-top: 0.5rem; margin-bottom: 1rem; font-size: 0.9rem;">Click on any model card to see detailed description</p>
                         <div class="flip-card-container">
                             <!-- Random Forest -->
                             <div class="flip-card" onclick="this.classList.toggle('flipped')">
@@ -2448,8 +2458,8 @@ for name, model in models.items():
                 <div class="step-body">
                     <div class="info-box">
                         <h4>Model Performance Results:</h4>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
-                            <table style="width: 100%; color: #e5e7eb; border-collapse: collapse;">
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; margin-top: 1rem;">
+                            <table style="width: 100%; color: #111827; border-collapse: collapse;">
                                 <thead>
                                     <tr style="border-bottom: 2px solid #1e293b;">
                                         <th style="padding: 0.75rem; text-align: left; color: #8b0000;">Model</th>
@@ -2494,9 +2504,9 @@ for name, model in models.items():
                         </div>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Accuracy Comparison Visualization (Line Graph):</h4>
-                        <p style="color: #9ca3af; margin-bottom: 1rem; font-size: 0.9rem;">The line graph below shows model accuracy comparison, sorted from highest to lowest performance. Reference lines indicate 80%, 70%, and 50% accuracy thresholds.</p>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Accuracy Comparison Visualization (Line Graph):</h4>
+                        <p style="color: #6b7280; margin-bottom: 1rem; font-size: 0.9rem;">The line graph below shows model accuracy comparison, sorted from highest to lowest performance. Reference lines indicate 80%, 70%, and 50% accuracy thresholds.</p>
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                             <img src="visualizations/new_visualization/model_accuracy_comparison.png" alt="Model Accuracy Comparison Line Graph" style="width: 100%; border-radius: 0.5rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
                         </div>
                     </div>
@@ -2523,27 +2533,27 @@ for name, model in models.items():
                         </ul>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">All Models Confusion Matrices:</h4>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                        <h4 style="color: #111827; margin-bottom: 1rem;">All Models Confusion Matrices:</h4>
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                             <img src="visualizations/new_visualization/all_confusion_matrices.png" alt="All Confusion Matrices" style="width: 100%; border-radius: 0.5rem;">
                         </div>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Individual Model Confusion Matrices:</h4>
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Individual Model Confusion Matrices:</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Random Forest</h5>
                                 <img src="visualizations/new_visualization/random_forest_confusion_matrix.png" alt="Random Forest Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
                             </div>
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Gradient Boosting</h5>
                                 <img src="visualizations/new_visualization/gradient_boosting_confusion_matrix.png" alt="Gradient Boosting Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
                             </div>
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Logistic Regression</h5>
                                 <img src="visualizations/new_visualization/logistic_regression_confusion_matrix.png" alt="Logistic Regression Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
                             </div>
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">SVM</h5>
                                 <img src="visualizations/new_visualization/svm_confusion_matrix.png" alt="SVM Confusion Matrix" style="width: 100%; border-radius: 0.5rem;">
                             </div>
@@ -2571,29 +2581,29 @@ for name, model in models.items():
                         </ul>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Average Feature Importance Across All Models:</h4>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Average Feature Importance Across All Models:</h4>
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                             <img src="visualizations/new_visualization/average_feature_importance.png" alt="Average Feature Importance" style="width: 100%; border-radius: 0.5rem;">
                         </div>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Feature Importance Comparison Across All Models:</h4>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Feature Importance Comparison Across All Models:</h4>
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                             <img src="visualizations/new_visualization/all_models_feature_importance_comparison.png" alt="Feature Importance Comparison" style="width: 100%; border-radius: 0.5rem;">
                         </div>
                     </div>
                     <div style="margin-top: 2rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Top Individual Model Feature Importance:</h4>
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Top Individual Model Feature Importance:</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Random Forest</h5>
                                 <img src="visualizations/new_visualization/random_forest_feature_importance.png" alt="Random Forest Feature Importance" style="width: 100%; border-radius: 0.5rem;">
                             </div>
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Gradient Boosting</h5>
                                 <img src="visualizations/new_visualization/gradient_boosting_feature_importance.png" alt="Gradient Boosting Feature Importance" style="width: 100%; border-radius: 0.5rem;">
                             </div>
-                            <div style="background: #020617; padding: 1rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
+                            <div style="background: #f9fafb; padding: 1rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.5rem;">Logistic Regression</h5>
                                 <img src="visualizations/new_visualization/logistic_regression_feature_importance.png" alt="Logistic Regression Feature Importance" style="width: 100%; border-radius: 0.5rem;">
                             </div>
@@ -2639,9 +2649,9 @@ prediction = model.predict(features_scaled)[0]
 # Returns: 0=No Risk, 1=Low Risk, 2=Medium Risk, 3=High Risk</code></pre>
                     </div>
                     <div style="margin-top: 1.5rem;">
-                        <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Saved Files:</h4>
-                        <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #1e293b;">
-                            <ul style="color: #9ca3af; line-height: 2;">
+                        <h4 style="color: #111827; margin-bottom: 1rem;">Saved Files:</h4>
+                        <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
+                            <ul style="color: #6b7280; line-height: 2;">
                                 <li><code>models/random_forest_model.joblib</code></li>
                                 <li><code>models/gradient_boosting_model.joblib</code></li>
                                 <li><code>models/logistic_regression_model.joblib</code></li>
@@ -2670,21 +2680,21 @@ prediction = model.predict(features_scaled)[0]
                     <div class="info-box">
                         <h4>Key Findings:</h4>
                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
-                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                            <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Best Performing Models</h5>
-                                <p style="color: #9ca3af; line-height: 1.8;">Random Forest, Logistic Regression, SVM, Naive Bayes, and K-Nearest Neighbors all achieved 80% accuracy, making them equally suitable for deployment.</p>
+                                <p style="color: #6b7280; line-height: 1.8;">Random Forest, Logistic Regression, SVM, Naive Bayes, and K-Nearest Neighbors all achieved 80% accuracy, making them equally suitable for deployment.</p>
                             </div>
-                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                            <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Most Important Features</h5>
-                                <p style="color: #9ca3af; line-height: 1.8;">Merchant Mix Index (37.9%) and Recent Spend Change % (33.0%) are the top predictors, indicating behavioral patterns are crucial for risk assessment.</p>
+                                <p style="color: #6b7280; line-height: 1.8;">Merchant Mix Index (37.9%) and Recent Spend Change % (33.0%) are the top predictors, indicating behavioral patterns are crucial for risk assessment.</p>
                             </div>
-                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                            <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Model Selection</h5>
-                                <p style="color: #9ca3af; line-height: 1.8;">Random Forest is recommended for production due to its interpretability, feature importance insights, and robust performance.</p>
+                                <p style="color: #6b7280; line-height: 1.8;">Random Forest is recommended for production due to its interpretability, feature importance insights, and robust performance.</p>
                             </div>
-                            <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                            <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
                                 <h5 style="color: #8b0000; margin-bottom: 0.75rem;">Risk Classification</h5>
-                                <p style="color: #9ca3af; line-height: 1.8;">Models successfully classify customers into 4 risk buckets: No Risk (0), Low Risk (1), Medium Risk (2), and High Risk (3).</p>
+                                <p style="color: #6b7280; line-height: 1.8;">Models successfully classify customers into 4 risk buckets: No Risk (0), Low Risk (1), Medium Risk (2), and High Risk (3).</p>
                             </div>
                         </div>
                     </div>
@@ -2746,19 +2756,19 @@ prediction = model.predict(features_scaled)[0]
                     </div>
                     <div class="detail-section">
                         <h3>Process Flow</h3>
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem;">
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 0.5rem; padding: 1.5rem; margin-top: 1rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">1. Load Data</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">2. Engineer Features</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">3. Generate Flags</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">4. Train Model</span>
-                                <span style="color: #9ca3af;">→</span>
+                                <span style="color: #6b7280;">→</span>
                                 <span style="background: #8b0000; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600;">5. Create Strategies</span>
                             </div>
-                            <p style="color: #9ca3af; margin: 0; font-size: 0.875rem;">Each step builds upon the previous one, transforming raw data into actionable insights for proactive customer intervention.</p>
+                            <p style="color: #6b7280; margin: 0; font-size: 0.875rem;">Each step builds upon the previous one, transforming raw data into actionable insights for proactive customer intervention.</p>
                         </div>
                     </div>
                 </div>
@@ -3682,11 +3692,11 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="detail-section">
                         <h3>Dataset Selection</h3>
                         <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 8px; border: 2px solid #d1d5db; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type-enhancing" value="real" id="dataset-real-enhancing" checked onchange="switchDatasetEnhancing('real')" style="cursor: pointer;">
                                 <span>Real Dataset (100 records)</span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #1e293b; border-radius: 8px; border: 2px solid #334155; transition: all 0.3s ease;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; padding: 0.5rem 1rem; background: #f3f4f6; border-radius: 8px; border: 2px solid #d1d5db; transition: all 0.3s ease;">
                                 <input type="radio" name="dataset-type-enhancing" value="synthetic" id="dataset-synthetic-enhancing" onchange="switchDatasetEnhancing('synthetic')" style="cursor: pointer;">
                                 <span>Synthetic Dataset (50,000 records)</span>
                             </label>
@@ -3720,10 +3730,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         </div>
                         
                         <div class="dataset-container">
-                            <div id="loading-indicator-enhancing" style="text-align: center; padding: 2rem; color: #9ca3af;">
+                            <div id="loading-indicator-enhancing" style="text-align: center; padding: 2rem; color: #6b7280;">
                                 <p>Loading dataset (1,000 records)...</p>
                                 <div style="margin-top: 1rem;">
-                                    <div style="display: inline-block; width: 200px; height: 4px; background: #1e293b; border-radius: 2px; overflow: hidden;">
+                                    <div style="display: inline-block; width: 200px; height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden;">
                                         <div id="loading-bar-enhancing" style="width: 0%; height: 100%; background: #8b0000; transition: width 0.3s ease;"></div>
                                     </div>
                                 </div>
@@ -3844,22 +3854,22 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
     <div id="apply-tab" class="tab-content">
         <div class="apply-container">
             <!-- Partition Selection -->
-            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #1e293b; padding-bottom: 1rem;">
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #e5e7eb; padding-bottom: 1rem;">
                 <button id="csvUploadBtn" class="partition-btn active" onclick="switchPartition('csv-upload')" style="flex: 1; padding: 1rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Upload customer's details</button>
-                <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Enter Details of Individual Customer</button>
+                <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #f3f4f6; color: #6b7280; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Enter Details of Individual Customer</button>
     </div>
 
             <!-- CSV Upload Partition -->
             <div id="csv-upload-partition" class="partition-content">
-                <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
-                    <h2 style="color: #e5e7eb; margin-bottom: 1rem;">Upload CSV File for Batch Prediction</h2>
-                    <p style="color: #9ca3af; margin-bottom: 1.5rem;">
+                <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <h2 style="color: #111827; margin-bottom: 1rem;">Upload CSV File for Batch Prediction</h2>
+                    <p style="color: #6b7280; margin-bottom: 1.5rem;">
                         Upload a CSV file with the following columns: <br>
-                        <code style="background: #020617; padding: 0.5rem; border-radius: 0.25rem; color: #e5e7eb;">
+                        <code style="background: #f9fafb; padding: 0.5rem; border-radius: 0.25rem; color: #111827;">
                             Customer ID, Credit Limit, Utilisation %, Avg Payment Ratio, Min Due Paid Frequency, Merchant Mix Index, Cash Withdrawal %, Recent Spend Change %, DPD Bucket Next Month
                         </code>
                     </p>
-                    <p style="color: #9ca3af; margin-bottom: 1.5rem; font-size: 0.875rem;">
+                    <p style="color: #6b7280; margin-bottom: 1.5rem; font-size: 0.875rem;">
                         Note: The "DPD Bucket Next Month" column is optional. If provided, it will be used for comparison only.
                     </p>
                     
@@ -3868,10 +3878,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <label for="csvFileInput" style="display: inline-block; padding: 1rem 2rem; background: #8b0000; color: white; border-radius: 0.5rem; cursor: pointer; font-weight: 600;">
                             Upload customer's data
                         </label>
-                        <span id="fileName" style="color: #9ca3af; margin-left: 1rem;"></span>
+                        <span id="fileName" style="color: #6b7280; margin-left: 1rem;"></span>
                     </div>
                     
-                    <button id="uploadPredictBtn" onclick="processCSVPrediction()" disabled style="padding: 1rem 2rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: not-allowed; font-weight: 600;">
+                    <button id="uploadPredictBtn" onclick="processCSVPrediction()" disabled style="padding: 1rem 2rem; background: #f3f4f6; color: #6b7280; border: none; border-radius: 0.5rem; cursor: not-allowed; font-weight: 600;">
                         Predict DPD Bucket
                     </button>
                     </div>
@@ -3886,17 +3896,21 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
 
                 <!-- Results Container -->
                 <div id="csvResultsContainer" style="display: none;">
-                    <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
+                    <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                            <h2 style="color: #e5e7eb; margin: 0;">Prediction Results</h2>
-                            <button id="downloadSegmentationBtn" onclick="downloadRiskSegmentationCSV()" style="padding: 0.75rem 1.5rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
-                                Download Risk Segmentation CSV
+                            <h2 style="color: #111827; margin: 0;">Prediction Results</h2>
+                            <button id="downloadSegmentationBtn" onclick="downloadRiskSegmentationCSV()" title="Download Risk Segmentation CSV" style="padding: 0.75rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
                             </button>
                     </div>
 
                         <!-- Pie Chart Container -->
                         <div style="margin-bottom: 2rem;">
-                            <h3 style="color: #e5e7eb; margin-bottom: 1rem;">Risk Level Distribution</h3>
+                            <h3 style="color: #111827; margin-bottom: 1rem;">Risk Level Distribution</h3>
                             <canvas id="riskPieChart" width="400" height="400"></canvas>
                     </div>
 
@@ -3956,7 +3970,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <div class="form-group">
                             <label for="dpd_bucket">DPD Bucket Next Month (Optional)</label>
                             <input type="number" id="dpd_bucket" name="dpd_bucket" placeholder="e.g., 3 (0-3)" min="0" max="3" step="1">
-                            <small style="color: #9ca3af; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
+                            <small style="color: #6b7280; font-size: 0.75rem; margin-top: 0.25rem;">Leave empty for prediction only</small>
                         </div>
                     </div>
                     
@@ -4008,7 +4022,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
         <div class="workflow-container" style="padding: 3rem 20px;">
             <div class="step-header" style="margin-bottom: 3rem;">
                 <div class="step-content">
-                    <h2 style="font-size: 2.5rem; color: #e5e7eb; margin-bottom: 1rem;">Outreach Strategy Framework</h2>
+                    <h2 style="font-size: 2.5rem; color: #111827; margin-bottom: 1rem;">Outreach Strategy Framework</h2>
                     <p class="step-subtitle" style="font-size: 1.125rem; color: #9ca3af;">Data-driven proactive interventions to reduce roll-rates and improve portfolio health</p>
                 </div>
             </div>
@@ -4025,10 +4039,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Our Mission</h3>
-                        <p style="color: #9ca3af; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
-                            Design a lightweight, data-driven framework that identifies <strong style="color: #e5e7eb;">early behavioral signals</strong> of credit card delinquency. 
-                            The goal is to enable <strong style="color: #e5e7eb;">proactive outreach strategies</strong> that can reduce "roll-rates" — the progression of customers 
-                            from one stage of delinquency to the next. We recommend <strong style="color: #e5e7eb;">targeted interventions</strong> that are operationally feasible and customer-friendly.
+                        <p style="color: #6b7280; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                            Design a lightweight, data-driven framework that identifies <strong style="color: #111827;">early behavioral signals</strong> of credit card delinquency. 
+                            The goal is to enable <strong style="color: #111827;">proactive outreach strategies</strong> that can reduce "roll-rates" — the progression of customers 
+                            from one stage of delinquency to the next. We recommend <strong style="color: #111827;">targeted interventions</strong> that are operationally feasible and customer-friendly.
                         </p>
                         <div class="findings-grid" style="margin-top: 2rem;">
                             <div class="finding-card">
@@ -4064,23 +4078,23 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Key Components</h3>
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">1. Early Signal Detection</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Identify behavioral patterns that precede delinquency using 14+ engineered features and ML models.</p>
+                                <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">1. Early Signal Detection</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Identify behavioral patterns that precede delinquency using 14+ engineered features and ML models.</p>
                                 </div>
-                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">2. Risk Classification</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Categorize customers into CRITICAL, HIGH, MEDIUM, and LOW risk levels based on multiple indicators.</p>
+                                <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">2. Risk Classification</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Categorize customers into CRITICAL, HIGH, MEDIUM, and LOW risk levels based on multiple indicators.</p>
                                 </div>
-                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">3. Targeted Interventions</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Generate personalized outreach strategies with appropriate channels, timing, and offers for each risk level.</p>
+                                <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">3. Targeted Interventions</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Generate personalized outreach strategies with appropriate channels, timing, and offers for each risk level.</p>
                                 </div>
-                                <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">4. Roll-Rate Prevention</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Intervene before customers progress to next delinquency stage, reducing portfolio deterioration.</p>
+                                <div style="background: #f9fafb; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000;">
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">4. Roll-Rate Prevention</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Intervene before customers progress to next delinquency stage, reducing portfolio deterioration.</p>
                                 </div>
                             </div>
                         </div>
@@ -4105,93 +4119,93 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <div style="background: #0f172a; border: 1px solid #ef4444; border-left: 6px solid #ef4444; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">CRITICAL</div>
-                                <span style="color: #9ca3af;">Highest Priority - Immediate Action Required</span>
+                                <span style="color: #6b7280;">Highest Priority - Immediate Action Required</span>
                 </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
-                                    <strong style="color: #e5e7eb;">Channel:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Phone Call</p>
+                                    <strong style="color: #111827;">Channel:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Phone Call</p>
                                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Timing:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 24 hours</p>
+                                    <strong style="color: #111827;">Timing:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Within 24 hours</p>
                                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Message:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Urgent: We noticed concerning patterns. Let's discuss payment options.</p>
+                                    <strong style="color: #111827;">Message:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Urgent: We noticed concerning patterns. Let's discuss payment options.</p>
                                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Offer:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Payment plan, hardship program, or credit limit adjustment</p>
+                                    <strong style="color: #111827;">Offer:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Payment plan, hardship program, or credit limit adjustment</p>
                                 </div>
                             </div>
-                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Prevent immediate default and stabilize account before roll-rate progression.</p>
+                            <p style="color: #6b7280; margin-top: 1rem; font-style: italic;">Goal: Prevent immediate default and stabilize account before roll-rate progression.</p>
             </div>
 
                         <!-- HIGH Risk -->
                         <div style="background: #0f172a; border: 1px solid #f59e0b; border-left: 6px solid #f59e0b; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #f59e0b; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">HIGH</div>
-                                <span style="color: #9ca3af;">Priority Action - Proactive Support</span>
+                                <span style="color: #6b7280;">Priority Action - Proactive Support</span>
                         </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
-                                    <strong style="color: #e5e7eb;">Channel:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Phone Call or Email</p>
+                                    <strong style="color: #111827;">Channel:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Phone Call or Email</p>
                     </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Timing:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 48 hours</p>
+                                    <strong style="color: #111827;">Timing:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Within 48 hours</p>
                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Message:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">We're here to help. Let's review your account and explore options.</p>
+                                    <strong style="color: #111827;">Message:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">We're here to help. Let's review your account and explore options.</p>
                                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Offer:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Payment plan or financial counseling</p>
+                                    <strong style="color: #111827;">Offer:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Payment plan or financial counseling</p>
                                 </div>
                             </div>
-                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Address risk factors early to prevent escalation to CRITICAL status.</p>
+                            <p style="color: #6b7280; margin-top: 1rem; font-style: italic;">Goal: Address risk factors early to prevent escalation to CRITICAL status.</p>
             </div>
 
                         <!-- MEDIUM Risk -->
                         <div style="background: #0f172a; border: 1px solid #3b82f6; border-left: 6px solid #3b82f6; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">MEDIUM</div>
-                                <span style="color: #9ca3af;">Educational Outreach - Preventive Measures</span>
+                                <span style="color: #6b7280;">Educational Outreach - Preventive Measures</span>
                         </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
-                                    <strong style="color: #e5e7eb;">Channel:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Email or SMS</p>
+                                    <strong style="color: #111827;">Channel:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Email or SMS</p>
                     </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Timing:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Within 1 week</p>
+                                    <strong style="color: #111827;">Timing:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Within 1 week</p>
                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Message:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Tips for managing your credit card account effectively.</p>
+                                    <strong style="color: #111827;">Message:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Tips for managing your credit card account effectively.</p>
                                 </div>
                                 <div>
-                                    <strong style="color: #e5e7eb;">Offer:</strong>
-                                    <p style="color: #9ca3af; margin-top: 0.25rem;">Educational resources and payment reminders</p>
+                                    <strong style="color: #111827;">Offer:</strong>
+                                    <p style="color: #6b7280; margin-top: 0.25rem;">Educational resources and payment reminders</p>
                                 </div>
                             </div>
-                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Provide guidance to maintain healthy account behavior and prevent risk escalation.</p>
+                            <p style="color: #6b7280; margin-top: 1rem; font-style: italic;">Goal: Provide guidance to maintain healthy account behavior and prevent risk escalation.</p>
             </div>
 
                         <!-- LOW Risk -->
                         <div style="background: #0f172a; border: 1px solid #10b981; border-left: 6px solid #10b981; border-radius: 1rem; padding: 2rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">LOW</div>
-                                <span style="color: #9ca3af;">Standard Monitoring - No Immediate Action</span>
+                                <span style="color: #6b7280;">Standard Monitoring - No Immediate Action</span>
                         </div>
                             <div style="margin-top: 1rem;">
-                                <p style="color: #9ca3af;">Regular review cycles. No proactive outreach required. Continue monitoring for any changes in behavior patterns.</p>
+                                <p style="color: #6b7280;">Regular review cycles. No proactive outreach required. Continue monitoring for any changes in behavior patterns.</p>
                             </div>
-                            <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Maintain healthy portfolio and detect early warning signs if patterns change.</p>
+                            <p style="color: #6b7280; margin-top: 1rem; font-style: italic;">Goal: Maintain healthy portfolio and detect early warning signs if patterns change.</p>
                         </div>
                     </div>
                 </div>
@@ -4209,50 +4223,50 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Understanding Roll-Rates</h3>
-                        <p style="color: #9ca3af; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
+                        <p style="color: #6b7280; line-height: 1.8; font-size: 1.125rem; margin-bottom: 1.5rem;">
                             Roll-rates refer to the progression of customers from one stage of delinquency to the next (e.g., DPD 0 → DPD 1 → DPD 2 → DPD 3). 
-                            Our framework intervenes <strong style="color: #e5e7eb;">before</strong> customers reach the next stage, reducing portfolio deterioration.
+                            Our framework intervenes <strong style="color: #111827;">before</strong> customers reach the next stage, reducing portfolio deterioration.
                         </p>
                         
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1.5rem;">
-                            <h4 style="color: #e5e7eb; margin-bottom: 1rem;">Delinquency Progression Prevention</h4>
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-top: 1.5rem;">
+                            <h4 style="color: #111827; margin-bottom: 1rem;">Delinquency Progression Prevention</h4>
                             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
                                 <div style="text-align: center; flex: 1; min-width: 120px;">
                                     <div style="background: #10b981; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 0</div>
-                                    <p style="color: #9ca3af; font-size: 0.875rem;">No Risk</p>
+                                    <p style="color: #6b7280; font-size: 0.875rem;">No Risk</p>
                                 </div>
-                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="color: #6b7280; font-size: 1.5rem;">→</div>
                                 <div style="text-align: center; flex: 1; min-width: 120px;">
                                     <div style="background: #3b82f6; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 1</div>
-                                    <p style="color: #9ca3af; font-size: 0.875rem;">Low Risk</p>
+                                    <p style="color: #6b7280; font-size: 0.875rem;">Low Risk</p>
                                     <p style="color: #f59e0b; font-size: 0.75rem; margin-top: 0.25rem;">Intervene Here</p>
                                 </div>
-                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="color: #6b7280; font-size: 1.5rem;">→</div>
                                 <div style="text-align: center; flex: 1; min-width: 120px;">
                                     <div style="background: #f59e0b; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 2</div>
-                                    <p style="color: #9ca3af; font-size: 0.875rem;">Medium Risk</p>
+                                    <p style="color: #6b7280; font-size: 0.875rem;">Medium Risk</p>
                                     <p style="color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem;">Prevent This</p>
                                 </div>
-                                <div style="color: #9ca3af; font-size: 1.5rem;">→</div>
+                                <div style="color: #6b7280; font-size: 1.5rem;">→</div>
                                 <div style="text-align: center; flex: 1; min-width: 120px;">
                                     <div style="background: #ef4444; color: white; padding: 1rem; border-radius: 0.5rem; font-weight: 700; margin-bottom: 0.5rem;">DPD 3</div>
-                                    <p style="color: #9ca3af; font-size: 0.875rem;">High Risk</p>
+                                    <p style="color: #6b7280; font-size: 0.875rem;">High Risk</p>
                                     <p style="color: #ef4444; font-size: 0.75rem; margin-top: 0.25rem;">Avoid This</p>
                                 </div>
                             </div>
-                            <p style="color: #e5e7eb; margin-top: 1.5rem; text-align: center; font-weight: 600;">
+                            <p style="color: #111827; margin-top: 1.5rem; text-align: center; font-weight: 600;">
                                 Early intervention at DPD 0-1 prevents progression to DPD 2-3
                             </p>
                         </div>
                     </div>
                     <div class="detail-section">
                         <h3>Prevention Mechanisms</h3>
-                        <ul style="color: #9ca3af; line-height: 2; margin-top: 1rem;">
-                            <li><strong style="color: #e5e7eb;">Early Warning Signals:</strong> Detect behavioral changes before payment issues occur</li>
-                            <li><strong style="color: #e5e7eb;">Proactive Outreach:</strong> Contact customers before they miss payments</li>
-                            <li><strong style="color: #e5e7eb;">Personalized Solutions:</strong> Offer payment plans and counseling tailored to customer situation</li>
-                            <li><strong style="color: #e5e7eb;">Timely Intervention:</strong> Act within 24-48 hours for high-risk customers</li>
-                            <li><strong style="color: #e5e7eb;">Continuous Monitoring:</strong> Track customer response and adjust strategies</li>
+                        <ul style="color: #6b7280; line-height: 2; margin-top: 1rem;">
+                            <li><strong style="color: #111827;">Early Warning Signals:</strong> Detect behavioral changes before payment issues occur</li>
+                            <li><strong style="color: #111827;">Proactive Outreach:</strong> Contact customers before they miss payments</li>
+                            <li><strong style="color: #111827;">Personalized Solutions:</strong> Offer payment plans and counseling tailored to customer situation</li>
+                            <li><strong style="color: #111827;">Timely Intervention:</strong> Act within 24-48 hours for high-risk customers</li>
+                            <li><strong style="color: #111827;">Continuous Monitoring:</strong> Track customer response and adjust strategies</li>
                         </ul>
                     </div>
                 </div>
@@ -4291,12 +4305,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     </div>
                     <div class="detail-section">
                         <h3>Implementation Benefits</h3>
-                        <ul style="color: #9ca3af; line-height: 2; margin-top: 1rem;">
-                            <li><strong style="color: #e5e7eb;">Lightweight Framework:</strong> Minimal infrastructure requirements, easy to deploy</li>
-                            <li><strong style="color: #e5e7eb;">Data-Driven Decisions:</strong> Objective risk assessment based on behavioral data</li>
-                            <li><strong style="color: #e5e7eb;">Prioritized Actions:</strong> Focus resources on highest-risk customers first</li>
-                            <li><strong style="color: #e5e7eb;">Standardized Process:</strong> Consistent approach across all customers</li>
-                            <li><strong style="color: #e5e7eb;">Measurable Outcomes:</strong> Track intervention success and roll-rate reduction</li>
+                        <ul style="color: #6b7280; line-height: 2; margin-top: 1rem;">
+                            <li><strong style="color: #111827;">Lightweight Framework:</strong> Minimal infrastructure requirements, easy to deploy</li>
+                            <li><strong style="color: #111827;">Data-Driven Decisions:</strong> Objective risk assessment based on behavioral data</li>
+                            <li><strong style="color: #111827;">Prioritized Actions:</strong> Focus resources on highest-risk customers first</li>
+                            <li><strong style="color: #111827;">Standardized Process:</strong> Consistent approach across all customers</li>
+                            <li><strong style="color: #111827;">Measurable Outcomes:</strong> Track intervention success and roll-rate reduction</li>
                         </ul>
                     </div>
                 </div>
@@ -4314,37 +4328,37 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Principles</h3>
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
                                 <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Supportive Messaging</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Use empathetic language that focuses on helping customers rather than threatening consequences.</p>
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">Supportive Messaging</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Use empathetic language that focuses on helping customers rather than threatening consequences.</p>
                                 </div>
                                 <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Flexible Solutions</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Offer multiple options including payment plans, hardship programs, and financial counseling.</p>
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">Flexible Solutions</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Offer multiple options including payment plans, hardship programs, and financial counseling.</p>
                                 </div>
                                 <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Respectful Timing</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Contact customers at appropriate times and through preferred channels when possible.</p>
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">Respectful Timing</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Contact customers at appropriate times and through preferred channels when possible.</p>
                                 </div>
                                 <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem;">
-                                    <h4 style="color: #e5e7eb; margin-bottom: 0.75rem;">Educational Focus</h4>
-                                    <p style="color: #9ca3af; line-height: 1.6;">Provide resources and tools to help customers manage their accounts effectively.</p>
+                                    <h4 style="color: #111827; margin-bottom: 0.75rem;">Educational Focus</h4>
+                                    <p style="color: #6b7280; line-height: 1.6;">Provide resources and tools to help customers manage their accounts effectively.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="detail-section">
                         <h3>Message Tone Examples</h3>
-                        <div style="background: #0f172a; border: 1px solid #1e293b; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
+                        <div style="background: #ffffff; border: 1px solid #e5e7eb; border-radius: 1rem; padding: 2rem; margin-top: 1rem;">
                             <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #8b0000; margin-bottom: 1rem;">
-                                <strong style="color: #e5e7eb;">CRITICAL/HIGH Risk:</strong>
-                                <p style="color: #9ca3af; margin-top: 0.5rem; font-style: italic;">"We're here to help. Let's review your account and explore options that work for your situation."</p>
+                                <strong style="color: #111827;">CRITICAL/HIGH Risk:</strong>
+                                <p style="color: #6b7280; margin-top: 0.5rem; font-style: italic;">"We're here to help. Let's review your account and explore options that work for your situation."</p>
                             </div>
                             <div style="background: #020617; padding: 1.5rem; border-radius: 0.5rem; border-left: 4px solid #3b82f6;">
-                                <strong style="color: #e5e7eb;">MEDIUM Risk:</strong>
-                                <p style="color: #9ca3af; margin-top: 0.5rem; font-style: italic;">"Tips for managing your credit card account effectively. We're here to support your financial wellness."</p>
+                                <strong style="color: #111827;">MEDIUM Risk:</strong>
+                                <p style="color: #6b7280; margin-top: 0.5rem; font-style: italic;">"Tips for managing your credit card account effectively. We're here to support your financial wellness."</p>
                             </div>
                         </div>
                     </div>
@@ -4394,7 +4408,7 @@ Generated Strategies:
   }
 ]</code></pre>
                         </div>
-                        <p style="color: #9ca3af; margin-top: 1rem;">
+                        <p style="color: #6b7280; margin-top: 1rem;">
                             The framework automatically generates multiple strategies based on the customer's risk level and specific flags, 
                             prioritizing the most critical interventions first.
                         </p>
@@ -4404,23 +4418,23 @@ Generated Strategies:
 
             <!-- Expected Outcomes -->
             <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2rem; margin-top: 3rem; border: 1px solid #1e293b;">
-                <h3 style="color: #e5e7eb; font-size: 1.75rem; margin-bottom: 1rem;">Expected Outcomes</h3>
+                <h3 style="color: #111827; font-size: 1.75rem; margin-bottom: 1rem;">Expected Outcomes</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
                     <div>
-                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Reduced Roll-Rates</div>
-                        <p style="color: #e5e7eb; opacity: 0.9;">Prevent progression from DPD 0-1 to DPD 2-3</p>
+                        <div style="color: #111827; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Reduced Roll-Rates</div>
+                        <p style="color: #111827; opacity: 0.9;">Prevent progression from DPD 0-1 to DPD 2-3</p>
             </div>
                     <div>
-                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Improved Portfolio Health</div>
-                        <p style="color: #e5e7eb; opacity: 0.9;">Lower overall delinquency rates</p>
+                        <div style="color: #111827; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Improved Portfolio Health</div>
+                        <p style="color: #111827; opacity: 0.9;">Lower overall delinquency rates</p>
                     </div>
                     <div>
-                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Better Customer Relations</div>
-                        <p style="color: #e5e7eb; opacity: 0.9;">Supportive, proactive approach</p>
+                        <div style="color: #111827; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Better Customer Relations</div>
+                        <p style="color: #111827; opacity: 0.9;">Supportive, proactive approach</p>
                     </div>
                     <div>
-                        <div style="color: #e5e7eb; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Operational Efficiency</div>
-                        <p style="color: #e5e7eb; opacity: 0.9;">Prioritized, data-driven actions</p>
+                        <div style="color: #111827; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Operational Efficiency</div>
+                        <p style="color: #111827; opacity: 0.9;">Prioritized, data-driven actions</p>
                     </div>
                 </div>
             </div>
@@ -4470,7 +4484,7 @@ Generated Strategies:
                                 <span class="risk-category-count">${customers.length} customers</span>
                             </div>
                             <div class="customer-list">
-                                ${customerListHTML || '<p style="color: #9ca3af;">No customers in this category</p>'}
+                                ${customerListHTML || '<p style="color: #6b7280;">No customers in this category</p>'}
                             </div>
                             <button class="download-btn" onclick="downloadCategoryCSV('${category.name}', ${JSON.stringify(customers)})">
                                 Download ${category.name} List (CSV)
@@ -4812,7 +4826,7 @@ Generated Strategies:
                 document.getElementById('dataset-tbody').innerHTML = 
                     `<tr><td colspan="9" style="text-align: center; padding: 2rem; color: #ef4444;">
                         Error loading dataset: ${errorMsg}<br>
-                        <small style="color: #9ca3af;">Please ensure the file exists at: data/${fileName}</small>
+                        <small style="color: #6b7280;">Please ensure the file exists at: data/${fileName}</small>
                     </td></tr>`;
                 document.getElementById('dataset-info').textContent = 'Error loading dataset';
             }
@@ -5164,7 +5178,7 @@ Generated Strategies:
                 expandedContent.style.display = 'block';
                 
                 // Show loading state
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
+                container.innerHTML = '<p style="color: #6b7280; text-align: center; padding: 1rem;">Loading customer IDs...</p>';
                 
                 // Load customer IDs if not already loaded
                 if (!container.hasChildNodes() || container.textContent.trim() === '' || container.textContent.includes('Loading')) {
@@ -5227,7 +5241,7 @@ Generated Strategies:
             console.log(`Filter: ${filterType}, Found: ${customerIds.length} customers`);
             
             if (customerIds.length === 0) {
-                container.innerHTML = '<p style="color: #9ca3af; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
+                container.innerHTML = '<p style="color: #6b7280; text-align: center; padding: 1rem;">No customers found. (Data may still be loading)</p>';
             } else {
                 container.innerHTML = customerIds.map(id => 
                     `<div class="customer-id-item">${id}</div>`

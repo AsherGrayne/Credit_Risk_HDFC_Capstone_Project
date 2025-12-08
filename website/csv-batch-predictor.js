@@ -176,7 +176,7 @@ function drawPieChart(riskCounts) {
     const total = Object.values(riskCounts).reduce((sum, count) => sum + count, 0);
     
     if (total === 0) {
-        ctx.fillStyle = '#9ca3af';
+        ctx.fillStyle = '#6b7280';
         ctx.font = '20px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('No data available', centerX, centerY);
@@ -198,7 +198,7 @@ function drawPieChart(riskCounts) {
         ctx.closePath();
         ctx.fillStyle = colors[riskLevel];
         ctx.fill();
-        ctx.strokeStyle = '#0f172a';
+        ctx.strokeStyle = '#ffffff';
         ctx.lineWidth = 2;
         ctx.stroke();
         
@@ -207,7 +207,7 @@ function drawPieChart(riskCounts) {
         const labelX = centerX + Math.cos(labelAngle) * (radius * 0.7);
         const labelY = centerY + Math.sin(labelAngle) * (radius * 0.7);
         
-        ctx.fillStyle = '#e5e7eb';
+        ctx.fillStyle = '#111827';
         ctx.font = 'bold 14px Arial';
         ctx.textAlign = 'center';
         ctx.fillText(`${riskLevel}`, labelX, labelY - 5);
@@ -219,11 +219,11 @@ function drawPieChart(riskCounts) {
     // Draw center circle for donut effect
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius * 0.4, 0, 2 * Math.PI);
-    ctx.fillStyle = '#0f172a';
+    ctx.fillStyle = '#ffffff';
     ctx.fill();
     
     // Draw total in center
-    ctx.fillStyle = '#e5e7eb';
+    ctx.fillStyle = '#111827';
     ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
     ctx.fillText('Total', centerX, centerY - 10);

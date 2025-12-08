@@ -145,18 +145,18 @@ function initializeCharts() {
                     beginAtZero: true,
                     max: 1,
                     grid: {
-                        color: '#1e293b'
+                        color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#9ca3af'
+                        color: '#6b7280'
                     }
                 },
                 x: {
                     grid: {
-                        color: '#1e293b'
+                        color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#9ca3af'
+                        color: '#6b7280'
                     }
                 }
             }
@@ -203,18 +203,18 @@ function initializeCharts() {
                 y: {
                     beginAtZero: true,
                     grid: {
-                        color: '#1e293b'
+                        color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#9ca3af'
+                        color: '#6b7280'
                     }
                 },
                 x: {
                     grid: {
-                        color: '#1e293b'
+                        color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#9ca3af'
+                        color: '#6b7280'
                     }
                 }
             }

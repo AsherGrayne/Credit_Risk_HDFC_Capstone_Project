@@ -6,8 +6,8 @@
 
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #020617;
-    color: #e5e7eb;
+    background: #ffffff;
+    color: #111827;
     line-height: 1.6;
     scroll-behavior: smooth;
 }
@@ -20,22 +20,22 @@ body {
 
 /* Header */
 .workflow-header {
-    background: linear-gradient(135deg, #020617 0%, #0f172a 50%, #020617 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #ffffff 100%);
     padding: 3rem 0;
     text-align: center;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .workflow-header h1 {
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .workflow-header p {
     font-size: 1.125rem;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
 /* Progress Bar */
@@ -43,9 +43,9 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #020617;
+    background: #ffffff;
     padding: 1rem 0;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .progress-bar {
@@ -84,7 +84,7 @@ body {
     gap: 2rem;
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
-    border-bottom: 2px solid #1e293b;
+    border-bottom: 2px solid #e5e7eb;
 }
 
 .step-number {
@@ -99,12 +99,12 @@ body {
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .step-subtitle {
     font-size: 1.125rem;
-    color: #9ca3af;
+    color: #6b7280;
 }
 
 .step-details {
@@ -119,7 +119,7 @@ body {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #e5e7eb;
+    color: #111827;
     border-left: 4px solid #8b0000;
     padding-left: 1rem;
 }
@@ -133,7 +133,7 @@ body {
     padding: 0.75rem 0;
     padding-left: 1.5rem;
     position: relative;
-    color: #cbd5e1;
+    color: #4b5563;
 }
 
 .detail-section li::before {
@@ -145,14 +145,14 @@ body {
 }
 
 .detail-section p {
-    color: #cbd5e1;
+    color: #4b5563;
     margin-bottom: 1rem;
 }
 
 /* Code Blocks */
 .code-block {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem;
     margin: 1rem 0;
@@ -163,7 +163,7 @@ body {
     margin: 0;
     font-family: 'Courier New', monospace;
     font-size: 0.875rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .code-block code {
@@ -183,8 +183,8 @@ body {
 .finding-card,
 .result-card,
 .summary-stat {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem;
     text-align: center;
@@ -223,12 +223,12 @@ body {
 
 .result-card.expandable-card.expanded .card-header-content {
     padding-bottom: 1rem;
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .card-hint {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     margin-top: 0.5rem;
     font-style: italic;
     opacity: 0;
@@ -260,12 +260,12 @@ body {
 }
 
 .customer-id-item {
-    background: #020617;
-    border: 1px solid #1e293b;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 0.25rem;
     padding: 0.5rem;
     text-align: center;
-    color: #e5e7eb;
+    color: #111827;
     font-weight: 500;
     font-size: 0.875rem;
     transition: all 0.3s ease;
@@ -291,7 +291,7 @@ body {
 .result-label,
 .stat-label {
     font-size: 0.875rem;
-    color: #9ca3af;
+    color: #6b7280;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -338,18 +338,18 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid #1e293b;
+    border: 1px solid #e5e7eb;
     border-left: 4px solid #8b0000;
 }
 
 .flip-card-front {
-    background: #0f172a;
-    color: #e5e7eb;
+    background: #ffffff;
+    color: #111827;
 }
 
 .flip-card-back {
-    background: #020617;
-    color: #e5e7eb;
+    background: #f9fafb;
+    color: #111827;
     transform: rotateY(180deg);
     border-left-color: #dc143c;
     overflow-y: auto;
@@ -360,19 +360,19 @@ body {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .flip-card-front p {
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 0.875rem;
     line-height: 1.6;
     margin: 0;
 }
 
 .flip-card-back pre {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.25rem;
     padding: 1rem;
     margin: 0;
@@ -405,8 +405,8 @@ body {
 }
 
 .flag-item {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-left: 4px solid #8b0000;
     border-radius: 0.5rem;
     padding: 0;
@@ -438,7 +438,7 @@ body {
 }
 
 .flag-item.expanded .flag-header {
-    border-bottom: 1px solid #1e293b;
+    border-bottom: 1px solid #e5e7eb;
     background: rgba(139, 0, 0, 0.05);
 }
 
@@ -450,13 +450,13 @@ body {
 }
 
 .flag-item strong {
-    color: #e5e7eb;
+    color: #111827;
     font-size: 1rem;
     font-weight: 600;
 }
 
 .flag-trigger {
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.875rem;
 }
 
@@ -506,7 +506,7 @@ body {
 }
 
 .flag-details p {
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 0.9375rem;
     line-height: 1.7;
     margin: 0;
@@ -522,8 +522,8 @@ body {
 }
 
 .model-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem;
     transition: all 0.3s ease;
@@ -539,7 +539,7 @@ body {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .model-card ul {
@@ -549,14 +549,14 @@ body {
 
 .model-card li {
     padding: 0.5rem 0;
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 0.875rem;
 }
 
 /* Strategy Controls */
 .strategy-controls {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-left: 4px solid #8b0000;
     border-radius: 0.5rem;
     padding: 1.5rem;
@@ -567,7 +567,7 @@ body {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 1.5rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .controls-grid {
@@ -586,18 +586,18 @@ body {
 .control-group label {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #e5e7eb;
+    color: #111827;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .control-group input[type="number"],
 .control-group select {
-    background: #020617;
-    border: 1px solid #1e293b;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
-    color: #e5e7eb;
+    color: #111827;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
@@ -616,7 +616,7 @@ body {
 
 .control-hint {
     font-size: 0.75rem;
-    color: #9ca3af;
+    color: #6b7280;
     font-style: italic;
 }
 
@@ -630,7 +630,7 @@ body {
 .change-btn {
     background: #8b0000;
     border: 1px solid #8b0000;
-    color: #e5e7eb;
+    color: #111827;
     padding: 0.75rem 2rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
@@ -647,9 +647,9 @@ body {
 }
 
 .reset-btn {
-    background: #1e293b;
+    background: #e5e7eb;
     border: 1px solid #334155;
-    color: #e5e7eb;
+    color: #111827;
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
     font-size: 0.875rem;
@@ -674,8 +674,8 @@ body {
 }
 
 .strategy-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem;
     transition: all 0.3s ease;
@@ -703,7 +703,7 @@ body {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .strategy-card ul {
@@ -714,7 +714,7 @@ body {
 
 .strategy-card li {
     padding: 0.5rem 0;
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 0.875rem;
 }
 
@@ -732,8 +732,8 @@ body {
 
 /* Feature List */
 .feature-list {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem 2rem;
     margin-top: 1rem;
@@ -741,8 +741,8 @@ body {
 
 .feature-list li {
     padding: 0.75rem 0;
-    color: #cbd5e1;
-    border-bottom: 1px solid #1e293b;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .feature-list li:last-child {
@@ -758,8 +758,8 @@ body {
 }
 
 .viz-item {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-left: 4px solid #8b0000;
     border-radius: 0.5rem;
     padding: 1rem 1.5rem;
@@ -772,14 +772,14 @@ body {
 }
 
 .viz-item strong {
-    color: #e5e7eb;
+    color: #111827;
     font-size: 1rem;
     display: block;
     margin-bottom: 0.5rem;
 }
 
 .viz-item p {
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.875rem;
     margin: 0;
 }
@@ -788,8 +788,8 @@ body {
 .viz-image-container {
     width: 100%;
     margin: 1.5rem 0;
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.75rem;
     padding: 1rem;
     overflow: hidden;
@@ -815,7 +815,7 @@ body {
 }
 
 .viz-description {
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.875rem;
     margin-top: 1rem;
     line-height: 1.6;
@@ -831,8 +831,8 @@ body {
 }
 
 .output-card {
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 1.5rem;
     transition: all 0.3s ease;
@@ -848,7 +848,7 @@ body {
     font-size: 1.125rem;
     font-weight: 600;
     margin-bottom: 1rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 .output-card ul {
@@ -858,12 +858,12 @@ body {
 
 .output-card li {
     padding: 0.5rem 0;
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 0.875rem;
 }
 
 .output-card code {
-    background: #020617;
+    background: #f9fafb;
     padding: 0.2rem 0.4rem;
     border-radius: 0.25rem;
     color: #60a5fa;
@@ -873,7 +873,7 @@ body {
 /* Summary */
 .workflow-summary {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    border: 1px solid #1e293b;
+    border: 1px solid #e5e7eb;
     border-radius: 1rem;
     padding: 3rem;
     margin-top: 4rem;
@@ -884,7 +884,7 @@ body {
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 2rem;
-    color: #e5e7eb;
+    color: #111827;
 }
 
 /* Navigation */
@@ -928,8 +928,8 @@ body {
     flex-wrap: wrap;
     margin-bottom: 1.5rem;
     padding: 1.5rem;
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
 }
 
@@ -943,18 +943,18 @@ body {
 .dataset-controls label {
     font-size: 0.875rem;
     font-weight: 600;
-    color: #e5e7eb;
+    color: #111827;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 
 .dataset-controls input[type="text"],
 .dataset-controls select {
-    background: #020617;
-    border: 1px solid #1e293b;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     padding: 0.75rem 1rem;
-    color: #e5e7eb;
+    color: #111827;
     font-size: 0.875rem;
     transition: all 0.3s ease;
 }
@@ -967,7 +967,7 @@ body {
 }
 
 #dataset-info {
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 0.875rem;
     align-self: flex-end;
     padding-top: 1.75rem;
@@ -979,8 +979,8 @@ body {
 
 .table-wrapper {
     overflow-x: auto;
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
     max-height: 600px;
     overflow-y: auto;
@@ -995,13 +995,13 @@ body {
 .dataset-table thead {
     position: sticky;
     top: 0;
-    background: #0f172a;
+    background: #ffffff;
     z-index: 10;
 }
 
 .dataset-table th {
-    background: #1e293b;
-    color: #e5e7eb;
+    background: #e5e7eb;
+    color: #111827;
     font-weight: 600;
     padding: 1rem;
     text-align: left;
@@ -1014,8 +1014,8 @@ body {
 
 .dataset-table td {
     padding: 0.75rem 1rem;
-    color: #cbd5e1;
-    border-bottom: 1px solid #1e293b;
+    color: #4b5563;
+    border-bottom: 1px solid #e5e7eb;
 }
 
 .dataset-table tbody tr:hover {
@@ -1034,8 +1034,8 @@ body {
     gap: 1.5rem;
     margin-top: 1.5rem;
     padding: 1rem;
-    background: #0f172a;
-    border: 1px solid #1e293b;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 0.5rem;
 }
 
@@ -1060,12 +1060,12 @@ body {
 .pagination-controls button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background: #1e293b;
+    background: #e5e7eb;
     border-color: #1e293b;
 }
 
 #page-info {
-    color: #e5e7eb;
+    color: #111827;
     font-size: 0.875rem;
     font-weight: 500;
 }
