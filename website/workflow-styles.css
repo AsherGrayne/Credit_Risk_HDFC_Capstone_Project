@@ -970,12 +970,14 @@ body {
 
 /* Summary */
 .workflow-summary {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
     border: 1px solid #e5e7eb;
     border-radius: 1rem;
     padding: 3rem;
-    margin-top: 4rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .workflow-summary h2 {

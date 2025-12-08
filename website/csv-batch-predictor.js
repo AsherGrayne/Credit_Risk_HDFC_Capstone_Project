@@ -26,6 +26,7 @@ const API_BASE_URL = (() => {
 let uploadedFile = null;
 let pieChartInstance = null;
 let currentResults = null; // Store current prediction results for download
+let originalCSVData = null; // Store original CSV data (headers and rows)
 
 // Partition switching
 function switchPartition(partition) {
@@ -55,8 +56,31 @@ function switchPartition(partition) {
     }
 }
 
+// Parse CSV line handling quoted fields
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    result.push(current.trim());
+    
+    return result;
+}
+
 // Handle CSV file upload
-function handleCSVUpload(event) {
+async function handleCSVUpload(event) {
     const file = event.target.files[0];
     if (file) {
         uploadedFile = file;
@@ -69,6 +93,36 @@ function handleCSVUpload(event) {
         // Hide previous results and errors
         document.getElementById('csvResultsContainer').style.display = 'none';
         document.getElementById('csvErrorMessage').style.display = 'none';
+        
+        // Parse and store original CSV data
+        try {
+            const text = await file.text();
+            const lines = text.split('\n').filter(line => line.trim());
+            
+            if (lines.length > 0) {
+                // Parse header
+                const headers = parseCSVLine(lines[0]);
+                
+                // Parse rows
+                const rows = [];
+                for (let i = 1; i < lines.length; i++) {
+                    if (lines[i].trim()) {
+                        const values = parseCSVLine(lines[i]);
+                        if (values.length >= headers.length) {
+                            rows.push(values);
+                        }
+                    }
+                }
+                
+                originalCSVData = {
+                    headers: headers,
+                    rows: rows
+                };
+            }
+        } catch (error) {
+            console.error('Error parsing CSV file:', error);
+            originalCSVData = null;
+        }
     }
 }
 
@@ -291,27 +345,63 @@ function showCSVError(message) {
     errorDiv.style.marginTop = '1rem';
 }
 
-// Download risk segmentation CSV
+// Escape CSV field if it contains commas, quotes, or newlines
+function escapeCSVField(field) {
+    if (field === null || field === undefined) {
+        return '';
+    }
+    const str = String(field);
+    if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return `"${str.replace(/"/g, '""')}"`;
+    }
+    return str;
+}
+
+// Download risk segmentation CSV with original data plus risk level
 function downloadRiskSegmentationCSV() {
-    if (!currentResults || !currentResults.categorized) {
+    if (!currentResults || !currentResults.predictions) {
         alert('No results available to download. Please upload and predict a CSV file first.');
         return;
     }
     
-    const categorized = currentResults.categorized;
-    const riskOrder = ['No Risk', 'Low Risk', 'Medium Risk', 'High Risk'];
+    if (!originalCSVData || !originalCSVData.headers || !originalCSVData.rows) {
+        alert('Original CSV data not available. Please upload the CSV file again.');
+        return;
+    }
     
-    // Create CSV content with format: Risk Level, Customer IDs
-    let csvContent = 'Risk Level,Customer IDs\n';
-    
-    riskOrder.forEach(riskLevel => {
-        const customers = categorized[riskLevel] || [];
-        if (customers.length > 0) {
-            // Format: "Medium Risk", "C001, C002, C003"
-            const customerList = customers.join(', ');
-            csvContent += `"${riskLevel}","${customerList}"\n`;
-        }
+    // Create a mapping from Customer ID to Risk Level
+    const riskLevelMap = {};
+    currentResults.predictions.forEach(prediction => {
+        riskLevelMap[prediction['Customer ID']] = prediction['Risk Level'];
     });
+    
+    // Find Customer ID column index
+    const customerIdIndex = originalCSVData.headers.findIndex(
+        header => header.trim().toLowerCase() === 'customer id'
+    );
+    
+    if (customerIdIndex === -1) {
+        alert('Could not find "Customer ID" column in the uploaded CSV file.');
+        return;
+    }
+    
+    // Build CSV content
+    // Header: original headers + Risk Level
+    const headers = [...originalCSVData.headers, 'Risk Level'];
+    const csvRows = [headers.map(escapeCSVField).join(',')];
+    
+    // Add rows: original data + risk level
+    originalCSVData.rows.forEach(row => {
+        // Get customer ID from the appropriate column
+        const customerId = row[customerIdIndex]?.trim() || '';
+        const riskLevel = riskLevelMap[customerId] || 'Unknown';
+        
+        // Add original row data + risk level
+        const newRow = [...row, riskLevel];
+        csvRows.push(newRow.map(escapeCSVField).join(','));
+    });
+    
+    const csvContent = csvRows.join('\n');
     
     // Create blob and download
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -320,7 +410,7 @@ function downloadRiskSegmentationCSV() {
     
     // Generate filename with timestamp
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-    const filename = `risk_segmentation_${timestamp}.csv`;
+    const filename = `customer_data_with_risk_level_${timestamp}.csv`;
     
     link.setAttribute('href', url);
     link.setAttribute('download', filename);

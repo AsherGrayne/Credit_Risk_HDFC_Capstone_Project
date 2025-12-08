@@ -747,6 +747,35 @@
             <div class="progress-bar" id="progressBar"></div>
         </div>
 
+        <!-- Complete Workflow Summary -->
+        <div class="workflow-container" style="padding: 3rem 20px;">
+            <div class="workflow-summary">
+                <h2>Complete Workflow Summary</h2>
+                <div class="summary-stats">
+                    <div class="summary-stat">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Major Steps</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">14+</div>
+                        <div class="stat-label">Features Engineered</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">ML Models Trained</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">9</div>
+                        <div class="stat-label">Visualizations</div>
+                    </div>
+                    <div class="summary-stat">
+                        <div class="stat-number">32</div>
+                        <div class="stat-label">Files Generated</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Workflow Steps -->
         <div class="workflow-container">
             
@@ -1708,6 +1737,25 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     </div>
                 </div>
     
+                <!-- Summary Section -->
+                <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-bottom: 3rem; border: 1px solid #e5e7eb;">
+                    <h3 style="color: #ffffff; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 700;">
+                        Key Findings: Most Important Features for Delinquency Prediction
+                    </h3>
+                    <div style="background: rgba(255, 255, 255, 0.15); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem;">
+                        <p style="color: #ffffff; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem; font-weight: 600;"><strong style="color: #ffffff;">Top 3 Most Critical Features:</strong></p>
+                        <ol style="color: #ffffff; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
+                            <li><strong style="color: #ffffff;">Recent Spend Change %</strong> - Strongest predictor with 2.8× correlation to 90-day delinquency</li>
+                            <li><strong style="color: #ffffff;">Utilisation %</strong> - Accounts for 25-30% of predictive power in credit scoring models</li>
+                            <li><strong style="color: #ffffff;">Min Due Paid Frequency</strong> - 2.3× higher probability of entering DPD when paying minimum for 3+ months</li>
+                    </ol>
+                    </div>
+                    <div style="background: rgba(255, 255, 255, 0.15); border-radius: 0.5rem; padding: 1.5rem;">
+                        <p style="color: #ffffff; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem; font-weight: 600;"><strong style="color: #ffffff;">Research Consensus:</strong></p>
+                        <p style="color: #ffffff; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
+                    </div>
+                </div>
+    
                 <!-- Feature 1: Recent Spend Change % -->
                 <div class="feature-card" style="background: #ffffff; border: 1px solid #e5e7eb; border-left: 4px solid #8b0000; border-radius: 1rem; padding: 2rem; margin-bottom: 2rem;">
                     <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1rem;">
@@ -1845,25 +1893,6 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                                 <p style="color: #8b0000; margin-top: 1rem; font-weight: 600; font-style: italic;">Ranking: #7 Supporting Feature</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-    
-                <!-- Summary Section -->
-                <div style="background: linear-gradient(135deg, #8b0000 0%, #991b1b 100%); border-radius: 1rem; padding: 2.5rem; margin-top: 3rem; border: 1px solid #e5e7eb;">
-                    <h3 style="color: #111827; font-size: 1.75rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                        Key Findings: Most Important Features for Delinquency Prediction
-                    </h3>
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-                        <p style="color: #111827; font-size: 1.125rem; line-height: 1.8; margin-bottom: 1rem;"><strong>Top 3 Most Critical Features:</strong></p>
-                        <ol style="color: #111827; margin-left: 1.5rem; line-height: 2.5; font-size: 1.125rem;">
-                            <li><strong>Recent Spend Change %</strong> - Strongest predictor with 2.8× correlation to 90-day delinquency</li>
-                            <li><strong>Utilisation %</strong> - Accounts for 25-30% of predictive power in credit scoring models</li>
-                            <li><strong>Min Due Paid Frequency</strong> - 2.3× higher probability of entering DPD when paying minimum for 3+ months</li>
-                    </ol>
-                    </div>
-                    <div style="background: rgba(0, 0, 0, 0.3); border-radius: 0.5rem; padding: 1.5rem;">
-                        <p style="color: #111827; font-size: 1.125rem; line-height: 1.8; margin-bottom: 0.75rem;"><strong>Research Consensus:</strong></p>
-                        <p style="color: #111827; line-height: 1.8;">Behavioral features (spending patterns, utilization, payment behavior) consistently outperform static features (credit limit, income) in predicting credit card delinquency. The combination of spending volatility, high utilization, and minimum payment patterns provides the strongest early warning signals, typically 30-90 days before delinquency occurs.</p>
                     </div>
                 </div>
             </div>
