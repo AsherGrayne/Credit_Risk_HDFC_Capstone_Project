@@ -5,26 +5,55 @@ let updateTimeout = null;
 let dashboardInitialized = false;
 
 // Initialize function that can be called when tab is shown
-function initializeDashboard() {
-    if (dashboardInitialized) return;
+function initializeDashboard(forceReinit = false) {
+    // Allow re-initialization if forceReinit is true or if charts are null
+    if (dashboardInitialized && !forceReinit && riskChart && featureChart) {
+        return;
+    }
     
     const riskChartEl = document.getElementById('riskChart');
     const featureChartEl = document.getElementById('featureChart');
     
     if (!riskChartEl || !featureChartEl) {
         console.log('Dashboard elements not found, waiting...');
+        // Retry after a short delay
+        setTimeout(() => initializeDashboard(forceReinit), 100);
         return;
     }
     
+    // Check if Chart.js is loaded
     if (typeof Chart === 'undefined') {
         console.log('Chart.js not loaded yet, waiting...');
+        // Retry after a short delay
+        setTimeout(() => initializeDashboard(forceReinit), 100);
         return;
     }
     
-    initializeCharts();
-    setupSliders();
-    updatePrediction();
-    dashboardInitialized = true;
+    // Destroy existing charts if they exist (for re-initialization)
+    if (riskChart) {
+        riskChart.destroy();
+        riskChart = null;
+    }
+    if (featureChart) {
+        featureChart.destroy();
+        featureChart = null;
+    }
+    
+    // Reset history
+    riskHistory = [];
+    historyIndex = 0;
+    
+    try {
+        initializeCharts();
+        setupSliders();
+        updatePrediction();
+        dashboardInitialized = true;
+        console.log('Dashboard initialized successfully');
+    } catch (error) {
+        console.error('Error initializing dashboard:', error);
+        // Retry after a short delay
+        setTimeout(() => initializeDashboard(forceReinit), 200);
+    }
 }
 
 // Initialize on DOMContentLoaded (for standalone page)
@@ -124,7 +153,13 @@ function updateRiskDisplay(level, score, probability) {
 
 function initializeCharts() {
     // Risk Score Chart
-    const riskCtx = document.getElementById('riskChart').getContext('2d');
+    const riskChartEl = document.getElementById('riskChart');
+    if (!riskChartEl) {
+        console.error('Risk chart element not found');
+        return;
+    }
+    
+    const riskCtx = riskChartEl.getContext('2d');
     riskChart = new Chart(riskCtx, {
         type: 'line',
         data: {
@@ -170,7 +205,13 @@ function initializeCharts() {
     });
     
     // Feature Importance Chart
-    const featureCtx = document.getElementById('featureChart').getContext('2d');
+    const featureChartEl = document.getElementById('featureChart');
+    if (!featureChartEl) {
+        console.error('Feature chart element not found');
+        return;
+    }
+    
+    const featureCtx = featureChartEl.getContext('2d');
     featureChart = new Chart(featureCtx, {
         type: 'bar',
         data: {

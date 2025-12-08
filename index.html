@@ -1390,195 +1390,6 @@ accuracy = accuracy_score(y_test, y_pred)</code></pre>
                 </div>
             </div>
 
-            <!-- Step 5: Outreach Strategies -->
-            <div class="workflow-step" data-step="5">
-                <div class="step-header">
-                    <div class="step-number">05</div>
-                    <div class="step-content">
-                        <h2>Outreach Strategy Generation</h2>
-                        <p class="step-subtitle">Creating actionable intervention plans for each customer</p>
-                    </div>
-                </div>
-                <div class="step-details">
-                    <div class="detail-section">
-                        <h3>What We Did</h3>
-                        <p>Generated <strong>personalized outreach strategies</strong> based on risk level:</p>
-                        
-                        <!-- Dynamic Controls Panel -->
-                        <div class="strategy-controls">
-                            <h4>Adjust Outreach Parameters</h4>
-                            <div class="controls-grid">
-                                <div class="control-group">
-                                    <label for="critical-timing">CRITICAL Risk Timing (hours):</label>
-                                    <input type="number" id="critical-timing" min="1" max="168" value="24" step="1">
-                                    <span class="control-hint">Default: 24 hours</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="critical-channel">CRITICAL Risk Channel:</label>
-                                    <select id="critical-channel">
-                                        <option value="Phone Call">Phone Call</option>
-                                        <option value="Phone Call or Email">Phone Call or Email</option>
-                                        <option value="Email">Email</option>
-                                        <option value="SMS">SMS</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="high-timing">HIGH Risk Timing (hours):</label>
-                                    <input type="number" id="high-timing" min="1" max="168" value="48" step="1">
-                                    <span class="control-hint">Default: 48 hours</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="high-channel">HIGH Risk Channel:</label>
-                                    <select id="high-channel">
-                                        <option value="Phone Call or Email">Phone Call or Email</option>
-                                        <option value="Phone Call">Phone Call</option>
-                                        <option value="Email">Email</option>
-                                        <option value="SMS">SMS</option>
-                                    </select>
-                                </div>
-                                <div class="control-group">
-                                    <label for="medium-timing">MEDIUM Risk Timing (hours):</label>
-                                    <input type="number" id="medium-timing" min="1" max="168" value="168" step="1">
-                                    <span class="control-hint">Default: 168 hours (1 week)</span>
-                                </div>
-                                <div class="control-group">
-                                    <label for="medium-channel">MEDIUM Risk Channel:</label>
-                                    <select id="medium-channel">
-                                        <option value="Email or SMS">Email or SMS</option>
-                                        <option value="Email">Email</option>
-                                        <option value="SMS">SMS</option>
-                                        <option value="Phone Call">Phone Call</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="control-buttons">
-                                <button class="change-btn" onclick="updateStrategies()">Change</button>
-                                <button class="reset-btn" onclick="resetStrategies()">Reset to Defaults</button>
-                            </div>
-                        </div>
-                        
-                        <div class="strategy-grid">
-                            <div class="strategy-card critical">
-                                <h4>CRITICAL Risk</h4>
-                                <ul>
-                                    <li><strong>Channel:</strong> <span id="critical-channel-display">Phone Call</span></li>
-                                    <li><strong>Timing:</strong> <span id="critical-timing-display">Within 24 hours</span></li>
-                                    <li><strong>Message:</strong> Urgent intervention required</li>
-                                    <li><strong>Offer:</strong> Payment plan, hardship program</li>
-                                </ul>
-                                <div class="strategy-count">10 customers</div>
-                            </div>
-                            <div class="strategy-card high">
-                                <h4>HIGH Risk</h4>
-                                <ul>
-                                    <li><strong>Channel:</strong> <span id="high-channel-display">Phone Call or Email</span></li>
-                                    <li><strong>Timing:</strong> <span id="high-timing-display">Within 48 hours</span></li>
-                                    <li><strong>Message:</strong> Proactive support offer</li>
-                                    <li><strong>Offer:</strong> Payment plan, counseling</li>
-                                </ul>
-                                <div class="strategy-count">40 customers</div>
-                            </div>
-                            <div class="strategy-card medium">
-                                <h4>MEDIUM Risk</h4>
-                                <ul>
-                                    <li><strong>Channel:</strong> <span id="medium-channel-display">Email or SMS</span></li>
-                                    <li><strong>Timing:</strong> <span id="medium-timing-display">Within 1 week</span></li>
-                                    <li><strong>Message:</strong> Educational resources</li>
-                                    <li><strong>Offer:</strong> Tips and reminders</li>
-                                </ul>
-                                <div class="strategy-count">19 customers</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="detail-section">
-                        <h3>How We Did It</h3>
-                        <div class="code-block">
-                            <pre><code># Strategy Generation with Dynamic Parameters
-# Configuration parameters (adjustable by administrators)
-OUTREACH_CONFIG = {
-    'CRITICAL': {
-        'timing_hours': 24,  # Default: 24 hours (adjustable 1-168)
-        'channel': 'Phone Call'  # Default: Phone Call (adjustable)
-    },
-    'HIGH': {
-        'timing_hours': 48,  # Default: 48 hours (adjustable 1-168)
-        'channel': 'Phone Call or Email'  # Default: Phone Call or Email (adjustable)
-    },
-    'MEDIUM': {
-        'timing_hours': 168,  # Default: 168 hours / 1 week (adjustable 1-168)
-        'channel': 'Email or SMS'  # Default: Email or SMS (adjustable)
-    }
-}
-
-def format_timing(hours):
-    """Format hours into human-readable timing string"""
-    if hours < 24:
-        return f'Within {hours} hour{"s" if hours > 1 else ""}'
-    elif hours < 168:
-        days = hours // 24
-        remaining_hours = hours % 24
-        if remaining_hours == 0:
-            return f'Within {days} day{"s" if days > 1 else ""}'
-        else:
-            return f'Within {days} day{"s" if days > 1 else ""} and {remaining_hours} hour{"s" if remaining_hours > 1 else ""}'
-    else:
-        weeks = hours // 168
-        remaining_days = (hours % 168) // 24
-        if remaining_days == 0:
-            return f'Within {weeks} week{"s" if weeks > 1 else ""}'
-        else:
-            return f'Within {weeks} week{"s" if weeks > 1 else ""} and {remaining_days} day{"s" if remaining_days > 1 else ""}'
-
-for idx, row in risk_flags_df.iterrows():
-    strategies = []
-    risk_level = row['risk_level']
-    
-    # Base strategy by risk level (using dynamic config)
-    if risk_level == 'CRITICAL':
-        config = OUTREACH_CONFIG['CRITICAL']
-        strategies.append({
-            'priority': 1,
-            'channel': config['channel'],  # Dynamic: from config
-            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
-            'message': 'Urgent: We noticed concerning patterns in your account. Let\'s discuss payment options.',
-            'offer': 'Payment plan, hardship program, or credit limit adjustment'
-        })
-    elif risk_level == 'HIGH':
-        config = OUTREACH_CONFIG['HIGH']
-        strategies.append({
-            'priority': 2,
-            'channel': config['channel'],  # Dynamic: from config
-            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
-            'message': 'We\'re here to help. Let\'s review your account and explore options.',
-            'offer': 'Payment plan or financial counseling'
-        })
-    elif risk_level == 'MEDIUM':
-        config = OUTREACH_CONFIG['MEDIUM']
-        strategies.append({
-            'priority': 3,
-            'channel': config['channel'],  # Dynamic: from config
-            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
-            'message': 'Tips for managing your credit card account effectively.',
-            'offer': 'Educational resources and payment reminders'
-        })
-    
-    # Flag-specific strategies
-    for flag in row['flags']:
-        if flag['flag'] == 'SPENDING_DECLINE_SEVERE':
-            strategies.append({
-                'priority': 1,
-                'channel': 'Phone Call',
-                'timing': format_timing(OUTREACH_CONFIG[risk_level]['timing_hours']),
-                'message': 'We noticed a significant change in your spending patterns.',
-                'offer': 'Financial wellness check-in and budgeting tools'
-            })
-    
-    return strategies</code></pre>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Step 6: Visualizations -->
             <div class="workflow-step" data-step="6">
                 <div class="step-header">
@@ -2148,6 +1959,193 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <p style="color: #9ca3af; text-align: center; padding: 2rem;">
                             Adjust parameters to see risk flags appear
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outreach Strategies Section -->
+        <div style="margin-top: 4rem; padding-top: 3rem; border-top: 2px solid #1e293b;">
+            <div class="workflow-step" data-step="5">
+                <div class="step-header">
+                    <div class="step-number">Outreach Strategy Generation</div>
+                </div>
+                <div class="step-details">
+                    <div class="detail-section">
+                        <h3>What We Did</h3>
+                        <p>Generated <strong>personalized outreach strategies</strong> based on risk level:</p>
+                        
+                        <!-- Dynamic Controls Panel -->
+                        <div class="strategy-controls">
+                            <h4>Adjust Outreach Parameters</h4>
+                            <div class="controls-grid">
+                                <div class="control-group">
+                                    <label for="critical-timing">CRITICAL Risk Timing (hours):</label>
+                                    <input type="number" id="critical-timing" min="1" max="168" value="24" step="1">
+                                    <span class="control-hint">Default: 24 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="critical-channel">CRITICAL Risk Channel:</label>
+                                    <select id="critical-channel">
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-timing">HIGH Risk Timing (hours):</label>
+                                    <input type="number" id="high-timing" min="1" max="168" value="48" step="1">
+                                    <span class="control-hint">Default: 48 hours</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="high-channel">HIGH Risk Channel:</label>
+                                    <select id="high-channel">
+                                        <option value="Phone Call or Email">Phone Call or Email</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-timing">MEDIUM Risk Timing (hours):</label>
+                                    <input type="number" id="medium-timing" min="1" max="168" value="168" step="1">
+                                    <span class="control-hint">Default: 168 hours (1 week)</span>
+                                </div>
+                                <div class="control-group">
+                                    <label for="medium-channel">MEDIUM Risk Channel:</label>
+                                    <select id="medium-channel">
+                                        <option value="Email or SMS">Email or SMS</option>
+                                        <option value="Email">Email</option>
+                                        <option value="SMS">SMS</option>
+                                        <option value="Phone Call">Phone Call</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control-buttons">
+                                <button class="change-btn" onclick="updateStrategies()">Change</button>
+                                <button class="reset-btn" onclick="resetStrategies()">Reset to Defaults</button>
+                            </div>
+                        </div>
+                        
+                        <div class="strategy-grid">
+                            <div class="strategy-card critical">
+                                <h4>CRITICAL Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="critical-channel-display">Phone Call</span></li>
+                                    <li><strong>Timing:</strong> <span id="critical-timing-display">Within 24 hours</span></li>
+                                    <li><strong>Message:</strong> Urgent intervention required</li>
+                                    <li><strong>Offer:</strong> Payment plan, hardship program</li>
+                                </ul>
+                                <div class="strategy-count">10 customers</div>
+                            </div>
+                            <div class="strategy-card high">
+                                <h4>HIGH Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="high-channel-display">Phone Call or Email</span></li>
+                                    <li><strong>Timing:</strong> <span id="high-timing-display">Within 48 hours</span></li>
+                                    <li><strong>Message:</strong> Proactive support offer</li>
+                                    <li><strong>Offer:</strong> Payment plan, counseling</li>
+                                </ul>
+                                <div class="strategy-count">40 customers</div>
+                            </div>
+                            <div class="strategy-card medium">
+                                <h4>MEDIUM Risk</h4>
+                                <ul>
+                                    <li><strong>Channel:</strong> <span id="medium-channel-display">Email or SMS</span></li>
+                                    <li><strong>Timing:</strong> <span id="medium-timing-display">Within 1 week</span></li>
+                                    <li><strong>Message:</strong> Educational resources</li>
+                                    <li><strong>Offer:</strong> Tips and reminders</li>
+                                </ul>
+                                <div class="strategy-count">19 customers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-section">
+                        <h3>How We Did It</h3>
+                        <div class="code-block">
+                            <pre><code># Strategy Generation with Dynamic Parameters
+# Configuration parameters (adjustable by administrators)
+OUTREACH_CONFIG = {
+    'CRITICAL': {
+        'timing_hours': 24,  # Default: 24 hours (adjustable 1-168)
+        'channel': 'Phone Call'  # Default: Phone Call (adjustable)
+    },
+    'HIGH': {
+        'timing_hours': 48,  # Default: 48 hours (adjustable 1-168)
+        'channel': 'Phone Call or Email'  # Default: Phone Call or Email (adjustable)
+    },
+    'MEDIUM': {
+        'timing_hours': 168,  # Default: 168 hours / 1 week (adjustable 1-168)
+        'channel': 'Email or SMS'  # Default: Email or SMS (adjustable)
+    }
+}
+
+def format_timing(hours):
+    """Format hours into human-readable timing string"""
+    if hours < 24:
+        return f'Within {hours} hour{"s" if hours > 1 else ""}'
+    elif hours < 168:
+        days = hours // 24
+        remaining_hours = hours % 24
+        if remaining_hours == 0:
+            return f'Within {days} day{"s" if days > 1 else ""}'
+        else:
+            return f'Within {days} day{"s" if days > 1 else ""} and {remaining_hours} hour{"s" if remaining_hours > 1 else ""}'
+    else:
+        weeks = hours // 168
+        remaining_days = (hours % 168) // 24
+        if remaining_days == 0:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""}'
+        else:
+            return f'Within {weeks} week{"s" if weeks > 1 else ""} and {remaining_days} day{"s" if remaining_days > 1 else ""}'
+
+for idx, row in risk_flags_df.iterrows():
+    strategies = []
+    risk_level = row['risk_level']
+    
+    # Base strategy by risk level (using dynamic config)
+    if risk_level == 'CRITICAL':
+        config = OUTREACH_CONFIG['CRITICAL']
+        strategies.append({
+            'priority': 1,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Urgent: We noticed concerning patterns in your account. Let\'s discuss payment options.',
+            'offer': 'Payment plan, hardship program, or credit limit adjustment'
+        })
+    elif risk_level == 'HIGH':
+        config = OUTREACH_CONFIG['HIGH']
+        strategies.append({
+            'priority': 2,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'We\'re here to help. Let\'s review your account and explore options.',
+            'offer': 'Payment plan or financial counseling'
+        })
+    elif risk_level == 'MEDIUM':
+        config = OUTREACH_CONFIG['MEDIUM']
+        strategies.append({
+            'priority': 3,
+            'channel': config['channel'],  # Dynamic: from config
+            'timing': format_timing(config['timing_hours']),  # Dynamic: formatted timing
+            'message': 'Tips for managing your credit card account effectively.',
+            'offer': 'Educational resources and payment reminders'
+        })
+    
+    # Flag-specific strategies
+    for flag in row['flags']:
+        if flag['flag'] == 'SPENDING_DECLINE_SEVERE':
+            strategies.append({
+                'priority': 1,
+                'channel': 'Phone Call',
+                'timing': format_timing(OUTREACH_CONFIG[risk_level]['timing_hours']),
+                'message': 'We noticed a significant change in your spending patterns.',
+                'offer': 'Financial wellness check-in and budgeting tools'
+            })
+    
+    return strategies</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -3848,7 +3846,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             <!-- Partition Selection -->
             <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #1e293b; padding-bottom: 1rem;">
                 <button id="csvUploadBtn" class="partition-btn active" onclick="switchPartition('csv-upload')" style="flex: 1; padding: 1rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Upload customer's details</button>
-                <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">See individual customer</button>
+                <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Enter Details of Individual Customer</button>
             </div>
 
             <!-- CSV Upload Partition -->
@@ -4587,10 +4585,24 @@ Generated Strategies:
             if (tabName === 'dashboard') {
                 // Wait a bit for the tab to be visible, then initialize
                 setTimeout(function() {
-                    if (typeof initializeDashboard === 'function') {
-                        initializeDashboard();
+                    // Ensure tab is visible
+                    const dashboardTabEl = document.getElementById('dashboard-tab');
+                    if (dashboardTabEl) {
+                        dashboardTabEl.style.display = 'block';
                     }
-                }, 100);
+                    
+                    if (typeof initializeDashboard === 'function') {
+                        // Force re-initialization to ensure it works every time
+                        initializeDashboard(true);
+                    } else {
+                        // If function not available yet, wait a bit more
+                        setTimeout(function() {
+                            if (typeof initializeDashboard === 'function') {
+                                initializeDashboard(true);
+                            }
+                        }, 200);
+                    }
+                }, 200);
             }
             
             // Scroll to top
@@ -5461,6 +5473,24 @@ Generated Strategies:
             // Heavy features will load when their tabs are opened
             updateStrategies();
             updateStrategiesEnhancing();
+            
+            // Initialize dashboard if it's the active tab on page load
+            const dashboardTab = document.getElementById('dashboard-tab');
+            if (dashboardTab && dashboardTab.classList.contains('active')) {
+                // Wait for Chart.js and other scripts to load
+                setTimeout(function() {
+                    if (typeof initializeDashboard === 'function') {
+                        initializeDashboard(true);
+                    } else {
+                        // If function not available yet, wait a bit more
+                        setTimeout(function() {
+                            if (typeof initializeDashboard === 'function') {
+                                initializeDashboard(true);
+                            }
+                        }, 200);
+                    }
+                }, 300);
+            }
             
             // Lazy load datasets only when their tabs are accessed
             // This prevents blocking the initial page load
