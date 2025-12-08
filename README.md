@@ -6,6 +6,12 @@
 
 A lightweight, data-driven framework for identifying early behavioral signals of credit card delinquency before they occur, enabling proactive customer outreach to reduce roll-rates and improve portfolio health.
 
+## 🌐 Live Website
+
+**👉 [View Deployed Website](https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/)**
+
+The complete interactive dashboard is live and ready to use! Upload customer data, view predictions, explore visualizations, and interact with the ML workflow.
+
 ## Overview
 
 This solution provides a comprehensive system to detect credit card delinquency risk using **leading indicators** (early warning signals) rather than lag indicators (missed payments). The framework enables proactive customer outreach to reduce roll-rates and improve portfolio health.
@@ -271,11 +277,20 @@ if row['Your_New_Indicator'] > threshold:
 
 ## Website
 
-A professional website showcasing all visualizations is included:
+A professional interactive website showcasing all visualizations, ML predictions, and workflow is available:
 
+- **Live Website**: **[https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/](https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/)**
 - **File**: `index.html`
 - **Styling**: `styles.css`
-- **Hosting**: Can be deployed on GitHub Pages, Netlify, or any static host
+- **Hosting**: Deployed on GitHub Pages
+
+### Features Available on the Website:
+- 📊 Interactive Dashboard with risk segmentation
+- 🔮 Batch CSV prediction with risk level classification
+- 📈 9+ comprehensive visualizations
+- 🤖 ML Workflow walkthrough
+- 📋 Complete workflow documentation
+- 🎯 Outreach strategy framework
 
 See `docs/README_HOSTING.md` for deployment instructions.
 
