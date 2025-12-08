@@ -1,6 +1,28 @@
 // CSV Batch Prediction Script
 // Handles CSV upload, prediction via Flask API (ML models only), and result display with pie chart
 
+// API Configuration
+// ============================================
+// IMPORTANT: Update this with your Render API URL
+// ============================================
+// To find your Render URL:
+// 1. Go to your Render dashboard
+// 2. Click on your web service
+// 3. Copy the URL (e.g., https://your-app-name.onrender.com)
+// 4. Replace the URL below
+// ============================================
+
+const RENDER_API_URL = 'https://credit-risk-hdfc-capstone-project.onrender.com';
+
+const API_BASE_URL = (() => {
+    // Check if we're running on localhost (for local development)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        return 'http://localhost:5000';
+    }
+    // For production, use the Render URL
+    return RENDER_API_URL;
+})();
+
 let uploadedFile = null;
 let pieChartInstance = null;
 let currentResults = null; // Store current prediction results for download
@@ -69,7 +91,7 @@ async function processCSVPrediction() {
         formData.append('file', uploadedFile);
         
         // Call Flask API (ML models only)
-        const response = await fetch('http://localhost:5000/predict_batch', {
+        const response = await fetch(`${API_BASE_URL}/predict_batch`, {
             method: 'POST',
             body: formData
         });
@@ -95,8 +117,12 @@ async function processCSVPrediction() {
         let errorMessage = 'Prediction failed. ';
         
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-            errorMessage += 'Cannot connect to Flask API. Please ensure the Flask API is running on port 5000. ';
-            errorMessage += 'Start it by running: python app.py';
+            errorMessage += `Cannot connect to Flask API at ${API_BASE_URL}. `;
+            if (API_BASE_URL.includes('localhost')) {
+                errorMessage += 'Please ensure the Flask API is running on port 5000. Start it by running: python app.py';
+            } else {
+                errorMessage += 'Please check if your Render API is deployed and accessible.';
+            }
         } else {
             errorMessage += error.message;
         }
