@@ -3835,10 +3835,10 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                         <div class="stat-number">32</div>
                         <div class="stat-label">Files Generated</div>
                     </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- See your output Tab Content -->
     <div id="apply-tab" class="tab-content">
@@ -3847,7 +3847,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
             <div style="display: flex; gap: 1rem; margin-bottom: 2rem; border-bottom: 2px solid #1e293b; padding-bottom: 1rem;">
                 <button id="csvUploadBtn" class="partition-btn active" onclick="switchPartition('csv-upload')" style="flex: 1; padding: 1rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Upload customer's details</button>
                 <button id="individualCustomerBtn" class="partition-btn" onclick="switchPartition('individual-customer')" style="flex: 1; padding: 1rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: pointer; font-size: 1rem; font-weight: 600;">Enter Details of Individual Customer</button>
-            </div>
+    </div>
 
             <!-- CSV Upload Partition -->
             <div id="csv-upload-partition" class="partition-content">
@@ -3874,12 +3874,12 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <button id="uploadPredictBtn" onclick="processCSVPrediction()" disabled style="padding: 1rem 2rem; background: #1e293b; color: #9ca3af; border: none; border-radius: 0.5rem; cursor: not-allowed; font-weight: 600;">
                         Predict DPD Bucket
                     </button>
-                </div>
+                    </div>
 
                 <!-- Loading indicator -->
                 <div id="csvLoading" class="loading" style="display: none;">
                     <p>Processing predictions...</p>
-                </div>
+                    </div>
 
                 <!-- Error message -->
                 <div id="csvErrorMessage" class="error-message" style="display: none;"></div>
@@ -3892,21 +3892,21 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                             <button id="downloadSegmentationBtn" onclick="downloadRiskSegmentationCSV()" style="padding: 0.75rem 1.5rem; background: #8b0000; color: white; border: none; border-radius: 0.5rem; cursor: pointer; font-weight: 600; font-size: 0.875rem;">
                                 Download Risk Segmentation CSV
                             </button>
-                        </div>
-                        
+                    </div>
+
                         <!-- Pie Chart Container -->
                         <div style="margin-bottom: 2rem;">
                             <h3 style="color: #e5e7eb; margin-bottom: 1rem;">Risk Level Distribution</h3>
                             <canvas id="riskPieChart" width="400" height="400"></canvas>
-                        </div>
+                    </div>
 
                         <!-- Categorized Customers -->
                         <div id="categorizedCustomers" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
                             <!-- Will be populated by JavaScript -->
                         </div>
                     </div>
+                    </div>
                 </div>
-            </div>
 
             <!-- Individual Customer Partition -->
             <div id="individual-customer-partition" class="partition-content" style="display: none;">
@@ -4020,8 +4020,8 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="step-content">
                         <h2>Objective</h2>
                         <p class="step-subtitle">Design a lightweight, data-driven framework for proactive customer intervention</p>
+                        </div>
                     </div>
-                </div>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Our Mission</h3>
@@ -4059,8 +4059,8 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="step-content">
                         <h2>Framework Overview</h2>
                         <p class="step-subtitle">How the outreach strategy framework works</p>
+                        </div>
                     </div>
-                </div>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Key Components</h3>
@@ -4095,8 +4095,8 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="step-content">
                         <h2>Risk-Based Strategy Matrix</h2>
                         <p class="step-subtitle">Intervention strategies mapped to risk levels</p>
+                        </div>
                     </div>
-                </div>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Strategy Framework</h3>
@@ -4106,7 +4106,7 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #ef4444; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">CRITICAL</div>
                                 <span style="color: #9ca3af;">Highest Priority - Immediate Action Required</span>
-                            </div>
+                </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
                                     <strong style="color: #e5e7eb;">Channel:</strong>
@@ -4126,23 +4126,23 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                                 </div>
                             </div>
                             <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Prevent immediate default and stabilize account before roll-rate progression.</p>
-                        </div>
+            </div>
 
                         <!-- HIGH Risk -->
                         <div style="background: #0f172a; border: 1px solid #f59e0b; border-left: 6px solid #f59e0b; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #f59e0b; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">HIGH</div>
                                 <span style="color: #9ca3af;">Priority Action - Proactive Support</span>
-                            </div>
+                        </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
                                     <strong style="color: #e5e7eb;">Channel:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">Phone Call or Email</p>
-                                </div>
+                    </div>
                                 <div>
                                     <strong style="color: #e5e7eb;">Timing:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">Within 48 hours</p>
-                                </div>
+                </div>
                                 <div>
                                     <strong style="color: #e5e7eb;">Message:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">We're here to help. Let's review your account and explore options.</p>
@@ -4153,23 +4153,23 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                                 </div>
                             </div>
                             <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Address risk factors early to prevent escalation to CRITICAL status.</p>
-                        </div>
+            </div>
 
                         <!-- MEDIUM Risk -->
                         <div style="background: #0f172a; border: 1px solid #3b82f6; border-left: 6px solid #3b82f6; border-radius: 1rem; padding: 2rem; margin-bottom: 1.5rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">MEDIUM</div>
                                 <span style="color: #9ca3af;">Educational Outreach - Preventive Measures</span>
-                            </div>
+                        </div>
                             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
                                 <div>
                                     <strong style="color: #e5e7eb;">Channel:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">Email or SMS</p>
-                                </div>
+                    </div>
                                 <div>
                                     <strong style="color: #e5e7eb;">Timing:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">Within 1 week</p>
-                                </div>
+                </div>
                                 <div>
                                     <strong style="color: #e5e7eb;">Message:</strong>
                                     <p style="color: #9ca3af; margin-top: 0.25rem;">Tips for managing your credit card account effectively.</p>
@@ -4180,14 +4180,14 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                                 </div>
                             </div>
                             <p style="color: #9ca3af; margin-top: 1rem; font-style: italic;">Goal: Provide guidance to maintain healthy account behavior and prevent risk escalation.</p>
-                        </div>
+            </div>
 
                         <!-- LOW Risk -->
                         <div style="background: #0f172a; border: 1px solid #10b981; border-left: 6px solid #10b981; border-radius: 1rem; padding: 2rem;">
                             <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
                                 <div style="background: #10b981; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 700;">LOW</div>
                                 <span style="color: #9ca3af;">Standard Monitoring - No Immediate Action</span>
-                            </div>
+                        </div>
                             <div style="margin-top: 1rem;">
                                 <p style="color: #9ca3af;">Regular review cycles. No proactive outreach required. Continue monitoring for any changes in behavior patterns.</p>
                             </div>
@@ -4204,8 +4204,8 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <div class="step-content">
                         <h2>Roll-Rate Prevention Strategy</h2>
                         <p class="step-subtitle">How we prevent customers from progressing to next delinquency stage</p>
+                        </div>
                     </div>
-                </div>
                 <div class="step-details">
                     <div class="detail-section">
                         <h3>Understanding Roll-Rates</h3>
@@ -4518,9 +4518,10 @@ Generated Strategies:
         
         // Tab switching functionality
         function switchTab(tabName, clickedButton) {
-            // Hide all tab contents
+            // Hide all tab contents - explicitly set display to none
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
+                content.style.display = 'none'; // Explicitly hide
             });
             
             // Remove active class from all tabs
@@ -4533,8 +4534,7 @@ Generated Strategies:
             const tabContent = document.getElementById(tabId);
             if (tabContent) {
                 tabContent.classList.add('active');
-                // Force display in case CSS isn't working
-                tabContent.style.display = 'block';
+                tabContent.style.display = 'block'; // Explicitly show
             } else {
                 console.error('Tab content not found:', tabId);
                 // Try to find it without the -tab suffix as fallback
@@ -5469,6 +5469,15 @@ Generated Strategies:
         
         // Initialize on page load - lazy load heavy features
         document.addEventListener('DOMContentLoaded', function() {
+            // Ensure only the active tab is visible on page load
+            document.querySelectorAll('.tab-content').forEach(content => {
+                if (content.classList.contains('active')) {
+                    content.style.display = 'block';
+                } else {
+                    content.style.display = 'none';
+                }
+            });
+            
             // Only load essential features immediately
             // Heavy features will load when their tabs are opened
             updateStrategies();
@@ -5505,7 +5514,7 @@ Generated Strategies:
                         datasetsLoaded = true;
                         // Delay loading to allow page to render first
                         setTimeout(() => {
-                            loadDataset();
+            loadDataset();
                         }, 300);
                     }
                 });
@@ -5521,7 +5530,7 @@ Generated Strategies:
                         if (entry.isIntersecting && !riskFlagsLoaded) {
                             riskFlagsLoaded = true;
                             setTimeout(() => {
-                                loadRiskFlagsData();
+            loadRiskFlagsData();
                             }, 200);
                             intersectionObserver.disconnect();
                         }
