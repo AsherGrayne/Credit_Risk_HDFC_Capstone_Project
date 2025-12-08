@@ -2,8 +2,15 @@
 # This file configures Netlify deployment settings
 
 [build]
-  # No build command needed - static site
+  # This is a static site - no build needed
+  # Empty command tells Netlify to skip dependency installation
+  command = ""
   publish = "."
+  
+  # Disable Python auto-detection
+  [build.environment]
+    PYTHON_VERSION = ""
+    NODE_VERSION = ""
   
   # Redirect all routes to index.html for SPA behavior
   [[redirects]]

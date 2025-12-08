@@ -27,13 +27,14 @@ This guide will help you deploy your Credit Card Delinquency Prediction frontend
 
 #### Step 3: Configure Build Settings
 
-Netlify will auto-detect settings, but verify:
+**IMPORTANT:** Netlify may try to detect Python. Override this:
 
 - **Branch to deploy:** `main`
-- **Build command:** (leave empty - no build needed for static site)
+- **Build command:** (leave **completely empty** - no build needed for static site)
 - **Publish directory:** `.` (root directory)
+- **Python version:** (leave empty or set to "None")
 
-**Note:** Since this is a static site, no build command is needed.
+**Note:** Since this is a static site, no build command or Python is needed. The backend runs on Render separately.
 
 #### Step 4: Deploy
 

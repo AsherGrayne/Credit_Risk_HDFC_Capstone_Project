@@ -1,0 +1,58 @@
+# Netlify Ignore File
+# Files and directories to exclude from Netlify deployment
+
+# Python files (backend is on Render, not Netlify)
+*.py
+app.py
+batch_predict_csv.py
+requirements.txt
+runtime.txt
+Procfile
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Python source directories
+src/
+models/
+uploads/
+
+# Data files (not needed for frontend)
+data/*.csv
+data/*.json
+!data/customer_categories.json
+
+# Documentation (optional - can include if needed)
+docs/
+*.md
+!README.md
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
