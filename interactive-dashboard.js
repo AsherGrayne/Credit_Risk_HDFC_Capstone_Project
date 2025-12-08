@@ -44,10 +44,10 @@ function initializeDashboard(forceReinit = false) {
     historyIndex = 0;
     
     try {
-        initializeCharts();
-        setupSliders();
-        updatePrediction();
-        dashboardInitialized = true;
+    initializeCharts();
+    setupSliders();
+    updatePrediction();
+    dashboardInitialized = true;
         console.log('Dashboard initialized successfully');
     } catch (error) {
         console.error('Error initializing dashboard:', error);

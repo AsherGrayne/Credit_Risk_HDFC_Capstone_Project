@@ -176,7 +176,7 @@ function drawPieChart(riskCounts) {
     const total = Object.values(riskCounts).reduce((sum, count) => sum + count, 0);
     
     if (total === 0) {
-        ctx.fillStyle = '#6b7280';
+        ctx.fillStyle = '#111827';
         ctx.font = '20px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('No data available', centerX, centerY);

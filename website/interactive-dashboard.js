@@ -148,7 +148,7 @@ function initializeCharts() {
                         color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#6b7280'
+                        color: '#111827'
                     }
                 },
                 x: {
@@ -156,7 +156,7 @@ function initializeCharts() {
                         color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#6b7280'
+                        color: '#111827'
                     }
                 }
             }
@@ -206,7 +206,7 @@ function initializeCharts() {
                         color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#6b7280'
+                        color: '#111827'
                     }
                 },
                 x: {
@@ -214,7 +214,7 @@ function initializeCharts() {
                         color: '#e5e7eb'
                     },
                     ticks: {
-                        color: '#6b7280'
+                        color: '#111827'
                     }
                 }
             }

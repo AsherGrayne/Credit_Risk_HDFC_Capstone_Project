@@ -35,7 +35,7 @@ body {
 
 .workflow-header p {
     font-size: 1.125rem;
-    color: #6b7280;
+    color: #111827;
 }
 
 /* Progress Bar */
@@ -97,14 +97,22 @@ body {
 
 .step-content h2 {
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #111827;
+}
+
+.step-content h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: 0.5rem;
     color: #111827;
 }
 
 .step-subtitle {
     font-size: 1.125rem;
-    color: #6b7280;
+    color: #374151;
+    font-weight: 500;
 }
 
 .step-details {
@@ -133,7 +141,14 @@ body {
     padding: 0.75rem 0;
     padding-left: 1.5rem;
     position: relative;
-    color: #4b5563;
+    color: #111827;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+.detail-section li strong {
+    color: #111827;
+    font-weight: 700;
 }
 
 .detail-section li::before {
@@ -145,8 +160,57 @@ body {
 }
 
 .detail-section p {
-    color: #4b5563;
+    color: #111827;
     margin-bottom: 1rem;
+    font-weight: 500;
+    line-height: 1.7;
+}
+
+/* Info Box Styles */
+.info-box {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-left: 4px solid #8b0000;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.info-box h4 {
+    color: #111827;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.info-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.info-box li {
+    padding: 0.75rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: #111827;
+    font-weight: 500;
+    line-height: 1.8;
+    font-size: 1rem;
+}
+
+.info-box li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #8b0000;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.info-box li strong {
+    color: #111827;
+    font-weight: 700;
 }
 
 /* Code Blocks */
@@ -228,7 +292,7 @@ body {
 
 .card-hint {
     font-size: 0.75rem;
-    color: #6b7280;
+    color: #111827;
     margin-top: 0.5rem;
     font-style: italic;
     opacity: 0;
@@ -291,7 +355,7 @@ body {
 .result-label,
 .stat-label {
     font-size: 0.875rem;
-    color: #6b7280;
+    color: #111827;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
@@ -357,17 +421,51 @@ body {
 
 .flip-card-front h4,
 .flip-card-back h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
+    font-size: 1.25rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     color: #111827;
 }
 
+.flip-card-front strong {
+    color: #111827;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
 .flip-card-front p {
-    color: #4b5563;
-    font-size: 0.875rem;
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 500;
     line-height: 1.6;
-    margin: 0;
+    margin: 0.5rem 0 0 0;
+}
+
+.flip-card-back p {
+    color: #111827;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+.flip-card-back strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+.flip-card-back ul {
+    color: #111827;
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.7;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.flip-card-back li {
+    margin-bottom: 0.5rem;
 }
 
 .flip-card-back pre {
@@ -456,7 +554,7 @@ body {
 }
 
 .flag-trigger {
-    color: #6b7280;
+    color: #111827;
     font-size: 0.875rem;
 }
 
@@ -616,7 +714,7 @@ body {
 
 .control-hint {
     font-size: 0.75rem;
-    color: #6b7280;
+    color: #111827;
     font-style: italic;
 }
 
@@ -779,7 +877,7 @@ body {
 }
 
 .viz-item p {
-    color: #6b7280;
+    color: #111827;
     font-size: 0.875rem;
     margin: 0;
 }
@@ -815,7 +913,7 @@ body {
 }
 
 .viz-description {
-    color: #6b7280;
+    color: #111827;
     font-size: 0.875rem;
     margin-top: 1rem;
     line-height: 1.6;
@@ -967,7 +1065,7 @@ body {
 }
 
 #dataset-info {
-    color: #6b7280;
+    color: #111827;
     font-size: 0.875rem;
     align-self: flex-end;
     padding-top: 1.75rem;
