@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Credit Card Delinquency Prediction System">
     <title>Early Risk Signals - Credit Card Delinquency Watch</title>
+    <!-- Performance optimizations -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="website/workflow-styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <style>
         /* Tab Styles */
         .tabs-container {
@@ -4425,11 +4429,11 @@ Generated Strategies:
         </div>
     </div>
 
-    <script src="website/workflow-script.js"></script>
-    <script src="website/ml-model-predictor.js"></script>
-    <script src="website/apply-script.js"></script>
-    <script src="website/csv-batch-predictor.js"></script>
-    <script src="interactive-dashboard.js"></script>
+    <script src="website/workflow-script.js" defer></script>
+    <script src="website/ml-model-predictor.js" defer></script>
+    <script src="website/apply-script.js" defer></script>
+    <script src="website/csv-batch-predictor.js" defer></script>
+    <script src="interactive-dashboard.js" defer></script>
     <script>
         // Load and display risk categories
         function loadRiskCategories() {
@@ -5451,12 +5455,50 @@ Generated Strategies:
             document.body.removeChild(link);
         }
         
-        // Initialize on page load
+        // Initialize on page load - lazy load heavy features
         document.addEventListener('DOMContentLoaded', function() {
+            // Only load essential features immediately
+            // Heavy features will load when their tabs are opened
             updateStrategies();
             updateStrategiesEnhancing();
-            loadDataset();
-            loadRiskFlagsData();
+            
+            // Lazy load datasets only when their tabs are accessed
+            // This prevents blocking the initial page load
+            let datasetsLoaded = false;
+            let riskFlagsLoaded = false;
+            
+            // Load datasets when ML Workflow tab is opened
+            const mlWorkflowTab = document.getElementById('workflow-tab');
+            if (mlWorkflowTab) {
+                const observer = new MutationObserver(function(mutations) {
+                    if (mlWorkflowTab.classList.contains('active') && !datasetsLoaded) {
+                        datasetsLoaded = true;
+                        // Delay loading to allow page to render first
+                        setTimeout(() => {
+                            loadDataset();
+                        }, 300);
+                    }
+                });
+                observer.observe(mlWorkflowTab, { attributes: true, attributeFilter: ['class'] });
+            }
+            
+            // Load risk flags when Customer Risk Categories section is viewed
+            const riskCategorySection = document.getElementById('risk-category-grid');
+            if (riskCategorySection && !riskFlagsLoaded) {
+                // Use Intersection Observer to load when section is visible
+                const intersectionObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && !riskFlagsLoaded) {
+                            riskFlagsLoaded = true;
+                            setTimeout(() => {
+                                loadRiskFlagsData();
+                            }, 200);
+                            intersectionObserver.disconnect();
+                        }
+                    });
+                }, { rootMargin: '100px' });
+                intersectionObserver.observe(riskCategorySection);
+            }
         });
     </script>
 </body>
