@@ -1,5 +1,5 @@
 // CSV Batch Prediction Script
-// Handles CSV upload, prediction via API, and result display with pie chart
+// Handles CSV upload, prediction via Flask API (ML models only), and result display with pie chart
 
 let uploadedFile = null;
 let pieChartInstance = null;
@@ -50,7 +50,7 @@ function handleCSVUpload(event) {
     }
 }
 
-// Process CSV prediction
+// Process CSV prediction - Flask API only
 async function processCSVPrediction() {
     if (!uploadedFile) {
         showCSVError('Please select a CSV file first');
@@ -68,14 +68,15 @@ async function processCSVPrediction() {
         const formData = new FormData();
         formData.append('file', uploadedFile);
         
-        // Try to call Flask API
+        // Call Flask API (ML models only)
         const response = await fetch('http://localhost:5000/predict_batch', {
             method: 'POST',
             body: formData
         });
         
         if (!response.ok) {
-            throw new Error(`API error: ${response.status} ${response.statusText}`);
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.error || `API error: ${response.status} ${response.statusText}`);
         }
         
         const result = await response.json();
@@ -90,99 +91,21 @@ async function processCSVPrediction() {
     } catch (error) {
         console.error('Prediction error:', error);
         
-        // Fallback: Try to use client-side CSV parsing and prediction
-        // This is a fallback if API is not available
-        try {
-            const csvText = await uploadedFile.text();
-            const result = await predictCSVClientSide(csvText);
-            displayCSVResults(result);
-        } catch (fallbackError) {
-            showCSVError(`Prediction failed: ${error.message}. Please ensure the Flask API is running on port 5000.`);
+        // Show clear error message
+        let errorMessage = 'Prediction failed. ';
+        
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            errorMessage += 'Cannot connect to Flask API. Please ensure the Flask API is running on port 5000. ';
+            errorMessage += 'Start it by running: python app.py';
+        } else {
+            errorMessage += error.message;
         }
+        
+        showCSVError(errorMessage);
     } finally {
         document.getElementById('csvLoading').style.display = 'none';
         document.getElementById('uploadPredictBtn').disabled = false;
     }
-}
-
-// Client-side CSV prediction (fallback)
-async function predictCSVClientSide(csvText) {
-    // Parse CSV
-    const lines = csvText.split('\n').filter(line => line.trim());
-    const headers = lines[0].split(',').map(h => h.trim());
-    
-    // Check required columns
-    const requiredCols = ['Customer ID', 'Credit Limit', 'Utilisation %', 'Avg Payment Ratio',
-                          'Min Due Paid Frequency', 'Merchant Mix Index', 'Cash Withdrawal %',
-                          'Recent Spend Change %'];
-    
-    const missingCols = requiredCols.filter(col => !headers.includes(col));
-    if (missingCols.length > 0) {
-        throw new Error(`Missing required columns: ${missingCols.join(', ')}`);
-    }
-    
-    // Parse data
-    const predictions = [];
-    const categorized = {
-        'No Risk': [],
-        'Low Risk': [],
-        'Medium Risk': [],
-        'High Risk': []
-    };
-    
-    for (let i = 1; i < lines.length; i++) {
-        const values = lines[i].split(',').map(v => v.trim());
-        const row = {};
-        headers.forEach((header, idx) => {
-            row[header] = values[idx];
-        });
-        
-        // Simple rule-based prediction (fallback)
-        // This is a basic fallback - ideally use the API with joblib models
-        const utilisation = parseFloat(row['Utilisation %']) || 0;
-        const spendChange = parseFloat(row['Recent Spend Change %']) || 0;
-        const minDueFreq = parseFloat(row['Min Due Paid Frequency']) || 0;
-        
-        let predictedDPD = 0; // Default: No Risk
-        
-        if (utilisation >= 90 || spendChange <= -25) {
-            predictedDPD = 3; // High Risk
-        } else if (utilisation >= 70 || spendChange <= -15 || minDueFreq <= 30) {
-            predictedDPD = 2; // Medium Risk
-        } else if (utilisation >= 50 || spendChange <= -10) {
-            predictedDPD = 1; // Low Risk
-        }
-        
-        const riskMapping = {
-            0: 'No Risk',
-            1: 'Low Risk',
-            2: 'Medium Risk',
-            3: 'High Risk'
-        };
-        
-        predictions.push({
-            'Customer ID': row['Customer ID'],
-            'Predicted DPD Bucket': predictedDPD,
-            'Risk Level': riskMapping[predictedDPD]
-        });
-        
-        categorized[riskMapping[predictedDPD]].push(row['Customer ID']);
-    }
-    
-    const risk_counts = {
-        'No Risk': categorized['No Risk'].length,
-        'Low Risk': categorized['Low Risk'].length,
-        'Medium Risk': categorized['Medium Risk'].length,
-        'High Risk': categorized['High Risk'].length
-    };
-    
-    return {
-        success: true,
-        predictions: predictions,
-        categorized: categorized,
-        risk_counts: risk_counts,
-        total_customers: predictions.length
-    };
 }
 
 // Display CSV prediction results
