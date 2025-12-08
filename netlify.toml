@@ -2,9 +2,8 @@
 # This file configures Netlify deployment settings
 
 [build]
-  # This is a static site - no build needed
-  # Empty command tells Netlify to skip dependency installation
-  command = "echo 'Static site deployment - no build needed'"
+  # Use build script to prevent Python detection
+  command = "bash netlify-build.sh"
   publish = "."
   
   # Completely disable Python auto-detection
