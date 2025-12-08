@@ -1,0 +1,8 @@
+# Mise configuration file
+# This tells Netlify's build system to skip Python entirely
+# Python is only needed for Render backend, not Netlify frontend
+
+[tools]
+# Explicitly do not install Python
+python = "none"
+

@@ -4,13 +4,15 @@
 [build]
   # This is a static site - no build needed
   # Empty command tells Netlify to skip dependency installation
-  command = ""
+  command = "echo 'Static site deployment - no build needed'"
   publish = "."
   
-  # Disable Python auto-detection
+  # Completely disable Python auto-detection
   [build.environment]
-    PYTHON_VERSION = ""
-    NODE_VERSION = ""
+    # Disable mise Python detection completely
+    MISE_SKIP_PYTHON = "1"
+    # Don't install Python
+    SKIP_PYTHON_INSTALL = "1"
   
   # Redirect all routes to index.html for SPA behavior
   [[redirects]]
