@@ -272,6 +272,28 @@
             transform: translateY(0);
         }
         
+        .sample-download-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #10b981;
+            color: white;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sample-download-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(16, 185, 129, 0.3);
+        }
+        
+        .sample-download-btn:active {
+            transform: translateY(0);
+        }
+        
         /* Apply Form Styles */
         .apply-container {
             max-width: 900px;
@@ -3901,6 +3923,15 @@ plt.savefig('risk_distribution.png', dpi=300)</code></pre>
                     <p style="color: #111827; margin-bottom: 1.5rem; font-size: 0.875rem;">
                         Note: The "DPD Bucket Next Month" column is optional. If provided, it will be used for comparison only.
                     </p>
+                    
+                    <div style="margin-bottom: 1.5rem; padding: 1rem; background: #f9fafb; border-radius: 0.5rem; border: 1px solid #e5e7eb;">
+                        <p style="color: #111827; margin-bottom: 0.75rem; font-size: 0.875rem; font-weight: 600;">
+                            Don't have a CSV file? Download a sample template:
+                        </p>
+                        <a href="data/Sample.csv" download="Sample.csv" class="sample-download-btn">
+                            📥 Download Sample CSV
+                        </a>
+                    </div>
                     
                     <div style="margin-bottom: 1.5rem;">
                         <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="handleCSVUpload(event)">
