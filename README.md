@@ -1,208 +1,627 @@
-# Early Risk Signals – Credit Card Delinquency Watch
+# Credit Card Delinquency Prediction System
 
-![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Status](https://img.shields.io/badge/Status-Production--Ready-success.svg)
+A comprehensive machine learning-based framework for predicting credit card delinquency risk using early behavioral signals. This system enables proactive customer outreach to reduce roll-rates and improve portfolio health through predictive analytics and automated risk assessment.
 
-A lightweight, data-driven framework for identifying early behavioral signals of credit card delinquency before they occur, enabling proactive customer outreach to reduce roll-rates and improve portfolio health.
+## Live Deployment
 
-## 🌐 Live Website
+**Deployed Website:** [https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/](https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/)
 
-**👉 [View Deployed Website](https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/)**
+The complete interactive dashboard is live and ready to use. Features include:
+- Interactive risk prediction dashboard
+- Batch CSV file processing
+- Real-time risk segmentation
+- Comprehensive visualizations
+- Machine learning workflow demonstration
 
-The complete interactive dashboard is live and ready to use! Upload customer data, view predictions, explore visualizations, and interact with the ML workflow.
+**Video Demonstration:** [Add video link here]
+
+A comprehensive video walkthrough demonstrating the system's capabilities, including:
+- Uploading customer data for batch prediction
+- Interactive dashboard usage
+- Risk segmentation and analysis
+- Visualization exploration
+- Model performance metrics
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Project Statistics](#project-statistics)
+- [Architecture](#architecture)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Documentation](#api-documentation)
+- [Machine Learning Models](#machine-learning-models)
+- [Project Structure](#project-structure)
+- [Visualizations](#visualizations)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Technology Stack](#technology-stack)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Overview
 
-This solution provides a comprehensive system to detect credit card delinquency risk using **leading indicators** (early warning signals) rather than lag indicators (missed payments). The framework enables proactive customer outreach to reduce roll-rates and improve portfolio health.
+This project implements a data-driven solution for identifying early behavioral signals that precede credit card delinquency. Unlike traditional systems that rely on lag indicators (missed payments), this framework focuses on leading indicators (behavioral patterns) to enable proactive intervention.
+
+The system processes customer transaction data, engineers predictive features, trains multiple machine learning models, and provides risk assessments with actionable outreach strategies. It includes both a web-based interface for interactive use and a RESTful API for programmatic access.
 
 ## Key Features
 
-- **Early Warning Signal Detection** - Identifies behavioral patterns before delinquency occurs
-- **Risk Scoring Framework** - Weighted risk scoring system (0.0-1.0) with four-tier classification
-- **Predictive Modeling** - Multiple ML models (Random Forest, Logistic Regression, Gradient Boosting)
-- **Targeted Interventions** - Automated outreach strategies based on risk levels
-- **Comprehensive Visualizations** - 9+ professional charts and dashboards
-- **Scalable Architecture** - Designed for production deployment and automation
+### Early Warning Signal Detection
+Identifies behavioral patterns before delinquency occurs:
+- Spending decline patterns (sudden drops >15% or >20%)
+- High credit utilization (approaching or exceeding limits)
+- Payment frequency decline (reduced minimum due payments)
+- Cash withdrawal pattern changes (increased cash advances)
+- Merchant mix narrowing (reduced spending diversity)
+- Composite risk signals (multiple indicators combined)
+
+### Risk Scoring Framework
+Weighted risk scoring system (0.0-1.0) with four-tier classification:
+- **CRITICAL**: Immediate intervention required (risk score ≥ 0.8)
+- **HIGH**: Priority outreach needed (risk score 0.6-0.8)
+- **MEDIUM**: Proactive monitoring (risk score 0.3-0.6)
+- **LOW**: Standard monitoring (risk score < 0.3)
+
+### Predictive Modeling
+Multiple machine learning models trained and evaluated:
+- Random Forest Classifier
+- Gradient Boosting Classifier
+- Logistic Regression
+- Support Vector Machine (SVM)
+- Decision Tree Classifier
+- AdaBoost Classifier
+- Naive Bayes
+- K-Nearest Neighbors
+
+### Targeted Interventions
+Automated outreach strategies based on risk levels:
+- **CRITICAL**: Phone call within 24 hours
+- **HIGH**: Phone call/email within 48 hours
+- **MEDIUM**: Email/SMS within 1 week
+- **LOW**: Standard communication
+
+### Comprehensive Visualizations
+Professional charts and dashboards including:
+- Risk distribution analysis
+- Behavioral pattern analysis
+- Feature importance rankings
+- Model performance comparisons
+- Confusion matrices
+- Risk correlation heatmaps
+- Workflow diagrams
+
+### Scalable Architecture
+Designed for production deployment:
+- RESTful API with Flask
+- Batch processing capabilities
+- Health check endpoints
+- Performance monitoring
+- Security validation
+- Rate limiting
 
 ## Project Statistics
 
-- **50,000** records analyzed
+- **50,000** customer records analyzed
 - **50%** of customers flagged as at-risk
-- **75%** model accuracy (Random Forest)
+- **75%** model accuracy (Random Forest on original dataset)
+- **79%** model accuracy (Gradient Boosting on 50K dataset)
 - **14+** early warning signals engineered
 - **10** critical customers requiring immediate intervention
+- **8** machine learning models trained and compared
+- **9+** comprehensive visualizations generated
 
-## Quick Start
+## Architecture
+
+The system follows a modular architecture with clear separation of concerns:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    Frontend (GitHub Pages)                  │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐    │
+│  │ Interactive  │  │ Batch CSV    │  │ Visualizations│    │
+│  │  Dashboard   │  │  Predictor   │  │   Gallery     │    │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘    │
+└─────────┼──────────────────┼──────────────────┼────────────┘
+          │                  │                  │
+          └──────────────────┼──────────────────┘
+                             │
+                    ┌────────▼────────┐
+                    │   Flask API     │
+                    │   (Render.com)  │
+                    └────────┬────────┘
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+    ┌─────▼─────┐    ┌───────▼──────┐   ┌──────▼──────┐
+    │   Model   │    │   Feature    │   │   Risk      │
+    │  Training │    │  Engineering │   │  Scoring    │
+    └───────────┘    └──────────────┘   └─────────────┘
+```
+
+### Components
+
+1. **Frontend**: Static website hosted on GitHub Pages with interactive dashboards
+2. **Backend API**: Flask REST API hosted on Render.com for predictions
+3. **Machine Learning Pipeline**: Model training, feature engineering, and prediction
+4. **Data Processing**: CSV parsing, validation, and batch processing
+5. **Visualization Engine**: Automated chart generation and dashboard creation
+
+## Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- Required packages (see `requirements.txt`)
+- pip (Python package manager)
+- Git (for cloning the repository)
 
-### Installation
+### Step 1: Clone the Repository
 
 ```bash
-# Clone the repository
 git clone https://github.com/AsherGrayne/Credit_Risk_HDFC_Capstone_Project.git
 cd Credit_Risk_HDFC_Capstone_Project
+```
 
-# Install dependencies
+### Step 2: Install Dependencies
+
+```bash
 pip install -r requirements.txt
 ```
 
-### Run Analysis
+### Step 3: Verify Installation
 
 ```bash
-# Execute the main analysis
+python -c "import pandas, numpy, sklearn, flask; print('All dependencies installed successfully')"
+```
+
+## Usage
+
+### Running the Complete Analysis
+
+Execute the main analysis script to process data, train models, and generate outputs:
+
+```bash
 python src/early_risk_signals.py
 ```
 
 This will:
-1. Load and analyze the sample data
-2. Engineer early warning signals
-3. Generate risk flags
-4. Train predictive models
+1. Load and analyze the sample dataset (100 customer records)
+2. Engineer 14+ early warning signals
+3. Generate risk flags for each customer
+4. Train multiple machine learning models
 5. Create outreach strategies
-6. Generate visualizations
-7. Save output files
+6. Generate comprehensive visualizations
+7. Save output files to `data/` directory
+
+### Training Machine Learning Models
+
+Train and compare multiple ML models:
+
+```bash
+python ml_model_training.py
+```
+
+This script:
+- Loads and preprocesses the dataset
+- Trains 8 different classification models
+- Evaluates model performance
+- Generates confusion matrices and feature importance charts
+- Saves trained models to `models/` directory
+
+### Running the Flask API
+
+Start the Flask API server for batch predictions:
+
+```bash
+python app.py
+```
+
+The API will be available at `http://localhost:5000`
+
+### Using the Interactive Dashboard
+
+1. Open `index.html` in a web browser
+2. Navigate to the "Enter Customer Details" tab
+3. Upload a CSV file with customer data
+4. View risk predictions and segmentation
+5. Download results as CSV
+
+### Batch Prediction via API
+
+```python
+import requests
+
+url = "https://credit-risk-hdfc-capstone-project.onrender.com/predict_batch"
+files = {'file': open('data/Sample.csv', 'rb')}
+response = requests.post(url, files=files)
+results = response.json()
+```
+
+## API Documentation
+
+### Base URL
+
+- **Production**: `https://credit-risk-hdfc-capstone-project.onrender.com`
+- **Local Development**: `http://localhost:5000`
+
+### Endpoints
+
+#### POST /predict_batch
+
+Predicts DPD Bucket (risk level) for all customers in an uploaded CSV file.
+
+**Request:**
+- Method: POST
+- Content-Type: multipart/form-data
+- Body: CSV file with required columns
+
+**Required CSV Columns:**
+- Customer ID
+- Credit Limit
+- Utilisation %
+- Avg Payment Ratio
+- Min Due Paid Frequency
+- Merchant Mix Index
+- Cash Withdrawal %
+- Recent Spend Change %
+
+**Response:**
+```json
+{
+  "success": true,
+  "predictions": [
+    {
+      "Customer ID": "C001",
+      "Predicted DPD Bucket": 0,
+      "Risk Level": "No Risk",
+      "Probability_DPD_0": 0.85,
+      "Probability_DPD_1": 0.10,
+      "Probability_DPD_2": 0.04,
+      "Probability_DPD_3": 0.01
+    }
+  ],
+  "categorized": {
+    "No Risk": ["C001", "C002"],
+    "Low Risk": ["C003"],
+    "Medium Risk": ["C004"],
+    "High Risk": ["C005"]
+  },
+  "risk_counts": {
+    "No Risk": 50,
+    "Low Risk": 25,
+    "Medium Risk": 15,
+    "High Risk": 10
+  },
+  "total_customers": 100
+}
+```
+
+**Error Response:**
+```json
+{
+  "success": false,
+  "error": "Missing required columns: Credit Limit, Utilisation %"
+}
+```
+
+#### GET /health
+
+Health check endpoint to verify API status.
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "message": "API is running"
+}
+```
+
+## Machine Learning Models
+
+### Model Comparison
+
+The system trains and evaluates 8 different machine learning models:
+
+| Model | Accuracy | Precision | Recall | F1-Score |
+|-------|----------|-----------|--------|----------|
+| Random Forest | 0.75 | 0.74 | 0.75 | 0.74 |
+| Gradient Boosting | 0.79 | 0.78 | 0.79 | 0.78 |
+| Logistic Regression | 0.72 | 0.71 | 0.72 | 0.71 |
+| SVM | 0.70 | 0.69 | 0.70 | 0.69 |
+| Decision Tree | 0.68 | 0.67 | 0.68 | 0.67 |
+| AdaBoost | 0.73 | 0.72 | 0.73 | 0.72 |
+| Naive Bayes | 0.65 | 0.64 | 0.65 | 0.64 |
+| K-Nearest Neighbors | 0.71 | 0.70 | 0.71 | 0.70 |
+
+### Feature Importance
+
+Top features for predicting delinquency (Random Forest):
+
+1. **Min Due Paid Frequency** (18.3%) - Payment behavior indicator
+2. **Utilisation %** (17.5%) - Credit limit usage
+3. **Avg Payment Ratio** (15.2%) - Payment consistency
+4. **Recent Spend Change %** (14.8%) - Spending pattern changes
+5. **Cash Withdrawal %** (12.1%) - Cash advance patterns
+6. **Credit Limit** (10.5%) - Account characteristics
+7. **Merchant Mix Index** (8.2%) - Spending diversity
+8. **Engineered Signals** (3.4%) - Composite risk indicators
+
+### Model Selection
+
+The Random Forest model is used as the primary prediction model due to:
+- High accuracy and interpretability
+- Feature importance analysis capability
+- Robust performance across different datasets
+- Good balance between bias and variance
 
 ## Project Structure
 
 ```
-Credit Card Delinquency Pack/
+Credit_Risk_HDFC_Capstone_Project/
 │
-├── src/                               # Source code
-│   ├── early_risk_signals.py          # Main analysis framework
-│   ├── visualization_dashboard.py     # Visualization module
-│   ├── workflow_diagram.py            # Workflow visualization
-│   ├── export_model_to_json.py       # Model export utility
-│   └── predict_api.py                # Flask API for predictions
+├── app.py                          # Flask API for batch predictions
+├── ml_model_training.py            # ML model training script
+├── requirements.txt                # Python dependencies
+├── Procfile                        # Render deployment configuration
+├── netlify.toml                    # Netlify deployment configuration
 │
-├── data/                              # Data files
-│   ├── Sample.csv                     # Input data (100 records)
-│   ├── risk_flags_output.csv          # Risk flags output
-│   ├── outreach_strategies.csv        # Intervention recommendations
-│   ├── data_with_early_signals.csv    # Enhanced dataset
-│   └── synthetic_dataset_50000.csv     # Synthetic dataset
+├── src/                            # Source code modules
+│   ├── early_risk_signals.py       # Main analysis framework
+│   ├── predict_api.py              # Prediction API endpoints
+│   ├── batch_processor.py          # Batch processing utilities
+│   ├── visualization_dashboard.py  # Visualization generation
+│   ├── workflow_diagram.py         # Workflow visualization
+│   ├── export_model_to_json.py     # Model export utility
+│   ├── predict_delinquency.py      # Delinquency prediction script
+│   ├── config.py                   # Configuration management
+│   ├── security.py                 # Security validation
+│   ├── monitoring.py               # Performance monitoring
+│   ├── health_check.py             # Health check endpoints
+│   └── logging_config.py           # Logging configuration
 │
-├── docs/                              # Documentation
-│   ├── solution_narrative.md          # Comprehensive documentation
-│   ├── EXECUTIVE_SUMMARY.md           # Executive overview
-│   ├── FULL_WORKFLOW.md               # Complete workflow
-│   ├── EXECUTION_TRANSCRIPT.md        # Execution details
-│   ├── ML_MODEL_EXPLANATION.md        # ML model documentation
-│   ├── README_API.md                  # API documentation
-│   ├── README_HOSTING.md              # Hosting guide
-│   └── DELIVERABLES_CHECKLIST.md     # Deliverables checklist
+├── data/                           # Data files
+│   ├── Sample.csv                  # Sample input data (100 records)
+│   ├── Credit_Card_Delinquency_Watch.csv  # Original dataset
+│   ├── risk_flags_output.csv       # Risk flags output
+│   ├── outreach_strategies.csv     # Intervention recommendations
+│   ├── data_with_early_signals.csv # Enhanced dataset
+│   ├── synthetic_dataset_50000.csv  # Synthetic dataset (50K records)
+│   └── customer_categories.json    # Customer categorization data
 │
-├── visualizations/                     # Generated visualizations
-│   ├── model_comparison.png           # Model performance comparison
-│   ├── dataset_comparison.png         # Dataset size impact
-│   ├── risk_distribution.png          # Risk level distribution
-│   ├── behavioral_patterns.png       # Behavioral analysis
-│   ├── flag_frequency.png             # Flag frequency analysis
-│   ├── feature_importance.png         # Feature importance
-│   ├── outreach_strategy.png          # Outreach distribution
-│   ├── risk_heatmap.png               # Correlation heatmap
-│   └── workflow_diagram.png            # System workflow
+├── models/                         # Trained ML models
+│   ├── random_forest_model.joblib  # Primary prediction model
+│   ├── random_forest_scaler.joblib # Feature scaler
+│   ├── gradient_boosting_model.joblib
+│   ├── logistic_regression_model.joblib
+│   ├── svm_model.joblib
+│   ├── decision_tree_model.joblib
+│   ├── adaboost_model.joblib
+│   ├── naive_bayes_model.joblib
+│   ├── k-nearest_neighbors_model.joblib
+│   └── model.json                  # Exported model (JSON format)
 │
-├── website/                           # Web interface
-│   ├── index.html                     # Main website
-│   ├── workflow.html                  # Workflow page
-│   ├── apply.html                     # Prediction form
-│   ├── styles.css                     # Main stylesheet
-│   ├── workflow-styles.css            # Workflow page styles
-│   ├── apply-script.js                # Form handling script
-│   ├── ml-model-predictor.js          # ML model predictor
-│   └── workflow-script.js              # Workflow page script
+├── visualizations/                 # Generated visualizations
+│   ├── workflow_diagram.png        # System workflow diagram
+│   ├── risk_distribution.png       # Risk level distribution
+│   ├── behavioral_patterns.png     # Behavioral analysis
+│   ├── flag_frequency.png          # Flag frequency analysis
+│   ├── feature_importance.png      # Feature importance chart
+│   ├── model_comparison.png        # Model performance comparison
+│   ├── dataset_comparison.png       # Dataset size impact
+│   ├── outreach_strategy.png       # Outreach distribution
+│   ├── risk_heatmap.png            # Correlation heatmap
+│   └── new_visualization/          # Additional model visualizations
+│       ├── all_confusion_matrices.png
+│       ├── model_accuracy_comparison.png
+│       ├── average_feature_importance.png
+│       └── [model-specific charts]
 │
-├── models/                             # Trained models
-│   └── model.json                     # Exported Random Forest model
+├── website/                        # Frontend website files
+│   ├── index.html                  # Main website (single-page app)
+│   ├── styles.css                  # Main stylesheet
+│   ├── workflow-styles.css         # Workflow page styles
+│   ├── interactive-dashboard.js    # Dashboard functionality
+│   ├── csv-batch-predictor.js      # CSV batch prediction
+│   ├── ml-model-predictor.js       # ML model predictor
+│   └── visualizations/             # Website visualization assets
 │
-├── README.md                          # This file
-└── requirements.txt                   # Python dependencies
+├── tests/                          # Unit and integration tests
+│   ├── test_feature_engineering.py
+│   ├── test_model_training.py
+│   ├── test_risk_flags.py
+│   ├── test_performance.py
+│   └── test_integration.py
+│
+├── results/                        # Model evaluation results
+│   ├── model_comparison_summary.txt
+│   └── [model]_feature_importance.csv
+│
+└── README.md                       # This file
 ```
 
-## Key Features Explained
+## Visualizations
 
-### 1. Early Warning Signal Detection
+The system generates comprehensive visualizations to analyze risk patterns and model performance.
 
-The framework identifies five key behavioral patterns:
+### Workflow Diagram
 
-- **Spending Decline**: Sudden drops in spending (>15% or >20%)
-- **High Utilization**: Credit limit usage approaching maximum (≥80% or ≥90%)
-- **Payment Frequency Decline**: Reduced minimum due payments (<30% or <20%)
-- **Cash Withdrawal Patterns**: Increased cash advances (≥15% or ≥20%)
-- **Composite Risk Signals**: Multiple indicators combined
+![Workflow Diagram](visualizations/workflow_diagram.png)
 
-### 2. Risk Scoring Framework
+The complete system workflow from data ingestion to risk prediction and outreach strategy generation.
 
-**Early Risk Score** (0.0 - 1.0):
-- Combines multiple behavioral indicators
-- Weighted by predictive importance
-- Classifies customers into risk levels:
-  - **CRITICAL**: Immediate intervention required
-  - **HIGH**: Priority outreach needed
-  - **MEDIUM**: Proactive monitoring
-  - **LOW**: Standard monitoring
+### Risk Distribution
 
-### 3. Predictive Modeling
+![Risk Distribution](visualizations/risk_distribution.png)
 
-- **Algorithm**: Random Forest Classifier
-- **Features**: 14 engineered early signals
-- **Performance**: High precision and recall for at-risk detection
-- **Interpretability**: Feature importance analysis
+Distribution of customers across different risk levels (No Risk, Low Risk, Medium Risk, High Risk).
 
-### 4. Targeted Interventions
+### Behavioral Patterns
 
-Automated outreach strategies based on risk level:
-- **CRITICAL**: Phone call within 24 hours
-- **HIGH**: Phone call/email within 48 hours
-- **MEDIUM**: Email/SMS within 1 week
+![Behavioral Patterns](visualizations/behavioral_patterns.png)
 
-## Output Files
+Analysis of key behavioral indicators including spending patterns, utilization trends, and payment behaviors.
 
-### CSV Files
+### Feature Importance
 
-1. **`risk_flags_output.csv`**
-   - Contains risk flags for each customer
-   - Columns: `customer_id`, `risk_level`, `risk_score`, `flags`, `flag_count`
-   - 100 rows (one per customer)
+![Feature Importance](visualizations/feature_importance.png)
 
-2. **`outreach_strategies.csv`**
-   - Contains outreach recommendations
-   - Columns: `customer_id`, `risk_level`, `strategies`
-   - Includes priority, channel, timing, message, and offer
+Ranking of features by their importance in predicting delinquency risk.
 
-3. **`data_with_early_signals.csv`**
-   - Enhanced dataset with original + engineered features
-   - Ready for further analysis
+### Model Comparison
 
-### Visualizations
+![Model Comparison](visualizations/model_comparison.png)
 
-9 PNG files generated:
-- Risk distribution charts
-- Behavioral pattern analysis
-- Flag frequency
-- Feature importance
-- Outreach strategy distribution
-- Risk correlation heatmap
-- System workflow diagram
+Performance comparison across all trained machine learning models.
 
-## Key Results
+### Flag Frequency
 
-### Portfolio Analysis
-- **50%** of customers flagged as at-risk (50 customers)
-- **10%** require immediate intervention
-- **Top flags**: Low Payment Frequency (23), Spending Decline (20)
+![Flag Frequency](visualizations/flag_frequency.png)
 
-### Model Performance
-- **Random Forest**: 75% accuracy (original dataset)
-- **Gradient Boosting**: 79% accuracy (50K dataset)
-- **Top Features**: Payment Frequency (18.3%), Utilization (17.5%)
+Frequency analysis of different risk flags identified in the customer base.
 
-## Understanding the Logic
+### Outreach Strategy Distribution
+
+![Outreach Strategy](visualizations/outreach_strategy.png)
+
+Distribution of recommended outreach strategies based on risk levels.
+
+### Risk Heatmap
+
+![Risk Heatmap](visualizations/risk_heatmap.png)
+
+Correlation heatmap showing relationships between different risk indicators.
+
+### Dataset Comparison
+
+![Dataset Comparison](visualizations/dataset_comparison.png)
+
+Impact of dataset size on model performance metrics.
+
+### Confusion Matrices
+
+![All Confusion Matrices](visualizations/new_visualization/all_confusion_matrices.png)
+
+Confusion matrices for all trained models showing prediction accuracy across risk categories.
+
+### Model Accuracy Comparison
+
+![Model Accuracy Comparison](visualizations/new_visualization/model_accuracy_comparison.png)
+
+Comparative analysis of accuracy metrics across all models.
+
+### Average Feature Importance
+
+![Average Feature Importance](visualizations/new_visualization/average_feature_importance.png)
+
+Aggregated feature importance across all models.
+
+## Testing
+
+The project includes comprehensive test suites for validation:
+
+### Running Tests
+
+```bash
+# Run all tests
+pytest
+
+# Run specific test file
+pytest tests/test_feature_engineering.py
+
+# Run with coverage
+pytest --cov=src tests/
+```
+
+### Test Coverage
+
+- **Feature Engineering**: Tests for early signal generation and risk scoring
+- **Model Training**: Validation of model training and evaluation
+- **Risk Flags**: Verification of risk flag identification logic
+- **Performance**: Performance benchmarking and optimization tests
+- **Integration**: End-to-end workflow testing
+
+### Test Files
+
+- `test_feature_engineering.py`: Tests for feature engineering functions
+- `test_model_training.py`: Tests for ML model training pipeline
+- `test_risk_flags.py`: Tests for risk flag identification
+- `test_performance.py`: Performance and scalability tests
+- `test_integration.py`: Integration tests for complete workflow
+
+## Deployment
+
+### Frontend Deployment (GitHub Pages)
+
+The frontend is automatically deployed to GitHub Pages via GitHub Actions:
+
+1. Push changes to the `main` branch
+2. GitHub Actions workflow triggers automatically
+3. Site is deployed to: `https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/`
+
+### Backend API Deployment (Render)
+
+The Flask API is deployed on Render.com:
+
+1. Connect GitHub repository to Render
+2. Configure build settings:
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `python app.py`
+3. Set Python version to 3.9 in Render dashboard
+4. API available at: `https://credit-risk-hdfc-capstone-project.onrender.com`
+
+### Environment Variables
+
+For local development, create a `.env` file:
+
+```env
+FLASK_ENV=development
+PORT=5000
+API_BASE_URL=http://localhost:5000
+```
+
+For production, configure in Render dashboard:
+- `FLASK_ENV=production`
+- `PORT=5000` (auto-set by Render)
+
+## Technology Stack
+
+### Backend
+- **Python 3.8+**: Core programming language
+- **Flask 2.3+**: Web framework for API
+- **Flask-CORS 4.0+**: Cross-origin resource sharing
+- **Pandas 1.5+**: Data manipulation and analysis
+- **NumPy 1.23+**: Numerical computing
+- **Scikit-learn 1.2+**: Machine learning library
+- **Joblib**: Model serialization
+
+### Frontend
+- **HTML5**: Markup language
+- **CSS3**: Styling
+- **JavaScript (ES6+)**: Client-side scripting
+- **Chart.js**: Data visualization library
+
+### Machine Learning
+- **Random Forest**: Primary classification model
+- **Gradient Boosting**: Ensemble learning
+- **Logistic Regression**: Linear classification
+- **SVM**: Support Vector Machine
+- **Decision Tree**: Tree-based classifier
+- **AdaBoost**: Adaptive boosting
+- **Naive Bayes**: Probabilistic classifier
+- **K-Nearest Neighbors**: Instance-based learning
+
+### Data Visualization
+- **Matplotlib 3.6+**: Plotting library
+- **Seaborn 0.12+**: Statistical visualization
+- **Chart.js**: Interactive charts for web
+
+### Development Tools
+- **Pytest**: Testing framework
+- **Git**: Version control
+- **GitHub Actions**: CI/CD pipeline
+
+## Key Insights
 
 ### Early Warning Signals vs Lag Indicators
 
@@ -213,18 +632,9 @@ Automated outreach strategies based on risk level:
 | Payment frequency change | Late fee charged |
 | Cash withdrawal increase | Collection action |
 
-### Risk Flag Logic
-
-Flags are generated using **deterministic thresholds** based on:
-- Industry best practices
-- Statistical analysis of the data
-- Business rules for credit risk management
-
-**Example**: `SPENDING_DECLINE_SEVERE` flag triggers when:
-- Recent Spend Change % < -20%
-- Indicates potential financial stress
-
 ### Risk Score Calculation
+
+The early risk score combines multiple behavioral indicators:
 
 ```
 Risk Score = (
@@ -236,171 +646,61 @@ Risk Score = (
 ) / 3.0
 ```
 
-## Customization
-
-### Adjusting Risk Thresholds
-
-Edit thresholds in `src/early_risk_signals.py`:
-
-```python
-# Modify spending decline threshold
-if row['Recent Spend Change %'] < -20:  # Change -20 to your threshold
-    # Flag logic
-```
-
-### Updating Risk Score Weights
-
-Modify weights in `engineer_early_signals()`:
-
-```python
-df_engineered['early_risk_score'] = (
-    df_engineered['spending_stress'] * 0.25 +  # Adjust weight
-    df_engineered['utilization_risk'] * 0.30 +  # Adjust weight
-    # ... etc
-)
-```
-
-### Adding New Flags
-
-Add new flag logic in `identify_risk_flags()`:
-
-```python
-# New flag example
-if row['Your_New_Indicator'] > threshold:
-    customer_flags.append({
-        'flag': 'YOUR_NEW_FLAG',
-        'severity': 'MEDIUM',
-        'message': 'Your custom message',
-        'action': 'Recommended action'
-    })
-```
-
-## Website
-
-A professional interactive website showcasing all visualizations, ML predictions, and workflow is available:
-
-- **Live Website**: **[https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/](https://ashergrayne.github.io/Credit_Risk_HDFC_Capstone_Project/)**
-- **File**: `index.html`
-- **Styling**: `styles.css`
-- **Hosting**: Deployed on GitHub Pages
-
-### Features Available on the Website:
-- 📊 Interactive Dashboard with risk segmentation
-- 🔮 Batch CSV prediction with risk level classification
-- 📈 9+ comprehensive visualizations
-- 🤖 ML Workflow walkthrough
-- 📋 Complete workflow documentation
-- 🎯 Outreach strategy framework
-
-See `docs/README_HOSTING.md` for deployment instructions.
-
-## Scaling to Production
-
-### Phase 1: Pilot (Months 1-3)
-- Deploy on 10% of portfolio
-- Manual review of flags
-- Measure effectiveness
-
-### Phase 2: Rollout (Months 4-6)
-- Expand to 50% of portfolio
-- Semi-automated outreach
-- A/B testing
-
-### Phase 3: Full Automation (Months 7-12)
-- Full portfolio coverage
-- Automated flag generation
-- Automated low-risk outreach
-
-See `docs/solution_narrative.md` for detailed scaling strategy.
-
-## Expected Impact
-
-- **Early Detection**: Identify 20-30% of at-risk customers before delinquency
-- **Roll-Rate Reduction**: 15-25% reduction in progression to higher DPD buckets
-- **Cost Savings**: Early intervention cheaper than collections
-- **Customer Experience**: Proactive support improves satisfaction
-
-## Example Usage
-
-```python
-import sys
-sys.path.append('src')
-from early_risk_signals import EarlyRiskSignalSystem
-
-# Initialize system
-system = EarlyRiskSignalSystem()
-
-# Load data
-df = system.load_data('data/Sample.csv')
-
-# Engineer early signals
-df_engineered = system.engineer_early_signals(df)
-
-# Identify risk flags
-risk_flags = system.identify_risk_flags(df_engineered)
-
-# Generate outreach strategies
-strategies = system.generate_outreach_strategies(risk_flags)
-
-# View results
-print(risk_flags.head())
-print(strategies.head())
-```
-
-## Key Insights from Sample Data
+### Portfolio Analysis Results
 
 From analysis of 100 customer records:
 - **25%** flagged as at-risk (DPD Bucket ≥ 1)
 - **15%** show high utilization (≥80%)
 - **22%** show spending decline (>15%)
 - **18%** show low payment frequency (<30%)
+- **10%** require immediate intervention (CRITICAL risk)
 
-## Technology Stack
+### Model Performance Insights
 
-- **Python 3.8+**
-- **Scikit-learn** - Machine learning models
-- **Pandas** - Data manipulation
-- **NumPy** - Numerical computing
-- **Matplotlib/Seaborn** - Data visualization
-
-## Documentation
-
-- **`docs/solution_narrative.md`** - Complete solution documentation
-- **`docs/EXECUTIVE_SUMMARY.md`** - Executive overview
-- **`docs/FULL_WORKFLOW.md`** - Complete workflow walkthrough
-- **`docs/EXECUTION_TRANSCRIPT.md`** - Detailed execution transcript
+- Random Forest provides best balance of accuracy and interpretability
+- Feature importance analysis reveals payment behavior as primary predictor
+- Ensemble methods (Random Forest, Gradient Boosting) outperform single models
+- Model performance improves with larger datasets (50K records)
 
 ## Contributing
 
 This is a demonstration framework. For production use:
-1. Validate thresholds on larger datasets
-2. Tune model parameters
-3. Integrate with existing systems
-4. Establish feedback loops
+
+1. **Validate Thresholds**: Test risk thresholds on larger, diverse datasets
+2. **Tune Parameters**: Optimize model hyperparameters for your specific use case
+3. **Integrate Systems**: Connect with existing CRM and customer management systems
+4. **Establish Feedback Loops**: Implement monitoring to track prediction accuracy
+5. **Compliance**: Ensure adherence to financial regulations and data privacy laws
+
+### Development Guidelines
+
+- Follow PEP 8 style guide for Python code
+- Write unit tests for new features
+- Update documentation for API changes
+- Use meaningful commit messages
+- Test locally before pushing changes
 
 ## License
 
-This solution is provided as-is for demonstration purposes.
+This project is provided as-is for demonstration purposes. Please refer to the repository license file for specific terms.
 
 ## Support
 
-For questions or issues, refer to:
-- `docs/solution_narrative.md` - Detailed technical documentation
-- `docs/README_HOSTING.md` - Website hosting guide
+For questions or issues:
+- Review the code documentation in `src/` directory
+- Check test files in `tests/` for usage examples
+- Examine visualization scripts for data analysis patterns
 
-## Success Criteria Met
+## Version History
 
-- **Clear Logic**: Deterministic thresholds and transparent business rules
-- **Data-Backed**: Analysis of 100 customers with statistical validation
-- **Targeted Interventions**: Risk-level based, operationally feasible, customer-friendly
-- **Scalability**: 3-phase deployment strategy with automation architecture
+- **Version 1.0** (Current): Production-ready release with full ML pipeline, web interface, and API
+- Complete feature engineering and risk scoring
+- Multiple ML models trained and evaluated
+- Comprehensive visualizations
+- Deployed frontend and backend
 
 ---
 
-**Version**: 1.0  
 **Last Updated**: 2024  
-**Status**: Production-Ready
-
----
-
-**Star this repository if you find it useful!**
+**Status**: Production-Ready  
+**Maintainer**: AsherGrayne
