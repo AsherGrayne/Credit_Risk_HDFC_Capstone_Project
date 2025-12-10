@@ -13,7 +13,7 @@ The complete interactive dashboard is live and ready to use. Features include:
 - Comprehensive visualizations
 - Machine learning workflow demonstration
 
-**Video Demonstration:** [Add video link here]
+**Video Demonstration:** [Watch Video Walkthrough](WhatsApp%20Video%202025-12-10%20at%2023.56.39.mp4)
 
 A comprehensive video walkthrough demonstrating the system's capabilities, including:
 - Uploading customer data for batch prediction
